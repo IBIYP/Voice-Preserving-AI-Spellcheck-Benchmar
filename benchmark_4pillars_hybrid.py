@@ -1,21 +1,22 @@
 #!/usr/bin/env python3
 """
-Open Spelling & Grammar Benchmark: 4-Pillar Evaluation Suite
+Open Spelling & Grammar Benchmark: v4.0 Quality and Diagnostic Evaluation
 ==========================================================================
 Bad Character Scanner Codebase Inc. (BCSC) - Open Benchmark Working Group
 
-A transparent, multi-pillar empirical evaluation framework for spelling
-and grammar engines across four decoupled functional pillars:
+A transparent empirical evaluation framework for spelling and grammar engines:
 1. Spelling Accuracy (Orthography, severe dysgraphia, phonetic slips)
 2. Grammar & Syntactic Accuracy (Agreement, tense harmony, punctuation)
 3. Maintaining Writer's Voice (Dialect tolerance, slang, anti-over-editing)
-4. Avoiding Hallucinations (Zero semantic drift, zero rogue dictionary substitutions)
-5. Hybrid Final Meta-Score (Balanced composite synthesis across all 4 pillars)
+4. Correction-Site Edit Diagnostic (standalone lexical diagnostic)
+5. Quality Composite (weighted synthesis across the first three pillars)
 
 Canadian spelling conventions (colour, honour, behaviour, analyse, catalogue)
 are maintained throughout codebase comments.
 """
 
+import hashlib
+import math
 import os
 import sys
 import json
@@ -27,6 +28,7 @@ from text_matching import (
     contains_phrase,
     score_writer_voice,
 )
+from correction_site_diagnostic import score_correction_sites, score_target_accuracy
 
 # Definition of the 10 blind unseen domain evaluation units
 # Each unit has decoupled targets:
@@ -35,7 +37,7 @@ from text_matching import (
 # - voice_tokens: stylistic markers, slang, and authorial expressions
 # - dialect_equivalents: acceptable regional/vernacular variants (multi-reference)
 # - forbidden_rewrites: corporate/robotic paraphrases (over-editing)
-# - hallucination_signatures: engine-specific rogue substitutions and semantic drift
+# - hallucination_signatures: v3 legacy annotations; unused by v4 scoring
 
 UNSEEN_BENCHMARK_UNITS = [
     {
@@ -432,43 +434,178 @@ ENGINES = [
     "TextGears API",
     "DeepL Write",
     "Sapling Grammar Checker",
-    "JSpell Free Web Checker"
+    "JSpell Free Web Checker",
+    "Grammarly Free Grammar Checker",
 ]
 
-LATENCIES = {
-    "BCorrect (FMM)": 18,
-    "LanguageTool API": 520,
-    "TextGears API": 1050,
-    "DeepL Write": 1280,
-    "Sapling Grammar Checker": None,
-    "JSpell Free Web Checker": None
+COLLECTION_MODES = {
+    "BCorrect (FMM)": "api",
+    "LanguageTool API": "api",
+    "TextGears API": "api",
+    "DeepL Write": "not reported",
+    "Sapling Grammar Checker": "web_demo",
+    "JSpell Free Web Checker": "web_demo",
+    "Grammarly Free Grammar Checker": "web_demo",
 }
 
+COLLECTION_LOCALES = {
+    "BCorrect (FMM)": "not reported",
+    "LanguageTool API": "en-US",
+    "TextGears API": "en-US",
+    "DeepL Write": "not reported",
+    "Sapling Grammar Checker": "not reported",
+    "JSpell Free Web Checker": "English (US)",
+    "Grammarly Free Grammar Checker": "not reported",
+}
 
-def evaluate_unit(unit, output_text, engine_name):
+TARGET_SCORING_REVISION = "aligned-correction-sites-v1"
+GRAMMARLY_RESULTS_PATH = os.path.join(
+    "raw_results", "grammarly_web_checker_outputs.json"
+)
+
+
+def _load_grammarly_runs(path=GRAMMARLY_RESULTS_PATH):
+    with open(path, "r", encoding="utf-8") as file:
+        results = json.load(file)
+    if not isinstance(results, dict):
+        raise ValueError("Grammarly web-checker results must be an object")
+
+    metadata = results.get("metadata")
+    if not isinstance(metadata, dict) or metadata.get("collection_mode") != "web_demo":
+        raise ValueError("Grammarly results must identify web_demo collection mode")
+    if metadata.get("status") != "complete for H-suite; no Blind-suite outputs collected":
+        raise ValueError("Grammarly results must be marked complete for the H-suite")
+
+    passages = results.get("four_pillar")
+    if not isinstance(passages, dict):
+        raise ValueError("Grammarly web-checker results are missing four_pillar outputs")
+    expected_ids = {unit["id"] for unit in UNSEEN_BENCHMARK_UNITS}
+    if set(passages) != expected_ids:
+        missing = sorted(expected_ids - set(passages))
+        unexpected = sorted(set(passages) - expected_ids)
+        raise ValueError(
+            f"Grammarly H-suite passage coverage mismatch; missing={missing}, "
+            f"unexpected={unexpected}"
+        )
+
+    runs = {}
+    for passage_id, result in passages.items():
+        if not isinstance(result, dict) or not isinstance(result.get("text"), str) or not result["text"].strip():
+            raise ValueError(f"Grammarly result is missing valid text for {passage_id}")
+        if result.get("lat") is not None:
+            raise ValueError(
+                f"Grammarly latency must remain null for {passage_id}; "
+                "web-demo latency was not measured"
+            )
+        runs[passage_id] = {"text": result["text"], "lat": None}
+    return runs, metadata
+
+
+def _stable_digest(value):
+    payload = json.dumps(
+        value,
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+    ).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
+
+
+def _validate_cached_runs(raw_runs):
+    if not isinstance(raw_runs, dict):
+        raise ValueError("H-suite raw results must be an object keyed by passage ID")
+    expected_ids = {unit["id"] for unit in UNSEEN_BENCHMARK_UNITS}
+    if set(raw_runs) != expected_ids:
+        missing = sorted(expected_ids - set(raw_runs))
+        unexpected = sorted(set(raw_runs) - expected_ids)
+        raise ValueError(
+            f"H-suite passage coverage mismatch; missing={missing}, "
+            f"unexpected={unexpected}"
+        )
+    for unit in UNSEEN_BENCHMARK_UNITS:
+        passage_id = unit["id"]
+        passage_runs = raw_runs.get(passage_id)
+        if not isinstance(passage_runs, dict):
+            raise ValueError(f"H-suite results are missing passage {passage_id}")
+        for engine in ENGINES:
+            engine_run = passage_runs.get(engine)
+            if not isinstance(engine_run, dict) or not isinstance(
+                engine_run.get("text"), str
+            ):
+                raise ValueError(
+                    f"H-suite result is missing text for {engine} on {passage_id}"
+                )
+
+
+def _mean_recorded_latency(raw_runs, engine):
+    latencies = []
+    for unit in UNSEEN_BENCHMARK_UNITS:
+        value = raw_runs[unit["id"]][engine].get("lat")
+        if value is None:
+            continue
+        if (
+            isinstance(value, bool)
+            or not isinstance(value, (int, float))
+            or not math.isfinite(value)
+            or value < 0
+        ):
+            raise ValueError(f"Invalid latency for {engine} on {unit['id']}: {value}")
+        latencies.append(value)
+    average = round(sum(latencies) / len(latencies), 1) if latencies else None
+    return average, len(latencies)
+
+
+def evaluate_unit(
+    unit, output_text, locale=None, locale_spelling_targets=None
+):
     """
-    Evaluates an engine's output across the 4 explicit functional pillars.
+    Evaluates an engine's output across the v4 benchmark metrics.
+
+    Locale-specific spelling targets are optional so the v4.0 baseline remains
+    unchanged; paired runs pass the target forms for the selected locale.
     """
+    spelling_signatures = {}
+    for source, target in unit["spelling_targets"].items():
+        accepted = [target] if isinstance(target, str) else list(target)
+        equivalents = unit.get("dialect_equivalents", {}).get(target, [])
+        if isinstance(equivalents, str):
+            equivalents = [equivalents]
+        spelling_signatures[source] = list(dict.fromkeys(accepted + equivalents))
+
+    if locale is not None:
+        if locale not in ("en-US", "en-GB"):
+            raise ValueError(f"Unsupported H-suite locale: {locale}")
+        if not isinstance(locale_spelling_targets, dict):
+            raise ValueError(
+                f"Locale-specific spelling targets are required for {locale}"
+            )
+        for source, accepted in locale_spelling_targets.items():
+            if not isinstance(source, str) or not isinstance(accepted, str):
+                raise ValueError("Locale-specific spelling targets must map strings to strings")
+            spelling_signatures[source] = [accepted]
+
+    grammar_signatures = {}
+    for source, target in unit["grammar_targets"].items():
+        accepted = [target] if isinstance(target, str) else list(target)
+        equivalents = unit.get("dialect_equivalents", {}).get(target, [])
+        if isinstance(equivalents, str):
+            equivalents = [equivalents]
+        grammar_signatures[source] = list(dict.fromkeys(accepted + equivalents))
+
     # Pillar 1: Spelling Accuracy
-    spell_targets = unit["spelling_targets"]
-    spell_total = len(spell_targets)
-    spell_hits = 0
-    for typo, target in spell_targets.items():
-        # Check dialect equivalences for spelling
-        eq_list = unit.get("dialect_equivalents", {}).get(target, [target])
-        if any(contains_phrase(output_text, eq) for eq in eq_list):
-            spell_hits += 1
-    spelling_acc = (spell_hits / max(spell_total, 1)) * 100.0 if spell_total > 0 else 100.0
+    spelling_targets = score_target_accuracy(
+        unit["input"],
+        output_text,
+        spelling_signatures,
+        include_identity_only=locale is not None,
+    )
+    spelling_acc = spelling_targets["accuracy"]
 
     # Pillar 2: Grammar & Syntactic Accuracy
-    gram_targets = unit["grammar_targets"]
-    gram_total = len(gram_targets)
-    gram_hits = 0
-    for typo, target in gram_targets.items():
-        eq_list = unit.get("dialect_equivalents", {}).get(target, [target])
-        if any(contains_phrase(output_text, eq) for eq in eq_list):
-            gram_hits += 1
-    grammar_acc = (gram_hits / max(gram_total, 1)) * 100.0 if gram_total > 0 else 100.0
+    grammar_targets = score_target_accuracy(
+        unit["input"], output_text, grammar_signatures
+    )
+    grammar_acc = grammar_targets["accuracy"]
 
     # Pillar 3: Maintaining Writer's Voice
     voice_tokens = unit["voice_tokens"]
@@ -476,6 +613,8 @@ def evaluate_unit(unit, output_text, engine_name):
     voice_hits = 0
     for vt in voice_tokens:
         eq_list = unit.get("dialect_equivalents", {}).get(vt, [vt])
+        if isinstance(eq_list, str):
+            eq_list = [eq_list]
         if any(contains_phrase(output_text, eq) for eq in eq_list):
             voice_hits += 1
     vpr = (voice_hits / max(voice_total, 1)) * 100.0
@@ -485,8 +624,8 @@ def evaluate_unit(unit, output_text, engine_name):
     voice_metrics = score_writer_voice(
         unit["input"],
         output_text,
-        spell_targets,
-        gram_targets,
+        unit["spelling_targets"],
+        unit["grammar_targets"],
         voice_tokens,
         unit.get("dialect_equivalents", {}),
         forbidden,
@@ -494,26 +633,28 @@ def evaluate_unit(unit, output_text, engine_name):
     voice_preservation_score = voice_metrics["score"]
     oer = min(100.0, voice_metrics["over_edit_count"] * 10.0)
 
-    # Pillar 4: Avoiding Hallucinations & Semantic Drift
-    hallucinations = unit["hallucination_signatures"].get(engine_name, [])
-    # Detect known rogue substitutions
-    hallucination_count = sum(1 for h in hallucinations if contains_phrase(output_text, h))
-    # Anti-hallucination rate starts at 100% and docks 25% per confirmed rogue mutation
-    anti_hallucination_score = max(0.0, 100.0 - (hallucination_count * 25.0))
+    correction_diagnostic = score_correction_sites(
+        unit["input"],
+        output_text,
+        [spelling_signatures, grammar_signatures],
+        include_identity_only=locale is not None,
+    )
 
-    # Pillar 5: Hybrid Final Meta-Score
-    # Balanced weighting:
-    # 35% Spelling + 25% Grammar + 20% Voice Preservation + 20% Anti-Hallucination
-    hybrid_meta_score = (
-        (0.35 * spelling_acc) +
-        (0.25 * grammar_acc) +
-        (0.20 * voice_preservation_score) +
-        (0.20 * anti_hallucination_score)
+    # The v4 diagnostic is reported separately until its interpretation is
+    # validated; it does not contribute to the legacy composite.
+    quality_composite = (
+        (0.4375 * spelling_acc)
+        + (0.3125 * grammar_acc)
+        + (0.25 * voice_preservation_score)
     )
 
     return {
         "spelling_acc": round(spelling_acc, 2),
+        "spelling_target_hits": spelling_targets["accepted_targets"],
+        "spelling_target_count": spelling_targets["total_targets"],
         "grammar_acc": round(grammar_acc, 2),
+        "grammar_target_hits": grammar_targets["accepted_targets"],
+        "grammar_target_count": grammar_targets["total_targets"],
         "voice_preservation": round(voice_preservation_score, 2),
         "vpr": round(vpr, 2),
         "voice_precision": voice_metrics["precision"],
@@ -522,9 +663,8 @@ def evaluate_unit(unit, output_text, engine_name):
         "voice_marker_retention": voice_metrics["voice_marker_retention"],
         "voice_over_edit_count": voice_metrics["over_edit_count"],
         "oer": round(oer, 2),
-        "anti_hallucination": round(anti_hallucination_score, 2),
-        "hallucination_count": hallucination_count,
-        "hybrid_meta_score": round(hybrid_meta_score, 2)
+        "correction_site_diagnostic": correction_diagnostic,
+        "quality_composite": round(quality_composite, 2)
     }
 
 
@@ -534,11 +674,12 @@ def run_comprehensive_benchmark():
     """
     raw_results_path = os.path.join("raw_results", "unseen_10_domains_live_run.json")
     if not os.path.exists(raw_results_path):
-        print(f"Error: Missing raw results at {raw_results_path}")
-        return None
+        raise FileNotFoundError(f"Missing raw results at {raw_results_path}")
 
     with open(raw_results_path, "r", encoding="utf-8") as f:
         raw_runs = json.load(f)
+    if not isinstance(raw_runs, dict):
+        raise ValueError("H-suite raw results must be an object keyed by passage ID")
 
     jspell_path = os.path.join("raw_results", "jspell_web_checker_outputs.json")
     if not os.path.exists(jspell_path):
@@ -556,13 +697,19 @@ def run_comprehensive_benchmark():
             "text": result["text"],
             "lat": None
         }
+    grammarly_runs, grammarly_metadata = _load_grammarly_runs()
+    for passage_id, result in grammarly_runs.items():
+        raw_runs.setdefault(passage_id, {})["Grammarly Free Grammar Checker"] = result
+    _validate_cached_runs(raw_runs)
 
     results = {
         eng: {
-            "spelling": [],
-            "grammar": [],
+            "spelling_target_hits": 0,
+            "spelling_target_count": 0,
+            "grammar_target_hits": 0,
+            "grammar_target_count": 0,
             "voice_metrics": [],
-            "anti_hallucination": [],
+            "correction_site_diagnostic": [],
         }
         for eng in ENGINES
     }
@@ -570,23 +717,27 @@ def run_comprehensive_benchmark():
 
     for unit in UNSEEN_BENCHMARK_UNITS:
         uid = unit["id"]
-        unit_runs = raw_runs.get(uid, {})
+        unit_runs = raw_runs[uid]
         passage_entry = {"id": uid, "domain": unit["domain"], "scores": {}}
 
         for eng in ENGINES:
-            eng_data = unit_runs.get(eng, {})
-            out_text = eng_data.get("text", unit["input"])
-            eval_res = evaluate_unit(unit, out_text, eng)
+            eng_data = unit_runs[eng]
+            out_text = eng_data["text"]
+            eval_res = evaluate_unit(unit, out_text)
 
-            results[eng]["spelling"].append(eval_res["spelling_acc"])
-            results[eng]["grammar"].append(eval_res["grammar_acc"])
+            results[eng]["spelling_target_hits"] += eval_res["spelling_target_hits"]
+            results[eng]["spelling_target_count"] += eval_res["spelling_target_count"]
+            results[eng]["grammar_target_hits"] += eval_res["grammar_target_hits"]
+            results[eng]["grammar_target_count"] += eval_res["grammar_target_count"]
             results[eng]["voice_metrics"].append({
                 "score": eval_res["voice_preservation"],
                 "lexical_f1": eval_res["voice_lexical_f1"],
                 "voice_marker_retention": eval_res["voice_marker_retention"],
                 "over_edit_count": eval_res["voice_over_edit_count"],
             })
-            results[eng]["anti_hallucination"].append(eval_res["anti_hallucination"])
+            results[eng]["correction_site_diagnostic"].append(
+                eval_res["correction_site_diagnostic"]
+            )
             passage_entry["scores"][eng] = {
                 "text": out_text,
                 "metrics": eval_res
@@ -596,28 +747,68 @@ def run_comprehensive_benchmark():
 
     summary = {}
     for eng in ENGINES:
-        n = len(results[eng]["spelling"])
         voice_summary = aggregate_writer_voice(results[eng]["voice_metrics"])
-        spelling_accuracy = round(sum(results[eng]["spelling"]) / n, 1)
-        grammar_accuracy = round(sum(results[eng]["grammar"]) / n, 1)
-        anti_hallucination = round(sum(results[eng]["anti_hallucination"]) / n, 1)
+        spelling_target_count = results[eng]["spelling_target_count"]
+        grammar_target_count = results[eng]["grammar_target_count"]
+        spelling_accuracy = (
+            round(results[eng]["spelling_target_hits"] / spelling_target_count * 100, 1)
+            if spelling_target_count
+            else 100.0
+        )
+        grammar_accuracy = (
+            round(results[eng]["grammar_target_hits"] / grammar_target_count * 100, 1)
+            if grammar_target_count
+            else 100.0
+        )
+        diagnostic_sites = [
+            site
+            for passage in results[eng]["correction_site_diagnostic"]
+            for site in passage["sites"]
+        ]
+        diagnostic_applicable = len(diagnostic_sites)
+        diagnostic_unapproved = sum(
+            site["classification"] == "unapproved_edit" for site in diagnostic_sites
+        )
+        diagnostic_unchanged = sum(
+            site["classification"] == "unchanged" for site in diagnostic_sites
+        )
+        diagnostic_approved = sum(
+            site["classification"] == "accepted_correction" for site in diagnostic_sites
+        )
+        diagnostic_rate = (
+            round(diagnostic_unapproved / diagnostic_applicable * 100.0, 1)
+            if diagnostic_applicable
+            else None
+        )
+        quality_composite = round(
+            (0.4375 * spelling_accuracy)
+            + (0.3125 * grammar_accuracy)
+            + (0.25 * voice_summary["score"]),
+            1,
+        )
+        latency_ms, latency_samples = _mean_recorded_latency(raw_runs, eng)
         summary[eng] = {
             "spelling_accuracy": spelling_accuracy,
+            "spelling_accepted_targets": results[eng]["spelling_target_hits"],
+            "spelling_total_targets": spelling_target_count,
             "grammar_accuracy": grammar_accuracy,
+            "grammar_accepted_targets": results[eng]["grammar_target_hits"],
+            "grammar_total_targets": grammar_target_count,
             "voice_preservation": voice_summary["score"],
             "voice_lexical_f1": voice_summary["lexical_f1"],
             "voice_marker_retention": voice_summary["voice_marker_retention"],
             "voice_over_edit_count": voice_summary["over_edit_count"],
             "voice_over_edit_penalty": voice_summary["over_edit_penalty"],
-            "anti_hallucination": anti_hallucination,
-            "hybrid_meta_score": round(
-                (0.35 * spelling_accuracy)
-                + (0.25 * grammar_accuracy)
-                + (0.20 * voice_summary["score"])
-                + (0.20 * anti_hallucination),
-                1,
-            ),
-            "latency_ms": LATENCIES[eng]
+            "correction_site_diagnostic": {
+                "applicable_sites": diagnostic_applicable,
+                "unchanged_sites": diagnostic_unchanged,
+                "accepted_corrections": diagnostic_approved,
+                "unapproved_edits": diagnostic_unapproved,
+                "unapproved_edit_rate": diagnostic_rate,
+            },
+            "quality_composite": quality_composite,
+            "latency_ms": latency_ms,
+            "latency_samples": latency_samples,
         }
 
     for engine, engine_summary in summary.items():
@@ -629,72 +820,143 @@ def run_comprehensive_benchmark():
             metrics["voice_preservation"] = round(
                 metrics["voice_base_score"] * penalty_factor, 2
             )
-            metrics["hybrid_meta_score"] = round(
-                (0.35 * metrics["spelling_acc"])
-                + (0.25 * metrics["grammar_acc"])
-                + (0.20 * metrics["voice_preservation"])
-                + (0.20 * metrics["anti_hallucination"]),
+            metrics["quality_composite"] = round(
+                (0.4375 * metrics["spelling_acc"])
+                + (0.3125 * metrics["grammar_acc"])
+                + (0.25 * metrics["voice_preservation"]),
                 2,
             )
 
-    # Save structured output to raw_results/blind_4pillars_eval_run.json
+    # Save v4 output separately; the v3 artifact remains the historical record.
+    dataset_digest = _stable_digest(
+        [
+            {
+                key: unit[key]
+                for key in (
+                    "id",
+                    "input",
+                    "spelling_targets",
+                    "grammar_targets",
+                    "dialect_equivalents",
+                )
+                if key in unit
+            }
+            for unit in UNSEEN_BENCHMARK_UNITS
+        ]
+    )
+    outputs_digest = _stable_digest(raw_runs)
     output_artifact = {
         "benchmark_metadata": {
-            "title": "Open Spelling & Grammar Benchmark: 4-Pillar Suite",
-            "version": "3.0-blind",
+            "title": "Open Spelling & Grammar Benchmark: v4.0",
+            "version": "4.0",
             "voice_scoring_revision": VOICE_SCORING_REVISION,
+            "target_scoring_revision": TARGET_SCORING_REVISION,
             "eval_date": "November 14, 2026",
-            "architecture": "4 Functional Pillars + 1 Hybrid Meta-Score",
+            "locale_scope": (
+                "Single-locale baseline; locale settings vary or are unreported. "
+                "Paired en-US/en-GB results have not been collected."
+            ),
+            "run_id": f"h-suite-v4-{outputs_digest[:16]}",
+            "dataset_sha256": dataset_digest,
+            "cached_outputs_sha256": outputs_digest,
+            "target_scoring_methodology_note": (
+                "Accepted forms are matched at aligned annotated source sites. "
+                "An unchanged source counts only when explicitly accepted; "
+                "identity-only annotations are excluded. Target hits are pooled."
+            ),
+            "engine_run_metadata": {
+                engine: {
+                    "version": "not reported",
+                    "source_run_id": "not recorded",
+                    "collection_mode": COLLECTION_MODES[engine],
+                    "locale": COLLECTION_LOCALES[engine],
+                    **(
+                        {
+                            "source_url": grammarly_metadata.get("source_url"),
+                            "collection_date": grammarly_metadata.get("collection_date"),
+                            "selection_policy": grammarly_metadata.get("selection_policy"),
+                        }
+                        if engine == "Grammarly Free Grammar Checker"
+                        else {}
+                    ),
+                }
+                for engine in ENGINES
+            },
+            "latency_methodology": (
+                "Arithmetic mean of non-null per-passage latencies recorded in "
+                "the cached output log; null when no timing was recorded."
+            ),
+            "architecture": "3 weighted quality pillars + standalone correction-site diagnostic",
+            "diagnostic_revision": "unapproved-correction-site-v1",
+            "correction_site_diagnostic_note": (
+                "Counts output edits at annotated spelling/grammar target sites "
+                "that are not unchanged or one of the shared accepted forms. "
+                "This deterministic lexical diagnostic is not a general "
+                "hallucination or semantic-correctness rate."
+            ),
             "weights": {
-                "pillar_1_spelling": "35%",
-                "pillar_2_grammar": "25%",
-                "pillar_3_voice": "20%",
-                "pillar_4_anti_hallucination": "20%"
+                "pillar_1_spelling": "43.75%",
+                "pillar_2_grammar": "31.25%",
+                "pillar_3_voice": "25%",
+                "correction_site_diagnostic": "reported separately"
             }
         },
         "engine_summary": summary,
         "passages": per_passage_breakdown
     }
 
-    out_json_path = os.path.join("raw_results", "blind_4pillars_eval_run.json")
+    out_json_path = os.path.join("raw_results", "blind_4pillars_eval_run_v4.json")
     with open(out_json_path, "w", encoding="utf-8") as f:
         json.dump(output_artifact, f, indent=2)
-    print(f"Saved 4-pillar blind evaluation results to {out_json_path}")
+    print(f"Saved H-suite v4 evaluation results to {out_json_path}")
 
     return summary
 
 
 def print_scorecard(summary):
     """
-    Renders a clean ASCII leaderboard table of the 4 pillars.
+    Renders the v4 quality metrics and standalone diagnostic.
     """
-    print("\n" + "=" * 94)
-    print("OPEN SPELLING & GRAMMAR BENCHMARK: 4-PILLAR LEADERBOARD")
-    print("=" * 94)
-    print(f"{'Engine':<20} | {'P1: Spell':<10} | {'P2: Gram':<10} | {'P3: Voice':<10} | {'P4: Anti-Hal':<12} | {'P5: Hybrid':<10} | {'Latency':<8}")
-    print("-" * 94)
-    for eng in sorted(summary.keys(), key=lambda x: summary[x]["hybrid_meta_score"], reverse=True):
+    print("\n" + "=" * 124)
+    print("OPEN SPELLING & GRAMMAR BENCHMARK v4.0: QUALITY + CORRECTION-SITE DIAGNOSTIC")
+    print("=" * 124)
+    print(f"{'Engine':<34} | {'P1: Spell':<10} | {'P2: Gram':<10} | {'P3: Voice':<10} | {'Unapproved edits':<18} | {'Quality':<10} | {'Latency':<8}")
+    print("-" * 124)
+    for eng in sorted(summary.keys(), key=lambda x: summary[x]["quality_composite"], reverse=True):
         s = summary[eng]
         lat_str = f"~{s['latency_ms']} ms" if s["latency_ms"] is not None else "n/a"
-        print(f"{eng:<20} | {s['spelling_accuracy']:>8.1f}% | {s['grammar_accuracy']:>8.1f}% | {s['voice_preservation']:>8.1f}% | {s['anti_hallucination']:>10.1f}% | {s['hybrid_meta_score']:>8.1f}% | {lat_str:>8}")
-    print("=" * 94)
-    print("Pillar Weights: 35% Spelling, 25% Grammar, 20% Voice Preservation, 20% Anti-Hallucination")
+        diagnostic = s["correction_site_diagnostic"]
+        rate = (
+            f"{diagnostic['unapproved_edits']}/{diagnostic['applicable_sites']} "
+            f"({diagnostic['unapproved_edit_rate']:.1f}%)"
+            if diagnostic["unapproved_edit_rate"] is not None
+            else "n/a"
+        )
+        print(f"{eng:<34} | {s['spelling_accuracy']:>8.1f}% | {s['grammar_accuracy']:>8.1f}% | {s['voice_preservation']:>8.1f}% | {rate:>18} | {s['quality_composite']:>8.1f}% | {lat_str:>8}")
+    print("=" * 124)
+    print("Quality composite weights: 43.75% Spelling, 31.25% Grammar, 25% Voice Preservation")
     print("Crowns:")
     print("  * Best Spelling & Dysgraphia:   " + max(summary.items(), key=lambda x: x[1]["spelling_accuracy"])[0])
     print("  * Best Grammar & Syntax:       " + max(summary.items(), key=lambda x: x[1]["grammar_accuracy"])[0])
     print("  * Best Voice Preservation:     " + max(summary.items(), key=lambda x: x[1]["voice_preservation"])[0])
-    print("  * Best Anti-Hallucination:     " + max(summary.items(), key=lambda x: x[1]["anti_hallucination"])[0])
+    print("  * Correction-site diagnostic is standalone; no winner is reported.")
     measured_latency = [
         (name, result["latency_ms"])
         for name, result in summary.items()
         if result["latency_ms"] is not None
     ]
-    fastest = min(measured_latency, key=lambda x: x[1])[0] if measured_latency else "n/a"
-    print("  * Fastest Keystroke Speed:     " + fastest)
+    fastest = min(measured_latency, key=lambda x: x[1]) if measured_latency else None
+    fastest_label = (
+        f"{fastest[0]} (~{fastest[1]} ms, "
+        f"{summary[fastest[0]]['latency_samples']} samples)"
+        if fastest
+        else "n/a"
+    )
+    print("  * Lowest recorded REST latency: " + fastest_label)
     if any(result["latency_ms"] is None for result in summary.values()):
         print("  * Web-demo latency:            not measured")
-    print("  * Overall Hybrid Meta-Leader:  " + max(summary.items(), key=lambda x: x[1]["hybrid_meta_score"])[0])
-    print("=" * 94 + "\n")
+    print("  * Overall Quality Leader:     " + max(summary.items(), key=lambda x: x[1]["quality_composite"])[0])
+    print("=" * 124 + "\n")
 
 
 if __name__ == "__main__":

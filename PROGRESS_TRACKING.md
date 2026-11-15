@@ -46,9 +46,16 @@ For each engine and evaluated suite, preserve:
 - collection mode (`api`, `local`, or `web_demo`) and relevant interaction
   details;
 - suite/batch ID, input digest, and evaluator revision;
-- spelling, grammar, voice, anti-hallucination, and composite scores;
+- spelling, grammar, voice, correction-site diagnostic, and quality-composite scores;
 - latency only when measured under a documented procedure; otherwise `null`;
 - completion status and any unavailable result reason.
+
+The current cached v4 artifacts derive a stable result ID from the saved
+outputs and record dataset/output hashes and `aligned-correction-sites-v1`.
+The original provider versions and per-engine run IDs were not captured, so
+they are explicitly recorded as `not reported`/`not recorded`; a derived
+result ID is not a substitute for provider run provenance. Record those fields
+at collection time for future runs.
 
 Sapling and JSpell are full participants in every sub-benchmark. For web-only
 checks, collect and record their output for every passage using the documented
@@ -61,23 +68,22 @@ recorded data should be traceable and explained.
 
 ## Retrospective chart estimates
 
-The public historical chart includes two illustrative backcasts
-because no earlier Sapling or JSpell web-demo runs were collected. They are
-visual estimates only and must never be added to raw results, described as
-measured history, or used to claim a verified improvement:
+The historical chart retains the v3-era trend for context. Values before the
+final v3 point are approximate historical estimates, not saved run results;
+they must not be added to raw results or used to claim verified improvement.
+The final v3 points are measured H-suite results read from
+`raw_results/blind_4pillars_eval_run.json`. BCorrect and the API competitors'
+earlier points are estimates. JSpell's earlier points assume a flat score
+equal to its measured v3 result. Sapling's pre-November status is shown only as
+a recollection-based estimate below 60%; no exact score or before-November run
+is available. Its November v3 point is measured. None of these assumptions is
+a provider-version record or a controlled before-and-after comparison.
 
-- JSpell is assumed to have held its current H-suite composite score (65.1%)
-  at earlier milestones.
-- Sapling is assumed to have matched its current H-suite pillar quality at the
-  older milestones, then to have scored 30% lower relative to each current
-  pillar at the prior milestone. Applying that reduction to all four pillars
-  yields an estimated 65.6% hybrid score; the latest plotted value is its
-  measured current H-suite score (93.8%). The November 12 update date is an
-  assumption, not a recorded provider-version event.
-
-The chart uses distinct dashed styles and identifies the web-demo series as
-estimates. Future longitudinal claims must use actual dated runs under a
-consistent suite and evaluator.
+The charts use hollow markers or range bars for approximate points and filled
+markers or bars for measured v3 results. v4 charts use the saved v4 H-suite
+artifact; v3 and v4 composite scores are not directly comparable. Going
+forward, publish only dated, reproducible measurements as measured results,
+with estimates kept visibly separate.
 
 ## Interpretation
 
@@ -93,3 +99,33 @@ Scores from different evaluator or scoring revisions are not directly
 comparable. Rerun the same saved outputs under one revision before making a
 longitudinal comparison; otherwise mark the methodology break and keep the
 legacy series separate.
+
+## Version 4.0 Correction-Site Edit Diagnostic
+
+The v4 diagnostic examines only annotated spelling and grammar correction
+sites. It reports unapproved edits at those sites against the same accepted
+forms for every engine. It is a lexical diff signal, not a general hallucination
+detector or a real-world hallucination rate.
+
+Spelling and grammar accuracy also use source-aligned sites, but measure
+accepted target forms rather than unapproved edits. An unchanged source counts
+as correct only when it is explicitly an accepted form; identity-only
+annotations are excluded. Both accuracy pillars are pooled over target sites
+across the suite. Voice scoring remains the separate lexical-F1, curated
+marker-retention, and over-edit-penalty formula.
+
+- Use only deterministic, public, versioned rules; do not call an LLM/SLM or
+  have a person judge the outputs.
+- A site is applicable when its source phrase is present in the input and the
+  annotation lists at least one distinct accepted correction form.
+- An output site is approved when it is unchanged or aligns to one of the
+  accepted correction forms. Otherwise, count one unapproved edit at that site.
+- Publish `unapproved edits / applicable sites`, the raw counts, and the
+  percentage. If no sites apply, report `n/a`.
+- Apply the same annotation catalog and matching behavior to every engine on
+  the same batch. Never use engine-specific annotations for this diagnostic.
+- The diagnostic does not assess edits outside annotated correction sites and
+  cannot determine semantic correctness. Do not label its rate a hallucination
+  score or include it in the v4 quality composite.
+- Preserve the v3 engine-specific signature metric and four-pillar composite
+  as legacy results. Do not compare them directly with v4 values.

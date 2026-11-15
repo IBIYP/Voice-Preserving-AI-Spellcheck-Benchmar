@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 459" style="background:#0d1117; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
+<rect x="1" y="1" width="1198" height="457" fill="none" stroke="#30363d" stroke-width="1"/>
+<text x="600" y="32" fill="#f0f6fc" font-size="14" font-weight="700" text-anchor="middle">V0.4 CORRECTION-SITE EDIT DIAGNOSTIC</text>
+<text x="600" y="52" fill="#8b949e" font-size="11" text-anchor="middle">Single-locale baseline; lower is fewer unapproved edits; not a hallucination rate</text>
+<line x1="300" y1="68" x2="300" y2="405" stroke="#30363d" stroke-width="1"/>
+<text x="300" y="425" fill="#8b949e" font-size="10" text-anchor="middle">0%</text>
+<line x1="432" y1="68" x2="432" y2="405" stroke="#30363d" stroke-width="1"/>
+<text x="432" y="425" fill="#8b949e" font-size="10" text-anchor="middle">10%</text>
+<line x1="564" y1="68" x2="564" y2="405" stroke="#30363d" stroke-width="1"/>
+<text x="564" y="425" fill="#8b949e" font-size="10" text-anchor="middle">20%</text>
+<line x1="696" y1="68" x2="696" y2="405" stroke="#30363d" stroke-width="1"/>
+<text x="696" y="425" fill="#8b949e" font-size="10" text-anchor="middle">30%</text>
+<line x1="828" y1="68" x2="828" y2="405" stroke="#30363d" stroke-width="1"/>
+<text x="828" y="425" fill="#8b949e" font-size="10" text-anchor="middle">40%</text>
+<line x1="960" y1="68" x2="960" y2="405" stroke="#30363d" stroke-width="1"/>
+<text x="960" y="425" fill="#8b949e" font-size="10" text-anchor="middle">50%</text>
+<text x="288" y="93" fill="#F0E442" font-size="11" text-anchor="end">Sapling Grammar Checker</text>
+<rect x="300" y="76" width="43.56" height="24" fill="#F0E442" stroke="#f0f6fc" stroke-width="1"/>
+<text x="351.56" y="93" fill="#f0f6fc" font-size="11">2/61 (3.3%)</text>
+<text x="288" y="135" fill="#58a6ff" font-size="11" text-anchor="end">Grammarly Free Grammar Checker</text>
+<rect x="300" y="118" width="64.68" height="24" fill="#58a6ff" stroke="#f0f6fc" stroke-width="1"/>
+<text x="372.68" y="135" fill="#f0f6fc" font-size="11">3/61 (4.9%)</text>
+<text x="288" y="177" fill="#E69F00" font-size="11" text-anchor="end">BCorrect (FMM)</text>
+<rect x="300" y="160" width="151.80" height="24" fill="#E69F00" stroke="#f0f6fc" stroke-width="1"/>
+<text x="459.80" y="177" fill="#f0f6fc" font-size="11">7/61 (11.5%)</text>
+<text x="288" y="219" fill="#009E73" font-size="11" text-anchor="end">TextGears API</text>
+<rect x="300" y="202" width="151.80" height="24" fill="#009E73" stroke="#f0f6fc" stroke-width="1"/>
+<text x="459.80" y="219" fill="#f0f6fc" font-size="11">7/61 (11.5%)</text>
+<text x="288" y="261" fill="#CC79A7" font-size="11" text-anchor="end">DeepL Write</text>
+<rect x="300" y="244" width="216.48" height="24" fill="#CC79A7" stroke="#f0f6fc" stroke-width="1"/>
+<text x="524.48" y="261" fill="#f0f6fc" font-size="11">10/61 (16.4%)</text>
+<text x="288" y="303" fill="#56B4E9" font-size="11" text-anchor="end">LanguageTool API</text>
+<rect x="300" y="286" width="345.84" height="24" fill="#56B4E9" stroke="#f0f6fc" stroke-width="1"/>
+<text x="653.84" y="303" fill="#f0f6fc" font-size="11">16/61 (26.2%)</text>
+<text x="288" y="345" fill="#D55E00" font-size="11" text-anchor="end">JSpell Free Web Checker</text>
+<rect x="300" y="328" width="389.40" height="24" fill="#D55E00" stroke="#f0f6fc" stroke-width="1"/>
+<text x="697.40" y="345" fill="#f0f6fc" font-size="11">18/61 (29.5%)</text>
+<text x="600" y="450" fill="#8b949e" font-size="10" text-anchor="middle">Shared rules across engines; only annotated spelling/grammar sites are examined</text>
+</svg>

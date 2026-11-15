@@ -1,417 +1,865 @@
-# python script to generate clean responsive high contrast grayscale svg charts
-# all charts honour a pure monochrome palette with strict 90 degree sharp corners and no rounded boxes
-# font sizes are strictly standardized to exactly three sizes: 14px, 11px, and 10px
-# benchmark date: november 14, 2026
-# dataset: blind unseen suite v3.0
-#
-# design principles:
-# - line graphs preferred for temporal data, horizontal bars for comparisons
-# - wide spacious layouts that zoom cleanly with github native svg viewbox scaling
-# - no boxes-in-boxes or grouped bar clusters that squish on small screens
-# - generous whitespace, clear labels, readable at any zoom level
-
-import os
-
-os.makedirs("assets", exist_ok=True)
-
-# typography scale enforced across all charts:
-# - 14px: primary chart titles and primary score callouts
-# - 11px: subtitles, engine names, category labels, callout badges, and legend text
-# - 10px: axis ticks, latency subtext, milestone descriptions, and footnotes
-
-# monochrome palette (github dark theme compatible):
-# #0d1117 - background
-# #161b22 - card/legend background
-# #21262d - subtle grid
-# #30363d - primary grid, borders
-# #6e7681 - muted text, DeepL line
-# #8b949e - secondary text, TextGears line
-# #c9d1d9 - primary text, LanguageTool line
-# #f0f6fc - bright text
-# #ffffff - emphasis, BCorrect line
-
-
-def build_hybrid_chart_svg():
-    """chart 1: horizontal bar chart comparing overall hybrid meta-scores.
-    wide layout, one bar per engine, easy to read at any zoom."""
-    svg = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" style="background:#0d1117; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
-  <rect x="1" y="1" width="1198" height="418" fill="none" stroke="#30363d" stroke-width="1"/>
-
-  <text x="600" y="34" fill="#f0f6fc" font-size="14" font-weight="700" text-anchor="middle">OVERALL HYBRID META-SCORE (4-PILLAR EVALUATION)</text>
-  <text x="600" y="54" fill="#8b949e" font-size="11" text-anchor="middle">H-01 to H-10 | Voice scoring: lexical-marker-f1-v2 | November 14, 2026</text>
-
-  <!-- vertical gridlines at 0%, 25%, 50%, 75%, 100% -->
-  <line x1="280" y1="68" x2="280" y2="318" stroke="#30363d" stroke-width="1"/>
-  <line x1="490" y1="68" x2="490" y2="318" stroke="#21262d" stroke-width="1" stroke-dasharray="2,2"/>
-  <line x1="700" y1="68" x2="700" y2="318" stroke="#21262d" stroke-width="1" stroke-dasharray="2,2"/>
-  <line x1="910" y1="68" x2="910" y2="318" stroke="#21262d" stroke-width="1" stroke-dasharray="2,2"/>
-  <line x1="1120" y1="68" x2="1120" y2="318" stroke="#30363d" stroke-width="1"/>
-
-  <!-- x-axis tick labels -->
-  <text x="280" y="340" fill="#8b949e" font-size="10" text-anchor="middle">0%</text>
-  <text x="490" y="340" fill="#8b949e" font-size="10" text-anchor="middle">25%</text>
-  <text x="700" y="340" fill="#8b949e" font-size="10" text-anchor="middle">50%</text>
-  <text x="910" y="340" fill="#8b949e" font-size="10" text-anchor="middle">75%</text>
-  <text x="1120" y="340" fill="#8b949e" font-size="10" text-anchor="middle">100%</text>
-
-  <!-- bars are sorted by the 4-pillar hybrid meta-score -->
-  <text x="270" y="88" fill="#f0f6fc" font-size="11" font-weight="700" text-anchor="end">Sapling (web demo)</text>
-  <rect x="280" y="72" width="788" height="24" fill="#c9d1d9" stroke="#f0f6fc" stroke-width="1.5"/>
-  <text x="1078" y="89" fill="#f0f6fc" font-size="11" font-weight="700">93.8%</text>
-
-  <text x="270" y="128" fill="#c9d1d9" font-size="11" font-weight="600" text-anchor="end">DeepL Write</text>
-  <rect x="280" y="112" width="707" height="24" fill="#30363d" stroke="#6e7681" stroke-width="1"/>
-  <text x="997" y="129" fill="#c9d1d9" font-size="11" font-weight="600">84.2%</text>
-
-  <text x="270" y="168" fill="#ffffff" font-size="11" font-weight="700" text-anchor="end">BCorrect (FMM)</text>
-  <rect x="280" y="152" width="679" height="24" fill="#e6edf3" stroke="#ffffff" stroke-width="1.5"/>
-  <text x="969" y="169" fill="#ffffff" font-size="11" font-weight="700">80.8%</text>
-
-  <text x="270" y="208" fill="#c9d1d9" font-size="11" font-weight="600" text-anchor="end">TextGears API</text>
-  <rect x="280" y="192" width="664" height="24" fill="#6e7681" stroke="#8b949e" stroke-width="1"/>
-  <text x="954" y="209" fill="#c9d1d9" font-size="11" font-weight="600">79.0%</text>
-
-  <text x="270" y="248" fill="#c9d1d9" font-size="11" font-weight="600" text-anchor="end">LanguageTool API</text>
-  <rect x="280" y="232" width="660" height="24" fill="#c9d1d9" stroke="#c9d1d9" stroke-width="1"/>
-  <text x="950" y="249" fill="#c9d1d9" font-size="11" font-weight="600">78.6%</text>
-
-  <text x="270" y="288" fill="#a3a3a3" font-size="11" font-weight="600" text-anchor="end">JSpell (web checker)</text>
-  <rect x="280" y="272" width="547" height="24" fill="#21262d" stroke="#a3a3a3" stroke-width="1"/>
-  <text x="837" y="289" fill="#a3a3a3" font-size="11" font-weight="600">65.1%</text>
-
-  <!-- footer -->
-  <text x="600" y="390" fill="#8b949e" font-size="10" text-anchor="middle">Voice metric revision lexical-marker-f1-v2 | Web-demo latency not measured | November 14, 2026</text>
-</svg>"""
-    with open("assets/hybrid_score_comparison.svg", "w", encoding="utf-8") as f:
-        f.write(svg)
-    print("Generated assets/hybrid_score_comparison.svg")
-
-
-def build_pillars_breakdown_svg():
-    """chart 2: 4-pillar breakdown as a multi-line dot chart.
-    one line per engine across the 4 pillars on the x-axis, scores on the y-axis.
-    spacious layout, no cramped grouped bars, easy to read at any zoom."""
-    # pillar positions on x-axis (evenly spaced across wide chart)
-    # p1 spelling: x=240, p2 grammar: x=480, p3 voice: x=720, p4 anti-hal: x=960
-    # y-axis: 0% at y=400, 100% at y=100 -> scale = 3.0 px per %
-
-    def y(pct):
-        return 400 - pct * 3.0
-
-    svg = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" style="background:#0d1117; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
-  <rect x="1" y="1" width="1198" height="518" fill="none" stroke="#30363d" stroke-width="1"/>
-
-  <text x="600" y="34" fill="#f0f6fc" font-size="14" font-weight="700" text-anchor="middle">THE 4 EVALUATION PILLARS: ENGINE BREAKDOWN</text>
-  <text x="600" y="54" fill="#8b949e" font-size="11" text-anchor="middle">H-01 to H-10 | Voice scoring: lexical-marker-f1-v2 | November 14, 2026</text>
-
-  <!-- y-axis gridlines and labels -->
-  <line x1="140" y1="400" x2="1060" y2="400" stroke="#30363d" stroke-width="1"/>
-  <line x1="140" y1="325" x2="1060" y2="325" stroke="#21262d" stroke-width="1" stroke-dasharray="2,2"/>
-  <line x1="140" y1="250" x2="1060" y2="250" stroke="#21262d" stroke-width="1" stroke-dasharray="2,2"/>
-  <line x1="140" y1="175" x2="1060" y2="175" stroke="#21262d" stroke-width="1" stroke-dasharray="2,2"/>
-  <line x1="140" y1="100" x2="1060" y2="100" stroke="#21262d" stroke-width="1" stroke-dasharray="2,2"/>
-
-  <text x="130" y="404" fill="#8b949e" font-size="10" text-anchor="end">0%</text>
-  <text x="130" y="329" fill="#8b949e" font-size="10" text-anchor="end">25%</text>
-  <text x="130" y="254" fill="#8b949e" font-size="10" text-anchor="end">50%</text>
-  <text x="130" y="179" fill="#8b949e" font-size="10" text-anchor="end">75%</text>
-  <text x="130" y="104" fill="#8b949e" font-size="10" text-anchor="end">100%</text>
-
-  <!-- pillar labels on x-axis -->
-  <text x="240" y="425" fill="#f0f6fc" font-size="11" font-weight="600" text-anchor="middle">P1: Spelling</text>
-  <text x="240" y="440" fill="#8b949e" font-size="10" text-anchor="middle">(35% weight)</text>
-  <text x="480" y="425" fill="#f0f6fc" font-size="11" font-weight="600" text-anchor="middle">P2: Grammar</text>
-  <text x="480" y="440" fill="#8b949e" font-size="10" text-anchor="middle">(25% weight)</text>
-  <text x="720" y="425" fill="#f0f6fc" font-size="11" font-weight="600" text-anchor="middle">P3: Voice</text>
-  <text x="720" y="440" fill="#8b949e" font-size="10" text-anchor="middle">(20% weight)</text>
-  <text x="960" y="425" fill="#f0f6fc" font-size="11" font-weight="600" text-anchor="middle">P4: Anti-Halluc.</text>
-  <text x="960" y="440" fill="#8b949e" font-size="10" text-anchor="middle">(20% weight)</text>
-
-  <!-- vertical pillar guidelines -->
-  <line x1="240" y1="90" x2="240" y2="400" stroke="#21262d" stroke-width="1" stroke-dasharray="4,4"/>
-  <line x1="480" y1="90" x2="480" y2="400" stroke="#21262d" stroke-width="1" stroke-dasharray="4,4"/>
-  <line x1="720" y1="90" x2="720" y2="400" stroke="#21262d" stroke-width="1" stroke-dasharray="4,4"/>
-  <line x1="960" y1="90" x2="960" y2="400" stroke="#21262d" stroke-width="1" stroke-dasharray="4,4"/>"""
-
-    # engine data: [spelling, grammar, voice, anti_hal]
-    engines = {
-        "DeepL Write":      [94.7, 72.5, 67.1, 97.5],
-        "LanguageTool API": [81.2, 77.5, 84.1, 70.0],
-        "TextGears API":    [82.7, 71.7, 83.2, 77.5],
-        "BCorrect (FMM)":   [84.8, 63.3, 88.9, 87.5],
-        "Sapling (web demo)": [94.2, 100.0, 89.1, 90.0],
-        "JSpell (web checker)": [76.8, 40.8, 84.9, 55.0],
-    }
-
-    # line styles per engine
-    styles = {
-        "DeepL Write":      {"stroke": "#6e7681", "dash": "3,3",     "fill": "#30363d", "text": "#6e7681", "w": "2"},
-        "LanguageTool API": {"stroke": "#c9d1d9", "dash": "6,4",     "fill": "#0d1117", "text": "#c9d1d9", "w": "2"},
-        "TextGears API":    {"stroke": "#8b949e", "dash": "4,2,1,2", "fill": "#8b949e", "text": "#8b949e", "w": "2"},
-        "BCorrect (FMM)":   {"stroke": "#ffffff", "dash": "",        "fill": "#ffffff", "text": "#ffffff", "w": "3"},
-        "Sapling (web demo)": {"stroke": "#f0f6fc", "dash": "2,3",    "fill": "#c9d1d9", "text": "#f0f6fc", "w": "2"},
-        "JSpell (web checker)": {"stroke": "#a3a3a3", "dash": "1,3", "fill": "#0d1117", "text": "#a3a3a3", "w": "2"},
-    }
-
-    pillar_x = [240, 480, 720, 960]
-    label_offsets = {
-        "DeepL Write": [(0, -12), (0, -24), (0, -12), (0, -12)],
-        "LanguageTool API": [(0, -12), (30, 14), (0, -12), (-15, -12)],
-        "TextGears API": [(0, -12), (-30, 14), (-15, -12), (0, -12)],
-        "BCorrect (FMM)": [(0, -12), (0, -12), (15, -12), (15, -12)],
-        "Sapling (web demo)": [(20, 16), (0, 28), (0, -12), (0, -12)],
-        "JSpell (web checker)": [(0, 14), (0, 14), (0, 28), (0, -12)],
-    }
-
-    for name, scores in engines.items():
-        s = styles[name]
-        points = " ".join(f"{pillar_x[i]},{y(scores[i]):.0f}" for i in range(4))
-        dash_attr = f' stroke-dasharray="{s["dash"]}"' if s["dash"] else ""
-        svg += f'\n\n  <!-- {name} line -->'
-        svg += f'\n  <polyline points="{points}" fill="none" stroke="{s["stroke"]}" stroke-width="{s["w"]}"{dash_attr}/>'
-
-        # dot markers at each pillar
-        for i in range(4):
-            cx, cy_val = pillar_x[i], y(scores[i])
-            svg += f'\n  <rect x="{cx-5}" y="{cy_val-5}" width="10" height="10" fill="{s["fill"]}" stroke="{s["stroke"]}" stroke-width="1.5"/>'
-            dx, dy = label_offsets[name][i]
-            svg += f'\n  <text x="{cx+dx}" y="{cy_val+dy}" fill="{s["text"]}" font-size="10" font-weight="600" text-anchor="middle">{scores[i]:.0f}%</text>'
-
-    # legend
-    svg += """
-
-  <!-- legend -->
-  <rect x="40" y="465" width="1120" height="34" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-
-  <line x1="100" y1="482" x2="125" y2="482" stroke="#6e7681" stroke-width="2" stroke-dasharray="3,3"/>
-  <rect x="109" y="478" width="8" height="8" fill="#30363d" stroke="#6e7681" stroke-width="1"/>
-  <text x="135" y="486" fill="#6e7681" font-size="11">DeepL Write</text>
-
-  <line x1="265" y1="482" x2="290" y2="482" stroke="#8b949e" stroke-width="2" stroke-dasharray="4,2,1,2"/>
-  <rect x="274" y="478" width="8" height="8" fill="#8b949e"/>
-  <text x="300" y="486" fill="#8b949e" font-size="11">TextGears API</text>
-
-  <line x1="430" y1="482" x2="455" y2="482" stroke="#c9d1d9" stroke-width="2" stroke-dasharray="6,4"/>
-  <rect x="439" y="478" width="8" height="8" fill="#0d1117" stroke="#c9d1d9" stroke-width="1.5"/>
-  <text x="465" y="486" fill="#c9d1d9" font-size="11">LanguageTool API</text>
-
-  <line x1="635" y1="482" x2="660" y2="482" stroke="#ffffff" stroke-width="3"/>
-  <rect x="644" y="478" width="8" height="8" fill="#ffffff"/>
-  <text x="670" y="486" fill="#ffffff" font-size="11" font-weight="700">BCorrect (FMM)</text>
-
-  <line x1="820" y1="482" x2="845" y2="482" stroke="#f0f6fc" stroke-width="2" stroke-dasharray="2,3"/>
-  <rect x="829" y="478" width="8" height="8" fill="#c9d1d9" stroke="#f0f6fc"/>
-  <text x="855" y="486" fill="#f0f6fc" font-size="11">Sapling (web demo)</text>
-
-  <line x1="1000" y1="482" x2="1025" y2="482" stroke="#a3a3a3" stroke-width="2" stroke-dasharray="1,3"/>
-  <rect x="1009" y="478" width="8" height="8" fill="#0d1117" stroke="#a3a3a3"/>
-  <text x="1035" y="486" fill="#a3a3a3" font-size="11">JSpell (web checker)</text>
-</svg>"""
-
-    with open("assets/pillars_breakdown.svg", "w", encoding="utf-8") as f:
-        f.write(svg)
-    print("Generated assets/pillars_breakdown.svg")
-
-
-def build_latency_chart_svg():
-    """chart 3: horizontal bar chart for latency comparison. wide and spacious."""
-    svg = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 410" style="background:#0d1117; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
-  <rect x="1" y="1" width="1198" height="408" fill="none" stroke="#30363d" stroke-width="1"/>
-
-  <text x="600" y="34" fill="#f0f6fc" font-size="14" font-weight="700" text-anchor="middle">AVERAGE QUERY INFERENCE LATENCY (LOWER IS BETTER)</text>
-  <text x="600" y="54" fill="#8b949e" font-size="11" text-anchor="middle">Measured local/API runs; Sapling and JSpell web-demo latency is n/a | November 14, 2026</text>
-
-  <!-- 1. BCorrect (FMM): 18ms -> width = 18/1300 * 750 = 10px (min 14px for visibility) -->
-  <text x="270" y="105" fill="#ffffff" font-size="11" font-weight="700" text-anchor="end">BCorrect (1 vCPU Local)</text>
-  <rect x="280" y="88" width="14" height="26" fill="#e6edf3" stroke="#ffffff" stroke-width="1.5"/>
-  <text x="304" y="105" fill="#ffffff" font-size="11" font-weight="700">~18 ms</text>
-  <text x="370" y="105" fill="#8b949e" font-size="10">(Sub-Keystroke Baseline, 1.0x)</text>
-
-  <!-- 2. LanguageTool API: 677ms -> width = 677/1300 * 750 = 391px -->
-  <text x="270" y="155" fill="#c9d1d9" font-size="11" font-weight="600" text-anchor="end">LanguageTool API</text>
-  <rect x="280" y="138" width="391" height="26" fill="#8b949e" stroke="#c9d1d9" stroke-width="1"/>
-  <text x="681" y="155" fill="#c9d1d9" font-size="11" font-weight="600">~677 ms</text>
-  <text x="745" y="155" fill="#8b949e" font-size="10">(37x slower)</text>
-
-  <!-- 3. TextGears API: 967ms -> width = 967/1300 * 750 = 558px -->
-  <text x="270" y="205" fill="#c9d1d9" font-size="11" font-weight="600" text-anchor="end">TextGears API</text>
-  <rect x="280" y="188" width="558" height="26" fill="#6e7681" stroke="#8b949e" stroke-width="1"/>
-  <text x="848" y="205" fill="#c9d1d9" font-size="11" font-weight="600">~967 ms</text>
-  <text x="915" y="205" fill="#8b949e" font-size="10">(53x slower)</text>
-
-  <!-- 4. DeepL Write: 1,280ms -> width = 1280/1300 * 750 = 738px -->
-  <text x="270" y="255" fill="#c9d1d9" font-size="11" font-weight="600" text-anchor="end">DeepL Write</text>
-  <rect x="280" y="238" width="738" height="26" fill="#30363d" stroke="#6e7681" stroke-width="1"/>
-  <text x="1028" y="255" fill="#8b949e" font-size="11" font-weight="600">~1,280 ms</text>
-
-  <text x="270" y="305" fill="#f0f6fc" font-size="11" font-weight="600" text-anchor="end">Sapling (web demo)</text>
-  <text x="280" y="305" fill="#8b949e" font-size="11">n/a - not measured; excluded from speed ranking</text>
-
-  <text x="270" y="355" fill="#a3a3a3" font-size="11" font-weight="600" text-anchor="end">JSpell (web checker)</text>
-  <text x="280" y="355" fill="#8b949e" font-size="11">n/a - not measured; excluded from speed ranking</text>
-
-  <!-- bottom scale line -->
-  <line x1="280" y1="378" x2="1030" y2="378" stroke="#30363d" stroke-width="1"/>
-  <text x="280" y="398" fill="#8b949e" font-size="10" text-anchor="middle">0 ms</text>
-  <text x="568" y="398" fill="#8b949e" font-size="10" text-anchor="middle">500 ms</text>
-  <text x="856" y="398" fill="#8b949e" font-size="10" text-anchor="middle">1000 ms</text>
-  <text x="1030" y="398" fill="#8b949e" font-size="10" text-anchor="middle">1300 ms</text>
-</svg>"""
-    with open("assets/latency_comparison.svg", "w", encoding="utf-8") as f:
-        f.write(svg)
-    print("Generated assets/latency_comparison.svg")
-
-
-def build_progress_chart_svg():
-    """chart 4: multi-line chart showing historical progress over time.
-    wide spacious layout with clear milestone markers.
-    this is the primary temporal visualization."""
-    svg = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 560" style="background:#0d1117; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
-  <rect x="1" y="1" width="1398" height="558" fill="none" stroke="#30363d" stroke-width="1"/>
-
-  <text x="700" y="34" fill="#f0f6fc" font-size="14" font-weight="700" text-anchor="middle">HISTORICAL HYBRID META-SCORE (MEASURED + MODELED)</text>
-  <text x="700" y="54" fill="#8b949e" font-size="11" text-anchor="middle">Legacy series measured; Sapling/JSpell history is hypothetical, backcast from current H-suite results</text>
-
-  <!-- y-axis gridlines: 0% at y=430, 100% at y=90 -> range = 340px, scale = 3.4 px per % -->
-  <line x1="140" y1="430" x2="1100" y2="430" stroke="#30363d" stroke-width="1.5"/>
-  <line x1="140" y1="362" x2="1100" y2="362" stroke="#21262d" stroke-width="1" stroke-dasharray="2,2"/>
-  <line x1="140" y1="294" x2="1100" y2="294" stroke="#21262d" stroke-width="1" stroke-dasharray="2,2"/>
-  <line x1="140" y1="226" x2="1100" y2="226" stroke="#21262d" stroke-width="1" stroke-dasharray="2,2"/>
-  <line x1="140" y1="158" x2="1100" y2="158" stroke="#21262d" stroke-width="1" stroke-dasharray="2,2"/>
-  <line x1="140" y1="90" x2="1100" y2="90" stroke="#21262d" stroke-width="1" stroke-dasharray="2,2"/>
-
-  <text x="130" y="434" fill="#8b949e" font-size="10" font-weight="600" text-anchor="end">0%</text>
-  <text x="130" y="366" fill="#8b949e" font-size="10" font-weight="600" text-anchor="end">20%</text>
-  <text x="130" y="298" fill="#8b949e" font-size="10" font-weight="600" text-anchor="end">40%</text>
-  <text x="130" y="230" fill="#8b949e" font-size="10" font-weight="600" text-anchor="end">60%</text>
-  <text x="130" y="162" fill="#8b949e" font-size="10" font-weight="600" text-anchor="end">80%</text>
-  <text x="130" y="96" fill="#8b949e" font-size="10" font-weight="600" text-anchor="end">100%</text>
-
-  <!-- vertical milestone guidelines -->
-  <line x1="260" y1="80" x2="260" y2="430" stroke="#21262d" stroke-width="1" stroke-dasharray="4,4"/>
-  <line x1="540" y1="80" x2="540" y2="430" stroke="#21262d" stroke-width="1" stroke-dasharray="4,4"/>
-  <line x1="820" y1="80" x2="820" y2="430" stroke="#21262d" stroke-width="1" stroke-dasharray="4,4"/>
-  <line x1="1060" y1="80" x2="1060" y2="430" stroke="#30363d" stroke-width="1.5"/>
-
-  <!-- milestone labels on x-axis -->
-  <text x="260" y="452" fill="#c9d1d9" font-size="11" font-weight="600" text-anchor="middle">Q1 2025 (v1.0)</text>
-  <text x="260" y="467" fill="#8b949e" font-size="10" text-anchor="middle">Initial Baseline</text>
-
-  <text x="540" y="452" fill="#c9d1d9" font-size="11" font-weight="600" text-anchor="middle">Q3 2025 (v1.8)</text>
-  <text x="540" y="467" fill="#8b949e" font-size="10" text-anchor="middle">Consonant Skeleton</text>
-
-  <text x="820" y="452" fill="#c9d1d9" font-size="11" font-weight="600" text-anchor="middle">Early Fall 2026</text>
-  <text x="820" y="467" fill="#8b949e" font-size="10" text-anchor="middle">30-50% Blind Test</text>
-
-  <text x="1060" y="452" fill="#ffffff" font-size="11" font-weight="700" text-anchor="middle">Nov 2026 (v3.0)</text>
-  <text x="1060" y="467" fill="#c9d1d9" font-size="10" font-weight="600" text-anchor="middle">4-Pillar Blind Suite</text>
-
-  <!-- y-value helper: y = 430 - (pct * 3.4) -->
-
-  <!-- 1. DeepL Write (dashed gray) -->
-  <!-- 78% -> y=165, 80% -> y=158, 81.5% -> y=153, 85.1% -> y=141 -->
-  <polyline points="260,165 540,158 820,153 1060,141" fill="none" stroke="#6e7681" stroke-width="2" stroke-dasharray="3,3"/>
-  <rect x="255" y="160" width="10" height="10" fill="#30363d" stroke="#6e7681" stroke-width="1.5"/>
-  <rect x="535" y="153" width="10" height="10" fill="#30363d" stroke="#6e7681" stroke-width="1.5"/>
-  <rect x="815" y="148" width="10" height="10" fill="#30363d" stroke="#6e7681" stroke-width="1.5"/>
-  <rect x="1055" y="136" width="10" height="10" fill="#30363d" stroke="#6e7681" stroke-width="1.5"/>
-
-  <!-- 2. TextGears API (dash-dot gray) -->
-  <!-- 64% -> y=212, 67.5% -> y=201, 70.5% -> y=190, 72% -> y=185 -->
-  <polyline points="260,212 540,201 820,190 1060,187" fill="none" stroke="#8b949e" stroke-width="2" stroke-dasharray="4,2,1,2"/>
-  <rect x="255" y="207" width="10" height="10" fill="#8b949e"/>
-  <rect x="535" y="196" width="10" height="10" fill="#8b949e"/>
-  <rect x="815" y="185" width="10" height="10" fill="#8b949e"/>
-  <rect x="1055" y="182" width="10" height="10" fill="#8b949e"/>
-
-  <!-- 3. LanguageTool API (dashed light gray) -->
-  <!-- 65% -> y=209, 68% -> y=199, 70.2% -> y=191, 71.4% -> y=187 -->
-  <polyline points="260,209 540,199 820,191 1060,187" fill="none" stroke="#c9d1d9" stroke-width="2" stroke-dasharray="6,4"/>
-  <rect x="255" y="204" width="10" height="10" fill="#0d1117" stroke="#c9d1d9" stroke-width="1.5"/>
-  <rect x="535" y="194" width="10" height="10" fill="#0d1117" stroke="#c9d1d9" stroke-width="1.5"/>
-  <rect x="815" y="186" width="10" height="10" fill="#0d1117" stroke="#c9d1d9" stroke-width="1.5"/>
-  <rect x="1055" y="182" width="10" height="10" fill="#0d1117" stroke="#c9d1d9" stroke-width="1.5"/>
-
-  <!-- 4. BCorrect (solid white, bold trajectory) -->
-  <!-- 32% -> y=321, 38.5% -> y=299, 38% -> y=301, 60.4% -> y=225 -->
-  <polyline points="260,321 540,299 820,301 1060,225" fill="none" stroke="#ffffff" stroke-width="3"/>
-  <rect x="254" y="315" width="12" height="12" fill="#ffffff" stroke="#0d1117" stroke-width="1"/>
-  <text x="260" y="340" fill="#ffffff" font-size="10" font-weight="700" text-anchor="middle">32.0%</text>
-
-  <rect x="534" y="293" width="12" height="12" fill="#ffffff" stroke="#0d1117" stroke-width="1"/>
-  <text x="540" y="318" fill="#ffffff" font-size="10" font-weight="700" text-anchor="middle">38.5%</text>
-
-  <rect x="814" y="295" width="12" height="12" fill="#ffffff" stroke="#0d1117" stroke-width="1"/>
-  <text x="820" y="320" fill="#ffffff" font-size="10" font-weight="700" text-anchor="middle">38.0%</text>
-
-  <rect x="1054" y="219" width="12" height="12" fill="#ffffff" stroke="#0d1117" stroke-width="1"/>
-
-  <!-- Web-demo history is modeled, not measured: Sapling assumes current quality
-       at older milestones, a 30% relative per-pillar reduction at the prior
-       milestone, then the current H-suite result; JSpell is assumed flat. -->
-  <polyline points="260,111 540,111 820,207 1060,111" fill="none" stroke="#f0f6fc" stroke-width="2" stroke-dasharray="2,4"/>
-  <circle cx="260" cy="111" r="5" fill="#0d1117" stroke="#f0f6fc" stroke-width="1.5"/>
-  <circle cx="540" cy="111" r="5" fill="#0d1117" stroke="#f0f6fc" stroke-width="1.5"/>
-  <circle cx="820" cy="207" r="5" fill="#0d1117" stroke="#f0f6fc" stroke-width="1.5"/>
-  <circle cx="1060" cy="111" r="6" fill="#f0f6fc" stroke="#f0f6fc" stroke-width="1.5"/>
-
-  <polyline points="260,209 540,209 820,209 1060,209" fill="none" stroke="#a3a3a3" stroke-width="2" stroke-dasharray="1,4"/>
-  <polygon points="260,203 266,209 260,215 254,209" fill="#0d1117" stroke="#a3a3a3" stroke-width="1.5"/>
-  <polygon points="540,203 546,209 540,215 534,209" fill="#0d1117" stroke="#a3a3a3" stroke-width="1.5"/>
-  <polygon points="820,203 826,209 820,215 814,209" fill="#0d1117" stroke="#a3a3a3" stroke-width="1.5"/>
-  <polygon points="1060,202 1067,209 1060,216 1053,209" fill="#a3a3a3" stroke="#a3a3a3" stroke-width="1.5"/>
-
-  <!-- right-margin callout badges -->
-  <line x1="1060" y1="141" x2="1120" y2="129" stroke="#6e7681" stroke-width="1" stroke-dasharray="2,2"/>
-  <rect x="1120" y="115" width="250" height="28" fill="#161b22" stroke="#6e7681" stroke-width="1"/>
-  <text x="1132" y="134" fill="#c9d1d9" font-size="11" font-weight="600">DeepL Write: 85.1%</text>
-
-  <line x1="1060" y1="187" x2="1120" y2="165" stroke="#8b949e" stroke-width="1" stroke-dasharray="2,2"/>
-  <rect x="1120" y="155" width="250" height="28" fill="#161b22" stroke="#8b949e" stroke-width="1"/>
-  <text x="1132" y="174" fill="#8b949e" font-size="11" font-weight="600">TextGears API: 71.5%</text>
-
-  <line x1="1060" y1="187" x2="1120" y2="205" stroke="#c9d1d9" stroke-width="1" stroke-dasharray="2,2"/>
-  <rect x="1120" y="195" width="250" height="28" fill="#161b22" stroke="#c9d1d9" stroke-width="1"/>
-  <text x="1132" y="214" fill="#c9d1d9" font-size="11" font-weight="600">LanguageTool: 71.4%</text>
-
-  <line x1="1060" y1="225" x2="1120" y2="245" stroke="#ffffff" stroke-width="1.5"/>
-  <rect x="1120" y="235" width="250" height="28" fill="#21262d" stroke="#ffffff" stroke-width="1.5"/>
-  <text x="1132" y="254" fill="#ffffff" font-size="11" font-weight="700">BCorrect (FMM): 60.4%</text>
-
-  <!-- legend -->
-  <rect x="140" y="490" width="960" height="60" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-
-  <line x1="160" y1="507" x2="190" y2="507" stroke="#6e7681" stroke-width="2" stroke-dasharray="3,3"/>
-  <rect x="176" y="503" width="8" height="8" fill="#30363d" stroke="#6e7681"/>
-  <text x="200" y="511" fill="#6e7681" font-size="11">DeepL Write</text>
-
-  <line x1="380" y1="507" x2="410" y2="507" stroke="#8b949e" stroke-width="2" stroke-dasharray="4,2,1,2"/>
-  <rect x="391" y="503" width="8" height="8" fill="#8b949e"/>
-  <text x="420" y="511" fill="#8b949e" font-size="11">TextGears API</text>
-
-  <line x1="600" y1="507" x2="630" y2="507" stroke="#c9d1d9" stroke-width="2" stroke-dasharray="6,4"/>
-  <rect x="611" y="503" width="8" height="8" fill="#0d1117" stroke="#c9d1d9" stroke-width="1.5"/>
-  <text x="640" y="511" fill="#c9d1d9" font-size="11" font-weight="600">LanguageTool API</text>
-
-  <line x1="830" y1="507" x2="860" y2="507" stroke="#ffffff" stroke-width="3"/>
-  <rect x="841" y="503" width="8" height="8" fill="#ffffff"/>
-  <text x="870" y="511" fill="#ffffff" font-size="11" font-weight="700">BCorrect API (FMM)</text>
-
-  <line x1="160" y1="535" x2="190" y2="535" stroke="#f0f6fc" stroke-width="2" stroke-dasharray="2,4"/>
-  <circle cx="175" cy="535" r="4" fill="#0d1117" stroke="#f0f6fc" stroke-width="1.5"/>
-  <text x="200" y="539" fill="#f0f6fc" font-size="11">Sapling estimate: 65.6% prior / 93.8% current</text>
-
-  <line x1="610" y1="535" x2="640" y2="535" stroke="#a3a3a3" stroke-width="2" stroke-dasharray="1,4"/>
-  <polygon points="625,530 630,535 625,540 620,535" fill="#0d1117" stroke="#a3a3a3" stroke-width="1.5"/>
-  <text x="650" y="539" fill="#a3a3a3" font-size="11">JSpell flat estimate: 65.1% current</text>
-</svg>"""
-    with open("assets/progress_over_time.svg", "w", encoding="utf-8") as f:
-        f.write(svg)
-    print("Generated assets/progress_over_time.svg")
+"""Generate current and blended historical charts from saved H-suite artifacts."""
+
+import html
+import json
+from pathlib import Path
+
+
+ROOT = Path(__file__).parent
+RESULTS_PATH = ROOT / "raw_results" / "blind_4pillars_eval_run_v4.json"
+PAIRED_RESULTS_PATH = ROOT / "raw_results" / "h_suite_locale_eval_v1.json"
+ASSETS = ROOT / "assets"
+
+ENGINE_COLORS = {
+    "BCorrect (FMM)": "#E69F00",
+    "LanguageTool API": "#56B4E9",
+    "TextGears API": "#009E73",
+    "DeepL Write": "#CC79A7",
+    "Sapling Grammar Checker": "#F0E442",
+    "JSpell Free Web Checker": "#D55E00",
+}
+
+CURRENT_ENGINE_COLORS = {
+    **ENGINE_COLORS,
+    "Grammarly Free Grammar Checker": "#58a6ff",
+}
+
+LEGACY_ESTIMATES = {
+    "DeepL Write": [78.0, 80.0, 81.5],
+    "TextGears API": [64.0, 67.5, 70.5],
+    "LanguageTool API": [65.0, 68.0, 70.2],
+    "BCorrect (FMM)": [32.0, 38.5, 38.0],
+    "JSpell Free Web Checker": [65.1, 65.1, 65.1],
+}
+
+
+def _validate_engine_roster(scores, source, expected_engines):
+    if set(scores) != set(expected_engines):
+        missing = sorted(set(expected_engines) - set(scores))
+        unexpected = sorted(set(scores) - set(expected_engines))
+        details = []
+        if missing:
+            details.append("missing: " + ", ".join(missing))
+        if unexpected:
+            details.append("unexpected: " + ", ".join(unexpected))
+        raise ValueError(f"{source} competitor roster mismatch ({'; '.join(details)})")
+
+
+def _load_legacy_results():
+    legacy_path = ROOT / "raw_results" / "blind_4pillars_eval_run.json"
+    with legacy_path.open("r", encoding="utf-8") as file:
+        results = json.load(file)
+    if results["benchmark_metadata"].get("version") != "3.0-blind":
+        raise ValueError(f"{legacy_path} does not contain v3.0 results")
+    summary = results["engine_summary"]
+    _validate_engine_roster(summary, str(legacy_path), ENGINE_COLORS)
+    return summary
+
+
+def _load_results():
+    with RESULTS_PATH.open("r", encoding="utf-8") as file:
+        results = json.load(file)
+    if results["benchmark_metadata"].get("version") != "4.0":
+        raise ValueError(f"{RESULTS_PATH} does not contain v4.0 results")
+    summary = results["engine_summary"]
+    _validate_engine_roster(summary, str(RESULTS_PATH), CURRENT_ENGINE_COLORS)
+    return summary
+
+
+def _load_paired_results():
+    with PAIRED_RESULTS_PATH.open("r", encoding="utf-8") as file:
+        results = json.load(file)
+    if results["benchmark_metadata"].get("version") != "4.1-locale-paired":
+        raise ValueError(f"{PAIRED_RESULTS_PATH} does not contain paired locale results")
+    locale_results = results["locales"]
+    if set(locale_results) != {"en-US", "en-GB"}:
+        raise ValueError(f"{PAIRED_RESULTS_PATH} must contain en-US and en-GB")
+    for locale, result in locale_results.items():
+        _validate_engine_roster(
+            result["engine_summary"],
+            f"{PAIRED_RESULTS_PATH} ({locale})",
+            CURRENT_ENGINE_COLORS,
+        )
+    return locale_results
+
+
+def _start_svg(width, height, title, subtitle):
+    return [
+        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" '
+        'style="background:#0d1117; font-family:-apple-system,BlinkMacSystemFont,'
+        '\'Segoe UI\',Helvetica,Arial,sans-serif;">',
+        f'<rect x="1" y="1" width="{width - 2}" height="{height - 2}" '
+        'fill="none" stroke="#30363d" stroke-width="1"/>',
+        f'<text x="{width / 2:g}" y="32" fill="#f0f6fc" font-size="14" '
+        f'font-weight="700" text-anchor="middle">{html.escape(title)}</text>',
+        f'<text x="{width / 2:g}" y="52" fill="#8b949e" font-size="11" '
+        f'text-anchor="middle">{html.escape(subtitle)}</text>',
+    ]
+
+
+def _write_svg(filename, lines):
+    lines.append("</svg>")
+    (ASSETS / filename).write_text("\n".join(lines) + "\n", encoding="utf-8")
+    print(f"Generated assets/{filename}")
+
+
+def build_quality_chart(scores):
+    engines = sorted(
+        scores.items(),
+        key=lambda item: item[1]["quality_composite"],
+        reverse=True,
+    )
+    height = 100 + len(engines) * 42 + 62
+    svg = _start_svg(
+        1200,
+        height,
+        "V0.4 H-SUITE QUALITY COMPOSITE",
+        "Public benchmark release v0.4 (result artifact version 4.0); single-locale baseline",
+    )
+    x0, chart_width = 300, 760
+    for pct in (0, 25, 50, 75, 100):
+        x = x0 + chart_width * pct / 100
+        svg.append(
+            f'<line x1="{x:g}" y1="68" x2="{x:g}" y2="{height - 48}" '
+            f'stroke="#30363d" stroke-width="1"/>'
+        )
+        svg.append(
+            f'<text x="{x:g}" y="{height - 28}" fill="#8b949e" font-size="10" '
+            f'text-anchor="middle">{pct}%</text>'
+        )
+    for index, (engine, result) in enumerate(engines):
+        y = 76 + index * 42
+        score = result["quality_composite"]
+        color = CURRENT_ENGINE_COLORS[engine]
+        svg.append(
+            f'<text x="288" y="{y + 17}" fill="{color}" font-size="11" '
+            f'text-anchor="end">{html.escape(engine)}</text>'
+        )
+        svg.append(
+            f'<rect x="{x0}" y="{y}" width="{chart_width * score / 100:.2f}" '
+            f'height="24" fill="{color}" stroke="#f0f6fc" stroke-width="1"/>'
+        )
+        svg.append(
+            f'<text x="{x0 + chart_width * score / 100 + 8:.2f}" y="{y + 17}" '
+            f'fill="#f0f6fc" font-size="11" font-weight="700">{score:.1f}%</text>'
+        )
+    svg.append(
+        f'<text x="600" y="{height - 6}" fill="#8b949e" font-size="10" '
+        'text-anchor="middle">Weights: spelling 43.75%, grammar 31.25%, voice 25% '
+        '| November 14, 2026</text>'
+    )
+    _write_svg("hybrid_score_comparison.svg", svg)
+
+
+def build_pillars_chart(scores):
+    engines = sorted(
+        scores.items(),
+        key=lambda item: item[1]["quality_composite"],
+        reverse=True,
+    )
+    height = 100 + len(engines) * 42 + 55
+    svg = _start_svg(
+        1200,
+        height,
+        "V0.4 H-SUITE QUALITY PILLARS",
+        "Single-locale baseline; locale settings vary or are unreported",
+    )
+    columns = [
+        ("Spelling", "spelling_accuracy"),
+        ("Grammar", "grammar_accuracy"),
+        ("Voice", "voice_preservation"),
+    ]
+    x_positions = [360, 610, 860]
+    for (label, _), x in zip(columns, x_positions):
+        svg.append(
+            f'<text x="{x}" y="78" fill="#f0f6fc" font-size="11" '
+            f'font-weight="700" text-anchor="middle">{label}</text>'
+        )
+    for row, (engine, result) in enumerate(engines):
+        y = 96 + row * 42
+        color = CURRENT_ENGINE_COLORS[engine]
+        svg.append(
+            f'<text x="288" y="{y + 17}" fill="{color}" font-size="11" '
+            f'text-anchor="end">{html.escape(engine)}</text>'
+        )
+        for (_, key), x in zip(columns, x_positions):
+            score = result[key]
+            svg.append(
+                f'<rect x="{x - 90}" y="{y}" width="180" height="22" '
+                'fill="#161b22" stroke="#30363d" stroke-width="1"/>'
+            )
+            svg.append(
+                f'<rect x="{x - 90}" y="{y}" width="{180 * score / 100:.2f}" '
+                f'height="22" fill="{color}" opacity="0.72"/>'
+            )
+            svg.append(
+                f'<text x="{x}" y="{y + 16}" fill="#0d1117" font-size="10" '
+                f'font-weight="700" text-anchor="middle">{score:.1f}%</text>'
+            )
+    svg.append(
+        f'<text x="600" y="{height - 8}" fill="#8b949e" font-size="10" '
+        'text-anchor="middle">Scores are recomputed from saved H-suite outputs under v4.0</text>'
+    )
+    _write_svg("pillars_breakdown.svg", svg)
+
+
+def build_diagnostic_chart(scores):
+    engines = sorted(
+        scores.items(),
+        key=lambda item: (
+            item[1]["correction_site_diagnostic"]["unapproved_edit_rate"] is None,
+            item[1]["correction_site_diagnostic"]["unapproved_edit_rate"] or 0,
+            item[0],
+        ),
+    )
+    height = 100 + len(engines) * 42 + 65
+    svg = _start_svg(
+        1200,
+        height,
+        "V0.4 CORRECTION-SITE EDIT DIAGNOSTIC",
+        "Single-locale baseline; lower is fewer unapproved edits; not a hallucination rate",
+    )
+    x0, chart_width, axis_max = 300, 660, 50
+    for pct in (0, 10, 20, 30, 40, 50):
+        x = x0 + chart_width * pct / axis_max
+        svg.append(
+            f'<line x1="{x:g}" y1="68" x2="{x:g}" y2="{height - 54}" '
+            f'stroke="#30363d" stroke-width="1"/>'
+        )
+        svg.append(
+            f'<text x="{x:g}" y="{height - 34}" fill="#8b949e" font-size="10" '
+            f'text-anchor="middle">{pct}%</text>'
+        )
+    for index, (engine, result) in enumerate(engines):
+        y = 76 + index * 42
+        diagnostic = result["correction_site_diagnostic"]
+        rate = diagnostic["unapproved_edit_rate"]
+        count = diagnostic["unapproved_edits"]
+        applicable = diagnostic["applicable_sites"]
+        color = CURRENT_ENGINE_COLORS[engine]
+        svg.append(
+            f'<text x="288" y="{y + 17}" fill="{color}" font-size="11" '
+            f'text-anchor="end">{html.escape(engine)}</text>'
+        )
+        if rate is None:
+            svg.append(
+                f'<text x="{x0}" y="{y + 17}" fill="#8b949e" font-size="11">'
+                f'n/a ({count}/{applicable})</text>'
+            )
+        else:
+            width = chart_width * min(rate, axis_max) / axis_max
+            svg.append(
+                f'<rect x="{x0}" y="{y}" width="{width:.2f}" height="24" '
+                f'fill="{color}" stroke="#f0f6fc" stroke-width="1"/>'
+            )
+            svg.append(
+                f'<text x="{x0 + width + 8:.2f}" y="{y + 17}" fill="#f0f6fc" '
+                f'font-size="11">{count}/{applicable} ({rate:.1f}%)</text>'
+            )
+    svg.append(
+        f'<text x="600" y="{height - 9}" fill="#8b949e" font-size="10" '
+        'text-anchor="middle">Shared rules across engines; only annotated spelling/grammar sites are examined</text>'
+    )
+    _write_svg("correction_site_diagnostic.svg", svg)
+
+
+def build_latency_chart(scores):
+    measured = sorted(
+        (
+            (engine, result["latency_ms"])
+            for engine, result in scores.items()
+            if result["latency_ms"] is not None
+        ),
+        key=lambda item: item[1],
+    )
+    unmeasured = [
+        (engine, None)
+        for engine, result in scores.items()
+        if result["latency_ms"] is None
+    ]
+    rows = measured + unmeasured
+    height = 100 + len(rows) * 42 + 50
+    svg = _start_svg(
+        1200,
+        height,
+        "V0.4 H-SUITE LATENCY",
+        "Single-locale baseline; mean recorded REST timings; web-demo timing unavailable",
+    )
+    x0, chart_width, max_latency = 300, 700, 1400
+    for ms in (0, 350, 700, 1050, 1400):
+        x = x0 + chart_width * ms / max_latency
+        svg.append(
+            f'<line x1="{x:g}" y1="68" x2="{x:g}" y2="{height - 48}" '
+            f'stroke="#30363d" stroke-width="1"/>'
+        )
+        svg.append(
+            f'<text x="{x:g}" y="{height - 28}" fill="#8b949e" font-size="10" '
+            f'text-anchor="middle">{ms} ms</text>'
+        )
+    for index, (engine, latency) in enumerate(rows):
+        y = 76 + index * 42
+        color = CURRENT_ENGINE_COLORS[engine]
+        svg.append(
+            f'<text x="288" y="{y + 17}" fill="{color}" font-size="11" '
+            f'text-anchor="end">{html.escape(engine)}</text>'
+        )
+        if latency is None:
+            svg.append(
+                f'<text x="{x0}" y="{y + 17}" fill="#8b949e" font-size="11">n/a</text>'
+            )
+        else:
+            width = chart_width * min(latency, max_latency) / max_latency
+            samples = scores[engine].get("latency_samples")
+            sample_label = f" ({samples} samples)" if samples is not None else ""
+            svg.append(
+                f'<rect x="{x0}" y="{y}" width="{width:.2f}" height="24" '
+                f'fill="{color}" stroke="#f0f6fc" stroke-width="1"/>'
+            )
+            svg.append(
+                f'<text x="{x0 + width + 8:.2f}" y="{y + 17}" fill="#f0f6fc" '
+                f'font-size="11">~{latency:g} ms{sample_label}</text>'
+            )
+    svg.append(
+        f'<text x="600" y="{height - 6}" fill="#8b949e" font-size="10" '
+        'text-anchor="middle">Latency values are carried in the saved v4 H-suite artifact</text>'
+    )
+    _write_svg("latency_comparison.svg", svg)
+
+
+def build_paired_locale_quality_chart(locale_results):
+    engines = sorted(
+        CURRENT_ENGINE_COLORS,
+        key=lambda engine: sum(
+            locale_results[locale]["engine_summary"][engine]["quality_composite"]
+            for locale in ("en-US", "en-GB")
+        ) / 2,
+        reverse=True,
+    )
+    height = 100 + len(engines) * 54 + 62
+    svg = _start_svg(
+        1200,
+        height,
+        "V4.1 PAIRED LOCALE QUALITY COMPOSITE",
+        "Matched en-US and en-GB runs; locale-specific spelling targets included",
+    )
+    x0, chart_width = 300, 760
+    locale_colors = {"en-US": "#58a6ff", "en-GB": "#f0a6ff"}
+    for pct in (0, 25, 50, 75, 100):
+        x = x0 + chart_width * pct / 100
+        svg.append(
+            f'<line x1="{x:g}" y1="68" x2="{x:g}" y2="{height - 48}" '
+            'stroke="#30363d" stroke-width="1"/>'
+        )
+        svg.append(
+            f'<text x="{x:g}" y="{height - 28}" fill="#8b949e" font-size="10" '
+            f'text-anchor="middle">{pct}%</text>'
+        )
+    for index, engine in enumerate(engines):
+        y = 76 + index * 54
+        color = CURRENT_ENGINE_COLORS[engine]
+        svg.append(
+            f'<text x="288" y="{y + 22}" fill="{color}" font-size="11" '
+            f'text-anchor="end">{html.escape(engine)}</text>'
+        )
+        for offset, locale in ((0, "en-US"), (17, "en-GB")):
+            score = locale_results[locale]["engine_summary"][engine][
+                "quality_composite"
+            ]
+            width = chart_width * score / 100
+            svg.append(
+                f'<rect x="{x0}" y="{y + offset}" width="{width:.2f}" '
+                f'height="13" fill="{locale_colors[locale]}"/>'
+            )
+            svg.append(
+                f'<text x="{x0 + width + 7:.2f}" y="{y + offset + 11}" '
+                f'fill="#f0f6fc" font-size="10">{locale} {score:.1f}%</text>'
+            )
+    svg.append(
+        f'<text x="600" y="{height - 6}" fill="#8b949e" font-size="10" '
+        'text-anchor="middle">Quality weights: spelling 43.75%, grammar 31.25%, voice 25%</text>'
+    )
+    _write_svg("paired_locale_quality_comparison.svg", svg)
+
+
+def build_paired_locale_pillars_chart(locale_results):
+    engines = sorted(
+        CURRENT_ENGINE_COLORS,
+        key=lambda engine: sum(
+            locale_results[locale]["engine_summary"][engine]["quality_composite"]
+            for locale in ("en-US", "en-GB")
+        ) / 2,
+        reverse=True,
+    )
+    height = 110 + len(engines) * 54 + 48
+    svg = _start_svg(
+        1200,
+        height,
+        "V4.1 PAIRED LOCALE QUALITY PILLARS",
+        "Locale-specific spelling targets; voice scoring formula unchanged",
+    )
+    columns = [
+        ("Spelling", "spelling_accuracy"),
+        ("Grammar", "grammar_accuracy"),
+        ("Voice", "voice_preservation"),
+    ]
+    centres = [400, 660, 920]
+    locale_colors = {"en-US": "#58a6ff", "en-GB": "#f0a6ff"}
+    for (label, _), x in zip(columns, centres):
+        svg.append(
+            f'<text x="{x}" y="82" fill="#f0f6fc" font-size="11" '
+            f'font-weight="700" text-anchor="middle">{label}</text>'
+        )
+    for row, engine in enumerate(engines):
+        y = 100 + row * 54
+        svg.append(
+            f'<text x="288" y="{y + 22}" fill="{CURRENT_ENGINE_COLORS[engine]}" '
+            f'font-size="11" text-anchor="end">{html.escape(engine)}</text>'
+        )
+        for (_, metric), centre in zip(columns, centres):
+            for offset, locale in ((0, "en-US"), (17, "en-GB")):
+                score = locale_results[locale]["engine_summary"][engine][metric]
+                width = 170 * score / 100
+                x = centre - 85
+                svg.append(
+                    f'<rect x="{x}" y="{y + offset}" width="{width:.2f}" '
+                    f'height="13" fill="{locale_colors[locale]}"/>'
+                )
+                svg.append(
+                    f'<text x="{centre}" y="{y + offset + 11}" fill="#0d1117" '
+                    'font-size="9" font-weight="700" text-anchor="middle">'
+                    f'{locale} {score:.1f}%</text>'
+                )
+    svg.append(
+        f'<text x="600" y="{height - 8}" fill="#8b949e" font-size="10" '
+        'text-anchor="middle">US and GB denote the en-US and en-GB locale runs</text>'
+    )
+    _write_svg("paired_locale_pillars.svg", svg)
+
+
+def build_paired_locale_diagnostic_chart(locale_results):
+    engines = sorted(
+        CURRENT_ENGINE_COLORS,
+        key=lambda engine: sum(
+            locale_results[locale]["engine_summary"][engine][
+                "correction_site_diagnostic"
+            ]["unapproved_edit_rate"] or 0
+            for locale in ("en-US", "en-GB")
+        ) / 2,
+    )
+    height = 100 + len(engines) * 54 + 65
+    svg = _start_svg(
+        1200,
+        height,
+        "V4.1 PAIRED LOCALE CORRECTION-SITE DIAGNOSTIC",
+        "Unapproved edits at annotated sites; not a semantic or hallucination rate",
+    )
+    x0, chart_width, axis_max = 300, 660, 50
+    locale_colors = {"en-US": "#58a6ff", "en-GB": "#f0a6ff"}
+    for pct in (0, 10, 20, 30, 40, 50):
+        x = x0 + chart_width * pct / axis_max
+        svg.append(
+            f'<line x1="{x:g}" y1="68" x2="{x:g}" y2="{height - 54}" '
+            'stroke="#30363d" stroke-width="1"/>'
+        )
+        svg.append(
+            f'<text x="{x:g}" y="{height - 34}" fill="#8b949e" font-size="10" '
+            f'text-anchor="middle">{pct}%</text>'
+        )
+    for index, engine in enumerate(engines):
+        y = 76 + index * 54
+        svg.append(
+            f'<text x="288" y="{y + 22}" fill="{CURRENT_ENGINE_COLORS[engine]}" '
+            f'font-size="11" text-anchor="end">{html.escape(engine)}</text>'
+        )
+        for offset, locale in ((0, "en-US"), (17, "en-GB")):
+            diagnostic = locale_results[locale]["engine_summary"][engine][
+                "correction_site_diagnostic"
+            ]
+            rate = diagnostic["unapproved_edit_rate"]
+            x = x0
+            if rate is None:
+                label = f'{locale} n/a ({diagnostic["unapproved_edits"]}/{diagnostic["applicable_sites"]})'
+            else:
+                width = chart_width * min(rate, axis_max) / axis_max
+                svg.append(
+                    f'<rect x="{x0}" y="{y + offset}" width="{width:.2f}" '
+                    f'height="13" fill="{locale_colors[locale]}"/>'
+                )
+                x += width + 7
+                label = (
+                    f'{locale} {diagnostic["unapproved_edits"]}/'
+                    f'{diagnostic["applicable_sites"]} ({rate:.1f}%)'
+                )
+            svg.append(
+                f'<text x="{x:.2f}" y="{y + offset + 11}" fill="#f0f6fc" '
+                f'font-size="10">{label}</text>'
+            )
+    svg.append(
+        f'<text x="600" y="{height - 9}" fill="#8b949e" font-size="10" '
+        'text-anchor="middle">Lower is fewer unapproved edits at shared annotated correction sites</text>'
+    )
+    _write_svg("paired_locale_diagnostic.svg", svg)
+
+
+def build_paired_locale_latency_chart(locale_results):
+    rows = []
+    for engine in CURRENT_ENGINE_COLORS:
+        for locale in ("en-US", "en-GB"):
+            result = locale_results[locale]["engine_summary"][engine]
+            rows.append((engine, locale, result["latency_ms"], result["latency_samples"]))
+    rows.sort(
+        key=lambda row: (row[2] is None, row[2] if row[2] is not None else 0)
+    )
+    height = 100 + len(rows) * 28 + 54
+    svg = _start_svg(
+        1200,
+        height,
+        "V4.1 PAIRED LOCALE RECORDED LATENCY",
+        "Mean recorded request timings only; web-demo latency remains unavailable",
+    )
+    x0, chart_width, max_latency = 300, 700, 1400
+    locale_colors = {"en-US": "#58a6ff", "en-GB": "#f0a6ff"}
+    for ms in (0, 350, 700, 1050, 1400):
+        x = x0 + chart_width * ms / max_latency
+        svg.append(
+            f'<line x1="{x:g}" y1="68" x2="{x:g}" y2="{height - 45}" '
+            'stroke="#30363d" stroke-width="1"/>'
+        )
+        svg.append(
+            f'<text x="{x:g}" y="{height - 25}" fill="#8b949e" font-size="10" '
+            f'text-anchor="middle">{ms} ms</text>'
+        )
+    for index, (engine, locale, latency, samples) in enumerate(rows):
+        y = 76 + index * 28
+        svg.append(
+            f'<text x="288" y="{y + 13}" fill="{CURRENT_ENGINE_COLORS[engine]}" '
+            f'font-size="10" text-anchor="end">{html.escape(engine)} {locale}</text>'
+        )
+        if latency is None:
+            svg.append(
+                f'<text x="{x0}" y="{y + 13}" fill="#8b949e" font-size="10">n/a</text>'
+            )
+            continue
+        width = chart_width * min(latency, max_latency) / max_latency
+        svg.append(
+            f'<rect x="{x0}" y="{y}" width="{width:.2f}" height="18" '
+            f'fill="{locale_colors[locale]}"/>'
+        )
+        svg.append(
+            f'<text x="{x0 + width + 7:.2f}" y="{y + 13}" fill="#f0f6fc" '
+            f'font-size="10">~{latency:g} ms ({samples} samples)</text>'
+        )
+    _write_svg("paired_locale_latency.svg", svg)
+
+
+def _align_legacy_estimate_to_v4(estimate, legacy_score, current_score):
+    return max(0.0, min(100.0, estimate + current_score - legacy_score))
+
+
+def build_legacy_progress_chart(legacy_scores, current_scores):
+    points = [150, 330, 510, 690, 860]
+    y_base, y_scale = 405, 3.2
+    svg = _start_svg(
+        1200,
+        630,
+        "V0.3 -> V0.4 SCORE HISTORY",
+        "Historical estimates shifted to the v0.4 scale; v0.3 and v0.4 endpoints are both shown",
+    )
+    for pct in (0, 20, 40, 60, 80, 100):
+        y = y_base - pct * y_scale
+        svg.append(
+            f'<line x1="115" y1="{y:g}" x2="895" y2="{y:g}" '
+            'stroke="#30363d" stroke-width="1"/>'
+        )
+        svg.append(
+            f'<text x="103" y="{y + 4:g}" fill="#8b949e" font-size="10" '
+            f'text-anchor="end">{pct}%</text>'
+        )
+
+    labels = [
+        "Q1 2025 est.",
+        "Q3 2025 est.",
+        "Early Fall est.",
+        "Nov 2026 v0.3",
+        "Nov 2026 v0.4",
+    ]
+    for x, label in zip(points, labels):
+        svg.append(
+            f'<line x1="{x}" y1="72" x2="{x}" y2="{y_base}" '
+            'stroke="#21262d" stroke-dasharray="3,4"/>'
+        )
+        svg.append(
+            f'<text x="{x}" y="432" fill="#c9d1d9" font-size="10" '
+            f'text-anchor="middle">{html.escape(label)}</text>'
+        )
+
+    for engine, color in CURRENT_ENGINE_COLORS.items():
+        current_score = current_scores[engine]["quality_composite"]
+        current_y = y_base - current_score * y_scale
+        if engine in LEGACY_ESTIMATES:
+            legacy_score = legacy_scores[engine]["hybrid_meta_score"]
+            estimates = [
+                _align_legacy_estimate_to_v4(value, legacy_score, current_score)
+                for value in LEGACY_ESTIMATES[engine]
+            ]
+            coordinates = [
+                f"{x},{y_base - value * y_scale:g}"
+                for x, value in zip(points[:3], estimates)
+            ]
+            coordinates.append(f"{points[4]},{current_y:g}")
+            svg.append(
+                f'<polyline points="{" ".join(coordinates)}" fill="none" '
+                f'stroke="{color}" stroke-width="2" stroke-dasharray="4,3"/>'
+            )
+            for x, value in zip(points[:3], estimates):
+                y = y_base - value * y_scale
+                svg.append(
+                    f'<circle cx="{x}" cy="{y:g}" r="4" fill="#0d1117" '
+                    f'stroke="{color}" stroke-width="1.5"/>'
+                )
+        elif engine == "Sapling Grammar Checker":
+            legacy_score = legacy_scores[engine]["hybrid_meta_score"]
+            upper_bound = _align_legacy_estimate_to_v4(
+                60.0,
+                legacy_score,
+                current_score,
+            )
+            bound_y = y_base - upper_bound * y_scale
+            svg.append(
+                f'<rect x="{points[2] - 6}" y="{bound_y:g}" width="12" '
+                f'height="{y_base - bound_y:g}" fill="{color}" opacity="0.18" '
+                f'stroke="{color}" stroke-width="1" stroke-dasharray="3,2"/>'
+            )
+            svg.append(
+                f'<polyline points="{points[2]},{bound_y:g} '
+                f'{points[4]},{current_y:g}" fill="none" stroke="{color}" '
+                'stroke-width="2" stroke-dasharray="4,3"/>'
+            )
+            svg.append(
+                f'<circle cx="{points[2]}" cy="{bound_y:g}" r="4" '
+                f'fill="#0d1117" stroke="{color}" stroke-width="1.5"/>'
+            )
+
+        if engine in legacy_scores:
+            legacy_score = legacy_scores[engine]["hybrid_meta_score"]
+            legacy_y = y_base - legacy_score * y_scale
+            x = points[3]
+            svg.append(
+                f'<rect x="{x - 4}" y="{legacy_y - 4:g}" width="8" height="8" '
+                f'fill="#0d1117" stroke="{color}" stroke-width="1.5" '
+                f'transform="rotate(45 {x} {legacy_y:g})"/>'
+            )
+        svg.append(
+            f'<circle cx="{points[4]}" cy="{current_y:g}" r="5" fill="{color}"/>'
+        )
+
+    for index, (engine, color) in enumerate(CURRENT_ENGINE_COLORS.items()):
+        y = 94 + index * 28
+        svg.append(
+            f'<line x1="920" y1="{y}" x2="948" y2="{y}" stroke="{color}" '
+            'stroke-width="2" stroke-dasharray="4,3"/>'
+        )
+        score = current_scores[engine]["quality_composite"]
+        svg.append(
+            f'<text x="956" y="{y + 4}" fill="{color}" font-size="9">'
+            f'{html.escape(engine)} ({score:.1f}%)</text>'
+        )
+    svg.append(
+        '<circle cx="924" cy="310" r="4" fill="#0d1117" stroke="#c9d1d9" '
+        'stroke-width="1.5"/>'
+    )
+    svg.append(
+        '<text x="940" y="314" fill="#8b949e" font-size="9">'
+        'v0.4-aligned historical estimate</text>'
+    )
+    svg.append(
+        '<rect x="920" y="325" width="8" height="8" fill="#0d1117" '
+        'stroke="#c9d1d9" stroke-width="1.5" transform="rotate(45 924 329)"/>'
+    )
+    svg.append(
+        '<text x="940" y="334" fill="#8b949e" font-size="9">'
+        'measured v0.3 composite</text>'
+    )
+    svg.append('<circle cx="924" cy="349" r="5" fill="#c9d1d9"/>')
+    svg.append(
+        '<text x="940" y="353" fill="#8b949e" font-size="9">'
+        'measured v0.4 composite</text>'
+    )
+    svg.append(
+        '<text x="600" y="472" fill="#8b949e" font-size="10" '
+        "text-anchor=\"middle\">v0.3 estimates are shifted by each shared engine's measured "
+        'v0.4-minus-v0.3 endpoint delta; historical values remain estimates.</text>'
+    )
+    svg.append(
+        '<text x="600" y="494" fill="#8b949e" font-size="10" '
+        'text-anchor="middle">This additive alignment is illustrative, not a rescore or '
+        'evidence of historical performance on the v0.4 rubric.</text>'
+    )
+    svg.append(
+        '<text x="600" y="516" fill="#8b949e" font-size="10" '
+        "text-anchor=\"middle\">Sapling's earlier point is an estimated below-60% v0.3 "
+        'upper bound; Grammarly has no v0.3 result.</text>'
+    )
+    svg.append(
+        '<text x="600" y="538" fill="#8b949e" font-size="10" '
+        'text-anchor="middle">The v0.3 signature-based anti-hallucination pillar is retired; '
+        'the v0.4 diagnostic is not a hallucination rate.</text>'
+    )
+    svg.append(
+        '<text x="600" y="560" fill="#8b949e" font-size="9" '
+        'text-anchor="middle">Public release labels v0.3/v0.4; source artifacts identify '
+        'these results as 3.0/4.0.</text>'
+    )
+    _write_svg("progress_over_time.svg", svg)
+
+
+def build_legacy_progress_bar_chart(legacy_scores, current_scores):
+    centres = [145, 325, 505, 685, 865]
+    y_base, y_scale = 380, 3.2
+    bar_width, gap = 10, 3
+    group_width = len(CURRENT_ENGINE_COLORS) * bar_width + (
+        len(CURRENT_ENGINE_COLORS) - 1
+    ) * gap
+    svg = _start_svg(
+        1200,
+        640,
+        "V0.3 -> V0.4 COMPOSITE HISTORY",
+        "Estimated history aligned to v0.4 scale; measured v0.3 and v0.4 endpoints shown separately",
+    )
+    for pct in (0, 20, 40, 60, 80, 100):
+        y = y_base - pct * y_scale
+        svg.append(
+            f'<line x1="95" y1="{y:g}" x2="915" y2="{y:g}" '
+            'stroke="#30363d" stroke-width="1"/>'
+        )
+        svg.append(
+            f'<text x="83" y="{y + 4:g}" fill="#8b949e" font-size="10" '
+            f'text-anchor="end">{pct}%</text>'
+        )
+
+    labels = [
+        "Q1 2025 est.",
+        "Q3 2025 est.",
+        "Early Fall est.",
+        "Nov 2026 v0.3",
+        "Nov 2026 v0.4",
+    ]
+    for point_index, (centre, label) in enumerate(zip(centres, labels)):
+        svg.append(
+            f'<line x1="{centre}" y1="70" x2="{centre}" y2="{y_base}" '
+            'stroke="#21262d" stroke-dasharray="3,4"/>'
+        )
+        svg.append(
+            f'<text x="{centre}" y="408" fill="#c9d1d9" font-size="9" '
+            f'text-anchor="middle">{html.escape(label)}</text>'
+        )
+        start = centre - group_width / 2
+        for engine_index, (engine, color) in enumerate(CURRENT_ENGINE_COLORS.items()):
+            x = start + engine_index * (bar_width + gap)
+            current_score = current_scores[engine]["quality_composite"]
+            if engine in LEGACY_ESTIMATES and point_index < 3:
+                legacy_score = legacy_scores[engine]["hybrid_meta_score"]
+                score = _align_legacy_estimate_to_v4(
+                    LEGACY_ESTIMATES[engine][point_index],
+                    legacy_score,
+                    current_score,
+                )
+                fill, opacity, dash = color, "0.55", ' stroke-dasharray="2,2"'
+            elif engine == "Sapling Grammar Checker" and point_index == 2:
+                legacy_score = legacy_scores[engine]["hybrid_meta_score"]
+                score = _align_legacy_estimate_to_v4(
+                    60.0,
+                    legacy_score,
+                    current_score,
+                )
+                fill, opacity, dash = color, "0.18", ' stroke-dasharray="2,2"'
+            elif engine in legacy_scores and point_index == 3:
+                score = legacy_scores[engine]["hybrid_meta_score"]
+                fill, opacity, dash = "#0d1117", "1", ""
+            elif point_index == 4:
+                score = current_score
+                fill, opacity, dash = color, "1", ""
+            else:
+                continue
+
+            height = score * y_scale
+            y = y_base - height
+            svg.append(
+                f'<rect x="{x:g}" y="{y:g}" width="{bar_width}" '
+                f'height="{height:g}" fill="{fill}" opacity="{opacity}" '
+                f'stroke="{color}" stroke-width="1"{dash}/>'
+            )
+
+    for index, (engine, color) in enumerate(CURRENT_ENGINE_COLORS.items()):
+        row, column = divmod(index, 3)
+        x = 120 + column * 350
+        y = 458 + row * 24
+        svg.append(
+            f'<rect x="{x}" y="{y - 9}" width="12" height="10" '
+            f'fill="{color}" stroke="{color}" stroke-width="1"/>'
+        )
+        svg.append(
+            f'<text x="{x + 18}" y="{y}" fill="{color}" font-size="9">'
+            f'{html.escape(engine)}</text>'
+        )
+    svg.append(
+        '<rect x="120" y="535" width="12" height="10" fill="#0d1117" '
+        'stroke="#c9d1d9" stroke-width="1"/>'
+    )
+    svg.append(
+        '<text x="140" y="544" fill="#8b949e" font-size="9">'
+        'Measured v0.3 composite</text>'
+    )
+    svg.append(
+        '<rect x="300" y="535" width="12" height="10" fill="#c9d1d9" '
+        'stroke="#c9d1d9" stroke-width="1"/>'
+    )
+    svg.append(
+        '<text x="320" y="544" fill="#8b949e" font-size="9">'
+        'Measured v0.4 composite</text>'
+    )
+    svg.append(
+        '<rect x="500" y="535" width="12" height="10" fill="#c9d1d9" '
+        'opacity="0.35" stroke="#c9d1d9" stroke-width="1" '
+        'stroke-dasharray="2,2"/>'
+    )
+    svg.append(
+        '<text x="520" y="544" fill="#8b949e" font-size="9">'
+        'v0.4-aligned estimate (Sapling bar is an upper bound)</text>'
+    )
+    svg.append(
+        '<text x="600" y="578" fill="#8b949e" font-size="9" '
+        'text-anchor="middle">Historical estimates are shifted by the per-engine endpoint '
+        'delta, not rescored historical outputs.</text>'
+    )
+    svg.append(
+        '<text x="600" y="598" fill="#8b949e" font-size="9" '
+        'text-anchor="middle">v0.3 signature-based anti-hallucination scores are retired; '
+        'v0.4 edit diagnostics are not hallucination rates.</text>'
+    )
+    svg.append(
+        '<text x="600" y="618" fill="#8b949e" font-size="9" '
+        'text-anchor="middle">Public release labels v0.3/v0.4; source artifacts identify '
+        'these results as 3.0/4.0.</text>'
+    )
+    _write_svg("progress_bar_chart_over_time.svg", svg)
 
 
 if __name__ == "__main__":
-    build_hybrid_chart_svg()
-    build_pillars_breakdown_svg()
-    build_latency_chart_svg()
-    build_progress_chart_svg()
+    ASSETS.mkdir(exist_ok=True)
+    summary = _load_results()
+    legacy_summary = _load_legacy_results()
+    build_quality_chart(summary)
+    build_pillars_chart(summary)
+    build_diagnostic_chart(summary)
+    build_latency_chart(summary)
+    build_legacy_progress_chart(legacy_summary, summary)
+    build_legacy_progress_bar_chart(legacy_summary, summary)
+    if PAIRED_RESULTS_PATH.exists():
+        paired_results = _load_paired_results()
+        build_paired_locale_quality_chart(paired_results)
+        build_paired_locale_pillars_chart(paired_results)
+        build_paired_locale_diagnostic_chart(paired_results)
+        build_paired_locale_latency_chart(paired_results)
+    else:
+        print("Skipped paired-locale charts: paired outputs have not been collected.")

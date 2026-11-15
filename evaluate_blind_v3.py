@@ -347,6 +347,12 @@ def run_evaluation(mode="cached", verbose=False, academic=False, export_path="ra
         "voice_scoring_revision": VOICE_SCORING_REVISION,
         "evaluation_date": "November 14, 2026",
         "mode": mode,
+        "anti_hallucination_methodology_note": (
+            "Exploratory exact-match diagnostic against manually curated, "
+            "engine-specific signatures; score is max(100 - 5 * total matches, 20). "
+            "An empty signature set yields 100 regardless of output, so this is "
+            "not a general hallucination rate."
+        ),
         "engines": {}
     }
 
@@ -433,7 +439,7 @@ def run_evaluation(mode="cached", verbose=False, academic=False, export_path="ra
     print("=================================================================================")
     print("VOICE-PRESERVING AI-SPELLCHECK BENCHMARK - BLIND SUITE v3.0")
     print("=================================================================================")
-    print(f"{'Engine':<20} | {'Spelling (35%)':<14} | {'Grammar (25%)':<13} | {'Voice (20%)':<12} | {'Anti-Hal (20%)':<14} | {'Meta-Score':<10} | {'Latency':<8}")
+    print(f"{'Engine':<20} | {'Spelling (35%)':<14} | {'Grammar (25%)':<13} | {'Voice (20%)':<12} | {'Signature (20%)':<14} | {'Meta-Score':<10} | {'Latency':<8}")
     print("-" * 105)
     for eng, sc in evaluation_report["engines"].items():
         latency = f"{sc['latency_ms']} ms" if sc["latency_ms"] is not None else "n/a"

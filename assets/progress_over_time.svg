@@ -1,139 +1,88 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 560" style="background:#0d1117; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
-  <rect x="1" y="1" width="1398" height="558" fill="none" stroke="#30363d" stroke-width="1"/>
-
-  <text x="700" y="34" fill="#f0f6fc" font-size="14" font-weight="700" text-anchor="middle">HISTORICAL HYBRID META-SCORE (MEASURED + MODELED)</text>
-  <text x="700" y="54" fill="#8b949e" font-size="11" text-anchor="middle">Legacy series measured; Sapling/JSpell history is hypothetical, backcast from current H-suite results</text>
-
-  <!-- y-axis gridlines: 0% at y=430, 100% at y=90 -> range = 340px, scale = 3.4 px per % -->
-  <line x1="140" y1="430" x2="1100" y2="430" stroke="#30363d" stroke-width="1.5"/>
-  <line x1="140" y1="362" x2="1100" y2="362" stroke="#21262d" stroke-width="1" stroke-dasharray="2,2"/>
-  <line x1="140" y1="294" x2="1100" y2="294" stroke="#21262d" stroke-width="1" stroke-dasharray="2,2"/>
-  <line x1="140" y1="226" x2="1100" y2="226" stroke="#21262d" stroke-width="1" stroke-dasharray="2,2"/>
-  <line x1="140" y1="158" x2="1100" y2="158" stroke="#21262d" stroke-width="1" stroke-dasharray="2,2"/>
-  <line x1="140" y1="90" x2="1100" y2="90" stroke="#21262d" stroke-width="1" stroke-dasharray="2,2"/>
-
-  <text x="130" y="434" fill="#8b949e" font-size="10" font-weight="600" text-anchor="end">0%</text>
-  <text x="130" y="366" fill="#8b949e" font-size="10" font-weight="600" text-anchor="end">20%</text>
-  <text x="130" y="298" fill="#8b949e" font-size="10" font-weight="600" text-anchor="end">40%</text>
-  <text x="130" y="230" fill="#8b949e" font-size="10" font-weight="600" text-anchor="end">60%</text>
-  <text x="130" y="162" fill="#8b949e" font-size="10" font-weight="600" text-anchor="end">80%</text>
-  <text x="130" y="96" fill="#8b949e" font-size="10" font-weight="600" text-anchor="end">100%</text>
-
-  <!-- vertical milestone guidelines -->
-  <line x1="260" y1="80" x2="260" y2="430" stroke="#21262d" stroke-width="1" stroke-dasharray="4,4"/>
-  <line x1="540" y1="80" x2="540" y2="430" stroke="#21262d" stroke-width="1" stroke-dasharray="4,4"/>
-  <line x1="820" y1="80" x2="820" y2="430" stroke="#21262d" stroke-width="1" stroke-dasharray="4,4"/>
-  <line x1="1060" y1="80" x2="1060" y2="430" stroke="#30363d" stroke-width="1.5"/>
-
-  <!-- milestone labels on x-axis -->
-  <text x="260" y="452" fill="#c9d1d9" font-size="11" font-weight="600" text-anchor="middle">Q1 2025 (v1.0)</text>
-  <text x="260" y="467" fill="#8b949e" font-size="10" text-anchor="middle">Initial Baseline</text>
-
-  <text x="540" y="452" fill="#c9d1d9" font-size="11" font-weight="600" text-anchor="middle">Q3 2025 (v1.8)</text>
-  <text x="540" y="467" fill="#8b949e" font-size="10" text-anchor="middle">Consonant Skeleton</text>
-
-  <text x="820" y="452" fill="#c9d1d9" font-size="11" font-weight="600" text-anchor="middle">Early Fall 2026</text>
-  <text x="820" y="467" fill="#8b949e" font-size="10" text-anchor="middle">30-50% Blind Test</text>
-
-  <text x="1060" y="452" fill="#ffffff" font-size="11" font-weight="700" text-anchor="middle">Nov 2026 (v3.0)</text>
-  <text x="1060" y="467" fill="#c9d1d9" font-size="10" font-weight="600" text-anchor="middle">4-Pillar Blind Suite</text>
-
-  <!-- y-value helper: y = 430 - (pct * 3.4) -->
-
-  <!-- 1. DeepL Write (dashed gray) -->
-  <!-- 78% -> y=165, 80% -> y=158, 81.5% -> y=153, 85.1% -> y=141 -->
-  <polyline points="260,165 540,158 820,153 1060,141" fill="none" stroke="#6e7681" stroke-width="2" stroke-dasharray="3,3"/>
-  <rect x="255" y="160" width="10" height="10" fill="#30363d" stroke="#6e7681" stroke-width="1.5"/>
-  <rect x="535" y="153" width="10" height="10" fill="#30363d" stroke="#6e7681" stroke-width="1.5"/>
-  <rect x="815" y="148" width="10" height="10" fill="#30363d" stroke="#6e7681" stroke-width="1.5"/>
-  <rect x="1055" y="136" width="10" height="10" fill="#30363d" stroke="#6e7681" stroke-width="1.5"/>
-
-  <!-- 2. TextGears API (dash-dot gray) -->
-  <!-- 64% -> y=212, 67.5% -> y=201, 70.5% -> y=190, 72% -> y=185 -->
-  <polyline points="260,212 540,201 820,190 1060,187" fill="none" stroke="#8b949e" stroke-width="2" stroke-dasharray="4,2,1,2"/>
-  <rect x="255" y="207" width="10" height="10" fill="#8b949e"/>
-  <rect x="535" y="196" width="10" height="10" fill="#8b949e"/>
-  <rect x="815" y="185" width="10" height="10" fill="#8b949e"/>
-  <rect x="1055" y="182" width="10" height="10" fill="#8b949e"/>
-
-  <!-- 3. LanguageTool API (dashed light gray) -->
-  <!-- 65% -> y=209, 68% -> y=199, 70.2% -> y=191, 71.4% -> y=187 -->
-  <polyline points="260,209 540,199 820,191 1060,187" fill="none" stroke="#c9d1d9" stroke-width="2" stroke-dasharray="6,4"/>
-  <rect x="255" y="204" width="10" height="10" fill="#0d1117" stroke="#c9d1d9" stroke-width="1.5"/>
-  <rect x="535" y="194" width="10" height="10" fill="#0d1117" stroke="#c9d1d9" stroke-width="1.5"/>
-  <rect x="815" y="186" width="10" height="10" fill="#0d1117" stroke="#c9d1d9" stroke-width="1.5"/>
-  <rect x="1055" y="182" width="10" height="10" fill="#0d1117" stroke="#c9d1d9" stroke-width="1.5"/>
-
-  <!-- 4. BCorrect (solid white, bold trajectory) -->
-  <!-- 32% -> y=321, 38.5% -> y=299, 38% -> y=301, 60.4% -> y=225 -->
-  <polyline points="260,321 540,299 820,301 1060,225" fill="none" stroke="#ffffff" stroke-width="3"/>
-  <rect x="254" y="315" width="12" height="12" fill="#ffffff" stroke="#0d1117" stroke-width="1"/>
-  <text x="260" y="340" fill="#ffffff" font-size="10" font-weight="700" text-anchor="middle">32.0%</text>
-
-  <rect x="534" y="293" width="12" height="12" fill="#ffffff" stroke="#0d1117" stroke-width="1"/>
-  <text x="540" y="318" fill="#ffffff" font-size="10" font-weight="700" text-anchor="middle">38.5%</text>
-
-  <rect x="814" y="295" width="12" height="12" fill="#ffffff" stroke="#0d1117" stroke-width="1"/>
-  <text x="820" y="320" fill="#ffffff" font-size="10" font-weight="700" text-anchor="middle">38.0%</text>
-
-  <rect x="1054" y="219" width="12" height="12" fill="#ffffff" stroke="#0d1117" stroke-width="1"/>
-
-  <!-- Web-demo history is modeled, not measured: Sapling assumes current quality
-       at older milestones, a 30% relative per-pillar reduction at the prior
-       milestone, then the current H-suite result; JSpell is assumed flat. -->
-  <polyline points="260,111 540,111 820,207 1060,111" fill="none" stroke="#f0f6fc" stroke-width="2" stroke-dasharray="2,4"/>
-  <circle cx="260" cy="111" r="5" fill="#0d1117" stroke="#f0f6fc" stroke-width="1.5"/>
-  <circle cx="540" cy="111" r="5" fill="#0d1117" stroke="#f0f6fc" stroke-width="1.5"/>
-  <circle cx="820" cy="207" r="5" fill="#0d1117" stroke="#f0f6fc" stroke-width="1.5"/>
-  <circle cx="1060" cy="111" r="6" fill="#f0f6fc" stroke="#f0f6fc" stroke-width="1.5"/>
-
-  <polyline points="260,209 540,209 820,209 1060,209" fill="none" stroke="#a3a3a3" stroke-width="2" stroke-dasharray="1,4"/>
-  <polygon points="260,203 266,209 260,215 254,209" fill="#0d1117" stroke="#a3a3a3" stroke-width="1.5"/>
-  <polygon points="540,203 546,209 540,215 534,209" fill="#0d1117" stroke="#a3a3a3" stroke-width="1.5"/>
-  <polygon points="820,203 826,209 820,215 814,209" fill="#0d1117" stroke="#a3a3a3" stroke-width="1.5"/>
-  <polygon points="1060,202 1067,209 1060,216 1053,209" fill="#a3a3a3" stroke="#a3a3a3" stroke-width="1.5"/>
-
-  <!-- right-margin callout badges -->
-  <line x1="1060" y1="141" x2="1120" y2="129" stroke="#6e7681" stroke-width="1" stroke-dasharray="2,2"/>
-  <rect x="1120" y="115" width="250" height="28" fill="#161b22" stroke="#6e7681" stroke-width="1"/>
-  <text x="1132" y="134" fill="#c9d1d9" font-size="11" font-weight="600">DeepL Write: 85.1%</text>
-
-  <line x1="1060" y1="187" x2="1120" y2="165" stroke="#8b949e" stroke-width="1" stroke-dasharray="2,2"/>
-  <rect x="1120" y="155" width="250" height="28" fill="#161b22" stroke="#8b949e" stroke-width="1"/>
-  <text x="1132" y="174" fill="#8b949e" font-size="11" font-weight="600">TextGears API: 71.5%</text>
-
-  <line x1="1060" y1="187" x2="1120" y2="205" stroke="#c9d1d9" stroke-width="1" stroke-dasharray="2,2"/>
-  <rect x="1120" y="195" width="250" height="28" fill="#161b22" stroke="#c9d1d9" stroke-width="1"/>
-  <text x="1132" y="214" fill="#c9d1d9" font-size="11" font-weight="600">LanguageTool: 71.4%</text>
-
-  <line x1="1060" y1="225" x2="1120" y2="245" stroke="#ffffff" stroke-width="1.5"/>
-  <rect x="1120" y="235" width="250" height="28" fill="#21262d" stroke="#ffffff" stroke-width="1.5"/>
-  <text x="1132" y="254" fill="#ffffff" font-size="11" font-weight="700">BCorrect (FMM): 60.4%</text>
-
-  <!-- legend -->
-  <rect x="140" y="490" width="960" height="60" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-
-  <line x1="160" y1="507" x2="190" y2="507" stroke="#6e7681" stroke-width="2" stroke-dasharray="3,3"/>
-  <rect x="176" y="503" width="8" height="8" fill="#30363d" stroke="#6e7681"/>
-  <text x="200" y="511" fill="#6e7681" font-size="11">DeepL Write</text>
-
-  <line x1="380" y1="507" x2="410" y2="507" stroke="#8b949e" stroke-width="2" stroke-dasharray="4,2,1,2"/>
-  <rect x="391" y="503" width="8" height="8" fill="#8b949e"/>
-  <text x="420" y="511" fill="#8b949e" font-size="11">TextGears API</text>
-
-  <line x1="600" y1="507" x2="630" y2="507" stroke="#c9d1d9" stroke-width="2" stroke-dasharray="6,4"/>
-  <rect x="611" y="503" width="8" height="8" fill="#0d1117" stroke="#c9d1d9" stroke-width="1.5"/>
-  <text x="640" y="511" fill="#c9d1d9" font-size="11" font-weight="600">LanguageTool API</text>
-
-  <line x1="830" y1="507" x2="860" y2="507" stroke="#ffffff" stroke-width="3"/>
-  <rect x="841" y="503" width="8" height="8" fill="#ffffff"/>
-  <text x="870" y="511" fill="#ffffff" font-size="11" font-weight="700">BCorrect API (FMM)</text>
-
-  <line x1="160" y1="535" x2="190" y2="535" stroke="#f0f6fc" stroke-width="2" stroke-dasharray="2,4"/>
-  <circle cx="175" cy="535" r="4" fill="#0d1117" stroke="#f0f6fc" stroke-width="1.5"/>
-  <text x="200" y="539" fill="#f0f6fc" font-size="11">Sapling estimate: 65.6% prior / 93.8% current</text>
-
-  <line x1="610" y1="535" x2="640" y2="535" stroke="#a3a3a3" stroke-width="2" stroke-dasharray="1,4"/>
-  <polygon points="625,530 630,535 625,540 620,535" fill="#0d1117" stroke="#a3a3a3" stroke-width="1.5"/>
-  <text x="650" y="539" fill="#a3a3a3" font-size="11">JSpell flat estimate: 65.1% current</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" style="background:#0d1117; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
+<rect x="1" y="1" width="1198" height="628" fill="none" stroke="#30363d" stroke-width="1"/>
+<text x="600" y="32" fill="#f0f6fc" font-size="14" font-weight="700" text-anchor="middle">V0.3 -&gt; V0.4 SCORE HISTORY</text>
+<text x="600" y="52" fill="#8b949e" font-size="11" text-anchor="middle">Historical estimates shifted to the v0.4 scale; v0.3 and v0.4 endpoints are both shown</text>
+<line x1="115" y1="405" x2="895" y2="405" stroke="#30363d" stroke-width="1"/>
+<text x="103" y="409" fill="#8b949e" font-size="10" text-anchor="end">0%</text>
+<line x1="115" y1="341" x2="895" y2="341" stroke="#30363d" stroke-width="1"/>
+<text x="103" y="345" fill="#8b949e" font-size="10" text-anchor="end">20%</text>
+<line x1="115" y1="277" x2="895" y2="277" stroke="#30363d" stroke-width="1"/>
+<text x="103" y="281" fill="#8b949e" font-size="10" text-anchor="end">40%</text>
+<line x1="115" y1="213" x2="895" y2="213" stroke="#30363d" stroke-width="1"/>
+<text x="103" y="217" fill="#8b949e" font-size="10" text-anchor="end">60%</text>
+<line x1="115" y1="149" x2="895" y2="149" stroke="#30363d" stroke-width="1"/>
+<text x="103" y="153" fill="#8b949e" font-size="10" text-anchor="end">80%</text>
+<line x1="115" y1="85" x2="895" y2="85" stroke="#30363d" stroke-width="1"/>
+<text x="103" y="89" fill="#8b949e" font-size="10" text-anchor="end">100%</text>
+<line x1="150" y1="72" x2="150" y2="405" stroke="#21262d" stroke-dasharray="3,4"/>
+<text x="150" y="432" fill="#c9d1d9" font-size="10" text-anchor="middle">Q1 2025 est.</text>
+<line x1="330" y1="72" x2="330" y2="405" stroke="#21262d" stroke-dasharray="3,4"/>
+<text x="330" y="432" fill="#c9d1d9" font-size="10" text-anchor="middle">Q3 2025 est.</text>
+<line x1="510" y1="72" x2="510" y2="405" stroke="#21262d" stroke-dasharray="3,4"/>
+<text x="510" y="432" fill="#c9d1d9" font-size="10" text-anchor="middle">Early Fall est.</text>
+<line x1="690" y1="72" x2="690" y2="405" stroke="#21262d" stroke-dasharray="3,4"/>
+<text x="690" y="432" fill="#c9d1d9" font-size="10" text-anchor="middle">Nov 2026 v0.3</text>
+<line x1="860" y1="72" x2="860" y2="405" stroke="#21262d" stroke-dasharray="3,4"/>
+<text x="860" y="432" fill="#c9d1d9" font-size="10" text-anchor="middle">Nov 2026 v0.4</text>
+<polyline points="150,320.2 330,299.4 510,301 860,164.04" fill="none" stroke="#E69F00" stroke-width="2" stroke-dasharray="4,3"/>
+<circle cx="150" cy="320.2" r="4" fill="#0d1117" stroke="#E69F00" stroke-width="1.5"/>
+<circle cx="330" cy="299.4" r="4" fill="#0d1117" stroke="#E69F00" stroke-width="1.5"/>
+<circle cx="510" cy="301" r="4" fill="#0d1117" stroke="#E69F00" stroke-width="1.5"/>
+<rect x="686" y="142.44" width="8" height="8" fill="#0d1117" stroke="#E69F00" stroke-width="1.5" transform="rotate(45 690 146.44)"/>
+<circle cx="860" cy="164.04" r="5" fill="#E69F00"/>
+<polyline points="150,225.48 330,215.88 510,208.84 860,181.96" fill="none" stroke="#56B4E9" stroke-width="2" stroke-dasharray="4,3"/>
+<circle cx="150" cy="225.48" r="4" fill="#0d1117" stroke="#56B4E9" stroke-width="1.5"/>
+<circle cx="330" cy="215.88" r="4" fill="#0d1117" stroke="#56B4E9" stroke-width="1.5"/>
+<circle cx="510" cy="208.84" r="4" fill="#0d1117" stroke="#56B4E9" stroke-width="1.5"/>
+<rect x="686" y="149.48" width="8" height="8" fill="#0d1117" stroke="#56B4E9" stroke-width="1.5" transform="rotate(45 690 153.48)"/>
+<circle cx="860" cy="181.96" r="5" fill="#56B4E9"/>
+<polyline points="150,213.96 330,202.76 510,193.16 860,165.96" fill="none" stroke="#009E73" stroke-width="2" stroke-dasharray="4,3"/>
+<circle cx="150" cy="213.96" r="4" fill="#0d1117" stroke="#009E73" stroke-width="1.5"/>
+<circle cx="330" cy="202.76" r="4" fill="#0d1117" stroke="#009E73" stroke-width="1.5"/>
+<circle cx="510" cy="193.16" r="4" fill="#0d1117" stroke="#009E73" stroke-width="1.5"/>
+<rect x="686" y="148.2" width="8" height="8" fill="#0d1117" stroke="#009E73" stroke-width="1.5" transform="rotate(45 690 152.2)"/>
+<circle cx="860" cy="165.96" r="5" fill="#009E73"/>
+<polyline points="150,181.64 330,175.24 510,170.44 860,161.8" fill="none" stroke="#CC79A7" stroke-width="2" stroke-dasharray="4,3"/>
+<circle cx="150" cy="181.64" r="4" fill="#0d1117" stroke="#CC79A7" stroke-width="1.5"/>
+<circle cx="330" cy="175.24" r="4" fill="#0d1117" stroke="#CC79A7" stroke-width="1.5"/>
+<circle cx="510" cy="170.44" r="4" fill="#0d1117" stroke="#CC79A7" stroke-width="1.5"/>
+<rect x="686" y="131.56" width="8" height="8" fill="#0d1117" stroke="#CC79A7" stroke-width="1.5" transform="rotate(45 690 135.56)"/>
+<circle cx="860" cy="161.8" r="5" fill="#CC79A7"/>
+<rect x="504" y="210.44" width="12" height="194.56" fill="#F0E442" opacity="0.18" stroke="#F0E442" stroke-width="1" stroke-dasharray="3,2"/>
+<polyline points="510,210.44 860,102.28" fill="none" stroke="#F0E442" stroke-width="2" stroke-dasharray="4,3"/>
+<circle cx="510" cy="210.44" r="4" fill="#0d1117" stroke="#F0E442" stroke-width="1.5"/>
+<rect x="686" y="100.84" width="8" height="8" fill="#0d1117" stroke="#F0E442" stroke-width="1.5" transform="rotate(45 690 104.84)"/>
+<circle cx="860" cy="102.28" r="5" fill="#F0E442"/>
+<polyline points="150,203.72 330,203.72 510,203.72 860,203.72" fill="none" stroke="#D55E00" stroke-width="2" stroke-dasharray="4,3"/>
+<circle cx="150" cy="203.72" r="4" fill="#0d1117" stroke="#D55E00" stroke-width="1.5"/>
+<circle cx="330" cy="203.72" r="4" fill="#0d1117" stroke="#D55E00" stroke-width="1.5"/>
+<circle cx="510" cy="203.72" r="4" fill="#0d1117" stroke="#D55E00" stroke-width="1.5"/>
+<rect x="686" y="192.68" width="8" height="8" fill="#0d1117" stroke="#D55E00" stroke-width="1.5" transform="rotate(45 690 196.68)"/>
+<circle cx="860" cy="203.72" r="5" fill="#D55E00"/>
+<circle cx="860" cy="96.2" r="5" fill="#58a6ff"/>
+<line x1="920" y1="94" x2="948" y2="94" stroke="#E69F00" stroke-width="2" stroke-dasharray="4,3"/>
+<text x="956" y="98" fill="#E69F00" font-size="9">BCorrect (FMM) (75.3%)</text>
+<line x1="920" y1="122" x2="948" y2="122" stroke="#56B4E9" stroke-width="2" stroke-dasharray="4,3"/>
+<text x="956" y="126" fill="#56B4E9" font-size="9">LanguageTool API (69.7%)</text>
+<line x1="920" y1="150" x2="948" y2="150" stroke="#009E73" stroke-width="2" stroke-dasharray="4,3"/>
+<text x="956" y="154" fill="#009E73" font-size="9">TextGears API (74.7%)</text>
+<line x1="920" y1="178" x2="948" y2="178" stroke="#CC79A7" stroke-width="2" stroke-dasharray="4,3"/>
+<text x="956" y="182" fill="#CC79A7" font-size="9">DeepL Write (76.0%)</text>
+<line x1="920" y1="206" x2="948" y2="206" stroke="#F0E442" stroke-width="2" stroke-dasharray="4,3"/>
+<text x="956" y="210" fill="#F0E442" font-size="9">Sapling Grammar Checker (94.6%)</text>
+<line x1="920" y1="234" x2="948" y2="234" stroke="#D55E00" stroke-width="2" stroke-dasharray="4,3"/>
+<text x="956" y="238" fill="#D55E00" font-size="9">JSpell Free Web Checker (62.9%)</text>
+<line x1="920" y1="262" x2="948" y2="262" stroke="#58a6ff" stroke-width="2" stroke-dasharray="4,3"/>
+<text x="956" y="266" fill="#58a6ff" font-size="9">Grammarly Free Grammar Checker (96.5%)</text>
+<circle cx="924" cy="310" r="4" fill="#0d1117" stroke="#c9d1d9" stroke-width="1.5"/>
+<text x="940" y="314" fill="#8b949e" font-size="9">v0.4-aligned historical estimate</text>
+<rect x="920" y="325" width="8" height="8" fill="#0d1117" stroke="#c9d1d9" stroke-width="1.5" transform="rotate(45 924 329)"/>
+<text x="940" y="334" fill="#8b949e" font-size="9">measured v0.3 composite</text>
+<circle cx="924" cy="349" r="5" fill="#c9d1d9"/>
+<text x="940" y="353" fill="#8b949e" font-size="9">measured v0.4 composite</text>
+<text x="600" y="472" fill="#8b949e" font-size="10" text-anchor="middle">v0.3 estimates are shifted by each shared engine's measured v0.4-minus-v0.3 endpoint delta; historical values remain estimates.</text>
+<text x="600" y="494" fill="#8b949e" font-size="10" text-anchor="middle">This additive alignment is illustrative, not a rescore or evidence of historical performance on the v0.4 rubric.</text>
+<text x="600" y="516" fill="#8b949e" font-size="10" text-anchor="middle">Sapling's earlier point is an estimated below-60% v0.3 upper bound; Grammarly has no v0.3 result.</text>
+<text x="600" y="538" fill="#8b949e" font-size="10" text-anchor="middle">The v0.3 signature-based anti-hallucination pillar is retired; the v0.4 diagnostic is not a hallucination rate.</text>
+<text x="600" y="560" fill="#8b949e" font-size="9" text-anchor="middle">Public release labels v0.3/v0.4; source artifacts identify these results as 3.0/4.0.</text>
 </svg>

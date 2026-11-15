@@ -18,28 +18,28 @@ Any software system, developer API, commercial REST service, or open-source libr
 
 ---
 
-## 2. The 4-Pillar Evaluation Protocol
+## 2. The Version 4.0 Evaluation Protocol
 
-Every submitted engine is evaluated under identical blind conditions across **4 decoupled functional pillars**, synthesized into the official **Hybrid Meta-Score**:
+Every submitted engine is evaluated with the same versioned annotations. The v4 quality composite uses three dimensions; the correction-site diagnostic is reported separately:
 
 ```
-+-----------------------------------------------------------------------------+
-|        VOICE-PRESERVING AI-SPELLCHECK BENCHMARK: 4-PILLAR META-INDEX        |
-+-----------------------------------------------------------------------------+
-| 1. Spelling Accuracy (35%)       - Orthography, severe dysgraphia, typos    |
-| 2. Grammar & Syntax (25%)        - Agreement, tense harmony, punctuation    |
-| 3. Writer's Voice (20%)          - Slang, regional dialect, zero rewriting  |
-| 4. Anti-Hallucination (20%)      - Zero rogue substitutions on valid words  |
-+=============================================================================+
-| 5. Composite Meta-Score (100%)   - Balanced real-world utility index        |
-+-----------------------------------------------------------------------------+
++--------------------------------------------------------------------------+
+|                  VOICE-PRESERVING BENCHMARK: V4.0                         |
++--------------------------------------------------------------------------+
+| 1. Spelling Accuracy (43.75%)       - Orthography, dysgraphia, typos       |
+| 2. Grammar & Syntax (31.25%)        - Agreement, tense, punctuation        |
+| 3. Writer's Voice (25%)             - Slang, dialect, over-editing         |
+| 4. Correction-Site Edit Diagnostic  - Unapproved edits at shared targets   |
++==========================================================================+
+| Quality composite uses dimensions 1-3; diagnostic is separate.             |
++--------------------------------------------------------------------------+
 ```
 
 ### Benchmark SLAs & Technical Constraints:
 - **Maximum Request Timeout:** 5,000 milliseconds (5.0 seconds). Requests exceeding 5.0 seconds receive an automatic failure score for that query.
 - **Query Corpus Size:** The complete unseen test run consists of 10 to 50 curated human writing passages (fewer than 2,500 total words per run). Total compute expenditure per engine is typically under $0.02 USD.
 - **Decoupled Scoring:** Stylistic choices and regional dialects (e.g., `rockin` / `rocking`, `flavour` / `flavor`) are supported via multi-reference equivalences so non-standard vernacular is never penalized as a grammatical error.
-- **Academic Metrics (v3.1+):** Submitted engines are also scored on **SARI-Keep (n=1..3)** and **Protected-Span Retention Rate (PSRR)** to quantify minimal-edit precision against destructive rewrites. Full specifications are in [ROADMAP.md](ROADMAP.md).
+- **Correction-site diagnostic:** Shared accepted correction forms are used for every engine. The diagnostic only checks annotated spell/grammar sites; it does not assess edits elsewhere or determine semantic correctness, and it is not a hallucination rate.
 
 ---
 
@@ -112,11 +112,11 @@ Open an issue on GitHub using the **New Engine Submission** template, providing:
 Benchmark maintainers will execute a 3-query sanity check to ensure the endpoint returns valid HTTP 200 responses and matches the expected JSON schema.
 
 ### Step 4: Official Blind Evaluation Run
-The automated suite executes the 4-pillar blind test corpus against the endpoint, recording:
+The automated suite executes the versioned test corpus against the endpoint, recording:
 - Spelling Accuracy (Pillar 1).
 - Grammar & Syntactic Accuracy (Pillar 2).
 - Writer's Voice score: lexical F1, annotated marker retention, and any suite-wide over-edit penalty (Pillar 3).
-- Anti-Hallucination Rate (Pillar 4).
+- Correction-site diagnostic counts and denominator, using shared accepted forms for every engine. This is not a semantic or hallucination score.
 - Response Latency (Milliseconds).
 
 ### Step 5: Verification & Pull Request Publication

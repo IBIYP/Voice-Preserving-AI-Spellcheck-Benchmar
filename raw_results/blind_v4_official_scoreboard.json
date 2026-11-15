@@ -1,0 +1,204 @@
+{
+  "benchmark": "Voice-Preserving AI-Spellcheck Benchmark (Blind Suite v4.0)",
+  "benchmark_version": "4.0",
+  "voice_scoring_revision": "lexical-marker-f1-v2",
+  "target_scoring_revision": "aligned-correction-sites-v1",
+  "diagnostic_revision": "unapproved-correction-site-v1",
+  "evaluation_date": "November 14, 2026",
+  "run_id": "blind-suite-v4-e41f5cc4253eb75f",
+  "dataset_sha256": "fbe119ab91a098e78d953a225f34d8f646fd1a867ad954c0ca6ae3ae96d11179",
+  "cached_outputs_sha256": "e41f5cc4253eb75f6d33cc5ad3f6eccd06a1dbc745e392f8aea439be1e6dffbf",
+  "target_scoring_methodology_note": "Accepted forms are matched at aligned annotated source sites. An unchanged source counts only when explicitly accepted; identity-only annotations are excluded. Target hits are pooled.",
+  "engine_run_metadata": {
+    "BCorrect (FMM)": {
+      "version": "not reported",
+      "source_run_id": "not recorded",
+      "collection_mode": "api"
+    },
+    "LanguageTool API": {
+      "version": "not reported",
+      "source_run_id": "not recorded",
+      "collection_mode": "api"
+    },
+    "TextGears API": {
+      "version": "not reported",
+      "source_run_id": "not recorded",
+      "collection_mode": "api"
+    },
+    "DeepL Write": {
+      "version": "not reported",
+      "source_run_id": "not recorded",
+      "collection_mode": "not reported"
+    },
+    "Sapling Grammar Checker": {
+      "version": "not reported",
+      "source_run_id": "not recorded",
+      "collection_mode": "web_demo"
+    },
+    "JSpell Free Web Checker": {
+      "version": "not reported",
+      "source_run_id": "not recorded",
+      "collection_mode": "web_demo"
+    }
+  },
+  "mode": "cached",
+  "latency_methodology": "Arithmetic mean of non-null per-passage latencies recorded in the cached output log; null when no timing was recorded.",
+  "diagnostic_methodology_note": "Counts edits at annotated spelling and grammar sites that are not unchanged or an accepted form shared across engines. This deterministic lexical diagnostic is not a general hallucination or semantic-correctness rate.",
+  "quality_composite_weights": {
+    "spelling": 0.4375,
+    "grammar": 0.3125,
+    "voice": 0.25
+  },
+  "engines": {
+    "BCorrect (FMM)": {
+      "spelling_accuracy": 63.8,
+      "spelling_accepted_targets": 30,
+      "spelling_total_targets": 47,
+      "grammar_accuracy": 100.0,
+      "grammar_accepted_targets": 1,
+      "grammar_total_targets": 1,
+      "voice_preservation": 86.6,
+      "voice_precision": 92.3,
+      "voice_recall": 97.9,
+      "voice_lexical_f1": 94.9,
+      "voice_marker_retention": 91.0,
+      "voice_over_edit_penalty": 0.0,
+      "correction_site_diagnostic": {
+        "applicable_sites": 48,
+        "unchanged_sites": 4,
+        "accepted_corrections": 31,
+        "unapproved_edits": 13,
+        "unapproved_edit_rate": 27.1
+      },
+      "quality_composite": 80.8,
+      "latency_ms": 614.2,
+      "latency_samples": 10,
+      "sari_keep_score": 90.8
+    },
+    "LanguageTool API": {
+      "spelling_accuracy": 66.0,
+      "spelling_accepted_targets": 31,
+      "spelling_total_targets": 47,
+      "grammar_accuracy": 100.0,
+      "grammar_accepted_targets": 1,
+      "grammar_total_targets": 1,
+      "voice_preservation": 64.4,
+      "voice_precision": 90.3,
+      "voice_recall": 97.3,
+      "voice_lexical_f1": 93.5,
+      "voice_marker_retention": 85.5,
+      "voice_over_edit_penalty": 20.0,
+      "correction_site_diagnostic": {
+        "applicable_sites": 48,
+        "unchanged_sites": 0,
+        "accepted_corrections": 32,
+        "unapproved_edits": 16,
+        "unapproved_edit_rate": 33.3
+      },
+      "quality_composite": 76.2,
+      "latency_ms": 677.1,
+      "latency_samples": 10,
+      "sari_keep_score": 93.1
+    },
+    "TextGears API": {
+      "spelling_accuracy": 68.1,
+      "spelling_accepted_targets": 32,
+      "spelling_total_targets": 47,
+      "grammar_accuracy": 100.0,
+      "grammar_accepted_targets": 1,
+      "grammar_total_targets": 1,
+      "voice_preservation": 85.2,
+      "voice_precision": 92.2,
+      "voice_recall": 98.1,
+      "voice_lexical_f1": 95.0,
+      "voice_marker_retention": 89.2,
+      "voice_over_edit_penalty": 0.0,
+      "correction_site_diagnostic": {
+        "applicable_sites": 48,
+        "unchanged_sites": 0,
+        "accepted_corrections": 33,
+        "unapproved_edits": 15,
+        "unapproved_edit_rate": 31.2
+      },
+      "quality_composite": 82.3,
+      "latency_ms": 967.2,
+      "latency_samples": 10,
+      "sari_keep_score": 93.7
+    },
+    "DeepL Write": {
+      "spelling_accuracy": 91.5,
+      "spelling_accepted_targets": 43,
+      "spelling_total_targets": 47,
+      "grammar_accuracy": 100.0,
+      "grammar_accepted_targets": 1,
+      "grammar_total_targets": 1,
+      "voice_preservation": 24.1,
+      "voice_precision": 92.5,
+      "voice_recall": 93.6,
+      "voice_lexical_f1": 93.0,
+      "voice_marker_retention": 85.0,
+      "voice_over_edit_penalty": 70.0,
+      "correction_site_diagnostic": {
+        "applicable_sites": 48,
+        "unchanged_sites": 0,
+        "accepted_corrections": 44,
+        "unapproved_edits": 4,
+        "unapproved_edit_rate": 8.3
+      },
+      "quality_composite": 77.3,
+      "latency_ms": 1280.0,
+      "latency_samples": 10,
+      "sari_keep_score": 90.4
+    },
+    "Sapling Grammar Checker": {
+      "spelling_accuracy": 93.6,
+      "spelling_accepted_targets": 44,
+      "spelling_total_targets": 47,
+      "grammar_accuracy": 100.0,
+      "grammar_accepted_targets": 1,
+      "grammar_total_targets": 1,
+      "voice_preservation": 88.3,
+      "voice_precision": 97.3,
+      "voice_recall": 97.7,
+      "voice_lexical_f1": 97.5,
+      "voice_marker_retention": 90.5,
+      "voice_over_edit_penalty": 0.0,
+      "correction_site_diagnostic": {
+        "applicable_sites": 48,
+        "unchanged_sites": 7,
+        "accepted_corrections": 41,
+        "unapproved_edits": 0,
+        "unapproved_edit_rate": 0.0
+      },
+      "quality_composite": 94.3,
+      "latency_ms": null,
+      "latency_samples": 0,
+      "sari_keep_score": 94.5
+    },
+    "JSpell Free Web Checker": {
+      "spelling_accuracy": 63.8,
+      "spelling_accepted_targets": 30,
+      "spelling_total_targets": 47,
+      "grammar_accuracy": 0.0,
+      "grammar_accepted_targets": 0,
+      "grammar_total_targets": 1,
+      "voice_preservation": 77.5,
+      "voice_precision": 89.7,
+      "voice_recall": 97.7,
+      "voice_lexical_f1": 93.5,
+      "voice_marker_retention": 82.7,
+      "voice_over_edit_penalty": 0.0,
+      "correction_site_diagnostic": {
+        "applicable_sites": 48,
+        "unchanged_sites": 2,
+        "accepted_corrections": 30,
+        "unapproved_edits": 16,
+        "unapproved_edit_rate": 33.3
+      },
+      "quality_composite": 47.3,
+      "latency_ms": null,
+      "latency_samples": 0,
+      "sari_keep_score": 91.3
+    }
+  }
+}

@@ -3,6 +3,7 @@
   "voice_scoring_revision": "lexical-marker-f1-v2",
   "evaluation_date": "November 14, 2026",
   "mode": "cached",
+  "anti_hallucination_methodology_note": "Exploratory exact-match diagnostic against manually curated, engine-specific signatures; score is max(100 - 5 * total matches, 20). An empty signature set yields 100 regardless of output, so this is not a general hallucination rate.",
   "engines": {
     "BCorrect (FMM)": {
       "spelling_accuracy": 65.3,

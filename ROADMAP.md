@@ -1,14 +1,14 @@
 # Benchmark Roadmap & Technical Specification
 
 > **Open Voice-Preserving Benchmark Working Group**  
-> *Target Versions: v3.0 (Current) to v4.0 (Long-Term Specification)*  
+> *Target Versions: v4.0 (Current) to v4.2 (Planned)*
 > *Last Updated: November 2026*
 
 ---
 
 ## 1. Executive Summary & Mission
 
-The **Voice-Preserving AI-Spellcheck Benchmark** is an open, empirical evaluation suite engineered to resolve the central failure mode of modern automated text editing: **over-editing and register erasure**.
+The **Voice-Preserving AI-Spellcheck Benchmark** is an open, empirical evaluation suite for spelling, grammar, and preserving the writer's voice. Version 4.0 also reports a deterministic correction-site edit diagnostic; it does not claim to measure hallucinations or semantic correctness.
 
 While historical benchmarks (CoNLL-2014, BEA-2019, JFLEG) evaluated formal academic essays written by second-language learners, modern text generation and grammar-correction tools are deployed on informal, conversational, and technical communication. In these environments, modern Large Language Models (LLMs) and neural rewriters frequently commit **hyper-correction**: replacing authentic slang, dialect, colloquial syntax, and neurodiverse phonetic patterns with sanitized corporate prose.
 
@@ -16,8 +16,8 @@ While historical benchmarks (CoNLL-2014, BEA-2019, JFLEG) evaluated formal acade
 flowchart LR
     A["Raw Input Text (Slang, Dialect, Dysgraphia)"] --> B{"Evaluation Engine"}
     B -->|"Rewriters (DeepL / LLMs)"| C["High Spelling Accuracy (100%)<br>Low Writer's Voice (24.1%)"]
-    B -->|"Rule APIs (LanguageTool / TextGears)"| D["Moderate Accuracy (71-73%)<br>Rogue Dictionary Hallucinations"]
-    B -->|"Minimal-Edit Targets (Gold Standard)"| E["Orthography Repaired (95%+)<br>Voice Preserved (90%+)<br>Zero Semantic Drift"]
+    B -->|"Rule APIs (LanguageTool / TextGears)"| D["Correction quality measured<br>Unapproved edits counted at annotated sites"]
+    B -->|"Versioned target annotations"| E["Spelling + grammar + voice scores<br>Deterministic lexical diagnostic"]
 ```
 
 Our mission is to establish a rigorous, reproducible, vendor-neutral standard that measures the tradeoff between **mechanical correctness** and **authorial voice preservation**.
@@ -28,80 +28,68 @@ Our mission is to establish a rigorous, reproducible, vendor-neutral standard th
 
 ```mermaid
 flowchart TD
-    v30["v3.0 Current (Nov 2026)<br>- 4 Decoupled Evaluation Pillars<br>- 10 Blind Unseen Human Domains<br>- Zero-Config Cached Replay Harness<br>- 4 Baselines + 1 Web-Demo Comparator"]
-    v31["v3.1 Formalisation (Immediate)<br>- Mathematical SARI-Keep Metric (n=1..3)<br>- ERRANT-Style Protected Spans<br>- Diagnostic Over-Edit Rate (OER)<br>- One-Command CLI Runner"]
-    v32["v3.2 Open LLM Baselines (Q1 2027)<br>- Llama-3-8B-Instruct Zero-Shot Baseline<br>- Mistral-7B Minimal-Edit Evaluation<br>- Standardized System Prompt Suite<br>- Quantifying LLM Over-Correction Inertia"]
-    v40["v4.0 Statistical Suite (Q2 2027)<br>- 500+ Stratified Sentence Test Suite<br>- 5 Out-of-Distribution Language Genres<br>- Bootstrap Resampling (B=1,000)<br>- 95% Confidence Intervals & p-values"]
+    v40["v4.0 Current (Nov 2026)<br>- Three Weighted Quality Pillars<br>- Shared Correction-Site Edit Diagnostic<br>- Legacy v3 scores retained separately<br>- Cached Blind + H-suite results"]
+    v41["v4.1 Planned<br>- Larger stratified test suite<br>- Explicit edit-site alignment tests<br>- Confidence intervals where data supports them"]
+    v42["v4.2 Planned<br>- Public development set<br>- Versioned holdout protocol<br>- Reproducible community submissions"]
 
-    v30 --> v31
-    v31 --> v32
-    v32 --> v40
+    v40 --> v41
+    v41 --> v42
 ```
 
 ---
 
-## 3. Mathematical Formalisation of Voice Preservation (v3.1)
+## 3. Scoring and Diagnostic Policy (v4.0)
 
-To transition from heuristic string matching to peer-reviewed NLP metrics, version 3.1 integrates formal span-level and n-gram evaluations inspired by text simplification and minimal-edit literature.
+The quality composite contains only spelling (43.75%), grammar (31.25%), and
+voice (25%). The v4 correction-site diagnostic is separate and never affects
+that composite:
 
-The currently published Pillar 3 score uses `lexical-marker-f1-v2`: mean
-passage-level lexical F1 multiplied by curated voice-marker retention, followed
-by a suite-wide penalty of 10% per matched over-edit signature (capped at 80%).
-The SARI-Keep, protected-span, and OER formulas below are companion diagnostics,
-not components of that composite voice score.
+1. Use the same published annotated spelling and grammar sites for every engine.
+2. Score spelling and grammar at the annotated source occurrence, not by
+   finding an accepted phrase anywhere in the output. Pool accepted target
+   hits and applicable targets across the suite.
+3. Count an unchanged source as an accuracy hit only when the annotation
+   explicitly accepts that source form; identity-only annotations are excluded
+   from the target denominator.
+4. Align output tokens to input tokens deterministically.
+5. Count an applicable diagnostic site as unapproved only when its output is neither
+   unchanged nor one of that site's shared accepted correction forms.
+6. Report raw unapproved-edit and applicable-site counts, plus their
+   percentage. An empty denominator is reported as not applicable.
 
-### 3.1 Token Partitioning Architecture
-Every test passage $S$ is decomposed into three mutually exclusive token sets:
-1. **Error Spans ($E$):** Tokens containing true orthographic, phonetic, or grammatical errors requiring repair ($w_i \to w_i'$).
-2. **Protected Voice Spans ($V$):** Intentional slang, dialectal words, colloquial contractions, technical jargon, or dysgraphic stylistic markers that **must not be altered**.
-3. **Invariant Context ($C$):** Correct baseline prose connecting the spans.
+The Voice scorer remains `lexical-marker-f1-v2`: lexical token F1 outside
+correction spans, multiplied by curated voice-marker retention and reduced by
+the suite-wide over-edit penalty. This rewards conservative corrections and
+dialect adaptation; it was not changed by the target-scoring revision.
 
-### 3.2 SARI-Keep Metric
-Following Xu et al. (2016), we evaluate the **Keep** operation against the raw input $I$, the minimal-edit gold reference $R$, and the candidate hypothesis $H$ across n-gram orders $n \in \{1, 2, 3\}$:
-
-$$P_{\text{keep}, n} = \frac{\sum_{g \in H} \min(C_H(g), C_I(g), C_R(g))}{\sum_{g \in H} \min(C_H(g), C_I(g))}$$
-
-$$R_{\text{keep}, n} = \frac{\sum_{g \in H} \min(C_H(g), C_I(g), C_R(g))}{\sum_{g \in I} \min(C_I(g), C_R(g))}$$
-
-$$F_{\text{keep}, n} = \frac{2 \cdot P_{\text{keep}, n} \cdot R_{\text{keep}, n}}{P_{\text{keep}, n} + R_{\text{keep}, n}}$$
-
-$$\text{SARI-Keep} = \frac{1}{3} \sum_{n=1}^3 F_{\text{keep}, n}$$
-
-Where an engine mutates or deletes an authentic slang token or regional cadence present in the input, $P_{\text{keep}}$ and $R_{\text{keep}}$ degrade proportionally.
-
-### 3.3 Protected-Span Retention Rate (PSRR)
-The empirical percentage of protected voice tokens preserved verbatim without unprompted lexical replacement:
-
-$$\text{PSRR} = \frac{|V \cap H|}{|V|} \times 100\%$$
-
-### 3.4 Over-Edit Rate (OER)
-Quantifies unprompted stylistic mutations outside the annotated error spans:
-
-$$\text{OER} = \frac{\text{Count of Unauthorized Phrase Rewrites}}{|V| + |C|}$$
+This lexical heuristic is inspectable and repeatable, but it does not judge
+meaning, inspect unannotated edits, or establish that a correction is
+semantically valid. It is not a hallucination rate. No LLM/SLM or human
+assessment of engine outputs is used.
 
 ---
 
 ## 4. Phase Specifications
 
-### Phase 1: Benchmark v3.1 (Current Implementation)
-- **Zero-Config CLI:** Immediate offline evaluation via `python evaluate_blind_v3.py --mode cached`.
-- **Dual Reporting:** Generates both industry-accessible 4-Pillar composite scores and academic diagnostic tables (`--academic`).
-- **Standardized Ground Truth:** Integrated minimal-edit reference strings for all 10 blind domains.
+### Phase 1: Benchmark v4.0 (Current)
+- **Cached replay:** `python evaluate_blind_v4.py` scores the Blind suite from saved outputs; `python benchmark_4pillars_hybrid.py` scores the H-suite.
+- **Three-pillar quality composite:** Spelling, grammar, and voice are normalized to 100% total weight.
+- **Correction-site diagnostic:** Shared accepted correction forms are applied to all systems; raw counts and denominators are reported without semantic or hallucination claims.
+- **Versioned results:** v3 results remain in their original files as legacy data and are not compared directly with v4.
 
-### Phase 2: Open-Source LLM Zero-Shot Baselines (v3.2 - Q1 2027)
-Modern developers routinely prompt general-purpose LLMs as spellcheckers. Phase 2 benchmarks open-weights foundation models against dedicated developer APIs using uniform prompting:
-- **Models:** Llama-3-8B-Instruct, Mistral-7B-Instruct, Qwen-2.5-7B-Instruct.
-- **Controlled Prompt:**
-  ```text
-  You are an in-place minimal-edit proofreader.
-  Fix objective spelling errors and grammatical errors.
-  Do NOT alter the author's voice, dialect, slang, tone, or sentence structure.
-  Do NOT rewrite sentences. Return only the corrected text.
-  ```
-- **Hypothesis:** Generalist LLMs will exhibit high orthographic accuracy but low SARI-Keep scores due to intrinsic instruction-tuning bias toward standardized formal prose.
+### Phase 2: Expanded Deterministic Baselines (v4.1 - Q1 2027)
+- Add additional spelling and grammar engines using the same fixed inputs,
+  shared annotations, and one-pass collection policy where applicable.
+- Collect paired `en-US` and `en-GB` outputs for each participating engine and
+  score locale-specific spelling targets against the matching full-passage
+  reference. Keep v4.0 single-locale results as a separate baseline; do not
+  infer locale support from an unreported setting.
+- Publish output schemas, accepted-form annotations, and deterministic scoring
+  logic so engine authors can inspect and reproduce each result.
+- Do not use language models or human judgments to score engine outputs.
 
-### Phase 3: The Tier-2 Statistical Suite ($N=500+$) (v4.0 - Q2 2027)
-To supplement the rich qualitative depth of the 10 multi-sentence human domains (`B-01` to `B-10`), version 4.0 introduces an automated 500-sentence corpus:
+### Phase 3: The Tier-2 Statistical Suite ($N=500+$) (v4.1 - Q2 2027)
+To supplement the 10 multi-sentence writing domains (`B-01` to `B-10`), a future version may introduce a larger stratified corpus:
 - **Genre Stratification:**
   1. *Youth & Gaming Culture:* Discord banter, Twitch chat, gaming shorthand ($N=100$).
   2. *Regional Dialects:* Appalachian, African American Vernacular English (AAVE), Northern British, Scottish vernacular ($N=100$).
@@ -110,7 +98,7 @@ To supplement the rich qualitative depth of the 10 multi-sentence human domains 
   5. *Creative & Technical Prose:* Specialty domain terminology (coffee cupping, legal, medical, wildlife biology) ($N=100$).
 - **Statistical Rigour:** Automated bootstrap resampling ($B=1,000$ iterations) producing 95% confidence intervals and paired Student's t-tests ($p < 0.05$) to establish statistical significance.
 
-### Phase 4: Anti-Contamination Protocol & Live Leaderboard (v4.1 - Q3 2027)
+### Phase 4: Anti-Contamination Protocol & Live Leaderboard (v4.2 - Q3 2027)
 - **Dataset Partitioning:**
   - **Public Development Set (50%):** Openly published in the repository for engine authors to train, validate, and debug their systems.
   - **Private Held-Out Test Set (50%):** Maintained in encrypted storage and refreshed quarterly to evaluate blind generalisation and prevent memorisation.
@@ -118,20 +106,25 @@ To supplement the rich qualitative depth of the 10 multi-sentence human domains 
 
 ---
 
-## 5. Summary Scoreboard: Blind Suite v3.0
+## 5. Summary Scoreboard: Blind Suite v4.0
 
-The v3 scorecard below uses voice-scoring revision `lexical-marker-f1-v2`: lexical token F1 and curated voice-marker retention are combined, then a suite-wide penalty is applied for manually annotated over-edit signatures. The scorecard includes four API/rewrite baselines and two separately labelled interactive web-demo runs, all scored against the same 10 blind unseen domains. Sapling and JSpell were evaluated by accepting their initial suggestions once without rechecking; neither latency was measured. JSpell is a spelling-only web checker, not an API result.
+The v4 scorecard uses voice-scoring revision `lexical-marker-f1-v2` and target-scoring revision `aligned-correction-sites-v1`. The quality composite contains spelling (43.75%), grammar (31.25%), and voice (25%). The correction-site diagnostic is separate and not a semantic or hallucination score. Sapling and JSpell were evaluated by accepting their initial suggestions once without rechecking; neither web-demo latency was measured.
 
-| Engine | Spelling (35%) | Grammar (25%) | Voice (20%) | Anti-Hal (20%) | Meta-Score | SARI-Keep (n=3) | Latency |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Sapling Grammar Checker** *(web demo; one-pass)* | 93.9% | **★ 100.0%** | **★ 88.3%** | 90.0% | **★ 93.5%** | 94.5% | Not measured |
-| **DeepL Write** | **★ 100.0%** | **★ 100.0%** | 24.1% | **★ 100.0%** | 84.8% | 90.4% | ~1,280 ms |
-| **TextGears API** | 71.4% | **★ 100.0%** | 85.2% | 20.0% | **★ 71.0%** | **★ 93.7%** | ~967 ms |
-| **LanguageTool API** | 73.5% | **★ 100.0%** | 64.4% | 35.0% | 70.6% | 93.1% | ~677 ms |
-| **BCorrect (FMM)** | 65.3% | 50.0% | 86.6% | 35.0% | 59.7% | 90.8% | **★ ~18 ms local** |
-| **JSpell Free Web Checker** *(one-pass web demo)* | 61.2% | 50.0% | 77.5% | 20.0% | 53.4% | 91.3% | Not measured |
+| Engine | Spelling | Grammar | Voice | Unapproved edits / sites | Quality composite | Latency |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Sapling Grammar Checker** *(web demo; one-pass)* | **★ 93.6%** | **★ 100.0%** | **★ 88.3%** | 0 / 48 (0.0%) | **★ 94.3%** | Not measured |
+| **DeepL Write** | 91.5% | **★ 100.0%** | 24.1% | 4 / 48 (8.3%) | 77.3% | ~1,280 ms |
+| **TextGears API** | **★ 68.1%** | **★ 100.0%** | 85.2% | 15 / 48 (31.2%) | **★ 82.3%** | ~967 ms |
+| **LanguageTool API** | 66.0% | **★ 100.0%** | 64.4% | 16 / 48 (33.3%) | 76.2% | ~677 ms |
+| **BCorrect (FMM)** | 63.8% | **★ 100.0%** | **★ 86.6%** | 13 / 48 (27.1%) | 80.8% | ~614 ms |
+| **JSpell Free Web Checker** *(one-pass web demo)* | 63.8% | 0.0% | 77.5% | 16 / 48 (33.3%) | 47.3% | Not measured |
 
-Sapling's and JSpell's web-demo scores are not live API results. Their `null` latency is unavailable data, not zero, and must be excluded from speed comparisons. The H-suite JSpell web-checker composite is 65.1% (spelling 76.8%, grammar 40.8%, voice 84.9%, anti-hallucination 55.0%).
+The latency column contains recorded client-side response times from cached
+requests; it is not a local engine benchmark or a product compute-time
+comparison. The Blind and H-suite measurements are separate runs and should
+not be compared as if they shared one network session.
+
+The correction-site diagnostic only checks annotated spell/grammar targets. It can miss changes elsewhere and can flag valid output forms absent from the annotations; it must not be interpreted as a hallucination rate. The v3 four-pillar results remain in their original files as legacy data and are not comparable with v4. Stars mark leaders in the score column; the diagnostic is not ranked as quality.
 
 ---
 

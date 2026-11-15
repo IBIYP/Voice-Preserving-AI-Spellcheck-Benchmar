@@ -5,6 +5,7 @@
     "voice_scoring_revision": "lexical-marker-f1-v2",
     "eval_date": "November 14, 2026",
     "architecture": "4 Functional Pillars + 1 Hybrid Meta-Score",
+    "pillar_4_methodology_note": "Exploratory exact-match diagnostic against manually curated, engine-specific signatures; max(100 - 25 * passage matches, 0) per passage, averaged across the suite. This is not a general hallucination rate.",
     "weights": {
       "pillar_1_spelling": "35%",
       "pillar_2_grammar": "25%",

@@ -12,7 +12,7 @@ raw_results/submissions/<engine_name>_<version>_<eval_date>.json
 ## Structure of Submission Artifacts
 Each JSON file contains:
 - `submission_metadata`: Submitter organization, architecture category, hardware environment, and evaluation timestamp.
-- `pillar_scores`: Independent scores for Spelling (35%), Grammar (25%), Voice Preservation (20%), and Anti-Hallucination (20%).
+- `pillar_scores`: Independent scores for Spelling (35%), Grammar (25%), Voice Preservation (20%), and a limited signature-match diagnostic (20%), not a general hallucination rate.
 - `hybrid_meta_score`: Composite 100% index.
 - `latency_summary`: Average, median, and 95th percentile query latency in milliseconds.
 - `passage_runs`: Verbatim input, output, and target correction breakdown across all benchmark evaluation passages.
