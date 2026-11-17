@@ -43,9 +43,9 @@ disclosed and are not blind.
 
 Scores reflect deterministic, repeatable outputs within this open test harness
 and are offered in good faith as fair-use comparative commentary. They do not
-imply malicious intent or bad faith toward any participating provider, and the
-benchmark maintainers disclaim any legal liability for alleged reputational or
-commercial harm resulting from published scores; see the full
+imply malicious intent or bad faith toward any participating provider. To the
+extent the law allows, the maintainers accept no liability for alleged
+reputational or commercial harm resulting from published scores; see the full
 [collection, publication, and legal policy](submission-policy.md). Providers
 wishing to exclude their tools from future runs may do so via our
 [opt-out procedure](submission-policy.md#provider-opt-out-procedure).

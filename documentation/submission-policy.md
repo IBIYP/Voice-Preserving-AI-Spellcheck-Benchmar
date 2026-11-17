@@ -49,12 +49,17 @@ systems.
 
 ## Good faith, fair use, and commentary
 
-This benchmark is an open, honest, and independent project run in good faith.
-We have no interest or motive of bad faith, and we do not intend to harm or
-disparage any company, developer, or product.
+This benchmark is an open and honest project run in good faith. We have no
+motive of bad faith, and we do not intend to harm or disparage any company,
+developer, or product.
 
-All tests, scorecards, and comparisons are conducted well within our rights as
-fair-use commentary, public review, and non-commercial research:
+This benchmark is not intended to represent or serve any one company or
+organization. We hope every tested provider will eventually help review and
+shape it, and we invite all providers and researchers to share input and
+feedback.
+
+We believe our tests, scorecards, and comparisons are protected fair-use
+commentary and public review:
 - **Nominative Fair Use** (15 U.S.C. Section 1125(c)(3)): We mention third-party
   product names and trademarks solely to identify the tools we test.
 - **Fair Use Commentary** (17 U.S.C. Section 107): We provide open,
@@ -68,7 +73,7 @@ to verify our results.
 This benchmark, its scripts, sample data, and published scores are provided on
 an "as is" basis without any warranties.
 
-We are not legally responsible or liable for:
+To the extent the law allows, the maintainers accept no liability for:
 - Any direct, indirect, incidental, or consequential damages;
 - Any alleged harm to reputation, brand image, commercial standing, sales, or
   business operations;

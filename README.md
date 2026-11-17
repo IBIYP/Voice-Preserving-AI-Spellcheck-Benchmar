@@ -6,20 +6,22 @@ verify the results for themselves.
 
 ## Start here
 
-- [Four equal pillars](#four-equal-pillars)
+- [How we score](#how-we-score)
 - [Benchmark results](#results)
-- [How scoring works](documentation/benchmark-details.md)
-- [Protocol data: paired inputs, annotations, and controls](benchmark_data/v0.5_anchor_draft.json)
+- [Our intent](#our-intent)
+- [Next version (v0.5 draft)](#next-version-v05-draft)
 - [Documentation index](documentation/README.md)
 
-## Four equal pillars
+## How we score
+
+The results below use the v0.4 scoring:
 
 | Pillar | Weight | What it measures |
 | --- | ---: | --- |
-| Spelling | 25% | Annotated spelling corrections, including expected locale forms |
-| Grammar | 25% | Annotated grammar corrections |
-| Voice | 25% | Lexical preservation and curated voice-marker retention |
-| Negative-control preservation | 25% | Preservation of one predefined protected span per passage |
+| Spelling | 43.75% | Did the tool fix the marked spelling mistakes? |
+| Grammar | 31.25% | Did the tool fix the marked grammar mistakes? |
+| Voice | 25% | Did the tool keep the writer's own words, slang, and style? |
+| Unapproved edits | Not scored | How often the tool changed a marked spot to something wrong (shown separately) |
 
 ## Results
 
@@ -72,17 +74,30 @@ four-pillar score. The newly drafted v0.5 passage set is dedicated under
 CC0-1.0, but its similarity and rights review must be completed before public
 release.
 
+## Our intent
+
+This benchmark is not intended to represent or serve any one company or
+organization. We hope that, over time, every provider we test will help review
+and shape it. All providers, researchers, and writers are invited to share
+input and feedback through the repository.
+
+## Next version (v0.5 draft)
+
+v0.5 is still a draft and has no results yet. It proposes four equal pillars
+(25% each): spelling, grammar, voice, and negative-control preservation. See
+the [v0.5 draft](documentation/benchmark-v0.5-draft.md).
+
 ## Legal notes, fair use, and opt-out
 
-- **Open and honest testing:** This benchmark is an independent project run in
-  good faith. We have no interest in making anyone look bad or acting in bad
-  faith. We just want to measure how writing tools perform on real writing.
-- **Fair-use commentary:** We test tools and mention product names under
-  nominative fair use (15 U.S.C. Section 1125(c)(3)) and fair-use commentary
-  (17 U.S.C. Section 107). We are not affiliated with or endorsed by any of the
-  companies tested.
-- **No liability for reputational harm:** We are not legally responsible for any
-  harm to reputation, sales, or business outcomes resulting from these tests.
+- **Open and honest testing:** This benchmark is run in good faith. We have no
+  interest in making anyone look bad. We just want to measure how writing tools
+  perform on real writing.
+- **Fair-use commentary:** We mention product names only to identify the tools
+  we test, which we believe is nominative fair use (15 U.S.C. Section
+  1125(c)(3)) and fair-use commentary (17 U.S.C. Section 107). Naming a product
+  does not mean its maker endorses or sponsors this benchmark.
+- **No warranty:** The scripts and scores are provided "as is." Results come from
+  a specific test setup and are not a judgment of a tool's overall quality.
   Anyone can run the scripts offline to check our work.
 - **Provider opt-out:** If a company does not want their tool tested in future
   rounds, they can open a [Provider opt-out ticket](.github/ISSUE_TEMPLATE/benchmark-opt-out.yml)
