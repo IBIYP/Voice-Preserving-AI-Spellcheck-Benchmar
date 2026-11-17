@@ -49,56 +49,46 @@ systems.
 
 ## Good faith, fair use, and commentary
 
-This benchmark is an open, honest, and independent scientific evaluation suite
-conducted entirely in good faith. It carries zero malice, bias, or intent of
-commercial disparagement toward any evaluated company, developer, or product.
+This benchmark is an open, honest, and independent project run in good faith.
+We have no interest or motive of bad faith, and we do not intend to harm or
+disparage any company, developer, or product.
 
-All evaluations, published scorecards, and comparative analyses are conducted
-strictly within the bounds of protected fair-use commentary, non-commercial
-scientific research, and comparative critique under:
-- **Nominative Fair Use** (15 U.S.C. Section 1125(c)(3)): Third-party product
-  names, service marks, and trademarks are used exclusively to accurately
-  identify the software being tested.
-- **Fair Use Commentary and Analysis** (17 U.S.C. Section 107): The test
-  suite provides open, reproducible critique and educational measurement of
-  publicly available software tools.
+All tests, scorecards, and comparisons are conducted well within our rights as
+fair-use commentary, public review, and non-commercial research:
+- **Nominative Fair Use** (15 U.S.C. Section 1125(c)(3)): We mention third-party
+  product names and trademarks solely to identify the tools we test.
+- **Fair Use Commentary** (17 U.S.C. Section 107): We provide open,
+  reproducible commentary and educational testing on publicly available tools.
 
-Anyone can independently inspect, audit, and execute the test harness locally
-to verify all published findings.
+Anyone can download the code, inspect every line, and run the benchmark offline
+to verify our results.
 
 ## Disclaimer of liability and reputational harm
 
-This benchmark, its evaluation scripts, sample data, and published scores are
-provided strictly on an "as is" and "as available" basis, without warranties of
-any kind, express or implied.
+This benchmark, its scripts, sample data, and published scores are provided on
+an "as is" basis without any warranties.
 
-Under no circumstances shall the benchmark maintainers, independent researchers,
-or contributors be held legally liable or responsible for:
-- Any direct, indirect, incidental, consequential, special, or punitive damages;
-- Any alleged harm to reputation, brand equity, commercial standing, goodwill,
-  revenue, profits, or business operations;
-- Any purchasing, deployment, or software adoption decisions made by third parties
-  based on benchmark data or published scorecards.
+We are not legally responsible or liable for:
+- Any direct, indirect, incidental, or consequential damages;
+- Any alleged harm to reputation, brand image, commercial standing, sales, or
+  business operations;
+- Any purchasing or software adoption choices made by third parties based on our
+  scores.
 
-Benchmark results reflect objective, reproducible measurements under a defined,
-publicly disclosed testing protocol. They represent opinion and comparative
-analysis derived from deterministic evaluation code, not statements of absolute
-fact regarding an engine's general fitness for every purpose.
+Our results are objective, reproducible numbers from a specific test harness.
+They represent fair commentary and comparative analysis based on open code, not
+absolute statements about how a tool performs in every real-world scenario.
 
 ## Provider opt-out procedure
 
-The maintainers respect the autonomy of software creators. Any commercial
-vendor, developer, or provider that does not want their tool or product
-included in future benchmark runs may request exclusion at any time:
+We respect software creators. If any company or developer does not want their
+tool included in future benchmark runs, they can ask to be removed:
 
-- Submit an exclusion request using the
+- Open a request using the
   [Provider opt-out issue template](../.github/ISSUE_TEMPLATE/benchmark-opt-out.yml)
-  or contact the maintainers via the public repository channels.
-- Upon receiving a verified request, the named product will be excluded from all
-  subsequent evaluation cycles and future published scorecards.
+  or reach out through the repository.
+- Once verified, we will exclude that tool from all future evaluation rounds.
 
-While the maintainers respectfully encourage providers to remain part of the
-benchmark—in the collaborative spirit of open scientific inquiry, transparency,
-and communal progress in natural language processing—participation in future
-runs is never forced against an explicit opt-out request. Past published
-results remain available as immutable, point-in-time historical records.
+We ask providers to stay so that the public has honest, open data, but we will
+never force a provider to participate against their wishes. Past published
+results stay up as historical records.

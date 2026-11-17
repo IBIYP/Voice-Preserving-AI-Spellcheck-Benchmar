@@ -9,8 +9,8 @@ the source for its paired inputs and annotations.
 
 The fixed anchor contains ten passages with a paired en-US and en-GB input,
 for 20 samples total. Each passage has the same underlying writing scenario and
-one explicit spelling cue for its locale. The input text—not a locale option
-passed to the provider—must drive automatic dialect handling. Record the
+one explicit spelling cue for its locale. The input text (not a locale option
+passed to the provider) must drive automatic dialect handling. Record the
 provider's locale configuration for every run and do not force en-US or en-GB.
 
 Each base passage has exactly one predefined negative control. The same
@@ -55,7 +55,7 @@ assigns one of three labels:
 
 If a known false form and the protected phrase both occur, the known hit takes
 precedence. Approximate matches and unlisted edits are not promoted to known
-hits. A hit is evidence about the specified control only—not a general
+hits. A hit is evidence about the specified control only, not a general
 hallucination label, rate, or causal explanation.
 
 The preservation pillar is the count of preserved controls divided by the

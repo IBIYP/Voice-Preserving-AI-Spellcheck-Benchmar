@@ -1,7 +1,8 @@
 # Voice-Preserving Spellcheck Benchmark
 
-A transparent, reproducible benchmark evaluating how effectively spelling and
-grammar tools correct text without degrading authorial voice or altering meaning.
+We test how well spelling and grammar tools fix real mistakes without ruining
+the writer's voice, tone, or meaning. Anyone can run these tests locally and
+verify the results for themselves.
 
 ## Start here
 
@@ -71,25 +72,24 @@ four-pillar score. The newly drafted v0.5 passage set is dedicated under
 CC0-1.0, but its similarity and rights review must be completed before public
 release.
 
-## Legal limitations, fair use, and provider opt-out
+## Legal notes, fair use, and opt-out
 
-- **Good-Faith Open Evaluation:** This benchmark is an independent, reproducible
-  scientific test suite conducted in good faith without malice or bad-faith intent
-  toward any evaluated product or commercial provider.
-- **Fair-Use Commentary:** All evaluations, comparative metrics, and product names
-  are presented under protected nominative fair use (15 U.S.C. Section 1125(c)(3))
-  and fair-use commentary (17 U.S.C. Section 107).
-- **Disclaimer of Reputational Liability:** Maintainers and contributors assume no
-  legal liability or responsibility for any alleged harm to reputation, commercial
-  standing, brand value, or financial outcomes resulting from these open tests.
-  Anyone can independently inspect and execute the test suite offline.
-- **Provider Opt-Out:** Providers who prefer not to have their products included in
-  future benchmark cycles may submit an exclusion request via our
-  [Provider opt-out issue template](.github/ISSUE_TEMPLATE/benchmark-opt-out.yml) and
-  will be excluded from subsequent runs. We respectfully encourage providers to
-  participate in the spirit of open scientific progress.
+- **Open and honest testing:** This benchmark is an independent project run in
+  good faith. We have no interest in making anyone look bad or acting in bad
+  faith. We just want to measure how writing tools perform on real writing.
+- **Fair-use commentary:** We test tools and mention product names under
+  nominative fair use (15 U.S.C. Section 1125(c)(3)) and fair-use commentary
+  (17 U.S.C. Section 107). We are not affiliated with or endorsed by any of the
+  companies tested.
+- **No liability for reputational harm:** We are not legally responsible for any
+  harm to reputation, sales, or business outcomes resulting from these tests.
+  Anyone can run the scripts offline to check our work.
+- **Provider opt-out:** If a company does not want their tool tested in future
+  rounds, they can open a [Provider opt-out ticket](.github/ISSUE_TEMPLATE/benchmark-opt-out.yml)
+  and we will leave them out of future benchmarks. We ask providers to stay so
+  the community has transparent data, but we always honor opt-out requests.
 
-For complete details, see the
+For full details, read our
 [Collection, Publication, and Legal Policy](documentation/submission-policy.md).
 
 ## License
