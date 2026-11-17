@@ -11,7 +11,7 @@ from correction_site_diagnostic import (
     score_correction_sites,
     score_target_accuracy,
 )
-from evaluate_blind_v3 import (
+from blind_suite_data import (
     ENGINES,
     GOLD_REFERENCES,
     GROUND_TRUTH,
@@ -22,16 +22,14 @@ from text_matching import (
     aggregate_writer_voice,
     score_writer_voice,
 )
+from collection_provenance import (
+    COLLECTION_LOCALES,
+    COLLECTION_MODES,
+    COLLECTION_ROUTES,
+    COLLECTION_SOURCE_URLS,
+)
 
 TARGET_SCORING_REVISION = "aligned-correction-sites-v1"
-COLLECTION_MODES = {
-    "BCorrect (FMM)": "api",
-    "LanguageTool API": "api",
-    "TextGears API": "api",
-    "DeepL Write": "not reported",
-    "Sapling Grammar Checker": "web_demo",
-    "JSpell Free Web Checker": "web_demo",
-}
 
 
 def _stable_digest(value):
@@ -95,7 +93,9 @@ def _load_outputs():
     if not isinstance(live_runs, dict):
         raise ValueError("Blind Suite results must be an object keyed by passage ID")
 
-    sapling_path = os.path.join("raw_results", "blind_v3_sapling_outputs.json")
+    sapling_path = os.path.join(
+        "archive", "v0.3", "blind_v3_sapling_outputs.json"
+    )
     with open(sapling_path, "r", encoding="utf-8") as file:
         sapling_runs = json.load(file)["passages"]
     for passage_id, output in sapling_runs.items():
@@ -103,11 +103,13 @@ def _load_outputs():
             raise ValueError(f"Sapling result references unknown passage {passage_id}")
         live_runs[passage_id]["Sapling Grammar Checker"] = {"text": output["text"]}
 
-    jspell_path = os.path.join("raw_results", "jspell_web_checker_outputs.json")
+    jspell_path = os.path.join(
+        "archive", "v0.3", "jspell_web_checker_outputs.json"
+    )
     with open(jspell_path, "r", encoding="utf-8") as file:
         jspell_runs = json.load(file).get("blind_v3")
     if not isinstance(jspell_runs, dict):
-        raise ValueError("JSpell web-checker results are missing blind_v3 outputs")
+            raise ValueError("JSpell web-checker results are missing saved Blind-suite outputs")
     for passage_id in GROUND_TRUTH:
         output = jspell_runs.get(passage_id)
         if not isinstance(output, dict) or not isinstance(output.get("text"), str):
@@ -154,7 +156,11 @@ def run_evaluation(export_path="raw_results/blind_v4_official_scoreboard.json"):
             engine: {
                 "version": "not reported",
                 "source_run_id": "not recorded",
+                "collection_timestamp_utc": "not recorded",
                 "collection_mode": COLLECTION_MODES[engine],
+                "collection_route": COLLECTION_ROUTES[engine],
+                "source_url": COLLECTION_SOURCE_URLS[engine],
+                "locale": COLLECTION_LOCALES[engine],
             }
             for engine in ENGINES
         },

@@ -2,7 +2,7 @@ import re
 
 
 VOICE_SCORING_REVISION = "lexical-marker-f1-v2"
-WORD_PATTERN = re.compile(r"[^\W_]+(?:['’][^\W_]+)*", re.UNICODE)
+WORD_PATTERN = re.compile(r"[^\W_]+(?:['\u2019][^\W_]+)*", re.UNICODE)
 
 
 def contains_phrase(text, phrase):

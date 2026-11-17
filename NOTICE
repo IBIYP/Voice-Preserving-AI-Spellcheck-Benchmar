@@ -1,0 +1,13 @@
+Copyright 2026 IBIYP
+
+Unless a file or directory states otherwise, the benchmark software and
+documentation are licensed under the Apache License, Version 2.0; see LICENSE.
+
+The original v0.5 passages, annotations, and controls in
+benchmark_data/v0.5_anchor_draft.json are dedicated under CC0-1.0; see
+benchmark_data/LICENSE.txt. This does not cover code, provider outputs, or
+third-party material. Similarity and rights review remains necessary before
+public release.
+
+Provider and product names identify systems evaluated by this independent
+benchmark. They do not imply endorsement or sponsorship.

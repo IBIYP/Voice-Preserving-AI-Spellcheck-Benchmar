@@ -1,0 +1,448 @@
+{
+  "metadata": {
+    "protocol_id": "four-pillar-fixed-anchor",
+    "protocol_version": "0.5.0-draft",
+    "status": "draft",
+    "suite": "fixed anchor",
+    "locale_mode": "automatic detection; do not force a locale",
+    "description": "A draft paired en-US/en-GB anchor with ten newly composed passages, explicit dialect cues, and one predefined negative control per passage.",
+    "passage_origin": "New draft composed for this protocol; no text from the former H-suite candidate was intentionally reused. Similarity and rights review remain open.",
+    "data_license": {
+      "spdx_id": "CC0-1.0",
+      "license_file": "LICENSE.txt",
+      "scope": "Original passages, annotations, and controls in this manifest only; not code, provider outputs, or third-party material."
+    }
+  },
+  "scoring": {
+    "weights": {
+      "spelling": 25,
+      "grammar": 25,
+      "voice": 25,
+      "negative_control_preservation": 25
+    },
+    "control_matching": "case-insensitive exact phrase with word boundaries",
+    "known_control_hits_are_hallucination_labels": false,
+    "unlisted_or_approximate_changes_are_scored_as_hallucinations": false
+  },
+  "weekly_challenge": {
+    "status": "separate future set",
+    "comparison_rule": "Compare engines on the same week's challenge set; use only the fixed anchor for week-to-week trend comparisons."
+  },
+  "external_spelling_panel": {
+    "status": "excluded_from_v0.5_until_provenance_and_reuse_review",
+    "panel_name": "Norvig/Birkbeck 30-pair candidate",
+    "scoring_role": "separate spelling diagnostic; not part of the four-pillar composite"
+  },
+  "passages": [
+    {
+      "id": "V05-01",
+      "domain": "Basement music show",
+      "locale_cue": {
+        "en-US": "color",
+        "en-GB": "colour"
+      },
+      "inputs": {
+        "en-US": "Yo, that basement show went hard; my frend dropped the setlist beside the merch table. We packed orange cables as the last train rolled in, and the hall were still warm after midnight. I ain't forgetting the chorus. A bright color tag marked my case.",
+        "en-GB": "Yo, that basement show went hard; my frend dropped the setlist beside the merch table. We packed orange cables as the last train rolled in, and the hall were still warm after midnight. I ain't forgetting the chorus. A bright colour tag marked my case."
+      },
+      "locale_spelling_targets": {
+        "en-US": {
+          "frend": "friend",
+          "color": "color"
+        },
+        "en-GB": {
+          "frend": "friend",
+          "colour": "colour"
+        }
+      },
+      "grammar_targets": {
+        "hall were": "hall was"
+      },
+      "voice_tokens": ["went hard", "merch table", "still warm after midnight", "ain't forgetting the chorus"],
+      "forbidden_rewrites": ["the concert was excellent", "merchandise counter", "I will remember the melody"],
+      "dialect_equivalents": {
+        "color": ["color", "colour"]
+      },
+      "negative_control": {
+        "id": "NC-01",
+        "protected_span": "last train",
+        "known_false_forms": [
+          {
+            "text": "first train",
+            "basis": "Predefined timing reversal, drafted before any v0.5 outputs were collected."
+          }
+        ],
+        "why_wrong": "Changing 'last' to 'first' reverses which train arrived."
+      }
+    },
+    {
+      "id": "V05-02",
+      "domain": "Back-garden planting",
+      "locale_cue": {
+        "en-US": "traveler",
+        "en-GB": "traveller"
+      },
+      "inputs": {
+        "en-US": "My aunt's back plot is a jungle of mint and bean poles; the smell after rain gets me every time. The seed packet say the pale beens need shade. A traveler left a little wooden marker by the gate before the storm.",
+        "en-GB": "My aunt's back plot is a jungle of mint and bean poles; the smell after rain gets me every time. The seed packet say the pale beens need shade. A traveller left a little wooden marker by the gate before the storm."
+      },
+      "locale_spelling_targets": {
+        "en-US": {
+          "beens": "beans",
+          "traveler": "traveler"
+        },
+        "en-GB": {
+          "beens": "beans",
+          "traveller": "traveller"
+        }
+      },
+      "grammar_targets": {
+        "packet say": "packet says"
+      },
+      "voice_tokens": ["jungle of mint", "smell after rain", "gets me every time", "little wooden marker"],
+      "forbidden_rewrites": ["a densely planted garden", "the fragrance following precipitation", "an identification stake"],
+      "dialect_equivalents": {
+        "traveler": ["traveler", "traveller"]
+      },
+      "negative_control": {
+        "id": "NC-02",
+        "protected_span": "before the storm",
+        "known_false_forms": [
+          {
+            "text": "after the storm",
+            "basis": "Predefined timing reversal, drafted before any v0.5 outputs were collected."
+          }
+        ],
+        "why_wrong": "Changing 'before' to 'after' reverses when the marker was left."
+      }
+    },
+    {
+      "id": "V05-03",
+      "domain": "Small bakery opening shift",
+      "locale_cue": {
+        "en-US": "mold",
+        "en-GB": "mould"
+      },
+      "inputs": {
+        "en-US": "At dawn the bread mixer rumbled like an old bus, and flour dusted my sleeves. I wrote 'avoid the timer' on a scrap of card; by lunch, the ink were smudgd. A mold mark showed on the tin.",
+        "en-GB": "At dawn the bread mixer rumbled like an old bus, and flour dusted my sleeves. I wrote 'avoid the timer' on a scrap of card; by lunch, the ink were smudgd. A mould mark showed on the tin."
+      },
+      "locale_spelling_targets": {
+        "en-US": {
+          "smudgd": "smudged",
+          "mold": "mold"
+        },
+        "en-GB": {
+          "smudgd": "smudged",
+          "mould": "mould"
+        }
+      },
+      "grammar_targets": {
+        "ink were": "ink was"
+      },
+      "voice_tokens": ["rumbled like an old bus", "flour dusted my sleeves", "avoid the timer", "by lunch"],
+      "forbidden_rewrites": ["the mixer operated loudly", "flour covered my clothing", "do not rely on the timing device"],
+      "dialect_equivalents": {
+        "mold": ["mold", "mould"]
+      },
+      "negative_control": {
+        "id": "NC-03",
+        "protected_span": "avoid the timer",
+        "known_false_forms": [
+          {
+            "text": "rely on the timer",
+            "basis": "Predefined reversal of the written warning, drafted before any v0.5 outputs were collected."
+          }
+        ],
+        "why_wrong": "The false form reverses the narrator's explicit warning about the timer."
+      }
+    },
+    {
+      "id": "V05-04",
+      "domain": "Ferry crossing",
+      "locale_cue": {
+        "en-US": "harbor",
+        "en-GB": "harbour"
+      },
+      "inputs": {
+        "en-US": "The harbor bell rang twice as our small ferry nudged the dock. Mara's red scarf slipped under the bench, and the ticket machine blinkd at us. Two tickets was soaked by the spray before we found the right pier.",
+        "en-GB": "The harbour bell rang twice as our small ferry nudged the dock. Mara's red scarf slipped under the bench, and the ticket machine blinkd at us. Two tickets was soaked by the spray before we found the right pier."
+      },
+      "locale_spelling_targets": {
+        "en-US": {
+          "harbor": "harbor",
+          "blinkd": "blinked"
+        },
+        "en-GB": {
+          "harbour": "harbour",
+          "blinkd": "blinked"
+        }
+      },
+      "grammar_targets": {
+        "tickets was": "tickets were"
+      },
+      "voice_tokens": ["nudged the dock", "Mara's red scarf", "blinked at us", "right pier"],
+      "forbidden_rewrites": ["the ferry approached the landing", "Mara's scarlet garment", "the ticket terminal displayed an alert"],
+      "dialect_equivalents": {
+        "harbor": ["harbor", "harbour"]
+      },
+      "negative_control": {
+        "id": "NC-04",
+        "protected_span": "Mara's red scarf",
+        "known_false_forms": [
+          {
+            "text": "Mara's blue scarf",
+            "basis": "Predefined change to a stated identifying detail, drafted before any v0.5 outputs were collected."
+          }
+        ],
+        "why_wrong": "Changing the scarf's stated color alters a concrete detail in the scene."
+      }
+    },
+    {
+      "id": "V05-05",
+      "domain": "Classroom bridge project",
+      "locale_cue": {
+        "en-US": "meter",
+        "en-GB": "metre"
+      },
+      "inputs": {
+        "en-US": "Our class built a paper bridge for the museum table. It held six metal washers before the middle span saggd; I scribbled 'not bad for a Tuesday' in the margin. The whole bridge measure one meter end to end.",
+        "en-GB": "Our class built a paper bridge for the museum table. It held six metal washers before the middle span saggd; I scribbled 'not bad for a Tuesday' in the margin. The whole bridge measure one metre end to end."
+      },
+      "locale_spelling_targets": {
+        "en-US": {
+          "saggd": "sagged",
+          "meter": "meter"
+        },
+        "en-GB": {
+          "saggd": "sagged",
+          "metre": "metre"
+        }
+      },
+      "grammar_targets": {
+        "bridge measure": "bridge measures"
+      },
+      "voice_tokens": ["paper bridge", "six metal washers", "not bad for a Tuesday", "middle span"],
+      "forbidden_rewrites": ["constructed a paper structure", "withstood six metallic weights", "an acceptable result for Tuesday"],
+      "dialect_equivalents": {
+        "meter": ["meter", "metre"]
+      },
+      "negative_control": {
+        "id": "NC-05",
+        "protected_span": "six metal washers",
+        "known_false_forms": [
+          {
+            "text": "eight metal washers",
+            "basis": "Predefined quantity change, drafted before any v0.5 outputs were collected."
+          }
+        ],
+        "why_wrong": "Changing six to eight alters the recorded load the bridge held."
+      }
+    },
+    {
+      "id": "V05-06",
+      "domain": "Radio repair counter",
+      "locale_cue": {
+        "en-US": "license",
+        "en-GB": "licence"
+      },
+      "inputs": {
+        "en-US": "The repair shop keeps a paper license beside the register. It cover the old radio, not the cracked speaker; the clerk wrote the serial number down twice. I brought the wrong reciept, so the repair will have to wait.",
+        "en-GB": "The repair shop keeps a paper licence beside the register. It cover the old radio, not the cracked speaker; the clerk wrote the serial number down twice. I brought the wrong reciept, so the repair will have to wait."
+      },
+      "locale_spelling_targets": {
+        "en-US": {
+          "license": "license",
+          "reciept": "receipt"
+        },
+        "en-GB": {
+          "licence": "licence",
+          "reciept": "receipt"
+        }
+      },
+      "grammar_targets": {
+        "It cover": "It covers"
+      },
+      "voice_tokens": ["paper", "serial number down twice", "wrong receipt", "repair will have to wait"],
+      "forbidden_rewrites": ["the establishment maintains authorization documentation", "the technician recorded the identifier", "the repair is deferred"],
+      "dialect_equivalents": {
+        "license": ["license", "licence"]
+      },
+      "negative_control": {
+        "id": "NC-06",
+        "protected_span": "not the cracked speaker",
+        "known_false_forms": [
+          {
+            "text": "including the cracked speaker",
+            "basis": "Predefined change to the stated scope of coverage, drafted before any v0.5 outputs were collected."
+          }
+        ],
+        "why_wrong": "The false form changes which item the paper license covers."
+      }
+    },
+    {
+      "id": "V05-07",
+      "domain": "Community volleyball game",
+      "locale_cue": {
+        "en-US": "center",
+        "en-GB": "centre"
+      },
+      "inputs": {
+        "en-US": "Rae servd from behind the end line, clipped the net, then laughed and tried again. We kept score on the gym wall; the final point were a fluke, but it still felt earned. The center line had a fresh stripe.",
+        "en-GB": "Rae servd from behind the end line, clipped the net, then laughed and tried again. We kept score on the gym wall; the final point were a fluke, but it still felt earned. The centre line had a fresh stripe."
+      },
+      "locale_spelling_targets": {
+        "en-US": {
+          "servd": "served",
+          "center": "center"
+        },
+        "en-GB": {
+          "servd": "served",
+          "centre": "centre"
+        }
+      },
+      "grammar_targets": {
+        "point were": "point was"
+      },
+      "voice_tokens": ["clipped the net", "laughed and tried again", "kept score on the gym wall", "felt earned"],
+      "forbidden_rewrites": ["made contact with the net", "recorded the score on the wall", "the outcome felt justified"],
+      "dialect_equivalents": {
+        "center": ["center", "centre"]
+      },
+      "negative_control": {
+        "id": "NC-07",
+        "protected_span": "final point",
+        "known_false_forms": [
+          {
+            "text": "first point",
+            "basis": "Predefined change to the stated sequence, drafted before any v0.5 outputs were collected."
+          }
+        ],
+        "why_wrong": "Changing 'final' to 'first' changes which point is being described."
+      }
+    },
+    {
+      "id": "V05-08",
+      "domain": "Handmade-jewelry market",
+      "locale_cue": {
+        "en-US": "jewelry",
+        "en-GB": "jewellery"
+      },
+      "inputs": {
+        "en-US": "I kept the tiny brass earrings in a jam jar so they wouldn't vanish between markets. The jewelry clasp was fidly, and the blue display card had one bent corner. Three pair of earrings was gone by lunch.",
+        "en-GB": "I kept the tiny brass earrings in a jam jar so they wouldn't vanish between markets. The jewellery clasp was fidly, and the blue display card had one bent corner. Three pair of earrings was gone by lunch."
+      },
+      "locale_spelling_targets": {
+        "en-US": {
+          "jewelry": "jewelry",
+          "fidly": "fiddly"
+        },
+        "en-GB": {
+          "jewellery": "jewellery",
+          "fidly": "fiddly"
+        }
+      },
+      "grammar_targets": {
+        "pair of earrings was": "pairs of earrings were"
+      },
+      "voice_tokens": ["tiny brass earrings", "jam jar", "fiddly", "bent corner"],
+      "forbidden_rewrites": ["small brass ear ornaments", "storage container", "the fastener was difficult to operate"],
+      "dialect_equivalents": {
+        "jewelry": ["jewelry", "jewellery"]
+      },
+      "negative_control": {
+        "id": "NC-08",
+        "protected_span": "blue display card",
+        "known_false_forms": [
+          {
+            "text": "amber display card",
+            "basis": "Predefined change to a stated identifying detail, drafted before any v0.5 outputs were collected."
+          }
+        ],
+        "why_wrong": "Changing the display card's stated color alters a concrete detail."
+      }
+    },
+    {
+      "id": "V05-09",
+      "domain": "Wet-weather ridge walk",
+      "locale_cue": {
+        "en-US": "gray",
+        "en-GB": "grey"
+      },
+      "inputs": {
+        "en-US": "Mist rolled over the ridge and soaked the map in my jacket pocket. We took the longer trail, though the sign say it was closd. My old gray flask rattled against the compass; I kept saying, 'we're fine, just damp.'",
+        "en-GB": "Mist rolled over the ridge and soaked the map in my jacket pocket. We took the longer trail, though the sign say it was closd. My old grey flask rattled against the compass; I kept saying, 'we're fine, just damp.'"
+      },
+      "locale_spelling_targets": {
+        "en-US": {
+          "closd": "closed",
+          "gray": "gray"
+        },
+        "en-GB": {
+          "closd": "closed",
+          "grey": "grey"
+        }
+      },
+      "grammar_targets": {
+        "sign say": "sign said"
+      },
+      "voice_tokens": ["mist rolled over the ridge", "longer trail", "rattled against the compass", "just damp"],
+      "forbidden_rewrites": ["fog covered the mountain crest", "we selected the extended route", "the container struck the navigational instrument"],
+      "dialect_equivalents": {
+        "gray": ["gray", "grey"]
+      },
+      "negative_control": {
+        "id": "NC-09",
+        "protected_span": "longer trail",
+        "known_false_forms": [
+          {
+            "text": "shorter trail",
+            "basis": "Predefined route-detail change, drafted before any v0.5 outputs were collected."
+          }
+        ],
+        "why_wrong": "Changing 'longer' to 'shorter' changes which route the group took."
+      }
+    },
+    {
+      "id": "V05-10",
+      "domain": "Keepsake tin",
+      "locale_cue": {
+        "en-US": "favorite",
+        "en-GB": "favourite"
+      },
+      "inputs": {
+        "en-US": "I keep a biscuit tin full of paper stars, bent notes, and one croocked photograph. On rough days, the little blue star is my favorite; its paper edges was cut unevenly, and that's why I like it.",
+        "en-GB": "I keep a biscuit tin full of paper stars, bent notes, and one croocked photograph. On rough days, the little blue star is my favourite; its paper edges was cut unevenly, and that's why I like it."
+      },
+      "locale_spelling_targets": {
+        "en-US": {
+          "croocked": "crooked",
+          "favorite": "favorite"
+        },
+        "en-GB": {
+          "croocked": "crooked",
+          "favourite": "favourite"
+        }
+      },
+      "grammar_targets": {
+        "edges was": "edges were"
+      },
+      "voice_tokens": ["biscuit tin", "bent notes", "crooked photograph", "that's why I like it"],
+      "forbidden_rewrites": ["a container for paper decorations", "a damaged image", "the document's borders were cut irregularly"],
+      "dialect_equivalents": {
+        "favorite": ["favorite", "favourite"]
+      },
+      "negative_control": {
+        "id": "NC-10",
+        "protected_span": "little blue star",
+        "known_false_forms": [
+          {
+            "text": "little red star",
+            "basis": "Predefined change to a stated identifying detail, drafted before any v0.5 outputs were collected."
+          }
+        ],
+        "why_wrong": "Changing the star's stated color alters the keepsake being described."
+      }
+    }
+  ]
+}

@@ -5,7 +5,7 @@ import re
 
 
 def _tokens(text):
-    return re.findall(r"[^\W_]+(?:['’][^\W_]+)?", text.casefold(), flags=re.UNICODE)
+    return re.findall(r"[^\W_]+(?:['\u2019][^\W_]+)?", text.casefold(), flags=re.UNICODE)
 
 
 def _find_occurrences(tokens, phrase):

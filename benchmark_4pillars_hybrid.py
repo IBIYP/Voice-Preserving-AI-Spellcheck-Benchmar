@@ -2,7 +2,7 @@
 """
 Open Spelling & Grammar Benchmark: v4.0 Quality and Diagnostic Evaluation
 ==========================================================================
-Bad Character Scanner Codebase Inc. (BCSC) - Open Benchmark Working Group
+IBIYP - Open Benchmark
 
 A transparent empirical evaluation framework for spelling and grammar engines:
 1. Spelling Accuracy (Orthography, severe dysgraphia, phonetic slips)
@@ -29,6 +29,12 @@ from text_matching import (
     score_writer_voice,
 )
 from correction_site_diagnostic import score_correction_sites, score_target_accuracy
+from collection_provenance import (
+    COLLECTION_LOCALES,
+    COLLECTION_MODES,
+    COLLECTION_ROUTES,
+    COLLECTION_SOURCE_URLS,
+)
 
 # Definition of the 10 blind unseen domain evaluation units
 # Each unit has decoupled targets:
@@ -37,7 +43,6 @@ from correction_site_diagnostic import score_correction_sites, score_target_accu
 # - voice_tokens: stylistic markers, slang, and authorial expressions
 # - dialect_equivalents: acceptable regional/vernacular variants (multi-reference)
 # - forbidden_rewrites: corporate/robotic paraphrases (over-editing)
-# - hallucination_signatures: v3 legacy annotations; unused by v4 scoring
 
 UNSEEN_BENCHMARK_UNITS = [
     {
@@ -65,14 +70,6 @@ UNSEEN_BENCHMARK_UNITS = [
             "negotiate our way past the security team",
             "far too exciting"
         ],
-        "hallucination_signatures": {
-            "BCorrect (FMM)": ["strait fire"],
-            "LanguageTool API": [],
-            "TextGears API": [],
-            "DeepL Write": ["misplaced his ticket", "negotiate our way past the security team", "far too exciting"],
-            "Sapling Grammar Checker": ["so that concert", "on cap"],
-            "JSpell Free Web Checker": ["You that concert", "lost his tick"]
-        }
     },
     {
         "id": "H-02",
@@ -104,14 +101,6 @@ UNSEEN_BENCHMARK_UNITS = [
             "calculated that",
             "heavy rainstorm"
         ],
-        "hallucination_signatures": {
-            "BCorrect (FMM)": ["watch in the cri"],
-            "LanguageTool API": ["watching the erik rise"],
-            "TextGears API": [],
-            "DeepL Write": ["heavy rainstorm", "my grandfather", "rocking slowly"],
-            "Sapling Grammar Checker": [],
-            "JSpell Free Web Checker": []
-        }
     },
     {
         "id": "H-03",
@@ -139,14 +128,6 @@ UNSEEN_BENCHMARK_UNITS = [
             "extracted the confidential data",
             "counter-intrusion software"
         ],
-        "hallucination_signatures": {
-            "BCorrect (FMM)": [],
-            "LanguageTool API": ["trace her signed", "she jack into"],
-            "TextGears API": [],
-            "DeepL Write": ["counter-intrusion software", "accessed the local network", "extracted the encrypted data"],
-            "Sapling Grammar Checker": [],
-            "JSpell Free Web Checker": ["dump the encrypted payload", "trace her signed"]
-        }
     },
     {
         "id": "H-04",
@@ -177,14 +158,6 @@ UNSEEN_BENCHMARK_UNITS = [
             "diminished the subtle qualities",
             "delicate taste"
         ],
-        "hallucination_signatures": {
-            "BCorrect (FMM)": [],
-            "LanguageTool API": [],
-            "TextGears API": [],
-            "DeepL Write": ["featured wonderfully crispy skin", "proved excessively acidic", "completely masked"],
-            "Sapling Grammar Checker": [],
-            "JSpell Free Web Checker": []
-        }
     },
     {
         "id": "H-05",
@@ -225,17 +198,6 @@ UNSEEN_BENCHMARK_UNITS = [
             "violet world",
             "wept profusely"
         ],
-        "hallucination_signatures": {
-            "BCorrect (FMM)": ["mom work me up"],
-            "LanguageTool API": ["flying thou the stars", "pursue planet", "up for stool"],
-            "TextGears API": ["pupil planet", "bauble lakes", "up for skoal"],
-            "DeepL Write": ["celestial spacecraft", "traveling across the cosmos", "violet world", "sparkling lakes"],
-            "Sapling Grammar Checker": [],
-            "JSpell Free Web Checker": [
-                "niter", "rocket boosts", "purl planet", "cried ween",
-                "mom wok", "for solo"
-            ]
-        }
     },
     {
         "id": "H-06",
@@ -268,14 +230,6 @@ UNSEEN_BENCHMARK_UNITS = [
             "annualized recurring revenue",
             "unmatched pace"
         ],
-        "hallucination_signatures": {
-            "BCorrect (FMM)": [],
-            "LanguageTool API": [],
-            "TextGears API": ["our vac dropped"],
-            "DeepL Write": ["customer acquisition costs", "annualized recurring revenue", "unmatched pace"],
-            "Sapling Grammar Checker": [],
-            "JSpell Free Web Checker": ["Our ca dropped", "while AR hit", "our Peachtree"]
-        }
     },
     {
         "id": "H-07",
@@ -307,14 +261,6 @@ UNSEEN_BENCHMARK_UNITS = [
             "decisive perimeter shot",
             "clinched the championship title"
         ],
-        "hallucination_signatures": {
-            "BCorrect (FMM)": ["at the buyer"],
-            "LanguageTool API": ["pick and room", "at the buyer"],
-            "TextGears API": ["pick and roil"],
-            "DeepL Write": ["tactical sequence", "pick-and-roll maneuver impeccably", "decisive perimeter shot", "clinched the championship title"],
-            "Sapling Grammar Checker": [],
-            "JSpell Free Web Checker": ["to preference", "the thirteenth at"]
-        }
     },
     {
         "id": "H-08",
@@ -342,14 +288,6 @@ UNSEEN_BENCHMARK_UNITS = [
             "subdued sorrow lingered",
             "closing season"
         ],
-        "hallucination_signatures": {
-            "BCorrect (FMM)": ["slow exiled of another dying year"],
-            "LanguageTool API": ["autumn leave spiraled", "abandoned tax"],
-            "TextGears API": ["abandoned Trax"],
-            "DeepL Write": ["golden autumn foliage", "neglected rails", "subdued sorrow", "closing season"],
-            "Sapling Grammar Checker": ["abandoned train tracks"],
-            "JSpell Free Web Checker": ["across the abandon Tara"]
-        }
     },
     {
         "id": "H-09",
@@ -379,16 +317,6 @@ UNSEEN_BENCHMARK_UNITS = [
             "watercourse",
             "warning pigmentation"
         ],
-        "hallucination_signatures": {
-            "BCorrect (FMM)": [],
-            "LanguageTool API": ["dendrites tinctorial"],
-            "TextGears API": ["dendrites tinctures", "postmark coloration"],
-            "DeepL Write": ["researchers identified", "instances of the poison frog", "watercourse", "dense overhead foliage"],
-            "Sapling Grammar Checker": ["tintorius"],
-            "JSpell Free Web Checker": [
-                "Observe three", "tenderfoots", "tinctures", "Postmates coloration"
-            ]
-        }
     },
     {
         "id": "H-10",
@@ -417,14 +345,6 @@ UNSEEN_BENCHMARK_UNITS = [
             "assume financial responsibility",
             "non-willful contractual default"
         ],
-        "hallucination_signatures": {
-            "BCorrect (FMM)": [],
-            "LanguageTool API": ["neither party shall be label"],
-            "TextGears API": ["neither party shall be label"],
-            "DeepL Write": ["section 4.2 establishes", "under no circumstance", "assume financial responsibility"],
-            "Sapling Grammar Checker": [],
-            "JSpell Free Web Checker": []
-        }
     }
 ]
 
@@ -437,26 +357,6 @@ ENGINES = [
     "JSpell Free Web Checker",
     "Grammarly Free Grammar Checker",
 ]
-
-COLLECTION_MODES = {
-    "BCorrect (FMM)": "api",
-    "LanguageTool API": "api",
-    "TextGears API": "api",
-    "DeepL Write": "not reported",
-    "Sapling Grammar Checker": "web_demo",
-    "JSpell Free Web Checker": "web_demo",
-    "Grammarly Free Grammar Checker": "web_demo",
-}
-
-COLLECTION_LOCALES = {
-    "BCorrect (FMM)": "not reported",
-    "LanguageTool API": "en-US",
-    "TextGears API": "en-US",
-    "DeepL Write": "not reported",
-    "Sapling Grammar Checker": "not reported",
-    "JSpell Free Web Checker": "English (US)",
-    "Grammarly Free Grammar Checker": "not reported",
-}
 
 TARGET_SCORING_REVISION = "aligned-correction-sites-v1"
 GRAMMARLY_RESULTS_PATH = os.path.join(
@@ -640,8 +540,7 @@ def evaluate_unit(
         include_identity_only=locale is not None,
     )
 
-    # The v4 diagnostic is reported separately until its interpretation is
-    # validated; it does not contribute to the legacy composite.
+    # The current diagnostic is reported separately from the quality composite.
     quality_composite = (
         (0.4375 * spelling_acc)
         + (0.3125 * grammar_acc)
@@ -827,7 +726,7 @@ def run_comprehensive_benchmark():
                 2,
             )
 
-    # Save v4 output separately; the v3 artifact remains the historical record.
+    # Save the current artifact separately from archived raw results.
     dataset_digest = _stable_digest(
         [
             {
@@ -868,11 +767,13 @@ def run_comprehensive_benchmark():
                 engine: {
                     "version": "not reported",
                     "source_run_id": "not recorded",
+                    "collection_timestamp_utc": "not recorded",
                     "collection_mode": COLLECTION_MODES[engine],
+                    "collection_route": COLLECTION_ROUTES[engine],
+                    "source_url": COLLECTION_SOURCE_URLS[engine],
                     "locale": COLLECTION_LOCALES[engine],
                     **(
                         {
-                            "source_url": grammarly_metadata.get("source_url"),
                             "collection_date": grammarly_metadata.get("collection_date"),
                             "selection_policy": grammarly_metadata.get("selection_policy"),
                         }

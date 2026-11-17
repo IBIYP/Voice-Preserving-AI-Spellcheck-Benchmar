@@ -1,0 +1,132 @@
+{
+  "schema_version": 2,
+  "snapshots": [
+    {
+      "id": "v0.3-h-suite",
+      "release": "v0.3",
+      "artifact": "archive/v0.3/blind_4pillars_eval_run.json",
+      "result_version": "3.0-blind",
+      "score_field": "hybrid_meta_score",
+      "metric": "Legacy four-pillar hybrid meta-score",
+      "methodology": "35% spelling, 25% grammar, 20% voice, 20% exploratory exact-match engine-specific signature diagnostic (not a general hallucination rate)",
+      "pillar_fields": {
+        "spelling": "spelling_accuracy",
+        "grammar": "grammar_accuracy",
+        "voice": "voice_preservation",
+        "signature_diagnostic": "anti_hallucination",
+        "composite": "hybrid_meta_score"
+      },
+      "pillars": {
+        "BCorrect (FMM)": {
+          "spelling": 84.8,
+          "grammar": 63.3,
+          "voice": 88.86,
+          "signature_diagnostic": 87.5,
+          "composite": 80.8
+        },
+        "LanguageTool API": {
+          "spelling": 81.2,
+          "grammar": 77.5,
+          "voice": 84.07,
+          "signature_diagnostic": 70.0,
+          "composite": 78.6
+        },
+        "TextGears API": {
+          "spelling": 82.7,
+          "grammar": 71.7,
+          "voice": 83.19,
+          "signature_diagnostic": 77.5,
+          "composite": 79.0
+        },
+        "DeepL Write": {
+          "spelling": 94.7,
+          "grammar": 72.5,
+          "voice": 67.13,
+          "signature_diagnostic": 97.5,
+          "composite": 84.2
+        },
+        "Sapling Grammar Checker": {
+          "spelling": 94.2,
+          "grammar": 100.0,
+          "voice": 89.07,
+          "signature_diagnostic": 90.0,
+          "composite": 93.8
+        },
+        "JSpell Free Web Checker": {
+          "spelling": 76.8,
+          "grammar": 40.8,
+          "voice": 84.92,
+          "signature_diagnostic": 55.0,
+          "composite": 65.1
+        }
+      }
+    },
+    {
+      "id": "v0.4-h-suite",
+      "release": "v0.4",
+      "artifact": "raw_results/blind_4pillars_eval_run_v4.json",
+      "result_version": "4.0",
+      "score_field": "quality_composite",
+      "metric": "Three-pillar quality composite",
+      "methodology": "43.75% spelling, 31.25% grammar, 25% voice; edit diagnostic is separate",
+      "pillar_fields": {
+        "spelling": "spelling_accuracy",
+        "grammar": "grammar_accuracy",
+        "voice": "voice_preservation",
+        "diagnostic_unapproved_rate": "correction_site_diagnostic.unapproved_edit_rate",
+        "composite": "quality_composite"
+      },
+      "pillars": {
+        "BCorrect (FMM)": {
+          "spelling": 79.6,
+          "grammar": 58.3,
+          "voice": 88.86,
+          "diagnostic_unapproved_rate": 11.5,
+          "composite": 75.3
+        },
+        "LanguageTool API": {
+          "spelling": 75.5,
+          "grammar": 50.0,
+          "voice": 84.07,
+          "diagnostic_unapproved_rate": 26.2,
+          "composite": 69.7
+        },
+        "TextGears API": {
+          "spelling": 75.5,
+          "grammar": 66.7,
+          "voice": 83.19,
+          "diagnostic_unapproved_rate": 11.5,
+          "composite": 74.7
+        },
+        "DeepL Write": {
+          "spelling": 87.8,
+          "grammar": 66.7,
+          "voice": 67.13,
+          "diagnostic_unapproved_rate": 16.4,
+          "composite": 76.0
+        },
+        "Sapling Grammar Checker": {
+          "spelling": 93.9,
+          "grammar": 100.0,
+          "voice": 89.07,
+          "diagnostic_unapproved_rate": 3.3,
+          "composite": 94.6
+        },
+        "JSpell Free Web Checker": {
+          "spelling": 71.4,
+          "grammar": 33.3,
+          "voice": 84.92,
+          "diagnostic_unapproved_rate": 29.5,
+          "composite": 62.9
+        },
+        "Grammarly Free Grammar Checker": {
+          "spelling": 93.9,
+          "grammar": 100.0,
+          "voice": 96.83,
+          "diagnostic_unapproved_rate": 4.9,
+          "composite": 96.5
+        }
+      }
+    }
+  ]
+}

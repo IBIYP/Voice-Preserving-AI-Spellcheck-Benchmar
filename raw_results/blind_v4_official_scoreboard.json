@@ -13,32 +13,56 @@
     "BCorrect (FMM)": {
       "version": "not reported",
       "source_run_id": "not recorded",
-      "collection_mode": "api"
+      "collection_timestamp_utc": "not recorded",
+      "collection_mode": "api",
+      "collection_route": "API",
+      "source_url": "https://bcorrect-api.fly.dev/api/v1/check",
+      "locale": "not reported"
     },
     "LanguageTool API": {
       "version": "not reported",
       "source_run_id": "not recorded",
-      "collection_mode": "api"
+      "collection_timestamp_utc": "not recorded",
+      "collection_mode": "api",
+      "collection_route": "first-party API",
+      "source_url": "https://api.languagetool.org/v2/check",
+      "locale": "en-US"
     },
     "TextGears API": {
       "version": "not reported",
       "source_run_id": "not recorded",
-      "collection_mode": "api"
+      "collection_timestamp_utc": "not recorded",
+      "collection_mode": "api",
+      "collection_route": "RapidAPI gateway",
+      "source_url": "https://textgears-textgears-v1.p.rapidapi.com/spelling",
+      "locale": "en-US"
     },
     "DeepL Write": {
       "version": "not reported",
       "source_run_id": "not recorded",
-      "collection_mode": "not reported"
+      "collection_timestamp_utc": "not recorded",
+      "collection_mode": "not reported",
+      "collection_route": "not reported",
+      "source_url": "not recorded",
+      "locale": "not reported"
     },
     "Sapling Grammar Checker": {
       "version": "not reported",
       "source_run_id": "not recorded",
-      "collection_mode": "web_demo"
+      "collection_timestamp_utc": "not recorded",
+      "collection_mode": "web_demo",
+      "collection_route": "first-party web demo",
+      "source_url": "https://sapling.ai/grammar-check",
+      "locale": "not reported"
     },
     "JSpell Free Web Checker": {
       "version": "not reported",
       "source_run_id": "not recorded",
-      "collection_mode": "web_demo"
+      "collection_timestamp_utc": "not recorded",
+      "collection_mode": "web_demo",
+      "collection_route": "first-party web checker",
+      "source_url": "https://www.jspell.com/checker/",
+      "locale": "English (US)"
     }
   },
   "mode": "cached",

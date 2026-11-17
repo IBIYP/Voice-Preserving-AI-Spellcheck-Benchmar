@@ -1,188 +1,38 @@
-# Raw Results for the Voice-Preserving AI Spellcheck Benchmark v0.4
-**Bad Character Scanner Codebase Inc. (BCSC)**  
-*Last Updated: November 15, 2026 | Public Benchmark Release: v0.4 | Result Artifact Version: 4.0*
-*Evaluated Systems: BCorrect API, LanguageTool API, TextGears API, DeepL Write, Sapling web demo, JSpell web checker*
+# Raw Results
 
-The Blind suite and v3 historical artifacts contain six fully evaluated
-systems. The current H-suite v4 artifact contains seven complete systems,
-including Grammarly; Grammarly has no Blind-suite outputs. The H-suite remains
-a single-locale baseline, not a paired locale comparison. LanguageTool and
-TextGears were queried with `en-US`; JSpell reports English (US), and the
-locale for the other engines, including Grammarly, is unreported.
+The v0.5 protocol is not frozen. This directory contains no v0.5 engine
+outputs or scorecards, and no new provider calls have been made for it.
 
-**Paired locale collection status:** `h_suite_locale_runs_v1.json` now contains
-80 of 140 outputs: LanguageTool, DeepL Write, TextGears, and JSpell for all
-ten passages in both locales. TextGears was run through its free portal with
-American and British selected explicitly; the first suggestion for each
-initial issue was applied once, without rechecking, and latency was not
-measured. The cache remains `partial` and cannot be scored or charted yet.
-The BCorrect Test-Demo portal infers dialect from writing style but has no
-explicit locale control; its Standard profile also reports three passes, so
-it cannot provide separate controlled en-US and en-GB results under the
-paired collection protocol. The Sapling free demo does not expose locale
-selection, and the Grammarly page did not expose usable suggestions.
+See the [protocol and freeze requirements](../documentation/benchmark-v0.5-draft.md)
+before collecting anything. Do not copy outputs from another test method into
+a v0.5 cache.
 
-Full corrected en-US and en-GB H-suite reference passages are saved separately.
-They are not exact-string scoring targets; the evaluator continues to score
-aligned correction sites and writer's voice. Paired locale results require new
-outputs collected separately in both locale settings.
+## Future cache contract
 
----
+The future `v0.5_anchor_runs.json` cache must have:
 
-**JSpell status:** Scores and one-pass outputs from JSpell's free web checker are included. They are not results from the Cloud API or RapidAPI endpoint; that separate API route returned HTTP 403 during collection.
+- `metadata.status`: `"complete"`;
+- `protocol_version` and `protocol_sha256`, matching the frozen manifest;
+- `locale_mode`: `"automatic"`;
+- `control_set_frozen_at_utc` and `collection_started_at_utc`, both timezone-
+  aware UTC timestamps, with collection strictly after freeze;
+- `engine_metadata`, keyed by engine, with `product_version`, `collection_route`,
+  `source_url`, and `locale_setting` (`"auto-detect"` or `"not-set"`);
+- `outputs`, keyed by all 20 sample IDs (`V05-01-en-US` through `V05-10-en-GB`),
+  each with the exact input's SHA-256 and one non-empty output per engine;
+- optional `latency_ms`, recorded only when actually measured (otherwise
+  `null`).
 
-## 1. Directory Structure
+Every engine in a run must have output for every sample. Missing, extra, or
+changed inputs are errors; the scorer does not fill gaps or substitute another
+locale. Preserve the exact submitted text and output where publication is
+permitted. Record unreported version or route information explicitly rather
+than estimating it.
 
-This directory contains raw benchmark outputs and latency recordings where they were collected. Sapling and JSpell are full participants in both sub-benchmarks, with manually collected one-pass web-demo outputs rather than API calls. Their latency is unavailable (`n/a`; JSON `null`), not assumed or estimated.
+## Privacy and external data
 
-| File | Description | Source / Methodology |
-| :--- | :--- | :--- |
-| **`unseen_10_domains_live_run.json`** | Raw response text and response latencies across 10 unseen writing domains | Direct live REST queries to `api.languagetool.org`, `bcorrect-api.fly.dev`, and RapidAPI TextGears |
-| **`blind_v3_sapling_outputs.json`** | Sapling's B-suite output text and initial suggestion record | Interactive free web demo; apply initial suggestions once at original offsets; no recheck; latency not measured |
-| **`blind_v4_official_scoreboard.json`** | Blind v4 aggregate scores and correction-site diagnostic | Cached outputs rescored under shared v4 annotations; v3 results retained separately |
-| **`blind_4pillars_eval_run_v4.json`** | H-suite v4 per-passage results and correction-site diagnostic | Cached outputs rescored under shared v4 annotations; v3 results retained separately |
-| **`h_suite_locale_golden_texts.json`** | Full corrected en-US and en-GB reference passages for H-01 through H-10 | Reference examples; not exact-string scoring targets |
-| **`jspell_web_checker_outputs.json`** | JSpell H- and B-suite output text, source hashes, and initial suggestion record | Interactive free web checker; first displayed suggestion applied once; no recheck; latency not measured |
-| **`grammarly_web_checker_outputs.json`** | Complete Grammarly H-suite output | Manual web demo; first visible suggestion accepted once per issue; locale unreported; latency not measured; no Blind-suite outputs |
-| **`h_suite_locale_runs_v1.json`** *(partial; not scoreable)* | Live paired output cache for LanguageTool, DeepL Write, TextGears, and JSpell | Must contain all 7 engines and H-01 through H-10 in each locale before paired scoring or charts are generated |
-| **`h_suite_locale_eval_v1.json`** *(not generated)* | Paired locale scorecards and per-passage metrics | Generated by `python evaluate_paired_locales.py` after the complete paired cache exists |
-| **`jspell_control_outputs.json`** *(not collected)* | Optional JSpell Cloud API/RapidAPI collector output | `python run_jspell_control.py`; requires `JSPELL_RAPIDAPI_KEY` and the private B-suite cache; API returned HTTP 403 during this collection |
-| **`norvig_birkbeck_30_pairs.json`** | Orthographic spelling recovery on 30 standard human misspellings | Evaluated against Norvig and Birkbeck spelling corpora |
-
----
-
-## Paired Locale Cache Contract
-
-The paired evaluator requires a JSON object with `metadata.status` set to
-`"complete"` and a `locale_runs` object containing exactly `en-US` and
-`en-GB`. Each locale entry must identify its locale and contain a `passages`
-object with exactly H-01 through H-10. Each passage must contain exactly the
-seven engine names used by the H-suite, with a non-empty `text` string and an
-optional `lat` value (`null` when not measured). A missing or malformed output
-is an error; the evaluator does not substitute the single-locale baseline.
-The checked-in cache is intentionally incomplete and will fail validation.
-
-The locale evaluator applies the spelling forms in
-`h_suite_locale_golden_texts.json` at aligned source sites, counts an
-unchanged form when it is the locale's expected spelling, and keeps the
-existing Voice formula unchanged. Once the full cache is available, run:
-
-```bash
-python evaluate_paired_locales.py
-python generate_charts.py
-```
-
-The chart generator then adds separate paired-locale SVGs; existing v4
-single-locale charts and blended v0.3/v0.4 history charts remain distinct.
-
-## 2. API Endpoints & How Systems Were Queried
-
-### 1. LanguageTool API (Free Open-Source REST Endpoint)
-- **Endpoint:** `https://api.languagetool.org/v2/check`
-- **Method:** `POST`
-- **Payload:** `{"text": "<input_string>", "language": "en-US"}`
-- **Authentication:** None (LanguageTool provides a public, zero-cost REST endpoint with IP-based rate limiting of 20-30 requests/min).
-- **Correction Application:** Matches are sorted in reverse offset order and the top replacement suggestion (`replacements[0].value`) is spliced directly into the text.
-
-### 2. BCorrect API (Fly.dev Production Instance)
-- **Endpoint:** `https://bcorrect-api.fly.dev/api/v1/check`
-- **Method:** `POST`
-- **Headers:** `{"Content-Type": "application/json", "X-API-Key": "<BCORRECT_API_KEY>"}`
-- **Payload:** `{"text": "<input_string>"}`
-- **Authentication:** Direct API key supplied via `.env` (`BCORRECT_API_KEY`).
-
-### 3. TextGears API (RapidAPI Developer Gateway)
-- **Endpoint:** `https://textgears-textgears-v1.p.rapidapi.com/spelling`
-- **Method:** `POST`
-- **Headers:** `{"Content-Type": "application/x-www-form-urlencoded", "X-RapidAPI-Key": "<TEXTGEARS_API_KEY>"}`
-- **Payload:** `{"text": "<input_string>", "language": "en-US"}`
-- **Authentication:** Commercial RapidAPI key supplied via `.env` (`TEXTGEARS_API_KEY`).
-
-### TextGears Free Grammar-Check Portal (Paired Locale Cache)
-- **URL:** `https://textgears.com/check-grammar-online`
-- **Locale:** Select `American` for en-US and `British` for en-GB.
-- **Correction application:** Run the exact H-suite input once, apply the first visible suggestion for each issue, and do not recheck after edits.
-- **Latency:** Not measured; paired cache values are `null`.
-- **Scope:** These paired H-suite entries are from the web portal, not the RapidAPI endpoint above.
-
-### 4. DeepL Write (Neural Rewriter Baseline)
-- **Endpoint:** Web / REST Interface
-- **Method:** Evaluated across identical input strings in November 2026.
-
-### 5. Sapling Grammar Checker (Interactive Web Demo)
-- **URL:** `https://sapling.ai/grammar-check`
-- **Method:** Initial visible suggestions were applied once at their original offsets. The checker was not rerun after applying edits, so edits did not trigger a second suggestion pass.
-- **Latency:** Not measured; the result is recorded as `null` (`n/a` in reports) and excluded from speed comparisons.
-- **Scope:** This is a manually exercised web-demo result, not a production API evaluation.
-- **Privacy:** Input text was submitted to a third-party service; check Sapling's privacy policy before submitting non-public text.
-- **Text encoding:** The H-06 contraction apostrophe is normalized to ASCII in the saved output.
-
-### 6. JSpell Free Web Checker
-- **URL:** `https://www.jspell.com/checker/`
-- **Method:** Interactive English (US) checker; this is not the Cloud API or RapidAPI service.
-- **Correction application:** For each visible spelling error, apply the first displayed suggestion once in the same session, without rechecking. The saved record retains corrected text, ordered initial suggestions, and SHA-256 fingerprints of source inputs.
-- **Scope:** Dictionary spelling only; it does not check grammar or rewrite text. The v4 quality composite includes a grammar pillar, so its missed grammar target is scored as a miss; the separate correction-site diagnostic is not part of the composite.
-- **Latency:** Not measured; the result is recorded as `null` (`n/a` in reports) and excluded from speed comparisons.
-- **Privacy and source data:** JSpell states that submitted text is checked and discarded. The Blind v3 input passages are omitted from the public result file; only their fingerprints and outputs are included.
-
-The separate Cloud API collector is retained for a future attempt, but its HTTP 403 responses mean no API output or score is included here.
-
----
-
-## 3. Scoring Method
-
-The evaluation passages and expected corrections are fixed, curated data; no essays are generated or randomized during evaluation. Each engine receives the same passage text. H-suite inputs and annotations are public; B-suite source passages are private locally, but much of the scoring logic is public, so neither should be described as an adversarially secure hidden test set.
-
-Spelling and grammar use scoring revision `aligned-correction-sites-v1`. Accepted
-forms must align to the annotated source occurrence; a phrase elsewhere cannot
-earn a hit. Unchanged text is accepted only when the annotation explicitly
-includes the source as a valid form. Identity-only annotations are excluded
-from the target denominator. Hits and applicable targets are pooled across
-each suite.
-
-Voice scoring revision `lexical-marker-f1-v2` computes case-folded word-token LCS F1 outside annotated correction spans, multiplies each passage score by its curated voice-marker retention, then applies a suite-wide penalty of 10% per matched over-edit signature (capped at 80%). Accepted dialect equivalents are normalized, and accepted correction forms are excluded from the voice comparison. Correction spans are paired deterministically by approximate relative position. These rules are lexical heuristics, not semantic or tone understanding.
-
-The Voice formula is unchanged by the target-scoring correction: it continues
-to reward preservation of the writer's wording and curated dialect markers,
-while penalizing unprompted additions and known over-edits.
-
-The v4 correction-site diagnostic aligns output tokens to input tokens and checks annotated spelling/grammar sites against shared accepted forms. It reports unapproved edits and applicable sites; it does not inspect edits outside those sites or determine meaning. It is not a hallucination rate and is excluded from the quality composite. The old engine-specific signature metric and composite are preserved in the v3 artifacts as legacy data.
-
-The local evaluator reads the saved outputs and annotations and calculates the v4 scores without contacting the engines. The Blind source passages remain in a private local cache and are not included in this public repository.
-
----
-
-## 4. JSON Schema: `unseen_10_domains_live_run.json`
-
-Each entry corresponds to a test passage ID (`H-01` through `H-10`) containing the recorded outputs for each engine. API latency fields are available where measured. H-suite report latency is the mean of non-null per-passage REST timings in this file, not local engine execution time. DeepL has no recorded timing; Sapling and JSpell web-demo entries have no latency measurements and their initial suggestion records are stored in separate files. Engine versions and original per-engine run IDs were not captured; generated score artifacts record these as unavailable rather than infer them:
-
-```json
-{
-  "H-01": {
-    "BCorrect (FMM)": {
-      "text": "Yo that concert was strait fire no cap, but my friend lost his ticket at the entrance...",
-      "lat": 2007.5
-    },
-    "LanguageTool API": {
-      "text": "Yo that concert was straight fire no cap, but my friend lost his ticket at the entrance...",
-      "lat": 611.8
-    },
-    "TextGears API": {
-      "text": "Yo that concert was straight fire no cap, but my friend lost his ticket at the entrance...",
-      "lat": 952.3
-    }
-  }
-}
-```
-
----
-
-## 5. Reproducing the Scored Results
-
-The evaluation scripts score the checked-in cached outputs without querying external services:
-```bash
-python benchmark_4pillars_hybrid.py
-python evaluate_blind_v4.py
-```
-
-The original API calls and web-demo interaction are not replayed by those commands. Any new live collection should be recorded separately, with credentials kept out of the repository and web-demo latency left unavailable unless actually measured.
+Do not include credentials, private customer text, or other sensitive material
+in public result files. Submit only inputs and outputs that may be published.
+The former spelling-pair panel has not been cleared for redistribution and is
+not part of the v0.5 four-pillar score; see
+[`../documentation/research-and-tooling-provenance.md`](../documentation/research-and-tooling-provenance.md).

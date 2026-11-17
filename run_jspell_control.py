@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Collect JSpell dictionary-check outputs for the H and Blind v3 suites."""
+"""Collect JSpell Cloud API outputs for the v0.4 H-suite."""
 
 import argparse
 from datetime import datetime, timezone
@@ -20,7 +20,6 @@ ROOT = Path(__file__).resolve().parent
 API_URL = "https://jspell-checker.p.rapidapi.com/check"
 API_HOST = "jspell-checker.p.rapidapi.com"
 API_KEY_NAME = "JSPELL_RAPIDAPI_KEY"
-BLIND_V3_INPUTS = ROOT / "Docs" / "Notes" / "blind_v3_live_runs_full.json"
 OUTPUT_PATH = ROOT / "raw_results" / "jspell_control_outputs.json"
 REQUEST_INTERVAL_SECONDS = 0.25
 
@@ -221,34 +220,17 @@ def process_response(text, response):
 
 def collect_passage(text, api_key):
     """Collect and time a single JSpell check."""
+    request_started_at_utc = datetime.now(timezone.utc).isoformat()
     started = time.perf_counter()
     response = request_jspell(text, api_key)
     latency_ms = (time.perf_counter() - started) * 1000
+    request_completed_at_utc = datetime.now(timezone.utc).isoformat()
     result = process_response(text, response)
     result["lat"] = round(latency_ms, 1)
+    result["request_started_at_utc"] = request_started_at_utc
+    result["request_completed_at_utc"] = request_completed_at_utc
     result["source_input_sha256"] = hashlib.sha256(text.encode("utf-8")).hexdigest()
     return result
-
-
-def load_blind_v3_inputs():
-    if not BLIND_V3_INPUTS.exists():
-        raise FileNotFoundError(
-            "Blind v3 input cache is missing at Docs/Notes/"
-            "blind_v3_live_runs_full.json"
-        )
-    with BLIND_V3_INPUTS.open("r", encoding="utf-8") as file:
-        cached_runs = json.load(file)
-    if not isinstance(cached_runs, dict):
-        raise ValueError("Blind v3 input cache must be a JSON object")
-
-    expected_ids = ["B-%02d" % number for number in range(1, 11)]
-    inputs = {}
-    for passage_id in expected_ids:
-        passage = cached_runs.get(passage_id)
-        if not isinstance(passage, dict) or not isinstance(passage.get("input"), str):
-            raise ValueError("Blind v3 cache is missing input for " + passage_id)
-        inputs[passage_id] = passage["input"]
-    return inputs
 
 
 def write_results_atomically(results, output_path):
@@ -273,23 +255,26 @@ def write_results_atomically(results, output_path):
 
 
 def collect_all(api_key):
-    """Collect every passage from both configured suites."""
+    """Collect every current H-suite passage."""
+    run_started_at_utc = datetime.now(timezone.utc).isoformat()
     h_inputs = {
         unit["id"]: unit["input"] for unit in UNSEEN_BENCHMARK_UNITS
     }
-    b_inputs = load_blind_v3_inputs()
     all_passages = [
-        ("four_pillar", passage_id, text)
+        ("h_suite", passage_id, text)
         for passage_id, text in h_inputs.items()
-    ] + [
-        ("blind_v3", passage_id, text)
-        for passage_id, text in b_inputs.items()
     ]
 
     results = {
         "benchmark_metadata": {
             "engine": "JSpell Cloud Spell Check API",
             "source": "RapidAPI JSpell Cloud Spell Check API",
+            "collection_mode": "api",
+            "source_url": API_URL,
+            "gateway": "RapidAPI",
+            "api_host": API_HOST,
+            "product_version": "not reported",
+            "api_version": "not reported",
             "language": "enUS",
             "suggestion_policy": (
                 "Apply the first JSpell suggestion for each reported word once "
@@ -299,11 +284,10 @@ def collect_all(api_key):
                 "Elapsed time for one HTTP request and JSON response read; "
                 "does not include the inter-request pause."
             ),
-            "collected_at_utc": datetime.now(timezone.utc).isoformat(),
+            "run_started_at_utc": run_started_at_utc,
             "request_count": len(all_passages),
         },
-        "four_pillar": {},
-        "blind_v3": {},
+        "h_suite": {},
     }
 
     for index, (suite, passage_id, text) in enumerate(all_passages, start=1):
@@ -312,10 +296,12 @@ def collect_all(api_key):
         if index < len(all_passages):
             time.sleep(REQUEST_INTERVAL_SECONDS)
 
+    results["benchmark_metadata"]["run_completed_at_utc"] = (
+        datetime.now(timezone.utc).isoformat()
+    )
     latencies = [
         result["lat"]
-        for suite in ("four_pillar", "blind_v3")
-        for result in results[suite].values()
+        for result in results["h_suite"].values()
     ]
     results["benchmark_metadata"]["average_latency_ms"] = round(
         sum(latencies) / len(latencies), 1
@@ -325,7 +311,7 @@ def collect_all(api_key):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(
-        description="Collect JSpell outputs for the repository's two benchmark suites."
+        description="Collect JSpell Cloud API outputs for the v0.4 H-suite."
     )
     parser.add_argument(
         "--overwrite",

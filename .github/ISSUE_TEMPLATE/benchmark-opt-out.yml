@@ -1,0 +1,34 @@
+name: Provider opt-out or run correction
+description: Request exclusion from future runs or report a factual error
+title: "[Benchmark request]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Providers are eligible for benchmarking by default. One request is enough to stop future runs for the named product. Accurate published results remain as historical records by default.
+
+        You do not need to provide a personal name, email address, or legal notice. Do not include API keys, private customer data, or other confidential information.
+  - type: dropdown
+    id: request_type
+    attributes:
+      label: Request
+      options:
+        - Opt out of future benchmark runs
+        - Correct a factual record
+    validations:
+      required: true
+  - type: input
+    id: product
+    attributes:
+      label: Provider and product / variant
+      description: Identify the specific service, API, library, or web demo.
+      placeholder: Provider / product / variant
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Request details
+      description: For a correction, identify the artifact and factual change requested. For an opt-out, no additional justification is required.
+    validations:
+      required: false

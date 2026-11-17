@@ -4,9 +4,21 @@
 *.secret
 *.key
 *.pem
+.agent*
 
 # Local Private Documentation, Notes, and Tickets
 Docs/
+control-private/
+blind_suite_v4_data.json
+
+# Proprietary Internal Tools and Scripts
+text_scanner.py
+*text_scanner*.py
+bad_character_scanner.py
+internal_character_scanner.py
+*character_scanner*.py
+private_*.py
+internal_*.py
 
 # Python and virtual environments
 .venv/

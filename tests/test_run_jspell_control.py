@@ -1,11 +1,15 @@
 import io
 import json
 import unittest
+from datetime import datetime, timezone
+from unittest.mock import patch
 from urllib.error import HTTPError
 
 from run_jspell_control import (
     API_HOST,
     API_URL,
+    collect_all,
+    collect_passage,
     process_response,
     request_jspell,
     safe_http_error_detail,
@@ -15,7 +19,7 @@ from run_jspell_control import (
 
 class JSpellResponseTests(unittest.TestCase):
     def test_applies_first_suggestion_once_using_utf16_offsets(self):
-        text = "😀 speling typo"
+        text = "\U0001F600 speling typo"
         response = {
             "elements": [{
                 "errors": [
@@ -27,7 +31,7 @@ class JSpellResponseTests(unittest.TestCase):
 
         result = process_response(text, response)
 
-        self.assertEqual(result["text"], "😀 spelling type")
+        self.assertEqual(result["text"], "\U0001F600 spelling type")
         self.assertEqual(len(result["edits"]), 2)
         self.assertEqual(result["errors"][0]["word"], "speling")
 
@@ -44,7 +48,7 @@ class JSpellResponseTests(unittest.TestCase):
 
     def test_rejects_offset_inside_surrogate_pair(self):
         with self.assertRaisesRegex(ValueError, "surrogate pair"):
-            utf16_offset_to_index("😀word", 1)
+            utf16_offset_to_index("\U0001F600word", 1)
 
     def test_rejects_error_word_that_does_not_match_source(self):
         with self.assertRaisesRegex(ValueError, "does not match"):
@@ -101,6 +105,44 @@ class JSpellResponseTests(unittest.TestCase):
             safe_http_error_detail("unstructured response", "test-key", "private text"),
             "non-JSON error details withheld",
         )
+
+
+class JSpellSuiteCollectionTests(unittest.TestCase):
+    def test_collection_records_request_timestamps_in_utc(self):
+        response = {"elements": [{"errors": []}]}
+        with patch("run_jspell_control.request_jspell", return_value=response):
+            result = collect_passage("A test passage.", "test-key")
+
+        started = datetime.fromisoformat(result["request_started_at_utc"])
+        completed = datetime.fromisoformat(result["request_completed_at_utc"])
+        self.assertEqual(started.utcoffset().total_seconds(), 0)
+        self.assertEqual(completed.utcoffset().total_seconds(), 0)
+        self.assertLessEqual(started, completed)
+
+    def test_collection_only_includes_current_h_suite(self):
+        units = [
+            {"id": "H-01", "input": "A test passage."},
+            {"id": "H-02", "input": "Another test passage."},
+        ]
+        with (
+            patch("run_jspell_control.UNSEEN_BENCHMARK_UNITS", units),
+            patch(
+                "run_jspell_control.collect_passage",
+                return_value={"text": "Corrected text.", "lat": 1.0},
+            ),
+            patch("run_jspell_control.time.sleep"),
+        ):
+            results = collect_all("test-key")
+
+        self.assertEqual(set(results["h_suite"]), {"H-01", "H-02"})
+        self.assertNotIn("blind_v3", results)
+        self.assertEqual(results["benchmark_metadata"]["request_count"], 2)
+        metadata = results["benchmark_metadata"]
+        started = datetime.fromisoformat(metadata["run_started_at_utc"])
+        completed = datetime.fromisoformat(metadata["run_completed_at_utc"])
+        self.assertLessEqual(started, completed)
+        self.assertEqual(metadata["collection_mode"], "api")
+        self.assertEqual(metadata["gateway"], "RapidAPI")
 
 
 if __name__ == "__main__":

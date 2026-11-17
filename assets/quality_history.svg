@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 612" style="background:#0d1117; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
+<rect x="1" y="1" width="1398" height="610" fill="none" stroke="#30363d" stroke-width="1"/>
+<text x="700" y="32" fill="#f0f6fc" font-size="18" font-weight="700" text-anchor="middle">H-SUITE HISTORICAL ACCURACY &amp; PROGRESSION OVER TIME</text>
+<text x="700" y="54" fill="#8b949e" font-size="13" text-anchor="middle">Benchmark upgrade date (V0.3 to V0.4): Nov 14, 2026 artifact date; exact transition not recorded; scores are not comparable</text>
+<text x="24" y="92" fill="#f0f6fc" font-size="18" font-weight="700">v0.3 - Legacy four-pillar hybrid meta-score</text>
+<text x="1376" y="92" fill="#8b949e" font-size="14" text-anchor="end">November 14, 2026</text>
+<text x="24" y="110" fill="#8b949e" font-size="13">35% spelling, 25% grammar, 20% voice, 20% exploratory exact-match engine-specific signature diagnostic (not a general hallucination rate)</text>
+<line x1="330" y1="112" x2="330" y2="306" stroke="#30363d" stroke-width="1"/>
+<text x="330" y="319" fill="#8b949e" font-size="12" text-anchor="middle">0%</text>
+<line x1="567.5" y1="112" x2="567.5" y2="306" stroke="#30363d" stroke-width="1"/>
+<text x="567.5" y="319" fill="#8b949e" font-size="12" text-anchor="middle">25%</text>
+<line x1="805" y1="112" x2="805" y2="306" stroke="#30363d" stroke-width="1"/>
+<text x="805" y="319" fill="#8b949e" font-size="12" text-anchor="middle">50%</text>
+<line x1="1042.5" y1="112" x2="1042.5" y2="306" stroke="#30363d" stroke-width="1"/>
+<text x="1042.5" y="319" fill="#8b949e" font-size="12" text-anchor="middle">75%</text>
+<line x1="1280" y1="112" x2="1280" y2="306" stroke="#30363d" stroke-width="1"/>
+<text x="1280" y="319" fill="#8b949e" font-size="12" text-anchor="middle">100%</text>
+<text x="315" y="130" fill="#D86C1C" font-size="14" text-anchor="end">BCorrect (FMM)</text>
+<rect x="330" y="116" width="767.60" height="18" fill="#A97070" stroke="#f0f6fc" stroke-dasharray="5 3" stroke-width="1"/>
+<text x="1104.60" y="130" fill="#f0f6fc" font-size="13" font-weight="700">80.8%</text>
+<text x="315" y="158" fill="#409DC6" font-size="14" text-anchor="end">LanguageTool API</text>
+<rect x="330" y="144" width="746.70" height="18" fill="#A97070" stroke="#f0f6fc" stroke-dasharray="5 3" stroke-width="1"/>
+<text x="1083.70" y="158" fill="#f0f6fc" font-size="13" font-weight="700">78.6%</text>
+<text x="315" y="186" fill="#F2E8DB" font-size="14" text-anchor="end">TextGears API</text>
+<rect x="330" y="172" width="750.50" height="18" fill="#A97070" stroke="#f0f6fc" stroke-dasharray="5 3" stroke-width="1"/>
+<text x="1087.50" y="186" fill="#f0f6fc" font-size="13" font-weight="700">79.0%</text>
+<text x="315" y="214" fill="#D5CDE1" font-size="14" text-anchor="end">DeepL Write</text>
+<rect x="330" y="200" width="799.90" height="18" fill="#A97070" stroke="#f0f6fc" stroke-dasharray="5 3" stroke-width="1"/>
+<text x="1136.90" y="214" fill="#f0f6fc" font-size="13" font-weight="700">84.2%</text>
+<text x="315" y="242" fill="#E9DFA9" font-size="14" text-anchor="end">Sapling Grammar Checker</text>
+<rect x="330" y="228" width="891.10" height="18" fill="#A97070" stroke="#f0f6fc" stroke-dasharray="5 3" stroke-width="1"/>
+<text x="1228.10" y="242" fill="#f0f6fc" font-size="13" font-weight="700">93.8%</text>
+<text x="315" y="270" fill="#D47440" font-size="14" text-anchor="end">JSpell Free Web Checker</text>
+<rect x="330" y="256" width="618.45" height="18" fill="#A97070" stroke="#f0f6fc" stroke-dasharray="5 3" stroke-width="1"/>
+<text x="955.45" y="270" fill="#f0f6fc" font-size="13" font-weight="700">65.1%</text>
+<text x="315" y="298" fill="#D8976F" font-size="14" text-anchor="end">Grammarly Free Grammar Checker</text>
+<text x="330" y="298" fill="#8b949e" font-size="13">not evaluated in this snapshot</text>
+<text x="24" y="330" fill="#f0f6fc" font-size="18" font-weight="700">v0.4 - Three-pillar quality composite</text>
+<text x="1376" y="330" fill="#8b949e" font-size="14" text-anchor="end">November 14, 2026</text>
+<text x="24" y="348" fill="#8b949e" font-size="13">43.75% spelling, 31.25% grammar, 25% voice; edit diagnostic is separate</text>
+<line x1="330" y1="350" x2="330" y2="544" stroke="#30363d" stroke-width="1"/>
+<text x="330" y="557" fill="#8b949e" font-size="12" text-anchor="middle">0%</text>
+<line x1="567.5" y1="350" x2="567.5" y2="544" stroke="#30363d" stroke-width="1"/>
+<text x="567.5" y="557" fill="#8b949e" font-size="12" text-anchor="middle">25%</text>
+<line x1="805" y1="350" x2="805" y2="544" stroke="#30363d" stroke-width="1"/>
+<text x="805" y="557" fill="#8b949e" font-size="12" text-anchor="middle">50%</text>
+<line x1="1042.5" y1="350" x2="1042.5" y2="544" stroke="#30363d" stroke-width="1"/>
+<text x="1042.5" y="557" fill="#8b949e" font-size="12" text-anchor="middle">75%</text>
+<line x1="1280" y1="350" x2="1280" y2="544" stroke="#30363d" stroke-width="1"/>
+<text x="1280" y="557" fill="#8b949e" font-size="12" text-anchor="middle">100%</text>
+<text x="315" y="368" fill="#D86C1C" font-size="14" text-anchor="end">BCorrect (FMM)</text>
+<rect x="330" y="354" width="715.35" height="18" fill="#6E9A80" stroke="#f0f6fc" stroke-width="1"/>
+<text x="1052.35" y="368" fill="#f0f6fc" font-size="13" font-weight="700">75.3%</text>
+<text x="315" y="396" fill="#409DC6" font-size="14" text-anchor="end">LanguageTool API</text>
+<rect x="330" y="382" width="662.15" height="18" fill="#6E9A80" stroke="#f0f6fc" stroke-width="1"/>
+<text x="999.15" y="396" fill="#f0f6fc" font-size="13" font-weight="700">69.7%</text>
+<text x="315" y="424" fill="#F2E8DB" font-size="14" text-anchor="end">TextGears API</text>
+<rect x="330" y="410" width="709.65" height="18" fill="#6E9A80" stroke="#f0f6fc" stroke-width="1"/>
+<text x="1046.65" y="424" fill="#f0f6fc" font-size="13" font-weight="700">74.7%</text>
+<text x="315" y="452" fill="#D5CDE1" font-size="14" text-anchor="end">DeepL Write</text>
+<rect x="330" y="438" width="722.00" height="18" fill="#6E9A80" stroke="#f0f6fc" stroke-width="1"/>
+<text x="1059.00" y="452" fill="#f0f6fc" font-size="13" font-weight="700">76.0%</text>
+<text x="315" y="480" fill="#E9DFA9" font-size="14" text-anchor="end">Sapling Grammar Checker</text>
+<rect x="330" y="466" width="898.70" height="18" fill="#6E9A80" stroke="#f0f6fc" stroke-width="1"/>
+<text x="1235.70" y="480" fill="#f0f6fc" font-size="13" font-weight="700">94.6%</text>
+<text x="315" y="508" fill="#D47440" font-size="14" text-anchor="end">JSpell Free Web Checker</text>
+<rect x="330" y="494" width="597.55" height="18" fill="#6E9A80" stroke="#f0f6fc" stroke-width="1"/>
+<text x="934.55" y="508" fill="#f0f6fc" font-size="13" font-weight="700">62.9%</text>
+<text x="315" y="536" fill="#D8976F" font-size="14" text-anchor="end">Grammarly Free Grammar Checker</text>
+<rect x="330" y="522" width="916.75" height="18" fill="#6E9A80" stroke="#f0f6fc" stroke-width="1"/>
+<text x="1253.75" y="536" fill="#f0f6fc" font-size="13" font-weight="700">96.5%</text>
+<text x="700" y="602" fill="#8b949e" font-size="12" text-anchor="middle">Both available snapshots are dated November 14, 2026; no earlier measured trend is available. Add future dated runs only within the matching scoring methodology.</text>
+</svg>

@@ -1,61 +1,26 @@
 ---
-name: New Engine Submission
-about: Submit an AI spelling, grammar, or writing assistant API for official benchmark inclusion
-title: "[SUBMISSION]: <Engine Name> Evaluation Request"
-labels: ["engine-submission", "benchmark-audit"]
+name: Engine for v0.5 evaluation
+about: Suggest an engine for evaluation after the v0.5 protocol is frozen
+title: "[ENGINE]: "
+labels: ["engine-submission"]
 assignees: []
 ---
 
-### ⚠️ CRITICAL CREDENTIAL SAFETY NOTICE
-> **DO NOT POST API KEYS OR CONFIDENTIAL CREDENTIALS IN THIS PUBLIC ISSUE.**  
-> Any issue containing an API key will be immediately closed and scrubbed for your safety. Secure transmission instructions for spend-capped test keys will be provided privately by maintainers after registration.
+### Credential safety
+Do not post API keys, private customer text, or confidential credentials here.
+The benchmark does not request or accept credentials.
 
----
+### Engine information
+- Provider and product:
+- Public product or documentation URL:
+- Route to evaluate (API, web interface, local library):
+- Product/version identifier, if reported:
+- Locale behavior (automatic, default, or unknown):
 
-### 1. Engine Information
-- **Engine / Service Name:** 
-- **Developer / Organization:** 
-- **Project URL or Documentation:** 
-- **Architectural Category:**
-  - [ ] Dedicated Geometric / Deterministic Manifold
-  - [ ] Classical Rule-Based / Hunspell Engine
-  - [ ] Statistical N-Gram API
-  - [ ] Neural Language Model / Seq2Seq Transformer
-  - [ ] Local Offline Library / Container
+### Collection constraints
+- Does the route permit submitting public benchmark text?
+- Can output text be published?
+- Any relevant usage or data-retention terms:
 
----
-
-### 2. Technical API Endpoint Specification
-- **Base Endpoint URL:** `https://...`
-- **HTTP Method:** `POST` (or specify)
-- **Authentication Method:** `Authorization: Bearer <TOKEN>` or `x-api-key`
-- **Request Payload Schema (JSON Example):**
-```json
-{
-  "text": "The sample sentence to be checked.",
-  "language": "en-US"
-}
-```
-- **Expected Response Schema (JSON Example):**
-```json
-{
-  "corrected_text": "The corrected sentence output."
-}
-```
-
----
-
-### 3. Performance & Hardware Claims
-- **Claimed Average Latency:** (e.g. `~25 ms` or `~600 ms`)
-- **Execution Target:** (e.g. `1 vCPU Single Core`, `Local GPU`, `Cloud REST API`)
-
----
-
-### 4. Legal Acknowledgement & Liability Agreement
-*Please review [SUBMISSIONS.md](SUBMISSIONS.md) and check every box below to proceed with evaluation:*
-
-- [ ] **I have read and agree to the [Submission Protocol & Legal Liability Waiver](SUBMISSIONS.md).**
-- [ ] **I confirm that any test API key provided will have a strict hard spending limit of $1.00 USD (or equivalent low request quota).**
-- [ ] **I acknowledge that Benchmark Maintainers bear ZERO liability for any API charges, overages, billing disputes, or key security issues, and that our organization assumes 100% sole liability for provided credentials.**
-- [ ] **I agree that all evaluation results, verbatim text outputs, latency metrics, and comparative charts will be published openly under the MIT License in the public `raw_results/` directory.**
-- [ ] **I understand that I am responsible for revoking the test credential immediately following the completion of the benchmark evaluation.**
+The v0.5 protocol remains a draft. No official collection should begin until
+its paired inputs and controls are reviewed and frozen.
