@@ -29,11 +29,21 @@ COLLECTION_SOURCE_URLS = {
 }
 
 COLLECTION_LOCALES = {
-    "BCorrect (FMM)": "not reported",
+    "BCorrect (FMM)": "en-US",
     "LanguageTool API": "en-US",
     "TextGears API": "en-US",
     "DeepL Write": "not reported",
     "Sapling Grammar Checker": "not reported",
     "JSpell Free Web Checker": "English (US)",
+    "Grammarly Free Grammar Checker": "not reported",
+}
+
+COLLECTION_VERSIONS = {
+    "BCorrect (FMM)": "0.8.1",
+    "LanguageTool API": "not reported",
+    "TextGears API": "not reported",
+    "DeepL Write": "not reported",
+    "Sapling Grammar Checker": "not reported",
+    "JSpell Free Web Checker": "not reported",
     "Grammarly Free Grammar Checker": "not reported",
 }

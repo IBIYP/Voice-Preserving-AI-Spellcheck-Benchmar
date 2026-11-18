@@ -78,11 +78,11 @@
       },
       "pillars": {
         "BCorrect (FMM)": {
-          "spelling": 79.6,
-          "grammar": 58.3,
-          "voice": 88.86,
-          "diagnostic_unapproved_rate": 11.5,
-          "composite": 75.3
+          "spelling": 87.8,
+          "grammar": 100.0,
+          "voice": 96.82,
+          "diagnostic_unapproved_rate": 4.9,
+          "composite": 93.9
         },
         "LanguageTool API": {
           "spelling": 75.5,

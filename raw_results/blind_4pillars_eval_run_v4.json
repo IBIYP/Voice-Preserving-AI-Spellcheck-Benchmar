@@ -4,21 +4,21 @@
     "version": "4.0",
     "voice_scoring_revision": "lexical-marker-f1-v2",
     "target_scoring_revision": "aligned-correction-sites-v1",
-    "eval_date": "November 14, 2026",
+    "eval_date": "November 18, 2026",
     "locale_scope": "Single-locale baseline; locale settings vary or are unreported. Paired en-US/en-GB results have not been collected.",
-    "run_id": "h-suite-v4-a5afe9544ddfe509",
+    "run_id": "h-suite-v4-7240c92fa5306510",
     "dataset_sha256": "4f6fc0462f0cc5b5d4822d23cece441ba211ab4a5e19fd949b276a3a522ef4e5",
-    "cached_outputs_sha256": "a5afe9544ddfe509e85b623bf42904ab6c924bb9fdf2deec39994e6e0dd1237e",
+    "cached_outputs_sha256": "7240c92fa5306510100ccc7b75a1d5c32533b79af4d9e189c58236c3363a9f75",
     "target_scoring_methodology_note": "Accepted forms are matched at aligned annotated source sites. An unchanged source counts only when explicitly accepted; identity-only annotations are excluded. Target hits are pooled.",
     "engine_run_metadata": {
       "BCorrect (FMM)": {
-        "version": "not reported",
+        "version": "0.8.1",
         "source_run_id": "not recorded",
-        "collection_timestamp_utc": "not recorded",
+        "collection_timestamp_utc": "2026-11-18T23:31:28.094088Z",
         "collection_mode": "api",
         "collection_route": "API",
         "source_url": "https://bcorrect-api.fly.dev/api/v1/check",
-        "locale": "not reported"
+        "locale": "en-US"
       },
       "LanguageTool API": {
         "version": "not reported",
@@ -90,26 +90,26 @@
   },
   "engine_summary": {
     "BCorrect (FMM)": {
-      "spelling_accuracy": 79.6,
-      "spelling_accepted_targets": 39,
+      "spelling_accuracy": 87.8,
+      "spelling_accepted_targets": 43,
       "spelling_total_targets": 49,
-      "grammar_accuracy": 58.3,
-      "grammar_accepted_targets": 7,
+      "grammar_accuracy": 100.0,
+      "grammar_accepted_targets": 12,
       "grammar_total_targets": 12,
-      "voice_preservation": 88.86,
-      "voice_lexical_f1": 95.89,
-      "voice_marker_retention": 92.5,
+      "voice_preservation": 96.82,
+      "voice_lexical_f1": 99.25,
+      "voice_marker_retention": 97.5,
       "voice_over_edit_count": 0,
       "voice_over_edit_penalty": 0.0,
       "correction_site_diagnostic": {
         "applicable_sites": 61,
-        "unchanged_sites": 8,
-        "accepted_corrections": 46,
-        "unapproved_edits": 7,
-        "unapproved_edit_rate": 11.5
+        "unchanged_sites": 3,
+        "accepted_corrections": 55,
+        "unapproved_edits": 3,
+        "unapproved_edit_rate": 4.9
       },
-      "quality_composite": 75.3,
-      "latency_ms": 776.5,
+      "quality_composite": 93.9,
+      "latency_ms": 681.5,
       "latency_samples": 10
     },
     "LanguageTool API": {
@@ -257,26 +257,26 @@
       "domain": "Urban Slang & Modern Banter",
       "scores": {
         "BCorrect (FMM)": {
-          "text": "Yo that concert was strait fire no cap, but my friend lost his ticket at the entrance. We had to finagle our way past security but it was to lit to miss.",
+          "text": "Yo that concert was straight fire no cap, but my friend lost his ticket at the entrance. We had to finagle our way past security but it was too lit to miss.",
           "metrics": {
             "spelling_acc": 100.0,
             "spelling_target_hits": 4,
             "spelling_target_count": 4,
-            "grammar_acc": 0.0,
-            "grammar_target_hits": 0,
+            "grammar_acc": 100.0,
+            "grammar_target_hits": 1,
             "grammar_target_count": 1,
-            "voice_preservation": 72.12,
-            "vpr": 75.0,
-            "voice_precision": 96.15,
-            "voice_recall": 96.15,
-            "voice_lexical_f1": 96.15,
-            "voice_marker_retention": 75.0,
+            "voice_preservation": 100.0,
+            "vpr": 100.0,
+            "voice_precision": 100.0,
+            "voice_recall": 100.0,
+            "voice_lexical_f1": 100.0,
+            "voice_marker_retention": 100.0,
             "voice_over_edit_count": 0,
             "oer": 0.0,
             "correction_site_diagnostic": {
               "applicable_sites": 5,
-              "unchanged_sites": 1,
-              "accepted_corrections": 4,
+              "unchanged_sites": 0,
+              "accepted_corrections": 5,
               "unapproved_edits": 0,
               "unapproved_edit_rate": 0.0,
               "sites": [
@@ -302,13 +302,13 @@
                 },
                 {
                   "source": "to lit",
-                  "observed": "to lit",
-                  "classification": "unchanged"
+                  "observed": "too lit",
+                  "classification": "accepted_correction"
                 }
               ]
             },
-            "quality_composite": 61.78,
-            "voice_base_score": 72.12,
+            "quality_composite": 100.0,
+            "voice_base_score": 100.0,
             "voice_over_edit_penalty": 0.0
           }
         },
@@ -655,28 +655,28 @@
       "domain": "Southern Gothic & Regional Cadence",
       "scores": {
         "BCorrect (FMM)": {
-          "text": "Granddaddy sat on the porch rockin slow, watch in the cri rise after the flooding. He reckoned the old barn wouldn't survive another downpour.",
+          "text": "Granddaddy sat on the porch rockin slow, watching the creek rise after the flooding. He reckoned the old barn wouldn't survive another download.",
           "metrics": {
-            "spelling_acc": 100.0,
-            "spelling_target_hits": 3,
+            "spelling_acc": 66.67,
+            "spelling_target_hits": 2,
             "spelling_target_count": 3,
             "grammar_acc": 100.0,
             "grammar_target_hits": 1,
             "grammar_target_count": 1,
-            "voice_preservation": 65.38,
+            "voice_preservation": 73.08,
             "vpr": 75.0,
-            "voice_precision": 85.0,
-            "voice_recall": 89.47,
-            "voice_lexical_f1": 87.18,
+            "voice_precision": 95.0,
+            "voice_recall": 100.0,
+            "voice_lexical_f1": 97.44,
             "voice_marker_retention": 75.0,
             "voice_over_edit_count": 0,
             "oer": 0.0,
             "correction_site_diagnostic": {
               "applicable_sites": 4,
               "unchanged_sites": 0,
-              "accepted_corrections": 4,
-              "unapproved_edits": 0,
-              "unapproved_edit_rate": 0.0,
+              "accepted_corrections": 3,
+              "unapproved_edits": 1,
+              "unapproved_edit_rate": 25.0,
               "sites": [
                 {
                   "source": "floodin",
@@ -695,13 +695,13 @@
                 },
                 {
                   "source": "downpoar",
-                  "observed": "downpour",
-                  "classification": "accepted_correction"
+                  "observed": "download",
+                  "classification": "unapproved_edit"
                 }
               ]
             },
-            "quality_composite": 91.34,
-            "voice_base_score": 65.38,
+            "quality_composite": 78.69,
+            "voice_base_score": 73.08,
             "voice_over_edit_penalty": 0.0
           }
         },
@@ -1018,7 +1018,7 @@
       "domain": "Gritty Cyberpunk Tech-Noir",
       "scores": {
         "BCorrect (FMM)": {
-          "text": "Neon reflected off the wet asphalt. She jacked into the subnet, bypass the firewall, and dumped the encrypted payload before the ICE could trace her signal.",
+          "text": "Neon reflected off the wet asphalt. She jacked into the subnet, bypassed the firewall, and dumped the encrypted payload before the ICE could trace her signal.",
           "metrics": {
             "spelling_acc": 100.0,
             "spelling_target_hits": 3,
@@ -1026,11 +1026,11 @@
             "grammar_acc": 100.0,
             "grammar_target_hits": 2,
             "grammar_target_count": 2,
-            "voice_preservation": 95.24,
+            "voice_preservation": 100.0,
             "vpr": 100.0,
-            "voice_precision": 95.24,
-            "voice_recall": 95.24,
-            "voice_lexical_f1": 95.24,
+            "voice_precision": 100.0,
+            "voice_recall": 100.0,
+            "voice_lexical_f1": 100.0,
             "voice_marker_retention": 100.0,
             "voice_over_edit_count": 0,
             "oer": 0.0,
@@ -1068,8 +1068,8 @@
                 }
               ]
             },
-            "quality_composite": 98.81,
-            "voice_base_score": 95.24,
+            "quality_composite": 100.0,
+            "voice_base_score": 100.0,
             "voice_over_edit_penalty": 0.0
           }
         },
@@ -1416,13 +1416,13 @@
       "domain": "Culinary & Sensory Critique",
       "scores": {
         "BCorrect (FMM)": {
-          "text": "The roasted duck had incredible crispy skin, but the raspberry reduction was way to acidic. It totally overpowered the delicat flavor of the parsnips.",
+          "text": "The roasted duck had incredible crispy skin, but the raspberry reduction was way too acidic. It totally overpowered the delicate flavor of the parsnips.",
           "metrics": {
-            "spelling_acc": 75.0,
-            "spelling_target_hits": 3,
+            "spelling_acc": 100.0,
+            "spelling_target_hits": 4,
             "spelling_target_count": 4,
-            "grammar_acc": 0.0,
-            "grammar_target_hits": 0,
+            "grammar_acc": 100.0,
+            "grammar_target_hits": 1,
             "grammar_target_count": 1,
             "voice_preservation": 100.0,
             "vpr": 100.0,
@@ -1434,8 +1434,8 @@
             "oer": 0.0,
             "correction_site_diagnostic": {
               "applicable_sites": 5,
-              "unchanged_sites": 2,
-              "accepted_corrections": 3,
+              "unchanged_sites": 0,
+              "accepted_corrections": 5,
               "unapproved_edits": 0,
               "unapproved_edit_rate": 0.0,
               "sites": [
@@ -1451,8 +1451,8 @@
                 },
                 {
                   "source": "way to",
-                  "observed": "way to",
-                  "classification": "unchanged"
+                  "observed": "way too",
+                  "classification": "accepted_correction"
                 },
                 {
                   "source": "overpowred",
@@ -1461,12 +1461,12 @@
                 },
                 {
                   "source": "delicat",
-                  "observed": "delicat",
-                  "classification": "unchanged"
+                  "observed": "delicate",
+                  "classification": "accepted_correction"
                 }
               ]
             },
-            "quality_composite": 57.81,
+            "quality_composite": 100.0,
             "voice_base_score": 100.0,
             "voice_over_edit_penalty": 0.0
           }
@@ -1814,28 +1814,28 @@
       "domain": "High-Entropy Severe Dysgraphia",
       "scores": {
         "BCorrect (FMM)": {
-          "text": "Lass night I dream of a spaceship flying throu the stars with a giant rocket booster. We land on a purple planet with bubble lakes and alien critturs that danced joyfully. Its felt so real I cried when my mom work me up for school!",
+          "text": "Lass night I dream of a spaceship flying throu the stars with a giant rocket booster. We landed on a purple planet with bubble lakes and alien critturs that danced joyfully. It felt so real I cried when my mom woke me up for school!",
           "metrics": {
             "spelling_acc": 66.67,
             "spelling_target_hits": 8,
             "spelling_target_count": 12,
-            "grammar_acc": 33.33,
-            "grammar_target_hits": 1,
+            "grammar_acc": 100.0,
+            "grammar_target_hits": 3,
             "grammar_target_count": 3,
-            "voice_preservation": 88.89,
+            "voice_preservation": 95.08,
             "vpr": 100.0,
-            "voice_precision": 82.35,
-            "voice_recall": 96.55,
-            "voice_lexical_f1": 88.89,
+            "voice_precision": 90.62,
+            "voice_recall": 100.0,
+            "voice_lexical_f1": 95.08,
             "voice_marker_retention": 100.0,
             "voice_over_edit_count": 0,
             "oer": 0.0,
             "correction_site_diagnostic": {
               "applicable_sites": 15,
               "unchanged_sites": 2,
-              "accepted_corrections": 9,
-              "unapproved_edits": 4,
-              "unapproved_edit_rate": 26.7,
+              "accepted_corrections": 11,
+              "unapproved_edits": 2,
+              "unapproved_edit_rate": 13.3,
               "sites": [
                 {
                   "source": "lass nite",
@@ -1869,8 +1869,8 @@
                 },
                 {
                   "source": "landd",
-                  "observed": "land",
-                  "classification": "unapproved_edit"
+                  "observed": "landed",
+                  "classification": "accepted_correction"
                 },
                 {
                   "source": "purpul",
@@ -1904,8 +1904,8 @@
                 },
                 {
                   "source": "woak",
-                  "observed": "work",
-                  "classification": "unapproved_edit"
+                  "observed": "woke",
+                  "classification": "accepted_correction"
                 },
                 {
                   "source": "skool",
@@ -1914,8 +1914,8 @@
                 }
               ]
             },
-            "quality_composite": 61.81,
-            "voice_base_score": 88.89,
+            "quality_composite": 84.19,
+            "voice_base_score": 95.08,
             "voice_over_edit_penalty": 0.0
           }
         },
@@ -2562,7 +2562,7 @@
       "domain": "Punchy SaaS Executive Pitch",
       "scores": {
         "BCorrect (FMM)": {
-          "text": "Our cac dropped 40% mom, while arr hit a record high. The competition is scrambling to match our features, but we move too fast.",
+          "text": "Our CAC dropped 40% mom, while ARR hit a record high. The competition is scrambling to match our features, but we move too fast.",
           "metrics": {
             "spelling_acc": 100.0,
             "spelling_target_hits": 3,
@@ -2925,28 +2925,28 @@
       "domain": "Sports Locker-Room Kinetic Action",
       "scores": {
         "BCorrect (FMM)": {
-          "text": "Coach drew up the play on the whiteboard during the timeout. We ran the pick and rool to perfection, nailed the three pointer at the buyer, and won the championship!",
+          "text": "Coach drew up the play on the whiteboard during the timeout. We ran the pick and roll to perfection, nailed the three pointer at the buzzer, and won the championship!",
           "metrics": {
-            "spelling_acc": 66.67,
-            "spelling_target_hits": 4,
+            "spelling_acc": 100.0,
+            "spelling_target_hits": 6,
             "spelling_target_count": 6,
             "grammar_acc": 100.0,
             "grammar_target_hits": 1,
             "grammar_target_count": 1,
-            "voice_preservation": 73.33,
-            "vpr": 75.0,
-            "voice_precision": 95.65,
+            "voice_preservation": 100.0,
+            "vpr": 100.0,
+            "voice_precision": 100.0,
             "voice_recall": 100.0,
-            "voice_lexical_f1": 97.78,
-            "voice_marker_retention": 75.0,
+            "voice_lexical_f1": 100.0,
+            "voice_marker_retention": 100.0,
             "voice_over_edit_count": 0,
             "oer": 0.0,
             "correction_site_diagnostic": {
               "applicable_sites": 7,
-              "unchanged_sites": 1,
-              "accepted_corrections": 5,
-              "unapproved_edits": 1,
-              "unapproved_edit_rate": 14.3,
+              "unchanged_sites": 0,
+              "accepted_corrections": 7,
+              "unapproved_edits": 0,
+              "unapproved_edit_rate": 0.0,
               "sites": [
                 {
                   "source": "whitebord",
@@ -2960,8 +2960,8 @@
                 },
                 {
                   "source": "rool",
-                  "observed": "rool",
-                  "classification": "unchanged"
+                  "observed": "roll",
+                  "classification": "accepted_correction"
                 },
                 {
                   "source": "perfecshun",
@@ -2975,8 +2975,8 @@
                 },
                 {
                   "source": "buzer",
-                  "observed": "buyer",
-                  "classification": "unapproved_edit"
+                  "observed": "buzzer",
+                  "classification": "accepted_correction"
                 },
                 {
                   "source": "champinship",
@@ -2985,8 +2985,8 @@
                 }
               ]
             },
-            "quality_composite": 78.75,
-            "voice_base_score": 73.33,
+            "quality_composite": 100.0,
+            "voice_base_score": 100.0,
             "voice_over_edit_penalty": 0.0
           }
         },
@@ -3393,28 +3393,28 @@
       "domain": "Introspective Poetic Stream-of-Thought",
       "scores": {
         "BCorrect (FMM)": {
-          "text": "Autumn leaves spiraled across the abandoned trax. A quiet sadness hung in the air, neither bitter nor cruel, just the slow exiled of another dying year.",
+          "text": "Autumn leaves spiraled across the abandoned tracks. A quiet sadness hung in the air, neither bitter nor cruel, just the slow exhale of another dying year.",
           "metrics": {
-            "spelling_acc": 60.0,
-            "spelling_target_hits": 3,
+            "spelling_acc": 100.0,
+            "spelling_target_hits": 5,
             "spelling_target_count": 5,
             "grammar_acc": 100.0,
             "grammar_target_hits": 0,
             "grammar_target_count": 0,
-            "voice_preservation": 97.67,
+            "voice_preservation": 100.0,
             "vpr": 100.0,
-            "voice_precision": 95.45,
+            "voice_precision": 100.0,
             "voice_recall": 100.0,
-            "voice_lexical_f1": 97.67,
+            "voice_lexical_f1": 100.0,
             "voice_marker_retention": 100.0,
             "voice_over_edit_count": 0,
             "oer": 0.0,
             "correction_site_diagnostic": {
               "applicable_sites": 5,
-              "unchanged_sites": 1,
-              "accepted_corrections": 3,
-              "unapproved_edits": 1,
-              "unapproved_edit_rate": 20.0,
+              "unchanged_sites": 0,
+              "accepted_corrections": 5,
+              "unapproved_edits": 0,
+              "unapproved_edit_rate": 0.0,
               "sites": [
                 {
                   "source": "leavs",
@@ -3428,8 +3428,8 @@
                 },
                 {
                   "source": "trax",
-                  "observed": "trax",
-                  "classification": "unchanged"
+                  "observed": "tracks",
+                  "classification": "accepted_correction"
                 },
                 {
                   "source": "saddness",
@@ -3438,13 +3438,13 @@
                 },
                 {
                   "source": "exhail",
-                  "observed": "exiled",
-                  "classification": "unapproved_edit"
+                  "observed": "exhale",
+                  "classification": "accepted_correction"
                 }
               ]
             },
-            "quality_composite": 81.92,
-            "voice_base_score": 97.67,
+            "quality_composite": 100.0,
+            "voice_base_score": 100.0,
             "voice_over_edit_penalty": 0.0
           }
         },
@@ -3791,7 +3791,7 @@
       "domain": "Field Biology & Explorer Notes",
       "scores": {
         "BCorrect (FMM)": {
-          "text": "Observed three specimens of dendrobates tinctorious near the stream bed. The aposematic coloration was extremely vibrant despite heavy canopy shade.",
+          "text": "Observed three specimens of Dendrobates tinctorius near the stream bed. The aposematic coloration was extremely vibrant despite heavy canopy shade.",
           "metrics": {
             "spelling_acc": 100.0,
             "spelling_target_hits": 4,
@@ -4189,33 +4189,33 @@
       "domain": "Legal & Contractual Shorthand",
       "scores": {
         "BCorrect (FMM)": {
-          "text": "Clause 4.2 govern indemnity obligations. Neither party shall be liable for consequential damages arising from unintensional breach.",
+          "text": "Clause 4.2 governs indemnity obligations. Neither party shall be liable for consequential damages arising from unintensional breach.",
           "metrics": {
             "spelling_acc": 80.0,
             "spelling_target_hits": 4,
             "spelling_target_count": 5,
-            "grammar_acc": 0.0,
-            "grammar_target_hits": 0,
+            "grammar_acc": 100.0,
+            "grammar_target_hits": 1,
             "grammar_target_count": 1,
-            "voice_preservation": 96.0,
+            "voice_preservation": 100.0,
             "vpr": 100.0,
-            "voice_precision": 92.31,
+            "voice_precision": 100.0,
             "voice_recall": 100.0,
-            "voice_lexical_f1": 96.0,
+            "voice_lexical_f1": 100.0,
             "voice_marker_retention": 100.0,
             "voice_over_edit_count": 0,
             "oer": 0.0,
             "correction_site_diagnostic": {
               "applicable_sites": 6,
               "unchanged_sites": 1,
-              "accepted_corrections": 4,
-              "unapproved_edits": 1,
-              "unapproved_edit_rate": 16.7,
+              "accepted_corrections": 5,
+              "unapproved_edits": 0,
+              "unapproved_edit_rate": 0.0,
               "sites": [
                 {
                   "source": "govorns",
-                  "observed": "govern",
-                  "classification": "unapproved_edit"
+                  "observed": "governs",
+                  "classification": "accepted_correction"
                 },
                 {
                   "source": "indemity",
@@ -4244,8 +4244,8 @@
                 }
               ]
             },
-            "quality_composite": 59.0,
-            "voice_base_score": 96.0,
+            "quality_composite": 91.25,
+            "voice_base_score": 100.0,
             "voice_over_edit_penalty": 0.0
           }
         },

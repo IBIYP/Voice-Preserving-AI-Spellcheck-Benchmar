@@ -17,12 +17,12 @@
 <text x="288" y="93" fill="#E9DFA9" font-size="11" text-anchor="end">Sapling Grammar Checker</text>
 <rect x="300" y="76" width="43.56" height="24" fill="#E9DFA9" stroke="#f0f6fc" stroke-width="1"/>
 <text x="351.56" y="93" fill="#f0f6fc" font-size="11">2/61 (3.3%)</text>
-<text x="288" y="135" fill="#D8976F" font-size="11" text-anchor="end">Grammarly Free Grammar Checker</text>
-<rect x="300" y="118" width="64.68" height="24" fill="#D8976F" stroke="#f0f6fc" stroke-width="1"/>
+<text x="288" y="135" fill="#D86C1C" font-size="11" text-anchor="end">BCorrect (FMM)</text>
+<rect x="300" y="118" width="64.68" height="24" fill="#D86C1C" stroke="#f0f6fc" stroke-width="1"/>
 <text x="372.68" y="135" fill="#f0f6fc" font-size="11">3/61 (4.9%)</text>
-<text x="288" y="177" fill="#D86C1C" font-size="11" text-anchor="end">BCorrect (FMM)</text>
-<rect x="300" y="160" width="151.80" height="24" fill="#D86C1C" stroke="#f0f6fc" stroke-width="1"/>
-<text x="459.80" y="177" fill="#f0f6fc" font-size="11">7/61 (11.5%)</text>
+<text x="288" y="177" fill="#D8976F" font-size="11" text-anchor="end">Grammarly Free Grammar Checker</text>
+<rect x="300" y="160" width="64.68" height="24" fill="#D8976F" stroke="#f0f6fc" stroke-width="1"/>
+<text x="372.68" y="177" fill="#f0f6fc" font-size="11">3/61 (4.9%)</text>
 <text x="288" y="219" fill="#F2E8DB" font-size="11" text-anchor="end">TextGears API</text>
 <rect x="300" y="202" width="151.80" height="24" fill="#F2E8DB" stroke="#f0f6fc" stroke-width="1"/>
 <text x="459.80" y="219" fill="#f0f6fc" font-size="11">7/61 (11.5%)</text>

@@ -16,8 +16,8 @@
 <rect x="300" y="76" width="326.40" height="24" fill="#409DC6" stroke="#f0f6fc" stroke-width="1"/>
 <text x="634.40" y="93" fill="#f0f6fc" font-size="11">~652.8 ms (10 samples)</text>
 <text x="288" y="135" fill="#D86C1C" font-size="11" text-anchor="end">BCorrect (FMM)</text>
-<rect x="300" y="118" width="388.25" height="24" fill="#D86C1C" stroke="#f0f6fc" stroke-width="1"/>
-<text x="696.25" y="135" fill="#f0f6fc" font-size="11">~776.5 ms (10 samples)</text>
+<rect x="300" y="118" width="340.75" height="24" fill="#D86C1C" stroke="#f0f6fc" stroke-width="1"/>
+<text x="648.75" y="135" fill="#f0f6fc" font-size="11">~681.5 ms (10 samples)</text>
 <text x="288" y="177" fill="#F2E8DB" font-size="11" text-anchor="end">TextGears API</text>
 <rect x="300" y="160" width="487.15" height="24" fill="#F2E8DB" stroke="#f0f6fc" stroke-width="1"/>
 <text x="795.15" y="177" fill="#f0f6fc" font-size="11">~974.3 ms (10 samples)</text>

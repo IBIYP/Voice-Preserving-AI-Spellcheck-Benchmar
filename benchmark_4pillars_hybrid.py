@@ -21,6 +21,7 @@ import os
 import sys
 import json
 import time
+from datetime import datetime, timezone
 
 from text_matching import (
     VOICE_SCORING_REVISION,
@@ -34,6 +35,7 @@ from collection_provenance import (
     COLLECTION_MODES,
     COLLECTION_ROUTES,
     COLLECTION_SOURCE_URLS,
+    COLLECTION_VERSIONS,
 )
 
 # Definition of the 10 blind unseen domain evaluation units
@@ -750,7 +752,7 @@ def run_comprehensive_benchmark():
             "version": "4.0",
             "voice_scoring_revision": VOICE_SCORING_REVISION,
             "target_scoring_revision": TARGET_SCORING_REVISION,
-            "eval_date": "November 14, 2026",
+            "eval_date": datetime.now(timezone.utc).strftime("%B %d, %Y"),
             "locale_scope": (
                 "Single-locale baseline; locale settings vary or are unreported. "
                 "Paired en-US/en-GB results have not been collected."
@@ -765,9 +767,20 @@ def run_comprehensive_benchmark():
             ),
             "engine_run_metadata": {
                 engine: {
-                    "version": "not reported",
+                    "version": COLLECTION_VERSIONS[engine],
                     "source_run_id": "not recorded",
-                    "collection_timestamp_utc": "not recorded",
+                    "collection_timestamp_utc": (
+                        max(
+                            (
+                                raw_runs[unit["id"]][engine].get("collected_at_utc")
+                                for unit in UNSEEN_BENCHMARK_UNITS
+                                if raw_runs[unit["id"]][engine].get("collected_at_utc")
+                            ),
+                            default="not recorded",
+                        )
+                        if engine == "BCorrect (FMM)"
+                        else "not recorded"
+                    ),
                     "collection_mode": COLLECTION_MODES[engine],
                     "collection_route": COLLECTION_ROUTES[engine],
                     "source_url": COLLECTION_SOURCE_URLS[engine],
