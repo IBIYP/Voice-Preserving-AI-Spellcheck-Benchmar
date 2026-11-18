@@ -1,5 +1,8 @@
 import io
 import json
+import os
+from pathlib import Path
+import tempfile
 import unittest
 from datetime import datetime, timezone
 from unittest.mock import patch
@@ -7,14 +10,44 @@ from urllib.error import HTTPError
 
 from run_jspell_control import (
     API_HOST,
+    API_KEY_NAME,
     API_URL,
     collect_all,
     collect_passage,
+    load_local_api_key,
     process_response,
     request_jspell,
     safe_http_error_detail,
     utf16_offset_to_index,
 )
+
+
+class RapidApiKeyTests(unittest.TestCase):
+    def test_loads_header_named_key_from_process_environment(self):
+        with patch.dict(os.environ, {API_KEY_NAME: "test-key"}, clear=True):
+            self.assertEqual(load_local_api_key(), "test-key")
+
+    def test_loads_header_named_key_from_dotenv(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            (root / ".env").write_text(
+                f'{API_KEY_NAME}="test-key"\n',
+                encoding="utf-8",
+            )
+            with (
+                patch("run_jspell_control.ROOT", root),
+                patch.dict(os.environ, {}, clear=True),
+            ):
+                self.assertEqual(load_local_api_key(), "test-key")
+
+    def test_reports_header_key_name_when_missing(self):
+        with (
+            tempfile.TemporaryDirectory() as temp_dir,
+            patch("run_jspell_control.ROOT", Path(temp_dir)),
+            patch.dict(os.environ, {}, clear=True),
+        ):
+            with self.assertRaisesRegex(RuntimeError, "x-rapidapi-key"):
+                load_local_api_key()
 
 
 class JSpellResponseTests(unittest.TestCase):

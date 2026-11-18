@@ -5,6 +5,8 @@ frozen and no results have been collected under it.
 
 ## Protocol and scoring
 
+- [Quick and Dirty Guide for Running the Benchmark](quick-start/quick-and-dirty-guide.md)
+- [Trying Your Own Test Data](quick-start/trying-your-own-test-data.md)
 - [v0.5 protocol overview, scoring, and freeze requirements](benchmark-v0.5-draft.md)
 - [Detailed four-pillar scoring rules and limitations](benchmark-details.md)
 - [Machine-readable inputs, annotations, and negative controls](../benchmark_data/v0.5_anchor_draft.json)

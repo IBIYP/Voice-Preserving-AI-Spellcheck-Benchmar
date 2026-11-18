@@ -19,7 +19,7 @@ from benchmark_4pillars_hybrid import UNSEEN_BENCHMARK_UNITS
 ROOT = Path(__file__).resolve().parent
 API_URL = "https://jspell-checker.p.rapidapi.com/check"
 API_HOST = "jspell-checker.p.rapidapi.com"
-API_KEY_NAME = "JSPELL_RAPIDAPI_KEY"
+API_KEY_NAME = "x-rapidapi-key"
 OUTPUT_PATH = ROOT / "raw_results" / "jspell_control_outputs.json"
 REQUEST_INTERVAL_SECONDS = 0.25
 
@@ -34,7 +34,7 @@ API_CONFIG = {
 
 
 def load_local_api_key():
-    """Load only the JSpell key from the process environment or ignored .env."""
+    """Load the RapidAPI app key from the process environment or ignored .env."""
     key = os.environ.get(API_KEY_NAME, "").strip()
     if key:
         return key
@@ -48,7 +48,7 @@ def load_local_api_key():
             if candidate.startswith("export "):
                 candidate = candidate[len("export "):].strip()
             name, separator, value = candidate.partition("=")
-            if separator and name.strip() == API_KEY_NAME:
+            if separator and name.strip().casefold() == API_KEY_NAME:
                 value = value.strip()
                 if len(value) >= 2 and value[0] == value[-1] and value[0] in {"'", '"'}:
                     value = value[1:-1]
@@ -56,8 +56,8 @@ def load_local_api_key():
                     return value
 
     raise RuntimeError(
-        "JSpell key is not configured. Set JSPELL_RAPIDAPI_KEY in the process "
-        "environment or in the ignored local .env file; do not paste it into chat."
+        "RapidAPI key is not configured. Set x-rapidapi-key in the process "
+        "environment or in the ignored local .env file. Do not paste the key into chat."
     )
 
 
