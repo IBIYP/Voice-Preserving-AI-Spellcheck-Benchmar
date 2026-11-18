@@ -1,9 +1,8 @@
 # Reproduce and Check the v0.5 Draft
 
-The evaluator uses cached outputs only; it never queries a provider. The
-checked-in protocol is deliberately a draft, so a scoring attempt will be
-rejected until it is reviewed and explicitly frozen. No output cache is
-included or collected.
+The evaluator reads saved outputs; it never queries a provider. The protocol
+is still a draft, so scoring will be rejected until we review and freeze it.
+There is no v0.5 output cache yet.
 
 ## Requirements
 

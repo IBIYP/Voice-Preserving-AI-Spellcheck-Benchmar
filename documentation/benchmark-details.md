@@ -1,7 +1,8 @@
 # v0.5 Four-Pillar Scoring Details
 
-This page describes the v0.5 draft only. The protocol is not frozen, no
-scorecard exists, and the scorer will reject the draft until review is complete.
+This page explains how the v0.5 draft would score results. The protocol is not
+frozen yet, so there is no scorecard and the scorer will reject it until review
+is complete.
 The [machine-readable manifest](../benchmark_data/v0.5_anchor_draft.json) is
 the source for its paired inputs and annotations.
 

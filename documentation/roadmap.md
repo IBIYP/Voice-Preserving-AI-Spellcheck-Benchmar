@@ -1,7 +1,7 @@
 # Roadmap
 
-The project is preparing a single v0.5 four-pillar fixed-anchor protocol. It
-has no published v0.5 scores yet.
+We are preparing one fixed-anchor, four-pillar protocol for v0.5. There are no
+published v0.5 scores yet.
 
 ## 1. Review and freeze the anchor
 
@@ -28,7 +28,7 @@ has no published v0.5 scores yet.
 
 - Keep the fixed anchor and its scoring method stable for longitudinal
   comparisons.
-- Create a separate dated weekly challenge set to reveal new behavior.
+- Create a separate dated weekly challenge set to reveal new behaviour.
 - Compare weekly challenge results only within the same batch. Do not treat
   scores across different challenge sets as a controlled trend.
 - Keep any future spelling-only diagnostic separate from the four-pillar

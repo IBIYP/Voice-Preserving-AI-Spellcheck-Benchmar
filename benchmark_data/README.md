@@ -1,4 +1,4 @@
-# v0.5 Dataset Scope and License
+# v0.5 Dataset Scope and Licence
 
 The draft manifest contains ten newly composed passages, paired
 en-US/en-GB inputs, scoring annotations, and predefined negative controls. The

@@ -1,7 +1,7 @@
 # Tracking Benchmark Progress
 
-The v0.5 protocol is a draft. No engine outputs have been collected and no
-scores should be plotted or reported yet.
+The v0.5 protocol is still a draft. We have not collected engine outputs, so
+there are no scores to plot or report yet.
 
 ## Fixed anchor
 

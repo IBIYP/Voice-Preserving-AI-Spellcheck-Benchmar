@@ -10,7 +10,7 @@ It pairs ten newly drafted passages in en-US and en-GB, adds a clear locale cue
 to each, and defines one negative control per base passage. The former H-suite
 candidate was not reused. All engines in a run must receive the same 20 inputs.
 The original passage text, annotations, and controls are dedicated under
-CC0-1.0; the separate data license and scope are documented in
+CC0-1.0; the separate data licence and scope are documented in
 [`benchmark_data/README.md`](../benchmark_data/README.md).
 
 ## Proposed score
@@ -54,7 +54,7 @@ wishing to exclude their tools from future runs may do so via our
 
 Keep the fixed anchor and its control set stable after review and freeze. It is
 the basis for week-to-week trend comparisons. A separate weekly challenge set
-can rotate to expose new behavior, but scores from different weekly challenge
+can rotate to expose new behaviour, but scores from different weekly challenge
 sets should not be compared as if they were the same test. Compare engines
 within that week's challenge set; use the fixed anchor for the longitudinal
 trend.

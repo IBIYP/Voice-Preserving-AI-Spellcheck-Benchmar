@@ -77,7 +77,7 @@ release.
 ## Our intent
 
 This benchmark is not intended to represent or serve any one company or
-organization. We hope that, over time, every provider we test will help review
+organisation. We hope that, over time, every provider we test will help review
 and shape it. All providers, researchers, and writers are invited to share
 input and feedback through the repository.
 
@@ -107,7 +107,7 @@ the [v0.5 draft](documentation/benchmark-v0.5-draft.md).
 For full details, read our
 [Collection, Publication, and Legal Policy](documentation/submission-policy.md).
 
-## License
+## Licence
 
 The benchmark software and documentation are licensed under Apache-2.0; see
 [LICENSE](LICENSE) and [NOTICE](NOTICE). The v0.5 passages and annotations are

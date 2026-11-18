@@ -15,7 +15,7 @@ The benchmark does not request or accept credentials.
 - Public product or documentation URL:
 - Route to evaluate (API, web interface, local library):
 - Product/version identifier, if reported:
-- Locale behavior (automatic, default, or unknown):
+- Locale behaviour (automatic, default, or unknown):
 
 ### Collection constraints
 - Does the route permit submitting public benchmark text?

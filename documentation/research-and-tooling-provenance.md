@@ -12,7 +12,7 @@ review is required before public release.
 
 The annotations and controls are benchmark protocol choices; they are not
 claims of affiliation with or endorsement by a provider or research
-organization. Each candidate false form was drafted before any v0.5 outputs
+organisation. Each candidate false form was drafted before any v0.5 outputs
 were collected. The controls are disclosed in the public manifest and are not
 blind.
 
@@ -43,7 +43,7 @@ tools, but they are not source datasets or runtime dependencies for the v0.5
 anchor. Product and service names used in future result artifacts identify the
 systems tested and do not imply endorsement or sponsorship.
 
-The repository's license applies only to material the project has rights to
+The repository's licence applies only to material the project has rights to
 license. It does not relicense third-party software, datasets, or provider
 outputs. Review third-party terms before collecting or publishing their
 material.

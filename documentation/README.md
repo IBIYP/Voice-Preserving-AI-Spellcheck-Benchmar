@@ -1,16 +1,17 @@
 # Documentation Index
 
-The benchmark is currently the **v0.5 protocol draft**. No protocol has been
-frozen and no results have been collected under it.
+The benchmark's proposed **v0.5 protocol** is still a draft. It has not been
+frozen, and there are no results under it yet.
 
 ## Protocol and scoring
 
+- [Benchmark versions and the proposed v0.5 test](benchmark-versions/README.md)
 - [Quick and Dirty Guide for Running the Benchmark](quick-start/quick-and-dirty-guide.md)
 - [Trying Your Own Test Data](quick-start/trying-your-own-test-data.md)
 - [v0.5 protocol overview, scoring, and freeze requirements](benchmark-v0.5-draft.md)
 - [Detailed four-pillar scoring rules and limitations](benchmark-details.md)
 - [Machine-readable inputs, annotations, and negative controls](../benchmark_data/v0.5_anchor_draft.json)
-- [Dataset scope and CC0-1.0 license](../benchmark_data/README.md)
+- [Dataset scope and CC0-1.0 licence](../benchmark_data/README.md)
 - [Scoring implementation and tests](reproduction-guide.md)
 
 ## Comparisons and provenance

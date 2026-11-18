@@ -9,7 +9,7 @@ protocol has been explicitly frozen.
 Spelling checkers, grammar tools, writing assistants, APIs, web interfaces,
 and local libraries may be considered. A run must use the same frozen 20
 paired inputs and ten controls for every engine. Locale must not be forced;
-record the provider's default or automatic-detection behavior.
+record the provider's default or automatic-detection behaviour.
 
 The benchmark does not request API keys. If a local collection requires a
 credential, the collector must use their own key and must not commit, attach,
@@ -38,7 +38,7 @@ sponsorship.
 ## Score interpretation and limitations
 
 The four pillars are equally weighted. Negative-control hits apply only to
-predefined exact patterns. Unclassified changes are not labeled
+predefined exact patterns. Unclassified changes are not labelled
 hallucinations, and the negative-control score is not a general hallucination
 rate or semantic-fidelity measure.
 
@@ -54,7 +54,7 @@ motive of bad faith, and we do not intend to harm or disparage any company,
 developer, or product.
 
 This benchmark is not intended to represent or serve any one company or
-organization. We hope every tested provider will eventually help review and
+organisation. We hope every tested provider will eventually help review and
 shape it, and we invite all providers and researchers to share input and
 feedback.
 
