@@ -2,6 +2,7 @@
 
 import html
 import json
+import math
 from pathlib import Path
 
 
@@ -9,6 +10,7 @@ ROOT = Path(__file__).parent
 RESULTS_PATH = ROOT / "raw_results" / "blind_4pillars_eval_run_v4.json"
 PAIRED_RESULTS_PATH = ROOT / "raw_results" / "h_suite_locale_eval_v1.json"
 QUALITY_HISTORY_PATH = ROOT / "raw_results" / "quality_history.json"
+WEEKLY_HISTORY_PATH = ROOT / "raw_results" / "h_suite_weekly_history.json"
 ASSETS = ROOT / "assets"
 
 CURRENT_ENGINE_COLORS = {
@@ -190,6 +192,21 @@ def _write_svg(filename, lines):
 
 
 def build_quality_chart(scores):
+    if WEEKLY_HISTORY_PATH.exists():
+        with WEEKLY_HISTORY_PATH.open("r", encoding="utf-8") as file:
+            entries = json.load(file).get("entries", [])
+        if entries:
+            _build_single_history_line_chart(
+                "hybrid_score_comparison.svg",
+                "QUALITY COMPOSITE OVER TIME (ALL COMPETITORS)",
+                "Fresh 10-passage repeat runs (solid) + v0.4 H-suite carry-forward references (dashed) | 43.75% spelling, 31.25% grammar, 25% voice",
+                "quality_composite",
+                scores,
+                entries,
+                full_legend_names=True,
+            )
+            return
+
     engines = sorted(
         scores.items(),
         key=lambda item: item[1]["quality_composite"],
@@ -237,55 +254,128 @@ def build_quality_chart(scores):
     _write_svg("hybrid_score_comparison.svg", svg)
 
 
+def _wilson_ci_percent(hits, total, z=1.96):
+    """Return (low_pct, high_pct, half_width_pct) for a 95% Wilson score interval."""
+    if not total:
+        return 0.0, 0.0, 0.0
+    p = hits / total
+    z2 = z * z
+    denom = 1.0 + z2 / total
+    center = (p + z2 / (2.0 * total)) / denom
+    margin = (z * math.sqrt((p * (1.0 - p) + z2 / (4.0 * total)) / total)) / denom
+    low = max(0.0, (center - margin) * 100.0)
+    high = min(100.0, (center + margin) * 100.0)
+    return low, high, (high - low) / 2.0
+
+
+def _load_v04_passage_voice_margins():
+    """Return (eval_date, {engine: 1.96 * SEM}) from the saved v0.4 artifact."""
+    if not RESULTS_PATH.exists():
+        return "November 14, 2026", {}
+    with RESULTS_PATH.open("r", encoding="utf-8") as file:
+        artifact = json.load(file)
+    eval_date = artifact.get("benchmark_metadata", {}).get("eval_date", "November 14, 2026")
+    per_engine = {}
+    for passage in artifact.get("passages", []):
+        for engine, entry in passage.get("scores", {}).items():
+            metrics = entry.get("metrics", {}) if isinstance(entry, dict) else {}
+            if "voice_preservation" in metrics:
+                per_engine.setdefault(engine, []).append(float(metrics["voice_preservation"]))
+    margins = {}
+    for engine, values in per_engine.items():
+        n = len(values)
+        if n > 1:
+            mean = sum(values) / n
+            variance = sum((v - mean) ** 2 for v in values) / (n - 1)
+            sem = math.sqrt(variance / n)
+            margins[engine] = 1.96 * sem
+        else:
+            margins[engine] = 0.0
+    return eval_date, margins
+
+
 def build_pillars_chart(scores):
     engines = sorted(
         scores.items(),
         key=lambda item: item[1]["quality_composite"],
         reverse=True,
     )
-    height = 145 + len(engines) * 54 + 40
+    eval_date, voice_margins = _load_v04_passage_voice_margins()
+    height = 152 + len(engines) * 54 + 48
     svg = _start_svg(
-        1400,
+        1540,
         height,
         "V0.4 H-SUITE QUALITY PILLARS",
-        "Single-locale baseline; locale settings vary or are unreported",
+        f"Snapshot: {eval_date} | Single-locale baseline | Whiskers show 95% confidence intervals",
     )
     columns = [
-        ("Spelling", "spelling_accuracy"),
-        ("Grammar", "grammar_accuracy"),
-        ("Voice", "voice_preservation"),
+        ("Spelling (n=49)", "spelling_accuracy", "spelling"),
+        ("Grammar (n=12)", "grammar_accuracy", "grammar"),
+        ("Voice (n=10)", "voice_preservation", "voice"),
     ]
-    x_positions = [500, 800, 1100]
-    for (label, _), x in zip(columns, x_positions):
+    x_positions = [500, 860, 1220]
+    for (label, _, _), x in zip(columns, x_positions):
         svg.append(
             f'<text x="{x}" y="88" fill="#f0f6fc" font-size="16" '
             f'font-weight="700" text-anchor="middle">{label}</text>'
         )
     for row, (engine, result) in enumerate(engines):
-        y = 112 + row * 54
+        y = 114 + row * 54
         color = CURRENT_ENGINE_COLORS[engine]
         svg.append(
             f'<text x="350" y="{y + 20}" fill="{color}" font-size="16" '
             f'text-anchor="end">{html.escape(engine)}</text>'
         )
-        for (_, key), x in zip(columns, x_positions):
-            score = result[key]
+        for (_, key, kind), x in zip(columns, x_positions):
+            score = float(result[key])
+            if kind == "spelling":
+                hits = result.get("spelling_target_hits", round(score * 49 / 100))
+                total = result.get("spelling_target_count", 49)
+                low, high, half = _wilson_ci_percent(hits, total)
+            elif kind == "grammar":
+                hits = result.get("grammar_target_hits", round(score * 12 / 100))
+                total = result.get("grammar_target_count", 12)
+                low, high, half = _wilson_ci_percent(hits, total)
+            else:
+                half = voice_margins.get(engine, 0.0)
+                low = max(0.0, score - half)
+                high = min(100.0, score + half)
+
             bar_x = x - 110
+            bar_w = 220
             svg.append(
-                f'<rect x="{bar_x}" y="{y}" width="220" height="28" '
+                f'<rect x="{bar_x}" y="{y}" width="{bar_w}" height="28" '
                 'fill="#161b22" stroke="#30363d" stroke-width="1"/>'
             )
             svg.append(
-                f'<rect x="{bar_x}" y="{y}" width="{220 * score / 100:.2f}" '
+                f'<rect x="{bar_x}" y="{y}" width="{bar_w * score / 100:.2f}" '
                 f'height="28" fill="{color}" opacity="0.72"/>'
             )
+            # 95% confidence interval whisker overlay
+            x_low = bar_x + bar_w * low / 100.0
+            x_high = bar_x + bar_w * high / 100.0
+            y_mid = y + 14
             svg.append(
-                f'<text x="{x + 120}" y="{y + 20}" fill="#f0f6fc" font-size="13" '
-                f'font-weight="700">{score:.1f}%</text>'
+                f'<line x1="{x_low:.2f}" y1="{y_mid}" x2="{x_high:.2f}" y2="{y_mid}" '
+                'stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>'
+            )
+            svg.append(
+                f'<line x1="{x_low:.2f}" y1="{y_mid - 5}" x2="{x_low:.2f}" y2="{y_mid + 5}" '
+                'stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>'
+            )
+            svg.append(
+                f'<line x1="{x_high:.2f}" y1="{y_mid - 5}" x2="{x_high:.2f}" y2="{y_mid + 5}" '
+                'stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>'
+            )
+            svg.append(
+                f'<text x="{x + 118}" y="{y + 19}" fill="#f0f6fc" font-size="12.5" '
+                f'font-weight="700">{score:.1f}% '
+                f'<tspan fill="#8b949e" font-size="11" font-weight="400">&#177;{half:.1f}%</tspan></text>'
             )
     svg.append(
-        f'<text x="700" y="{height - 8}" fill="#8b949e" font-size="12" '
-        'text-anchor="middle">Scores are recomputed from saved H-suite outputs under v4.0</text>'
+        f'<text x="770" y="{height - 10}" fill="#8b949e" font-size="12" '
+        'text-anchor="middle">95% Wilson intervals for Spelling (n=49) &amp; Grammar (n=12); '
+        '95% mean interval (&#177;1.96 SEM) across 10 passages for Voice | v4.0</text>'
     )
     _write_svg("pillars_breakdown.svg", svg)
 
@@ -425,6 +515,25 @@ def build_pillars_profile_chart(scores):
 
 
 def build_diagnostic_chart(scores):
+    has_missing_rate = any(
+        result.get("correction_site_diagnostic", {}).get("unapproved_edit_rate") is None
+        for result in scores.values()
+    )
+    if not has_missing_rate and WEEKLY_HISTORY_PATH.exists():
+        with WEEKLY_HISTORY_PATH.open("r", encoding="utf-8") as file:
+            entries = json.load(file).get("entries", [])
+        if entries:
+            _build_single_history_line_chart(
+                "correction_site_diagnostic.svg",
+                "UNAPPROVED EDIT RATE OVER TIME (LOWER IS BETTER)",
+                "Share of 61 marked correction sites changed to an unapproved edit | Fresh batches (solid) + v0.4 references (dashed)",
+                "unapproved_edit_rate",
+                scores,
+                entries,
+                full_legend_names=True,
+            )
+            return
+
     engines = sorted(
         scores.items(),
         key=lambda item: (
@@ -872,6 +981,294 @@ def build_paired_locale_latency_chart(locale_results):
 
 
 
+def _spread_label_ys(items, min_gap=15, y_min=86, y_max=365):
+    """Adjust label y-coordinates to prevent overlapping text on line endpoints."""
+    if not items:
+        return {}
+    ordered = sorted(items, key=lambda pair: pair[1])
+    placed = []
+    for key, y in ordered:
+        adjusted = max(y_min, min(y_max, y))
+        if placed and adjusted - placed[-1][1] < min_gap:
+            adjusted = placed[-1][1] + min_gap
+        placed.append([key, adjusted])
+    if placed and placed[-1][1] > y_max:
+        overflow = placed[-1][1] - y_max
+        placed[-1][1] = y_max
+        for i in range(len(placed) - 2, -1, -1):
+            if placed[i + 1][1] - placed[i][1] < min_gap:
+                placed[i][1] = max(y_min, placed[i + 1][1] - min_gap)
+    return {key: y for key, y in placed}
+
+
+def _extract_metric(score_obj, metric_key):
+    if not isinstance(score_obj, dict):
+        return None
+    if metric_key in score_obj and score_obj[metric_key] is not None:
+        return float(score_obj[metric_key])
+    if metric_key == "unapproved_edit_rate":
+        diag = score_obj.get("correction_site_diagnostic")
+        if isinstance(diag, dict) and diag.get("unapproved_edit_rate") is not None:
+            return float(diag["unapproved_edit_rate"])
+    return None
+
+
+def _build_single_history_line_chart(
+    filename,
+    title,
+    subtitle,
+    metric_key,
+    baseline_summary,
+    entries,
+    baseline_date="2026-11-14",
+    full_legend_names=False,
+):
+    """Build one time-based line chart for a single pillar or composite score.
+
+    Plots only measured fresh-repeat batches on the x-axis for retested engines,
+    while showing non-retested v0.4 competitors as dashed carry-forward reference
+    lines from their last measured v0.4 H-suite score.
+    """
+    width, height = 1180, 470
+    svg = _start_svg(width, height, title, subtitle)
+
+    x_left, x_right = 110, 730
+    y_top, y_bottom = 92, 365
+    y_range = y_bottom - y_top
+
+    for pct in (0, 25, 50, 75, 100):
+        y = y_bottom - pct * y_range / 100
+        dash = ' stroke-dasharray="3 3"' if pct > 0 else ""
+        svg.append(
+            f'<line x1="{x_left}" y1="{y:g}" x2="{x_right}" y2="{y:g}" '
+            f'stroke="#30363d" stroke-width="1"{dash}/>'
+        )
+        svg.append(
+            f'<text x="{x_left - 12}" y="{y + 4:g}" fill="#8b949e" font-size="11" '
+            f'text-anchor="end">{pct}%</text>'
+        )
+
+    time_points = [
+        {
+            "label": entry.get("suite_id", "batch").replace("h-suite-", ""),
+            "date": entry.get("week_start_date", ""),
+            "scores": entry.get("provider_scores", {}),
+        }
+        for entry in entries
+    ]
+
+    n_pts = len(time_points)
+    if n_pts == 1:
+        x_positions = [(x_left + x_right) / 2]
+    else:
+        step = (x_right - x_left - 100) / (n_pts - 1)
+        x_positions = [x_left + 50 + i * step for i in range(n_pts)]
+
+    for x, tp in zip(x_positions, time_points):
+        svg.append(
+            f'<line x1="{x:g}" y1="{y_top}" x2="{x:g}" y2="{y_bottom}" '
+            'stroke="#21262d" stroke-width="1" stroke-dasharray="3 3"/>'
+        )
+        svg.append(
+            f'<text x="{x:g}" y="{y_bottom + 22}" fill="#f0f6fc" font-size="11" '
+            f'font-weight="700" text-anchor="middle">{html.escape(tp["label"])}</text>'
+        )
+        svg.append(
+            f'<text x="{x:g}" y="{y_bottom + 38}" fill="#8b949e" font-size="10" '
+            f'text-anchor="middle">{html.escape(tp["date"])}</text>'
+        )
+
+    all_engines = list(CURRENT_ENGINE_COLORS.keys())
+    for entry in entries:
+        for eng in entry.get("provider_scores", {}):
+            if eng not in all_engines:
+                all_engines.append(eng)
+
+    series_data = {}
+    retested_engines = []
+    carried_engines = []
+    end_labels = []
+
+    for engine in all_engines:
+        has_repeat = any(
+            _extract_metric(tp["scores"].get(engine), metric_key) is not None
+            for tp in time_points
+        )
+        pts = []
+        if has_repeat:
+            last_val = None
+            for x, tp in zip(x_positions, time_points):
+                val = _extract_metric(tp["scores"].get(engine), metric_key)
+                if val is not None:
+                    last_val = val
+                    pts.append((x, y_bottom - val * y_range / 100, val, True))
+                elif last_val is not None:
+                    pts.append((x, y_bottom - last_val * y_range / 100, last_val, False))
+        else:
+            val = _extract_metric(baseline_summary.get(engine), metric_key)
+            if val is not None:
+                y_val = y_bottom - val * y_range / 100
+                pts = [(x, y_val, val, False) for x in x_positions]
+
+        if not pts:
+            continue
+        series_data[engine] = {"pts": pts, "has_repeat": has_repeat}
+        if has_repeat:
+            retested_engines.append(engine)
+        else:
+            carried_engines.append(engine)
+        end_labels.append((engine, pts[-1][1]))
+
+    adjusted_end_y = _spread_label_ys(end_labels, min_gap=15, y_min=y_top - 2, y_max=y_bottom + 2)
+
+    # Draw carried-forward reference series first so active retested lines sit on top
+    for engine in carried_engines + retested_engines:
+        info = series_data[engine]
+        pts = info["pts"]
+        color = CURRENT_ENGINE_COLORS.get(engine, "#8b949e")
+        for (x1, y1, _v1, _m1), (x2, y2, _v2, m2) in zip(pts, pts[1:]):
+            if m2 and info["has_repeat"]:
+                svg.append(
+                    f'<line x1="{x1:g}" y1="{y1:g}" x2="{x2:g}" y2="{y2:g}" '
+                    f'stroke="{color}" stroke-width="2.8"/>'
+                )
+            else:
+                svg.append(
+                    f'<line x1="{x1:g}" y1="{y1:g}" x2="{x2:g}" y2="{y2:g}" '
+                    f'stroke="{color}" stroke-width="1.8" stroke-dasharray="5 4" opacity="0.55"/>'
+                )
+
+        for idx, (x, y, val, measured) in enumerate(pts):
+            if measured:
+                svg.append(
+                    f'<circle cx="{x:g}" cy="{y:g}" r="5" fill="{color}" '
+                    'stroke="#0d1117" stroke-width="1.5"/>'
+                )
+            else:
+                svg.append(
+                    f'<circle cx="{x:g}" cy="{y:g}" r="4.5" fill="#0d1117" '
+                    f'stroke="{color}" stroke-width="1.8" opacity="0.75"/>'
+                )
+            if idx == len(pts) - 1:
+                ly = adjusted_end_y[engine]
+                suffix = "" if measured else "*"
+                opacity_attr = "" if measured else ' opacity="0.8"'
+                svg.append(
+                    f'<text x="{x + 12:g}" y="{ly + 4:g}" fill="{color}" font-size="11" '
+                    f'font-weight="700"{opacity_attr}>{val:.1f}%{suffix}</text>'
+                )
+
+    # Right-side legend box with generous padding so text never clips
+    svg.append(
+        '<rect x="810" y="88" width="345" height="282" rx="6" fill="#161b22" '
+        'stroke="#30363d" stroke-width="1"/>'
+    )
+    ly = 110
+    svg.append(
+        f'<text x="826" y="{ly}" fill="#f0f6fc" font-size="11" font-weight="700">'
+        'Retested on fresh batches (solid)</text>'
+    )
+    ly += 22
+    for engine in retested_engines:
+        color = CURRENT_ENGINE_COLORS.get(engine, "#8b949e")
+        svg.append(
+            f'<line x1="826" y1="{ly}" x2="850" y2="{ly}" stroke="{color}" stroke-width="2.8"/>'
+        )
+        svg.append(f'<circle cx="838" cy="{ly}" r="4" fill="{color}"/>')
+        svg.append(
+            f'<text x="860" y="{ly + 4}" fill="#f0f6fc" font-size="11">{html.escape(engine)}</text>'
+        )
+        ly += 24
+
+    ly += 10
+    svg.append(
+        f'<text x="826" y="{ly}" fill="#8b949e" font-size="11" font-weight="700">'
+        f'Carried forward from {html.escape(baseline_date)}*</text>'
+    )
+    ly += 14
+    svg.append(
+        f'<text x="826" y="{ly}" fill="#8b949e" font-size="9.5">'
+        '(dashed reference; not retested yet)</text>'
+    )
+    ly += 20
+    for engine in carried_engines:
+        color = CURRENT_ENGINE_COLORS.get(engine, "#8b949e")
+        display_name = (
+            engine
+            if full_legend_names
+            else engine.replace(" Free Grammar Checker", "")
+            .replace(" Grammar Checker", "")
+            .replace(" Free Web Checker", " (Web)")
+        )
+        svg.append(
+            f'<line x1="826" y1="{ly}" x2="850" y2="{ly}" stroke="{color}" '
+            'stroke-width="1.8" stroke-dasharray="4 3" opacity="0.7"/>'
+        )
+        svg.append(
+            f'<circle cx="838" cy="{ly}" r="3.8" fill="#0d1117" stroke="{color}" stroke-width="1.5"/>'
+        )
+        svg.append(
+            f'<text x="860" y="{ly + 4}" fill="#c9d1d9" font-size="10.5">'
+            f'{html.escape(display_name)}</text>'
+        )
+        ly += 22
+
+    svg.append(
+        f'<text x="{width / 2:g}" y="{height - 16}" fill="#8b949e" font-size="10.5" '
+        'text-anchor="middle">*Dashed lines carry forward the last measured v0.4 H-suite score '
+        'as a reference only; solid lines track fresh repeat batches.</text>'
+    )
+    _write_svg(filename, svg)
+
+
+def build_weekly_history_chart(baseline_summary, history_path=WEEKLY_HISTORY_PATH):
+    """Generate time-based line charts for overall composite and each v0.4 pillar."""
+    path = Path(history_path)
+    if not path.exists():
+        return
+    with path.open("r", encoding="utf-8") as file:
+        history = json.load(file)
+    entries = history.get("entries", [])
+    if not entries:
+        return
+
+    charts = (
+        (
+            "h_suite_weekly_history.svg",
+            "QUALITY COMPOSITE OVER TIME (ALL COMPETITORS)",
+            "v0.4 H-suite baseline + fresh 10-passage repeat runs (43.75% spelling, 31.25% grammar, 25% voice)",
+            "quality_composite",
+        ),
+        (
+            "h_suite_history_spelling.svg",
+            "PILLAR 1: SPELLING ACCURACY OVER TIME",
+            "Target spelling fix rate across v0.4 H-suite and fresh repeat batches (49 spelling targets per batch)",
+            "spelling_accuracy",
+        ),
+        (
+            "h_suite_history_grammar.svg",
+            "PILLAR 2: GRAMMAR ACCURACY OVER TIME",
+            "Target grammar fix rate across v0.4 H-suite and fresh repeat batches (12 grammar targets per batch)",
+            "grammar_accuracy",
+        ),
+        (
+            "h_suite_history_voice.svg",
+            "PILLAR 3: VOICE PRESERVATION OVER TIME",
+            "Writer voice retention across v0.4 H-suite and fresh repeat batches (slang, tone, anti-over-editing)",
+            "voice_preservation",
+        ),
+    )
+    for filename, title, subtitle, metric_key in charts:
+        _build_single_history_line_chart(
+            filename,
+            title,
+            subtitle,
+            metric_key,
+            baseline_summary,
+            entries,
+        )
+
+
 if __name__ == "__main__":
     ASSETS.mkdir(exist_ok=True)
     summary = _load_results()
@@ -881,6 +1278,8 @@ if __name__ == "__main__":
     build_diagnostic_chart(summary)
     build_latency_chart(summary)
     build_quality_history_chart(_load_quality_history())
+    if WEEKLY_HISTORY_PATH.exists():
+        build_weekly_history_chart(summary, WEEKLY_HISTORY_PATH)
     if PAIRED_RESULTS_PATH.exists():
         paired_results = _load_paired_results()
         build_paired_locale_quality_chart(paired_results)

@@ -1,0 +1,287 @@
+{
+  "metadata": {
+    "suite_id": "h-suite-repeat-v1",
+    "suite_version": "1.0",
+    "status": "frozen",
+    "locale": "en-US",
+    "passage_count": 10,
+    "spelling_target_count": 49,
+    "grammar_target_count": 12,
+    "scoring_protocol": "v0.4 H-suite: 43.75% spelling, 31.25% grammar, 25% voice",
+    "collection_note": "Newly composed repeat set. Submit the same source text once to each selected API; retain raw provider outputs and provenance separately from the original H-suite."
+  },
+  "passages": [
+    {
+      "id": "HR-01",
+      "domain": "Live music and casual banter",
+      "input": "That rooftop set was a blast, no joke, but my freind left the setlist beside the soundbord. We slipt in through the side gate; the whole place were buzzingg, and that last chorus is still stuck in my head.",
+      "spelling_targets": {
+        "freind": "friend",
+        "soundbord": "soundboard",
+        "slipt": "slipped",
+        "buzzingg": "buzzing"
+      },
+      "grammar_targets": {
+        "place were": "place was"
+      },
+      "voice_tokens": [
+        "no joke",
+        "side gate",
+        "last chorus",
+        "stuck in my head"
+      ],
+      "dialect_equivalents": {},
+      "forbidden_rewrites": [
+        "the rooftop performance was enjoyable",
+        "entered through the secondary entrance",
+        "the final song remained memorable"
+      ]
+    },
+    {
+      "id": "HR-02",
+      "domain": "Rural family story",
+      "input": "Uncle Ray warmed his hands by the stove, talkin soft while the creek crept past the fence. He reconed the old shead wouldnt last another hard rain; still, his pech pie could cheer a whole Sunday.",
+      "spelling_targets": {
+        "reconed": "reckoned",
+        "shead": "shed",
+        "pech": "peach"
+      },
+      "grammar_targets": {
+        "wouldnt": "wouldn't"
+      },
+      "voice_tokens": [
+        "talkin soft",
+        "old shed",
+        "hard rain",
+        "whole Sunday"
+      ],
+      "dialect_equivalents": {
+        "talkin": ["talkin", "talking"]
+      },
+      "forbidden_rewrites": [
+        "Uncle Ray stood near the heating appliance",
+        "the stream was rising",
+        "his dessert was comforting"
+      ]
+    },
+    {
+      "id": "HR-03",
+      "domain": "Tech-noir action",
+      "input": "Blue rain streaked the alley glass. Mara plugd into the relai, slipped past the firewall, and send the decoy packet before watcher could flag her signel. The trace was already closing in.",
+      "spelling_targets": {
+        "plugd": "plugged",
+        "relai": "relay",
+        "signel": "signal"
+      },
+      "grammar_targets": {
+        "and send": "and sent",
+        "before watcher": "before the watcher"
+      },
+      "voice_tokens": [
+        "Blue rain",
+        "alley glass",
+        "firewall",
+        "closing in"
+      ],
+      "dialect_equivalents": {},
+      "forbidden_rewrites": [
+        "rain reflected from the glass buildings",
+        "connected to the network",
+        "avoided detection by security software"
+      ]
+    },
+    {
+      "id": "HR-04",
+      "domain": "Food review",
+      "input": "The charrd corn had a smoky bite, but the lime dreassing was way to sharp. It nearly burried the sweet pech salsa, which somehow still tasted bright and fresh.",
+      "spelling_targets": {
+        "charrd": "charred",
+        "dreassing": "dressing",
+        "burried": "buried",
+        "pech": "peach"
+      },
+      "grammar_targets": {
+        "way to": "way too"
+      },
+      "voice_tokens": [
+        "smoky bite",
+        "way too sharp",
+        "sweet peach salsa",
+        "bright and fresh"
+      ],
+      "dialect_equivalents": {},
+      "forbidden_rewrites": [
+        "the corn possessed a smoky flavour",
+        "the dressing was excessively acidic",
+        "the salsa was rendered indistinct"
+      ]
+    },
+    {
+      "id": "HR-05",
+      "domain": "Childhood dream",
+      "input": "Last nite, I dreemed our roket ship could flie through the clowds to a purpel moon. We landid beside bubbl lakes and met tiny martins who wavin at us. The stars was close enough to touch, and it felt so reel that I hollerd when my dad wake me for skool; I wanted to go back.",
+      "spelling_targets": {
+        "nite": "night",
+        "dreemed": "dreamed",
+        "roket": "rocket",
+        "flie": "fly",
+        "clowds": "clouds",
+        "purpel": "purple",
+        "landid": "landed",
+        "bubbl": "bubble",
+        "martins": "Martians",
+        "reel": "real",
+        "hollerd": "hollered",
+        "skool": "school"
+      },
+      "grammar_targets": {
+        "who wavin": "who waved",
+        "stars was": "stars were",
+        "dad wake me": "dad woke me"
+      },
+      "voice_tokens": [
+        "rocket ship",
+        "tiny Martians",
+        "close enough to touch",
+        "wanted to go back"
+      ],
+      "dialect_equivalents": {},
+      "forbidden_rewrites": [
+        "I had a vivid dream",
+        "small extraterrestrials greeted us",
+        "my parent awakened me for school"
+      ]
+    },
+    {
+      "id": "HR-06",
+      "domain": "Startup update",
+      "input": "Our churn fell 14% last qaurter, team, while renewels hit a record high. Competetors are scrambling to catch up, but we moved to fast to celebrate.",
+      "spelling_targets": {
+        "qaurter": "quarter",
+        "renewels": "renewals",
+        "Competetors": "Competitors"
+      },
+      "grammar_targets": {
+        "to fast": "too fast"
+      },
+      "voice_tokens": [
+        "14%",
+        "team",
+        "scrambling to catch up",
+        "celebrate"
+      ],
+      "dialect_equivalents": {},
+      "forbidden_rewrites": [
+        "customer attrition declined",
+        "competing organizations are attempting to match us",
+        "we should postpone any celebration"
+      ]
+    },
+    {
+      "id": "HR-07",
+      "domain": "Basketball game",
+      "input": "Coach sketcht the play on the whitebord during the timeout. We ran the pick and roil clean, hit the three-pointer at the buzer, and won the champinship; the bench were on its feet before the net stopped sweying.",
+      "spelling_targets": {
+        "sketcht": "sketched",
+        "whitebord": "whiteboard",
+        "roil": "roll",
+        "buzer": "buzzer",
+        "champinship": "championship",
+        "sweying": "swaying"
+      },
+      "grammar_targets": {
+        "bench were": "bench was"
+      },
+      "voice_tokens": [
+        "pick and roll clean",
+        "three-pointer at the buzzer",
+        "the bench was on its feet",
+        "before the net stopped swaying"
+      ],
+      "dialect_equivalents": {},
+      "forbidden_rewrites": [
+        "the coach diagrammed a strategy",
+        "the team scored a long-range basket",
+        "the substitutes celebrated enthusiastically"
+      ]
+    },
+    {
+      "id": "HR-08",
+      "domain": "Literary reflection",
+      "input": "Fog curled through the orcherd as the old rails humed. A quiet ache stayed with me, neither sharp nor bitter, just the slow exhale of another fall; one lantern flikered alone by the abondoned plattform.",
+      "spelling_targets": {
+        "orcherd": "orchard",
+        "humed": "hummed",
+        "flikered": "flickered",
+        "abondoned": "abandoned",
+        "plattform": "platform"
+      },
+      "grammar_targets": {},
+      "voice_tokens": [
+        "quiet ache",
+        "slow exhale",
+        "another fall",
+        "one lantern flickered alone"
+      ],
+      "dialect_equivalents": {},
+      "forbidden_rewrites": [
+        "a feeling of sadness remained",
+        "the passage of another year",
+        "a lamp illuminated the unused station"
+      ]
+    },
+    {
+      "id": "HR-09",
+      "domain": "Field biology notes",
+      "input": "Logged four specimins of Dendrobates tinctourius near the creek bed. The aposematic coloration was extremely vibrent despite heavy canopie shade; two sample were taken after the rain stopped.",
+      "spelling_targets": {
+        "specimins": "specimens",
+        "tinctourius": "tinctorius",
+        "vibrent": "vibrant",
+        "canopie": "canopy"
+      },
+      "grammar_targets": {
+        "two sample": "two samples"
+      },
+      "voice_tokens": [
+        "Logged four specimens",
+        "Dendrobates tinctorius",
+        "aposematic coloration",
+        "heavy canopy shade"
+      ],
+      "dialect_equivalents": {},
+      "forbidden_rewrites": [
+        "four frogs were observed",
+        "the warning colours were bright",
+        "the area was shaded by trees"
+      ]
+    },
+    {
+      "id": "HR-10",
+      "domain": "Contract clause",
+      "input": "Section 8.3 goverens the indemnity oblegations. Neither party are liable for consequenshal damages arising from an unintensional breach, including a failure to give timely notise.",
+      "spelling_targets": {
+        "goverens": "governs",
+        "oblegations": "obligations",
+        "consequenshal": "consequential",
+        "unintensional": "unintentional",
+        "notise": "notice"
+      },
+      "grammar_targets": {
+        "party are": "party is"
+      },
+      "voice_tokens": [
+        "Section 8.3",
+        "Neither party is liable",
+        "consequential damages",
+        "timely notice"
+      ],
+      "dialect_equivalents": {},
+      "forbidden_rewrites": [
+        "the agreement establishes a duty",
+        "neither signatory shall assume financial responsibility",
+        "non-willful contractual default"
+      ]
+    }
+  ]
+}

@@ -1,39 +1,75 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 459" style="background:#0d1117; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
-<rect x="1" y="1" width="1198" height="457" fill="none" stroke="#30363d" stroke-width="1"/>
-<text x="600" y="32" fill="#f0f6fc" font-size="18" font-weight="700" text-anchor="middle">V0.4 CORRECTION-SITE EDIT DIAGNOSTIC</text>
-<text x="600" y="54" fill="#8b949e" font-size="13" text-anchor="middle">Single-locale baseline; lower is fewer unapproved edits; not a hallucination rate</text>
-<line x1="300" y1="68" x2="300" y2="405" stroke="#30363d" stroke-width="1"/>
-<text x="300" y="425" fill="#8b949e" font-size="10" text-anchor="middle">0%</text>
-<line x1="432" y1="68" x2="432" y2="405" stroke="#30363d" stroke-width="1"/>
-<text x="432" y="425" fill="#8b949e" font-size="10" text-anchor="middle">10%</text>
-<line x1="564" y1="68" x2="564" y2="405" stroke="#30363d" stroke-width="1"/>
-<text x="564" y="425" fill="#8b949e" font-size="10" text-anchor="middle">20%</text>
-<line x1="696" y1="68" x2="696" y2="405" stroke="#30363d" stroke-width="1"/>
-<text x="696" y="425" fill="#8b949e" font-size="10" text-anchor="middle">30%</text>
-<line x1="828" y1="68" x2="828" y2="405" stroke="#30363d" stroke-width="1"/>
-<text x="828" y="425" fill="#8b949e" font-size="10" text-anchor="middle">40%</text>
-<line x1="960" y1="68" x2="960" y2="405" stroke="#30363d" stroke-width="1"/>
-<text x="960" y="425" fill="#8b949e" font-size="10" text-anchor="middle">50%</text>
-<text x="288" y="93" fill="#E9DFA9" font-size="11" text-anchor="end">Sapling Grammar Checker</text>
-<rect x="300" y="76" width="43.56" height="24" fill="#E9DFA9" stroke="#f0f6fc" stroke-width="1"/>
-<text x="351.56" y="93" fill="#f0f6fc" font-size="11">2/61 (3.3%)</text>
-<text x="288" y="135" fill="#D86C1C" font-size="11" text-anchor="end">BCorrect (FMM)</text>
-<rect x="300" y="118" width="64.68" height="24" fill="#D86C1C" stroke="#f0f6fc" stroke-width="1"/>
-<text x="372.68" y="135" fill="#f0f6fc" font-size="11">3/61 (4.9%)</text>
-<text x="288" y="177" fill="#D8976F" font-size="11" text-anchor="end">Grammarly Free Grammar Checker</text>
-<rect x="300" y="160" width="64.68" height="24" fill="#D8976F" stroke="#f0f6fc" stroke-width="1"/>
-<text x="372.68" y="177" fill="#f0f6fc" font-size="11">3/61 (4.9%)</text>
-<text x="288" y="219" fill="#F2E8DB" font-size="11" text-anchor="end">TextGears API</text>
-<rect x="300" y="202" width="151.80" height="24" fill="#F2E8DB" stroke="#f0f6fc" stroke-width="1"/>
-<text x="459.80" y="219" fill="#f0f6fc" font-size="11">7/61 (11.5%)</text>
-<text x="288" y="261" fill="#D5CDE1" font-size="11" text-anchor="end">DeepL Write</text>
-<rect x="300" y="244" width="216.48" height="24" fill="#D5CDE1" stroke="#f0f6fc" stroke-width="1"/>
-<text x="524.48" y="261" fill="#f0f6fc" font-size="11">10/61 (16.4%)</text>
-<text x="288" y="303" fill="#409DC6" font-size="11" text-anchor="end">LanguageTool API</text>
-<rect x="300" y="286" width="345.84" height="24" fill="#409DC6" stroke="#f0f6fc" stroke-width="1"/>
-<text x="653.84" y="303" fill="#f0f6fc" font-size="11">16/61 (26.2%)</text>
-<text x="288" y="345" fill="#D47440" font-size="11" text-anchor="end">JSpell Free Web Checker</text>
-<rect x="300" y="328" width="389.40" height="24" fill="#D47440" stroke="#f0f6fc" stroke-width="1"/>
-<text x="697.40" y="345" fill="#f0f6fc" font-size="11">18/61 (29.5%)</text>
-<text x="600" y="450" fill="#8b949e" font-size="10" text-anchor="middle">Shared rules across engines; only annotated spelling/grammar sites are examined</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 470" style="background:#0d1117; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
+<rect x="1" y="1" width="1178" height="468" fill="none" stroke="#30363d" stroke-width="1"/>
+<text x="590" y="32" fill="#f0f6fc" font-size="18" font-weight="700" text-anchor="middle">UNAPPROVED EDIT RATE OVER TIME (LOWER IS BETTER)</text>
+<text x="590" y="54" fill="#8b949e" font-size="13" text-anchor="middle">Share of 61 marked correction sites changed to an unapproved edit | Fresh batches (solid) + v0.4 references (dashed)</text>
+<line x1="110" y1="365" x2="730" y2="365" stroke="#30363d" stroke-width="1"/>
+<text x="98" y="369" fill="#8b949e" font-size="11" text-anchor="end">0%</text>
+<line x1="110" y1="296.75" x2="730" y2="296.75" stroke="#30363d" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="98" y="300.75" fill="#8b949e" font-size="11" text-anchor="end">25%</text>
+<line x1="110" y1="228.5" x2="730" y2="228.5" stroke="#30363d" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="98" y="232.5" fill="#8b949e" font-size="11" text-anchor="end">50%</text>
+<line x1="110" y1="160.25" x2="730" y2="160.25" stroke="#30363d" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="98" y="164.25" fill="#8b949e" font-size="11" text-anchor="end">75%</text>
+<line x1="110" y1="92" x2="730" y2="92" stroke="#30363d" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="98" y="96" fill="#8b949e" font-size="11" text-anchor="end">100%</text>
+<line x1="160" y1="92" x2="160" y2="365" stroke="#21262d" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="160" y="387" fill="#f0f6fc" font-size="11" font-weight="700" text-anchor="middle">repeat-v1</text>
+<text x="160" y="403" fill="#8b949e" font-size="10" text-anchor="middle">2026-11-16</text>
+<line x1="680" y1="92" x2="680" y2="365" stroke="#21262d" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="680" y="387" fill="#f0f6fc" font-size="11" font-weight="700" text-anchor="middle">repeat-v2</text>
+<text x="680" y="403" fill="#8b949e" font-size="10" text-anchor="middle">2026-11-19</text>
+<line x1="160" y1="293.474" x2="680" y2="293.474" stroke="#409DC6" stroke-width="1.8" stroke-dasharray="5 4" opacity="0.55"/>
+<circle cx="160" cy="293.474" r="4.5" fill="#0d1117" stroke="#409DC6" stroke-width="1.8" opacity="0.75"/>
+<circle cx="680" cy="293.474" r="4.5" fill="#0d1117" stroke="#409DC6" stroke-width="1.8" opacity="0.75"/>
+<text x="692" y="296" fill="#409DC6" font-size="11" font-weight="700" opacity="0.8">26.2%*</text>
+<line x1="160" y1="355.991" x2="680" y2="355.991" stroke="#E9DFA9" stroke-width="1.8" stroke-dasharray="5 4" opacity="0.55"/>
+<circle cx="160" cy="355.991" r="4.5" fill="#0d1117" stroke="#E9DFA9" stroke-width="1.8" opacity="0.75"/>
+<circle cx="680" cy="355.991" r="4.5" fill="#0d1117" stroke="#E9DFA9" stroke-width="1.8" opacity="0.75"/>
+<text x="692" y="371" fill="#E9DFA9" font-size="11" font-weight="700" opacity="0.8">3.3%*</text>
+<line x1="160" y1="284.465" x2="680" y2="284.465" stroke="#D47440" stroke-width="1.8" stroke-dasharray="5 4" opacity="0.55"/>
+<circle cx="160" cy="284.465" r="4.5" fill="#0d1117" stroke="#D47440" stroke-width="1.8" opacity="0.75"/>
+<circle cx="680" cy="284.465" r="4.5" fill="#0d1117" stroke="#D47440" stroke-width="1.8" opacity="0.75"/>
+<text x="692" y="281" fill="#D47440" font-size="11" font-weight="700" opacity="0.8">29.5%*</text>
+<line x1="160" y1="351.623" x2="680" y2="351.623" stroke="#D8976F" stroke-width="1.8" stroke-dasharray="5 4" opacity="0.55"/>
+<circle cx="160" cy="351.623" r="4.5" fill="#0d1117" stroke="#D8976F" stroke-width="1.8" opacity="0.75"/>
+<circle cx="680" cy="351.623" r="4.5" fill="#0d1117" stroke="#D8976F" stroke-width="1.8" opacity="0.75"/>
+<text x="692" y="356" fill="#D8976F" font-size="11" font-weight="700" opacity="0.8">4.9%*</text>
+<line x1="160" y1="311.219" x2="680" y2="342.614" stroke="#D86C1C" stroke-width="2.8"/>
+<circle cx="160" cy="311.219" r="5" fill="#D86C1C" stroke="#0d1117" stroke-width="1.5"/>
+<circle cx="680" cy="342.614" r="5" fill="#D86C1C" stroke="#0d1117" stroke-width="1.5"/>
+<text x="692" y="341" fill="#D86C1C" font-size="11" font-weight="700">8.2%</text>
+<line x1="160" y1="306.851" x2="680" y2="297.842" stroke="#F2E8DB" stroke-width="2.8"/>
+<circle cx="160" cy="306.851" r="5" fill="#F2E8DB" stroke="#0d1117" stroke-width="1.5"/>
+<circle cx="680" cy="297.842" r="5" fill="#F2E8DB" stroke="#0d1117" stroke-width="1.5"/>
+<text x="692" y="311" fill="#F2E8DB" font-size="11" font-weight="700">24.6%</text>
+<line x1="160" y1="338.246" x2="680" y2="329.237" stroke="#D5CDE1" stroke-width="2.8"/>
+<circle cx="160" cy="338.246" r="5" fill="#D5CDE1" stroke="#0d1117" stroke-width="1.5"/>
+<circle cx="680" cy="329.237" r="5" fill="#D5CDE1" stroke="#0d1117" stroke-width="1.5"/>
+<text x="692" y="326" fill="#D5CDE1" font-size="11" font-weight="700">13.1%</text>
+<rect x="810" y="88" width="345" height="282" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+<text x="826" y="110" fill="#f0f6fc" font-size="11" font-weight="700">Retested on fresh batches (solid)</text>
+<line x1="826" y1="132" x2="850" y2="132" stroke="#D86C1C" stroke-width="2.8"/>
+<circle cx="838" cy="132" r="4" fill="#D86C1C"/>
+<text x="860" y="136" fill="#f0f6fc" font-size="11">BCorrect (FMM)</text>
+<line x1="826" y1="156" x2="850" y2="156" stroke="#F2E8DB" stroke-width="2.8"/>
+<circle cx="838" cy="156" r="4" fill="#F2E8DB"/>
+<text x="860" y="160" fill="#f0f6fc" font-size="11">TextGears API</text>
+<line x1="826" y1="180" x2="850" y2="180" stroke="#D5CDE1" stroke-width="2.8"/>
+<circle cx="838" cy="180" r="4" fill="#D5CDE1"/>
+<text x="860" y="184" fill="#f0f6fc" font-size="11">DeepL Write</text>
+<text x="826" y="214" fill="#8b949e" font-size="11" font-weight="700">Carried forward from 2026-11-14*</text>
+<text x="826" y="228" fill="#8b949e" font-size="9.5">(dashed reference; not retested yet)</text>
+<line x1="826" y1="248" x2="850" y2="248" stroke="#409DC6" stroke-width="1.8" stroke-dasharray="4 3" opacity="0.7"/>
+<circle cx="838" cy="248" r="3.8" fill="#0d1117" stroke="#409DC6" stroke-width="1.5"/>
+<text x="860" y="252" fill="#c9d1d9" font-size="10.5">LanguageTool API</text>
+<line x1="826" y1="270" x2="850" y2="270" stroke="#E9DFA9" stroke-width="1.8" stroke-dasharray="4 3" opacity="0.7"/>
+<circle cx="838" cy="270" r="3.8" fill="#0d1117" stroke="#E9DFA9" stroke-width="1.5"/>
+<text x="860" y="274" fill="#c9d1d9" font-size="10.5">Sapling Grammar Checker</text>
+<line x1="826" y1="292" x2="850" y2="292" stroke="#D47440" stroke-width="1.8" stroke-dasharray="4 3" opacity="0.7"/>
+<circle cx="838" cy="292" r="3.8" fill="#0d1117" stroke="#D47440" stroke-width="1.5"/>
+<text x="860" y="296" fill="#c9d1d9" font-size="10.5">JSpell Free Web Checker</text>
+<line x1="826" y1="314" x2="850" y2="314" stroke="#D8976F" stroke-width="1.8" stroke-dasharray="4 3" opacity="0.7"/>
+<circle cx="838" cy="314" r="3.8" fill="#0d1117" stroke="#D8976F" stroke-width="1.5"/>
+<text x="860" y="318" fill="#c9d1d9" font-size="10.5">Grammarly Free Grammar Checker</text>
+<text x="590" y="454" fill="#8b949e" font-size="10.5" text-anchor="middle">*Dashed lines carry forward the last measured v0.4 H-suite score as a reference only; solid lines track fresh repeat batches.</text>
 </svg>

@@ -17,7 +17,7 @@
       "collection_mode": "api",
       "collection_route": "API",
       "source_url": "https://bcorrect-api.fly.dev/api/v1/check",
-      "locale": "not reported"
+      "locale": "en-US"
     },
     "LanguageTool API": {
       "version": "not reported",

@@ -1,79 +1,142 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 563" style="background:#0d1117; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
-<rect x="1" y="1" width="1398" height="561" fill="none" stroke="#30363d" stroke-width="1"/>
-<text x="700" y="32" fill="#f0f6fc" font-size="18" font-weight="700" text-anchor="middle">V0.4 H-SUITE QUALITY PILLARS</text>
-<text x="700" y="54" fill="#8b949e" font-size="13" text-anchor="middle">Single-locale baseline; locale settings vary or are unreported</text>
-<text x="500" y="88" fill="#f0f6fc" font-size="16" font-weight="700" text-anchor="middle">Spelling</text>
-<text x="800" y="88" fill="#f0f6fc" font-size="16" font-weight="700" text-anchor="middle">Grammar</text>
-<text x="1100" y="88" fill="#f0f6fc" font-size="16" font-weight="700" text-anchor="middle">Voice</text>
-<text x="350" y="132" fill="#D8976F" font-size="16" text-anchor="end">Grammarly Free Grammar Checker</text>
-<rect x="390" y="112" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-<rect x="390" y="112" width="206.58" height="28" fill="#D8976F" opacity="0.72"/>
-<text x="620" y="132" fill="#f0f6fc" font-size="13" font-weight="700">93.9%</text>
-<rect x="690" y="112" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-<rect x="690" y="112" width="220.00" height="28" fill="#D8976F" opacity="0.72"/>
-<text x="920" y="132" fill="#f0f6fc" font-size="13" font-weight="700">100.0%</text>
-<rect x="990" y="112" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-<rect x="990" y="112" width="213.03" height="28" fill="#D8976F" opacity="0.72"/>
-<text x="1220" y="132" fill="#f0f6fc" font-size="13" font-weight="700">96.8%</text>
-<text x="350" y="186" fill="#E9DFA9" font-size="16" text-anchor="end">Sapling Grammar Checker</text>
-<rect x="390" y="166" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-<rect x="390" y="166" width="206.58" height="28" fill="#E9DFA9" opacity="0.72"/>
-<text x="620" y="186" fill="#f0f6fc" font-size="13" font-weight="700">93.9%</text>
-<rect x="690" y="166" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-<rect x="690" y="166" width="220.00" height="28" fill="#E9DFA9" opacity="0.72"/>
-<text x="920" y="186" fill="#f0f6fc" font-size="13" font-weight="700">100.0%</text>
-<rect x="990" y="166" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-<rect x="990" y="166" width="195.95" height="28" fill="#E9DFA9" opacity="0.72"/>
-<text x="1220" y="186" fill="#f0f6fc" font-size="13" font-weight="700">89.1%</text>
-<text x="350" y="240" fill="#D86C1C" font-size="16" text-anchor="end">BCorrect (FMM)</text>
-<rect x="390" y="220" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-<rect x="390" y="220" width="193.16" height="28" fill="#D86C1C" opacity="0.72"/>
-<text x="620" y="240" fill="#f0f6fc" font-size="13" font-weight="700">87.8%</text>
-<rect x="690" y="220" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-<rect x="690" y="220" width="220.00" height="28" fill="#D86C1C" opacity="0.72"/>
-<text x="920" y="240" fill="#f0f6fc" font-size="13" font-weight="700">100.0%</text>
-<rect x="990" y="220" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-<rect x="990" y="220" width="213.00" height="28" fill="#D86C1C" opacity="0.72"/>
-<text x="1220" y="240" fill="#f0f6fc" font-size="13" font-weight="700">96.8%</text>
-<text x="350" y="294" fill="#D5CDE1" font-size="16" text-anchor="end">DeepL Write</text>
-<rect x="390" y="274" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-<rect x="390" y="274" width="193.16" height="28" fill="#D5CDE1" opacity="0.72"/>
-<text x="620" y="294" fill="#f0f6fc" font-size="13" font-weight="700">87.8%</text>
-<rect x="690" y="274" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-<rect x="690" y="274" width="146.74" height="28" fill="#D5CDE1" opacity="0.72"/>
-<text x="920" y="294" fill="#f0f6fc" font-size="13" font-weight="700">66.7%</text>
-<rect x="990" y="274" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-<rect x="990" y="274" width="147.69" height="28" fill="#D5CDE1" opacity="0.72"/>
-<text x="1220" y="294" fill="#f0f6fc" font-size="13" font-weight="700">67.1%</text>
-<text x="350" y="348" fill="#F2E8DB" font-size="16" text-anchor="end">TextGears API</text>
-<rect x="390" y="328" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-<rect x="390" y="328" width="166.10" height="28" fill="#F2E8DB" opacity="0.72"/>
-<text x="620" y="348" fill="#f0f6fc" font-size="13" font-weight="700">75.5%</text>
-<rect x="690" y="328" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-<rect x="690" y="328" width="146.74" height="28" fill="#F2E8DB" opacity="0.72"/>
-<text x="920" y="348" fill="#f0f6fc" font-size="13" font-weight="700">66.7%</text>
-<rect x="990" y="328" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-<rect x="990" y="328" width="183.02" height="28" fill="#F2E8DB" opacity="0.72"/>
-<text x="1220" y="348" fill="#f0f6fc" font-size="13" font-weight="700">83.2%</text>
-<text x="350" y="402" fill="#409DC6" font-size="16" text-anchor="end">LanguageTool API</text>
-<rect x="390" y="382" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-<rect x="390" y="382" width="166.10" height="28" fill="#409DC6" opacity="0.72"/>
-<text x="620" y="402" fill="#f0f6fc" font-size="13" font-weight="700">75.5%</text>
-<rect x="690" y="382" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-<rect x="690" y="382" width="110.00" height="28" fill="#409DC6" opacity="0.72"/>
-<text x="920" y="402" fill="#f0f6fc" font-size="13" font-weight="700">50.0%</text>
-<rect x="990" y="382" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-<rect x="990" y="382" width="184.95" height="28" fill="#409DC6" opacity="0.72"/>
-<text x="1220" y="402" fill="#f0f6fc" font-size="13" font-weight="700">84.1%</text>
-<text x="350" y="456" fill="#D47440" font-size="16" text-anchor="end">JSpell Free Web Checker</text>
-<rect x="390" y="436" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-<rect x="390" y="436" width="157.08" height="28" fill="#D47440" opacity="0.72"/>
-<text x="620" y="456" fill="#f0f6fc" font-size="13" font-weight="700">71.4%</text>
-<rect x="690" y="436" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-<rect x="690" y="436" width="73.26" height="28" fill="#D47440" opacity="0.72"/>
-<text x="920" y="456" fill="#f0f6fc" font-size="13" font-weight="700">33.3%</text>
-<rect x="990" y="436" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-<rect x="990" y="436" width="186.82" height="28" fill="#D47440" opacity="0.72"/>
-<text x="1220" y="456" fill="#f0f6fc" font-size="13" font-weight="700">84.9%</text>
-<text x="700" y="555" fill="#8b949e" font-size="12" text-anchor="middle">Scores are recomputed from saved H-suite outputs under v4.0</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1540 578" style="background:#0d1117; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
+<rect x="1" y="1" width="1538" height="576" fill="none" stroke="#30363d" stroke-width="1"/>
+<text x="770" y="32" fill="#f0f6fc" font-size="18" font-weight="700" text-anchor="middle">V0.4 H-SUITE QUALITY PILLARS</text>
+<text x="770" y="54" fill="#8b949e" font-size="13" text-anchor="middle">Snapshot: November 19, 2026 | Single-locale baseline | Whiskers show 95% confidence intervals</text>
+<text x="500" y="88" fill="#f0f6fc" font-size="16" font-weight="700" text-anchor="middle">Spelling (n=49)</text>
+<text x="860" y="88" fill="#f0f6fc" font-size="16" font-weight="700" text-anchor="middle">Grammar (n=12)</text>
+<text x="1220" y="88" fill="#f0f6fc" font-size="16" font-weight="700" text-anchor="middle">Voice (n=10)</text>
+<text x="350" y="134" fill="#D8976F" font-size="16" text-anchor="end">Grammarly Free Grammar Checker</text>
+<rect x="390" y="114" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+<rect x="390" y="114" width="206.58" height="28" fill="#D8976F" opacity="0.72"/>
+<line x1="573.65" y1="128" x2="605.37" y2="128" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="573.65" y1="123" x2="573.65" y2="133" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="605.37" y1="123" x2="605.37" y2="133" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<text x="618" y="133" fill="#f0f6fc" font-size="12.5" font-weight="700">93.9% <tspan fill="#8b949e" font-size="11" font-weight="400">&#177;7.2%</tspan></text>
+<rect x="750" y="114" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+<rect x="750" y="114" width="220.00" height="28" fill="#D8976F" opacity="0.72"/>
+<line x1="916.65" y1="128" x2="970.00" y2="128" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="916.65" y1="123" x2="916.65" y2="133" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="970.00" y1="123" x2="970.00" y2="133" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<text x="978" y="133" fill="#f0f6fc" font-size="12.5" font-weight="700">100.0% <tspan fill="#8b949e" font-size="11" font-weight="400">&#177;12.1%</tspan></text>
+<rect x="1110" y="114" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+<rect x="1110" y="114" width="213.03" height="28" fill="#D8976F" opacity="0.72"/>
+<line x1="1312.46" y1="128" x2="1330.00" y2="128" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="1312.46" y1="123" x2="1312.46" y2="133" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="1330.00" y1="123" x2="1330.00" y2="133" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<text x="1338" y="133" fill="#f0f6fc" font-size="12.5" font-weight="700">96.8% <tspan fill="#8b949e" font-size="11" font-weight="400">&#177;4.8%</tspan></text>
+<text x="350" y="188" fill="#E9DFA9" font-size="16" text-anchor="end">Sapling Grammar Checker</text>
+<rect x="390" y="168" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+<rect x="390" y="168" width="206.58" height="28" fill="#E9DFA9" opacity="0.72"/>
+<line x1="573.65" y1="182" x2="605.37" y2="182" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="573.65" y1="177" x2="573.65" y2="187" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="605.37" y1="177" x2="605.37" y2="187" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<text x="618" y="187" fill="#f0f6fc" font-size="12.5" font-weight="700">93.9% <tspan fill="#8b949e" font-size="11" font-weight="400">&#177;7.2%</tspan></text>
+<rect x="750" y="168" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+<rect x="750" y="168" width="220.00" height="28" fill="#E9DFA9" opacity="0.72"/>
+<line x1="916.65" y1="182" x2="970.00" y2="182" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="916.65" y1="177" x2="916.65" y2="187" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="970.00" y1="177" x2="970.00" y2="187" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<text x="978" y="187" fill="#f0f6fc" font-size="12.5" font-weight="700">100.0% <tspan fill="#8b949e" font-size="11" font-weight="400">&#177;12.1%</tspan></text>
+<rect x="1110" y="168" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+<rect x="1110" y="168" width="195.95" height="28" fill="#E9DFA9" opacity="0.72"/>
+<line x1="1282.93" y1="182" x2="1328.97" y2="182" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="1282.93" y1="177" x2="1282.93" y2="187" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="1328.97" y1="177" x2="1328.97" y2="187" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<text x="1338" y="187" fill="#f0f6fc" font-size="12.5" font-weight="700">89.1% <tspan fill="#8b949e" font-size="11" font-weight="400">&#177;10.5%</tspan></text>
+<text x="350" y="242" fill="#D86C1C" font-size="16" text-anchor="end">BCorrect (FMM)</text>
+<rect x="390" y="222" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+<rect x="390" y="222" width="193.16" height="28" fill="#D86C1C" opacity="0.72"/>
+<line x1="556.66" y1="236" x2="597.38" y2="236" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="556.66" y1="231" x2="556.66" y2="241" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="597.38" y1="231" x2="597.38" y2="241" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<text x="618" y="241" fill="#f0f6fc" font-size="12.5" font-weight="700">87.8% <tspan fill="#8b949e" font-size="11" font-weight="400">&#177;9.3%</tspan></text>
+<rect x="750" y="222" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+<rect x="750" y="222" width="220.00" height="28" fill="#D86C1C" opacity="0.72"/>
+<line x1="916.65" y1="236" x2="970.00" y2="236" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="916.65" y1="231" x2="916.65" y2="241" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="970.00" y1="231" x2="970.00" y2="241" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<text x="978" y="241" fill="#f0f6fc" font-size="12.5" font-weight="700">100.0% <tspan fill="#8b949e" font-size="11" font-weight="400">&#177;12.1%</tspan></text>
+<rect x="1110" y="222" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+<rect x="1110" y="222" width="213.00" height="28" fill="#D86C1C" opacity="0.72"/>
+<line x1="1311.44" y1="236" x2="1330.00" y2="236" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="1311.44" y1="231" x2="1311.44" y2="241" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="1330.00" y1="231" x2="1330.00" y2="241" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<text x="1338" y="241" fill="#f0f6fc" font-size="12.5" font-weight="700">96.8% <tspan fill="#8b949e" font-size="11" font-weight="400">&#177;5.3%</tspan></text>
+<text x="350" y="296" fill="#D5CDE1" font-size="16" text-anchor="end">DeepL Write</text>
+<rect x="390" y="276" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+<rect x="390" y="276" width="193.16" height="28" fill="#D5CDE1" opacity="0.72"/>
+<line x1="556.66" y1="290" x2="597.38" y2="290" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="556.66" y1="285" x2="556.66" y2="295" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="597.38" y1="285" x2="597.38" y2="295" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<text x="618" y="295" fill="#f0f6fc" font-size="12.5" font-weight="700">87.8% <tspan fill="#8b949e" font-size="11" font-weight="400">&#177;9.3%</tspan></text>
+<rect x="750" y="276" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+<rect x="750" y="276" width="146.74" height="28" fill="#D5CDE1" opacity="0.72"/>
+<line x1="835.94" y1="290" x2="939.61" y2="290" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="835.94" y1="285" x2="835.94" y2="295" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="939.61" y1="285" x2="939.61" y2="295" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<text x="978" y="295" fill="#f0f6fc" font-size="12.5" font-weight="700">66.7% <tspan fill="#8b949e" font-size="11" font-weight="400">&#177;23.6%</tspan></text>
+<rect x="1110" y="276" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+<rect x="1110" y="276" width="147.69" height="28" fill="#D5CDE1" opacity="0.72"/>
+<line x1="1221.37" y1="290" x2="1294.00" y2="290" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="1221.37" y1="285" x2="1221.37" y2="295" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="1294.00" y1="285" x2="1294.00" y2="295" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<text x="1338" y="295" fill="#f0f6fc" font-size="12.5" font-weight="700">67.1% <tspan fill="#8b949e" font-size="11" font-weight="400">&#177;16.5%</tspan></text>
+<text x="350" y="350" fill="#F2E8DB" font-size="16" text-anchor="end">TextGears API</text>
+<rect x="390" y="330" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+<rect x="390" y="330" width="166.10" height="28" fill="#F2E8DB" opacity="0.72"/>
+<line x1="526.21" y1="344" x2="577.88" y2="344" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="526.21" y1="339" x2="526.21" y2="349" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="577.88" y1="339" x2="577.88" y2="349" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<text x="618" y="349" fill="#f0f6fc" font-size="12.5" font-weight="700">75.5% <tspan fill="#8b949e" font-size="11" font-weight="400">&#177;11.7%</tspan></text>
+<rect x="750" y="330" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+<rect x="750" y="330" width="146.74" height="28" fill="#F2E8DB" opacity="0.72"/>
+<line x1="835.94" y1="344" x2="939.61" y2="344" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="835.94" y1="339" x2="835.94" y2="349" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="939.61" y1="339" x2="939.61" y2="349" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<text x="978" y="349" fill="#f0f6fc" font-size="12.5" font-weight="700">66.7% <tspan fill="#8b949e" font-size="11" font-weight="400">&#177;23.6%</tspan></text>
+<rect x="1110" y="330" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+<rect x="1110" y="330" width="183.02" height="28" fill="#F2E8DB" opacity="0.72"/>
+<line x1="1262.54" y1="344" x2="1323.49" y2="344" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="1262.54" y1="339" x2="1262.54" y2="349" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="1323.49" y1="339" x2="1323.49" y2="349" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<text x="1338" y="349" fill="#f0f6fc" font-size="12.5" font-weight="700">83.2% <tspan fill="#8b949e" font-size="11" font-weight="400">&#177;13.9%</tspan></text>
+<text x="350" y="404" fill="#409DC6" font-size="16" text-anchor="end">LanguageTool API</text>
+<rect x="390" y="384" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+<rect x="390" y="384" width="166.10" height="28" fill="#409DC6" opacity="0.72"/>
+<line x1="526.21" y1="398" x2="577.88" y2="398" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="526.21" y1="393" x2="526.21" y2="403" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="577.88" y1="393" x2="577.88" y2="403" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<text x="618" y="403" fill="#f0f6fc" font-size="12.5" font-weight="700">75.5% <tspan fill="#8b949e" font-size="11" font-weight="400">&#177;11.7%</tspan></text>
+<rect x="750" y="384" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+<rect x="750" y="384" width="110.00" height="28" fill="#409DC6" opacity="0.72"/>
+<line x1="805.83" y1="398" x2="914.17" y2="398" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="805.83" y1="393" x2="805.83" y2="403" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="914.17" y1="393" x2="914.17" y2="403" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<text x="978" y="403" fill="#f0f6fc" font-size="12.5" font-weight="700">50.0% <tspan fill="#8b949e" font-size="11" font-weight="400">&#177;24.6%</tspan></text>
+<rect x="1110" y="384" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+<rect x="1110" y="384" width="184.95" height="28" fill="#409DC6" opacity="0.72"/>
+<line x1="1271.01" y1="398" x2="1318.89" y2="398" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="1271.01" y1="393" x2="1271.01" y2="403" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="1318.89" y1="393" x2="1318.89" y2="403" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<text x="1338" y="403" fill="#f0f6fc" font-size="12.5" font-weight="700">84.1% <tspan fill="#8b949e" font-size="11" font-weight="400">&#177;10.9%</tspan></text>
+<text x="350" y="458" fill="#D47440" font-size="16" text-anchor="end">JSpell Free Web Checker</text>
+<rect x="390" y="438" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+<rect x="390" y="438" width="157.08" height="28" fill="#D47440" opacity="0.72"/>
+<line x1="516.70" y1="452" x2="570.73" y2="452" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="516.70" y1="447" x2="516.70" y2="457" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="570.73" y1="447" x2="570.73" y2="457" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<text x="618" y="457" fill="#f0f6fc" font-size="12.5" font-weight="700">71.4% <tspan fill="#8b949e" font-size="11" font-weight="400">&#177;12.3%</tspan></text>
+<rect x="750" y="438" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+<rect x="750" y="438" width="73.26" height="28" fill="#D47440" opacity="0.72"/>
+<line x1="780.39" y1="452" x2="884.06" y2="452" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="780.39" y1="447" x2="780.39" y2="457" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="884.06" y1="447" x2="884.06" y2="457" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<text x="978" y="457" fill="#f0f6fc" font-size="12.5" font-weight="700">33.3% <tspan fill="#8b949e" font-size="11" font-weight="400">&#177;23.6%</tspan></text>
+<rect x="1110" y="438" width="220" height="28" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+<rect x="1110" y="438" width="186.82" height="28" fill="#D47440" opacity="0.72"/>
+<line x1="1274.04" y1="452" x2="1319.61" y2="452" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="1274.04" y1="447" x2="1274.04" y2="457" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<line x1="1319.61" y1="447" x2="1319.61" y2="457" stroke="#f0f6fc" stroke-width="1.8" opacity="0.9"/>
+<text x="1338" y="457" fill="#f0f6fc" font-size="12.5" font-weight="700">84.9% <tspan fill="#8b949e" font-size="11" font-weight="400">&#177;10.4%</tspan></text>
+<text x="770" y="568" fill="#8b949e" font-size="12" text-anchor="middle">95% Wilson intervals for Spelling (n=49) &amp; Grammar (n=12); 95% mean interval (&#177;1.96 SEM) across 10 passages for Voice | v4.0</text>
 </svg>

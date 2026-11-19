@@ -1,0 +1,1935 @@
+{
+  "benchmark": "H-suite repeat v2.0",
+  "scoring_protocol": "v0.4 H-suite",
+  "engine_metadata": {
+    "BCorrect (FMM)": {
+      "collection_mode": "api",
+      "source_url": "https://bcorrect-api.fly.dev/api/v1/check",
+      "locale": "en-US",
+      "api_version": "not reported"
+    },
+    "TextGears API": {
+      "collection_mode": "api",
+      "source_url": "https://textgears-textgears-v1.p.rapidapi.com/correct",
+      "locale": "en-US",
+      "suggestion_policy": "Use response.corrected from the TextGears /correct endpoint (spelling + grammar)."
+    },
+    "JSpell Cloud Spell Check API": {
+      "collection_mode": "api",
+      "source_url": "https://jspell-checker.p.rapidapi.com/check",
+      "api_host": "jspell-checker.p.rapidapi.com",
+      "locale": "en-US",
+      "suggestion_policy": "Apply the first suggestion at each returned correction site once."
+    },
+    "DeepL Write": {
+      "collection_mode": "web_demo",
+      "source_url": "https://www.deepl.com/en/write",
+      "locale": "not reported",
+      "product_version": "not reported",
+      "latency_ms": null,
+      "result_provided_at_utc": "2026-11-19T21:15:41.967295+00:00"
+    }
+  },
+  "repeat_dataset_sha256": "6b0758faed0d2ec3d9cb9da9dc68dd41adbbb965f07e1f6d68242aefa07c1aba",
+  "old_h_suite_dataset_sha256": "25c6e93b7b8d188676d57512624ba8f37a9e82fe4380467a8f4a40588b8481b7",
+  "raw_outputs_sha256": "761717eff2cb3d26426065abe20ef391d979365c900ff2fa4c7e7d28bbb87381",
+  "score_note": "Separate fresh repeat-set results under the v0.4 rubric; these do not replace the original public leaderboard. Different batches use fresh passages and are descriptive observations over time.",
+  "new_repeat_suite": {
+    "status": "partial",
+    "engine_summary": {
+      "BCorrect (FMM)": {
+        "spelling_accuracy": 85.7,
+        "spelling_target_hits": 42,
+        "spelling_target_count": 49,
+        "grammar_accuracy": 58.3,
+        "grammar_target_hits": 7,
+        "grammar_target_count": 12,
+        "voice_preservation": 76.99,
+        "quality_composite": 75.0,
+        "unapproved_edits": 5,
+        "correction_site_count": 61,
+        "unapproved_edit_rate": 8.2
+      },
+      "TextGears API": {
+        "spelling_accuracy": 73.5,
+        "spelling_target_hits": 36,
+        "spelling_target_count": 49,
+        "grammar_accuracy": 66.7,
+        "grammar_target_hits": 8,
+        "grammar_target_count": 12,
+        "voice_preservation": 74.53,
+        "quality_composite": 71.6,
+        "unapproved_edits": 15,
+        "correction_site_count": 61,
+        "unapproved_edit_rate": 24.6
+      },
+      "DeepL Write": {
+        "spelling_accuracy": 87.8,
+        "spelling_target_hits": 43,
+        "spelling_target_count": 49,
+        "grammar_accuracy": 75.0,
+        "grammar_target_hits": 9,
+        "grammar_target_count": 12,
+        "voice_preservation": 62.6,
+        "quality_composite": 77.5,
+        "unapproved_edits": 8,
+        "correction_site_count": 61,
+        "unapproved_edit_rate": 13.1
+      }
+    },
+    "passages": [
+      {
+        "id": "HR-01",
+        "domain": "Live music and casual banter",
+        "scores": {
+          "BCorrect (FMM)": {
+            "text": "Brush that basement gig was pure chaos in the best way, no lie, but my roommate dropped his wristband near the merch table. We squeezed passed the bouncer and caught the encore, which was way too loud to forget.",
+            "metrics": {
+              "spelling_acc": 100.0,
+              "spelling_target_hits": 4,
+              "spelling_target_count": 4,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 1,
+              "grammar_target_count": 1,
+              "voice_preservation": 70.45,
+              "vpr": 75.0,
+              "voice_precision": 93.94,
+              "voice_recall": 93.94,
+              "voice_lexical_f1": 93.94,
+              "voice_marker_retention": 75.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 0,
+                "accepted_corrections": 5,
+                "unapproved_edits": 0,
+                "unapproved_edit_rate": 0.0,
+                "sites": [
+                  {
+                    "source": "roomate",
+                    "observed": "roommate",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "wristbnd",
+                    "observed": "wristband",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "tabel",
+                    "observed": "table",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "bouncr",
+                    "observed": "bouncer",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "way to",
+                    "observed": "way too",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 92.61
+            }
+          },
+          "TextGears API": {
+            "text": "Brush that basement gig was pure chaos in the best way, no lie, but my roommate dropped his wristband near the merch Babel. We squeezed past the bounce and caught the encore, which was way too loud to forget.",
+            "metrics": {
+              "spelling_acc": 50.0,
+              "spelling_target_hits": 2,
+              "spelling_target_count": 4,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 1,
+              "grammar_target_count": 1,
+              "voice_preservation": 47.06,
+              "vpr": 50.0,
+              "voice_precision": 91.43,
+              "voice_recall": 96.97,
+              "voice_lexical_f1": 94.12,
+              "voice_marker_retention": 50.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 0,
+                "accepted_corrections": 3,
+                "unapproved_edits": 2,
+                "unapproved_edit_rate": 40.0,
+                "sites": [
+                  {
+                    "source": "roomate",
+                    "observed": "roommate",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "wristbnd",
+                    "observed": "wristband",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "tabel",
+                    "observed": "babel",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "bouncr",
+                    "observed": "bounce",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "way to",
+                    "observed": "way too",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 64.89
+            }
+          },
+          "DeepL Write": {
+            "text": "Bro, that basement gig was pure chaos, but in the best way. No lie. But my roommate dropped his wristband near the merchandise table. We squeezed past the bouncer and caught the encore, which was too loud to forget.",
+            "metrics": {
+              "spelling_acc": 100.0,
+              "spelling_target_hits": 4,
+              "spelling_target_count": 4,
+              "grammar_acc": 0.0,
+              "grammar_target_hits": 0,
+              "grammar_target_count": 1,
+              "voice_preservation": 22.79,
+              "vpr": 25.0,
+              "voice_precision": 88.57,
+              "voice_recall": 93.94,
+              "voice_lexical_f1": 91.18,
+              "voice_marker_retention": 25.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 0,
+                "accepted_corrections": 4,
+                "unapproved_edits": 1,
+                "unapproved_edit_rate": 20.0,
+                "sites": [
+                  {
+                    "source": "roomate",
+                    "observed": "roommate",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "wristbnd",
+                    "observed": "wristband",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "tabel",
+                    "observed": "table",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "bouncr",
+                    "observed": "bouncer",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "way to",
+                    "observed": "too",
+                    "classification": "unapproved_edit"
+                  }
+                ]
+              },
+              "quality_composite": 49.45
+            }
+          }
+        }
+      },
+      {
+        "id": "HR-02",
+        "domain": "Rural family story",
+        "scores": {
+          "BCorrect (FMM)": {
+            "text": "Aunt Mae leaned on the porch rail, humming low while the gravel road steamed after the thunder. She diggered the tin roof couldn't hold off another hailstorm, yet her blackberry cobler fixed every bad mood.",
+            "metrics": {
+              "spelling_acc": 33.33,
+              "spelling_target_hits": 1,
+              "spelling_target_count": 3,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 1,
+              "grammar_target_count": 1,
+              "voice_preservation": 73.81,
+              "vpr": 75.0,
+              "voice_precision": 96.88,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 98.41,
+              "voice_marker_retention": 75.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 4,
+                "unchanged_sites": 1,
+                "accepted_corrections": 2,
+                "unapproved_edits": 1,
+                "unapproved_edit_rate": 25.0,
+                "sites": [
+                  {
+                    "source": "thundr",
+                    "observed": "thunder",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "figgered",
+                    "observed": "diggered",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "couldnt",
+                    "observed": "couldn't",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "cobler",
+                    "observed": "cobler",
+                    "classification": "unchanged"
+                  }
+                ]
+              },
+              "quality_composite": 64.28
+            }
+          },
+          "TextGears API": {
+            "text": "Aunt Mae leaned on the porch rail, humming low while the gravel road steamed after the thunder. She thought the tin roof could hold off another hailstorm, yet her blackberry cobbler fixed every bad mood.",
+            "metrics": {
+              "spelling_acc": 66.67,
+              "spelling_target_hits": 2,
+              "spelling_target_count": 3,
+              "grammar_acc": 0.0,
+              "grammar_target_hits": 0,
+              "grammar_target_count": 1,
+              "voice_preservation": 72.66,
+              "vpr": 75.0,
+              "voice_precision": 93.94,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 96.88,
+              "voice_marker_retention": 75.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 4,
+                "unchanged_sites": 0,
+                "accepted_corrections": 2,
+                "unapproved_edits": 2,
+                "unapproved_edit_rate": 50.0,
+                "sites": [
+                  {
+                    "source": "thundr",
+                    "observed": "thunder",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "figgered",
+                    "observed": "thought",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "couldnt",
+                    "observed": "could",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "cobler",
+                    "observed": "cobbler",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 47.33
+            }
+          },
+          "DeepL Write": {
+            "text": "Aunt Mae leaned on the porch rail, humming softly while the gravel road steamed after the thunder. She figured the tin roof couldn't hold off another hailstorm, yet her blackberry cobbler could fix any bad mood.",
+            "metrics": {
+              "spelling_acc": 66.67,
+              "spelling_target_hits": 2,
+              "spelling_target_count": 3,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 1,
+              "grammar_target_count": 1,
+              "voice_preservation": 44.44,
+              "vpr": 50.0,
+              "voice_precision": 87.5,
+              "voice_recall": 90.32,
+              "voice_lexical_f1": 88.89,
+              "voice_marker_retention": 50.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 4,
+                "unchanged_sites": 0,
+                "accepted_corrections": 3,
+                "unapproved_edits": 1,
+                "unapproved_edit_rate": 25.0,
+                "sites": [
+                  {
+                    "source": "thundr",
+                    "observed": "thunder",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "figgered",
+                    "observed": "figured",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "couldnt",
+                    "observed": "couldn't",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "cobler",
+                    "observed": "cobbler could",
+                    "classification": "unapproved_edit"
+                  }
+                ]
+              },
+              "quality_composite": 71.53
+            }
+          }
+        }
+      },
+      {
+        "id": "HR-03",
+        "domain": "Tech-noir action",
+        "scores": {
+          "BCorrect (FMM)": {
+            "text": "Sodium light pooled on the slick pavement. Kai spliced into the uplink, dodged the sentinel daemon, and wipe the audit log before proxy could lock his address. Static crackled down the line.",
+            "metrics": {
+              "spelling_acc": 100.0,
+              "spelling_target_hits": 3,
+              "spelling_target_count": 3,
+              "grammar_acc": 0.0,
+              "grammar_target_hits": 0,
+              "grammar_target_count": 2,
+              "voice_preservation": 100.0,
+              "vpr": 100.0,
+              "voice_precision": 100.0,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 100.0,
+              "voice_marker_retention": 100.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 2,
+                "accepted_corrections": 3,
+                "unapproved_edits": 0,
+                "unapproved_edit_rate": 0.0,
+                "sites": [
+                  {
+                    "source": "splicd",
+                    "observed": "spliced",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "sentinal",
+                    "observed": "sentinel",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "and wipe",
+                    "observed": "and wipe",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "before proxy",
+                    "observed": "before proxy",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "adres",
+                    "observed": "address",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 68.75
+            }
+          },
+          "TextGears API": {
+            "text": "Sodium light pooled on the slick pavement. Kali spliced into the uplink, dodged the sentinel daemon, and wiped the audit log before proxy could lock his adores. Static crackled down the line.",
+            "metrics": {
+              "spelling_acc": 66.67,
+              "spelling_target_hits": 2,
+              "spelling_target_count": 3,
+              "grammar_acc": 50.0,
+              "grammar_target_hits": 1,
+              "grammar_target_count": 2,
+              "voice_preservation": 94.12,
+              "vpr": 100.0,
+              "voice_precision": 92.31,
+              "voice_recall": 96.0,
+              "voice_lexical_f1": 94.12,
+              "voice_marker_retention": 100.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 1,
+                "accepted_corrections": 3,
+                "unapproved_edits": 1,
+                "unapproved_edit_rate": 20.0,
+                "sites": [
+                  {
+                    "source": "splicd",
+                    "observed": "spliced",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "sentinal",
+                    "observed": "sentinel",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "and wipe",
+                    "observed": "and wiped",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "before proxy",
+                    "observed": "before proxy",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "adres",
+                    "observed": "adores",
+                    "classification": "unapproved_edit"
+                  }
+                ]
+              },
+              "quality_composite": 68.32
+            }
+          },
+          "DeepL Write": {
+            "text": "Sodium light pooled on the slick pavement. Kai hacked into the uplink, dodged the sentinel daemon and wiped the audit log before the proxy could lock his address. Static crackled down the line.",
+            "metrics": {
+              "spelling_acc": 66.67,
+              "spelling_target_hits": 2,
+              "spelling_target_count": 3,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 2,
+              "grammar_target_count": 2,
+              "voice_preservation": 98.04,
+              "vpr": 100.0,
+              "voice_precision": 96.15,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 98.04,
+              "voice_marker_retention": 100.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 0,
+                "accepted_corrections": 4,
+                "unapproved_edits": 1,
+                "unapproved_edit_rate": 20.0,
+                "sites": [
+                  {
+                    "source": "splicd",
+                    "observed": "hacked",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "sentinal",
+                    "observed": "sentinel",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "and wipe",
+                    "observed": "and wiped",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "before proxy",
+                    "observed": "before the proxy",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "adres",
+                    "observed": "address",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 84.93
+            }
+          }
+        }
+      },
+      {
+        "id": "HR-04",
+        "domain": "Food review",
+        "scores": {
+          "BCorrect (FMM)": {
+            "text": "The would-fir flatbread had an amazing blistered crust, but the garlic aioli was way to salty. It almost drownd out the sweet fig glaze and toasted walnuts underneath.",
+            "metrics": {
+              "spelling_acc": 75.0,
+              "spelling_target_hits": 3,
+              "spelling_target_count": 4,
+              "grammar_acc": 0.0,
+              "grammar_target_hits": 0,
+              "grammar_target_count": 1,
+              "voice_preservation": 68.48,
+              "vpr": 75.0,
+              "voice_precision": 91.3,
+              "voice_recall": 91.3,
+              "voice_lexical_f1": 91.3,
+              "voice_marker_retention": 75.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 2,
+                "accepted_corrections": 3,
+                "unapproved_edits": 0,
+                "unapproved_edit_rate": 0.0,
+                "sites": [
+                  {
+                    "source": "amazng",
+                    "observed": "amazing",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "blisterd",
+                    "observed": "blistered",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "way to",
+                    "observed": "way to",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "drownd",
+                    "observed": "drownd",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "tosted",
+                    "observed": "toasted",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 49.93
+            }
+          },
+          "TextGears API": {
+            "text": "The wood-fired flatbread had an amazing blistered crust, but the garlic aioli was way too salty. It almost drowned out the sweet fig glaze and toasted walnuts underneath.",
+            "metrics": {
+              "spelling_acc": 100.0,
+              "spelling_target_hits": 4,
+              "spelling_target_count": 4,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 1,
+              "grammar_target_count": 1,
+              "voice_preservation": 100.0,
+              "vpr": 100.0,
+              "voice_precision": 100.0,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 100.0,
+              "voice_marker_retention": 100.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 0,
+                "accepted_corrections": 5,
+                "unapproved_edits": 0,
+                "unapproved_edit_rate": 0.0,
+                "sites": [
+                  {
+                    "source": "amazng",
+                    "observed": "amazing",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "blisterd",
+                    "observed": "blistered",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "way to",
+                    "observed": "way too",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "drownd",
+                    "observed": "drowned",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "tosted",
+                    "observed": "toasted",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 100.0
+            }
+          },
+          "DeepL Write": {
+            "text": "The wood-fired flatbread had an amazing blistered crust, but the garlic aioli was far too salty. It almost drowned out the sweet fig glaze and toasted walnuts underneath.",
+            "metrics": {
+              "spelling_acc": 100.0,
+              "spelling_target_hits": 4,
+              "spelling_target_count": 4,
+              "grammar_acc": 0.0,
+              "grammar_target_hits": 0,
+              "grammar_target_count": 1,
+              "voice_preservation": 95.83,
+              "vpr": 100.0,
+              "voice_precision": 92.0,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 95.83,
+              "voice_marker_retention": 100.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 0,
+                "accepted_corrections": 4,
+                "unapproved_edits": 1,
+                "unapproved_edit_rate": 20.0,
+                "sites": [
+                  {
+                    "source": "amazng",
+                    "observed": "amazing",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "blisterd",
+                    "observed": "blistered",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "way to",
+                    "observed": "far too",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "drownd",
+                    "observed": "drowned",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "tosted",
+                    "observed": "toasted",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 67.71
+            }
+          }
+        }
+      },
+      {
+        "id": "HR-05",
+        "domain": "Childhood dream",
+        "scores": {
+          "BCorrect (FMM)": {
+            "text": "Yesterday night I dreamed our submarine could dive through the ocean to a silver costello. We swam past glowing jellies and met friendly dolphins who chased our light. The water was warm enough to float forever, and I yelled when my sister shook me awake for breakfast; I wasn't ready to leave.",
+            "metrics": {
+              "spelling_acc": 91.67,
+              "spelling_target_hits": 11,
+              "spelling_target_count": 12,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 3,
+              "grammar_target_count": 3,
+              "voice_preservation": 74.0,
+              "vpr": 75.0,
+              "voice_precision": 97.37,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 98.67,
+              "voice_marker_retention": 75.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 15,
+                "unchanged_sites": 0,
+                "accepted_corrections": 14,
+                "unapproved_edits": 1,
+                "unapproved_edit_rate": 6.7,
+                "sites": [
+                  {
+                    "source": "yesturday",
+                    "observed": "yesterday",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "nite",
+                    "observed": "night",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "dreemd",
+                    "observed": "dreamed",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "submarene",
+                    "observed": "submarine",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "thru",
+                    "observed": "through",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "oshun",
+                    "observed": "ocean",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "castell",
+                    "observed": "costello",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "swimmed",
+                    "observed": "swam",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "glowin",
+                    "observed": "glowing",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "dolpins",
+                    "observed": "dolphins",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "enuf",
+                    "observed": "enough",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "shaked",
+                    "observed": "shook",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "brekfast",
+                    "observed": "breakfast",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "wasnt",
+                    "observed": "wasn't",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "reddy",
+                    "observed": "ready",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 89.86
+            }
+          },
+          "TextGears API": {
+            "text": "Last night I dreamed our submarine could dive through the shun to a silver castle. We swam past bright jellies and met friendly dolphins who chased our light. The water was warm enough to float forever, and I yelled when my sister shook me awake for breakfast. I was too tired to leave.",
+            "metrics": {
+              "spelling_acc": 66.67,
+              "spelling_target_hits": 8,
+              "spelling_target_count": 12,
+              "grammar_acc": 66.67,
+              "grammar_target_hits": 2,
+              "grammar_target_count": 3,
+              "voice_preservation": 69.38,
+              "vpr": 75.0,
+              "voice_precision": 86.05,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 92.5,
+              "voice_marker_retention": 75.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 15,
+                "unchanged_sites": 0,
+                "accepted_corrections": 10,
+                "unapproved_edits": 5,
+                "unapproved_edit_rate": 33.3,
+                "sites": [
+                  {
+                    "source": "yesturday",
+                    "observed": "last",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "nite",
+                    "observed": "night",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "dreemd",
+                    "observed": "dreamed",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "submarene",
+                    "observed": "submarine",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "thru",
+                    "observed": "through",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "oshun",
+                    "observed": "shun",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "castell",
+                    "observed": "castle",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "swimmed",
+                    "observed": "swam",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "glowin",
+                    "observed": "bright",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "dolpins",
+                    "observed": "dolphins",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "enuf",
+                    "observed": "enough",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "shaked",
+                    "observed": "shook",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "brekfast",
+                    "observed": "breakfast",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "wasnt",
+                    "observed": "was",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "reddy",
+                    "observed": "tired",
+                    "classification": "unapproved_edit"
+                  }
+                ]
+              },
+              "quality_composite": 67.35
+            }
+          },
+          "DeepL Write": {
+            "text": "Last night I dreamed our submarine could dive through the ocean to a silver castle. We swam past glowing jellies and met friendly dolphins who chased our light. The water was warm enough to float in forever. I yelled when my sister shook me awake for breakfast; I wasn't ready to leave.",
+            "metrics": {
+              "spelling_acc": 91.67,
+              "spelling_target_hits": 11,
+              "spelling_target_count": 12,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 3,
+              "grammar_target_count": 3,
+              "voice_preservation": 72.0,
+              "vpr": 75.0,
+              "voice_precision": 94.74,
+              "voice_recall": 97.3,
+              "voice_lexical_f1": 96.0,
+              "voice_marker_retention": 75.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 15,
+                "unchanged_sites": 0,
+                "accepted_corrections": 14,
+                "unapproved_edits": 1,
+                "unapproved_edit_rate": 6.7,
+                "sites": [
+                  {
+                    "source": "yesturday",
+                    "observed": "last",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "nite",
+                    "observed": "night",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "dreemd",
+                    "observed": "dreamed",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "submarene",
+                    "observed": "submarine",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "thru",
+                    "observed": "through",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "oshun",
+                    "observed": "ocean",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "castell",
+                    "observed": "castle",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "swimmed",
+                    "observed": "swam",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "glowin",
+                    "observed": "glowing",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "dolpins",
+                    "observed": "dolphins",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "enuf",
+                    "observed": "enough",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "shaked",
+                    "observed": "shook",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "brekfast",
+                    "observed": "breakfast",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "wasnt",
+                    "observed": "wasn't",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "reddy",
+                    "observed": "ready",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 89.36
+            }
+          }
+        }
+      },
+      {
+        "id": "HR-06",
+        "domain": "Startup update",
+        "scores": {
+          "BCorrect (FMM)": {
+            "text": "Our burn rate dropped 22% Bob, folks, while net retention hit a new peak. Rivals are hustling to copy our roadmap and pricing, but we ship too quick for them.",
+            "metrics": {
+              "spelling_acc": 100.0,
+              "spelling_target_hits": 3,
+              "spelling_target_count": 3,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 1,
+              "grammar_target_count": 1,
+              "voice_preservation": 72.0,
+              "vpr": 75.0,
+              "voice_precision": 96.0,
+              "voice_recall": 96.0,
+              "voice_lexical_f1": 96.0,
+              "voice_marker_retention": 75.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 4,
+                "unchanged_sites": 0,
+                "accepted_corrections": 4,
+                "unapproved_edits": 0,
+                "unapproved_edit_rate": 0.0,
+                "sites": [
+                  {
+                    "source": "retenshun",
+                    "observed": "retention",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "roadmp",
+                    "observed": "roadmap",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "pricng",
+                    "observed": "pricing",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "to quick",
+                    "observed": "too quick",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 93.0
+            }
+          },
+          "TextGears API": {
+            "text": "Our burn rate dropped 22% Qom, folks, while net retention hit a new peak. Rivals are hustling to copy our ramp and pricing, but we ship too quickly for them.",
+            "metrics": {
+              "spelling_acc": 66.67,
+              "spelling_target_hits": 2,
+              "spelling_target_count": 3,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 1,
+              "grammar_target_count": 1,
+              "voice_preservation": 70.59,
+              "vpr": 75.0,
+              "voice_precision": 92.31,
+              "voice_recall": 96.0,
+              "voice_lexical_f1": 94.12,
+              "voice_marker_retention": 75.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 4,
+                "unchanged_sites": 0,
+                "accepted_corrections": 3,
+                "unapproved_edits": 1,
+                "unapproved_edit_rate": 25.0,
+                "sites": [
+                  {
+                    "source": "retenshun",
+                    "observed": "retention",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "roadmp",
+                    "observed": "ramp",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "pricng",
+                    "observed": "pricing",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "to quick",
+                    "observed": "too quickly",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 78.07
+            }
+          },
+          "DeepL Write": {
+            "text": "Our burn rate dropped by 22% quarter-on-quarter, folks, while net retention hit a new peak. Rivals are trying to copy our roadmap and pricing, but we're too quick for them.",
+            "metrics": {
+              "spelling_acc": 100.0,
+              "spelling_target_hits": 3,
+              "spelling_target_count": 3,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 1,
+              "grammar_target_count": 1,
+              "voice_preservation": 40.38,
+              "vpr": 50.0,
+              "voice_precision": 77.78,
+              "voice_recall": 84.0,
+              "voice_lexical_f1": 80.77,
+              "voice_marker_retention": 50.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 4,
+                "unchanged_sites": 0,
+                "accepted_corrections": 4,
+                "unapproved_edits": 0,
+                "unapproved_edit_rate": 0.0,
+                "sites": [
+                  {
+                    "source": "retenshun",
+                    "observed": "retention",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "roadmp",
+                    "observed": "roadmap",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "pricng",
+                    "observed": "pricing",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "to quick",
+                    "observed": "too quick",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 85.09
+            }
+          }
+        }
+      },
+      {
+        "id": "HR-07",
+        "domain": "Basketball game",
+        "scores": {
+          "BCorrect (FMM)": {
+            "text": "Coach tapped the clipboard and called our last set play. We ran the backdoor cut crisp, sank the layup off the backdrop, and sealed the tournament; the crowd were roaring before the ref blew the whistling.",
+            "metrics": {
+              "spelling_acc": 66.67,
+              "spelling_target_hits": 4,
+              "spelling_target_count": 6,
+              "grammar_acc": 0.0,
+              "grammar_target_hits": 0,
+              "grammar_target_count": 1,
+              "voice_preservation": 48.28,
+              "vpr": 50.0,
+              "voice_precision": 93.33,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 96.55,
+              "voice_marker_retention": 50.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 7,
+                "unchanged_sites": 1,
+                "accepted_corrections": 4,
+                "unapproved_edits": 2,
+                "unapproved_edit_rate": 28.6,
+                "sites": [
+                  {
+                    "source": "clipbord",
+                    "observed": "clipboard",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "backdor",
+                    "observed": "backdoor",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "backbord",
+                    "observed": "backdrop",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "tournment",
+                    "observed": "tournament",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "crowd were",
+                    "observed": "crowd were",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "roaringg",
+                    "observed": "roaring",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "whisle",
+                    "observed": "whistling",
+                    "classification": "unapproved_edit"
+                  }
+                ]
+              },
+              "quality_composite": 41.24
+            }
+          },
+          "TextGears API": {
+            "text": "The coach tapped the clipboard and called our last set play. We ran the background cut crisp, sank the layup off the backboard, and sealed the tournament; the crowd were roaring before the ref blew the whistle.",
+            "metrics": {
+              "spelling_acc": 83.33,
+              "spelling_target_hits": 5,
+              "spelling_target_count": 6,
+              "grammar_acc": 0.0,
+              "grammar_target_hits": 0,
+              "grammar_target_count": 1,
+              "voice_preservation": 72.41,
+              "vpr": 75.0,
+              "voice_precision": 93.33,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 96.55,
+              "voice_marker_retention": 75.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 7,
+                "unchanged_sites": 1,
+                "accepted_corrections": 5,
+                "unapproved_edits": 1,
+                "unapproved_edit_rate": 14.3,
+                "sites": [
+                  {
+                    "source": "clipbord",
+                    "observed": "clipboard",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "backdor",
+                    "observed": "background",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "backbord",
+                    "observed": "backboard",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "tournment",
+                    "observed": "tournament",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "crowd were",
+                    "observed": "crowd were",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "roaringg",
+                    "observed": "roaring",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "whisle",
+                    "observed": "whistle",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 54.56
+            }
+          },
+          "DeepL Write": {
+            "text": "Coach tapped the clipboard and called our final play. We ran the backdoor cut crisply, sank the layup off the backboard and sealed the tournament victory; the crowd were roaring before the referee blew the whistle.",
+            "metrics": {
+              "spelling_acc": 83.33,
+              "spelling_target_hits": 5,
+              "spelling_target_count": 6,
+              "grammar_acc": 0.0,
+              "grammar_target_hits": 0,
+              "grammar_target_count": 1,
+              "voice_preservation": 21.43,
+              "vpr": 25.0,
+              "voice_precision": 85.71,
+              "voice_recall": 85.71,
+              "voice_lexical_f1": 85.71,
+              "voice_marker_retention": 25.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 7,
+                "unchanged_sites": 1,
+                "accepted_corrections": 5,
+                "unapproved_edits": 1,
+                "unapproved_edit_rate": 14.3,
+                "sites": [
+                  {
+                    "source": "clipbord",
+                    "observed": "clipboard",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "backdor",
+                    "observed": "backdoor",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "backbord",
+                    "observed": "backboard",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "tournment",
+                    "observed": "tournament victory",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "crowd were",
+                    "observed": "crowd were",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "roaringg",
+                    "observed": "roaring",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "whisle",
+                    "observed": "whistle",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 41.81
+            }
+          }
+        }
+      },
+      {
+        "id": "HR-08",
+        "domain": "Literary reflection",
+        "scores": {
+          "BCorrect (FMM)": {
+            "text": "Missed drifted across the harbor as the ferry bell clanged. A dull loneliness lingered in my chest, neither angry nor loud, just the quiet drift of another November; one porch lamp gold steady beside the weathered pier.",
+            "metrics": {
+              "spelling_acc": 80.0,
+              "spelling_target_hits": 4,
+              "spelling_target_count": 5,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 0,
+              "grammar_target_count": 0,
+              "voice_preservation": 95.38,
+              "vpr": 100.0,
+              "voice_precision": 93.94,
+              "voice_recall": 96.88,
+              "voice_lexical_f1": 95.38,
+              "voice_marker_retention": 100.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 0,
+                "accepted_corrections": 4,
+                "unapproved_edits": 1,
+                "unapproved_edit_rate": 20.0,
+                "sites": [
+                  {
+                    "source": "harbr",
+                    "observed": "harbor",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "lonliness",
+                    "observed": "loneliness",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "novembr",
+                    "observed": "november",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "glowd",
+                    "observed": "gold",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "peir",
+                    "observed": "pier",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 90.09
+            }
+          },
+          "TextGears API": {
+            "text": "Mist drifted across the harbor as the ferry bell clanged. A dull loneliness lingered in my chest, neither angry nor loud, just the quiet drift of another November one porch lamp glowed steady beside the weathered per.",
+            "metrics": {
+              "spelling_acc": 80.0,
+              "spelling_target_hits": 4,
+              "spelling_target_count": 5,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 0,
+              "grammar_target_count": 0,
+              "voice_preservation": 73.85,
+              "vpr": 75.0,
+              "voice_precision": 96.97,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 98.46,
+              "voice_marker_retention": 75.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 0,
+                "accepted_corrections": 4,
+                "unapproved_edits": 1,
+                "unapproved_edit_rate": 20.0,
+                "sites": [
+                  {
+                    "source": "harbr",
+                    "observed": "harbor",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "lonliness",
+                    "observed": "loneliness",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "novembr",
+                    "observed": "november",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "glowd",
+                    "observed": "glowed",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "peir",
+                    "observed": "per",
+                    "classification": "unapproved_edit"
+                  }
+                ]
+              },
+              "quality_composite": 84.71
+            }
+          },
+          "DeepL Write": {
+            "text": "Mist drifted across the harbour as the ferry bell clanged. A dull loneliness lingered in my chest, neither angry nor loud, just the quiet passing of another November; one porch lamp glowed steadily beside the weathered pier.",
+            "metrics": {
+              "spelling_acc": 80.0,
+              "spelling_target_hits": 4,
+              "spelling_target_count": 5,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 0,
+              "grammar_target_count": 0,
+              "voice_preservation": 69.23,
+              "vpr": 75.0,
+              "voice_precision": 90.91,
+              "voice_recall": 93.75,
+              "voice_lexical_f1": 92.31,
+              "voice_marker_retention": 75.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 0,
+                "accepted_corrections": 4,
+                "unapproved_edits": 1,
+                "unapproved_edit_rate": 20.0,
+                "sites": [
+                  {
+                    "source": "harbr",
+                    "observed": "harbour",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "lonliness",
+                    "observed": "loneliness",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "novembr",
+                    "observed": "november",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "glowd",
+                    "observed": "glowed",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "peir",
+                    "observed": "pier",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 83.56
+            }
+          }
+        }
+      },
+      {
+        "id": "HR-09",
+        "domain": "Field biology notes",
+        "scores": {
+          "BCorrect (FMM)": {
+            "text": "Recorded five juvenile Ambystoma terminating along the marsh edge. They're mottled pigmentation looked surprisingly vivid under the thick sedge canopy; three swab was collected before dusk settled.",
+            "metrics": {
+              "spelling_acc": 100.0,
+              "spelling_target_hits": 4,
+              "spelling_target_count": 4,
+              "grammar_acc": 0.0,
+              "grammar_target_hits": 0,
+              "grammar_target_count": 1,
+              "voice_preservation": 67.5,
+              "vpr": 75.0,
+              "voice_precision": 90.0,
+              "voice_recall": 90.0,
+              "voice_lexical_f1": 90.0,
+              "voice_marker_retention": 75.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 1,
+                "accepted_corrections": 4,
+                "unapproved_edits": 0,
+                "unapproved_edit_rate": 0.0,
+                "sites": [
+                  {
+                    "source": "juvunile",
+                    "observed": "juvenile",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "pigmentashun",
+                    "observed": "pigmentation",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "surprisngly",
+                    "observed": "surprisingly",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "canopie",
+                    "observed": "canopy",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "three swab was",
+                    "observed": "three swab was",
+                    "classification": "unchanged"
+                  }
+                ]
+              },
+              "quality_composite": 60.62
+            }
+          },
+          "TextGears API": {
+            "text": "Recorded five juvenile Ambystoma geranium along the marsh edge. Their mottled pigmentation looked incredibly vivid under the thick sedge canopied; three swabs were collected before dusk settled.",
+            "metrics": {
+              "spelling_acc": 50.0,
+              "spelling_target_hits": 2,
+              "spelling_target_count": 4,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 1,
+              "grammar_target_count": 1,
+              "voice_preservation": 45.24,
+              "vpr": 50.0,
+              "voice_precision": 86.36,
+              "voice_recall": 95.0,
+              "voice_lexical_f1": 90.48,
+              "voice_marker_retention": 50.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 0,
+                "accepted_corrections": 3,
+                "unapproved_edits": 2,
+                "unapproved_edit_rate": 40.0,
+                "sites": [
+                  {
+                    "source": "juvunile",
+                    "observed": "juvenile",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "pigmentashun",
+                    "observed": "pigmentation",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "surprisngly",
+                    "observed": "incredibly",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "canopie",
+                    "observed": "canopied",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "three swab was",
+                    "observed": "three swabs were",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 64.44
+            }
+          },
+          "DeepL Write": {
+            "text": "We recorded five juvenile Ambystoma tigrinum along the marsh edge. Their mottled pigmentation looked surprisingly vivid under the thick sedge canopy; three swabs were collected before dusk fell.",
+            "metrics": {
+              "spelling_acc": 100.0,
+              "spelling_target_hits": 4,
+              "spelling_target_count": 4,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 1,
+              "grammar_target_count": 1,
+              "voice_preservation": 69.51,
+              "vpr": 75.0,
+              "voice_precision": 90.48,
+              "voice_recall": 95.0,
+              "voice_lexical_f1": 92.68,
+              "voice_marker_retention": 75.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 0,
+                "accepted_corrections": 5,
+                "unapproved_edits": 0,
+                "unapproved_edit_rate": 0.0,
+                "sites": [
+                  {
+                    "source": "juvunile",
+                    "observed": "juvenile",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "pigmentashun",
+                    "observed": "pigmentation",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "surprisngly",
+                    "observed": "surprisingly",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "canopie",
+                    "observed": "canopy",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "three swab was",
+                    "observed": "three swabs were",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 92.38
+            }
+          }
+        }
+      },
+      {
+        "id": "HR-10",
+        "domain": "Contract clause",
+        "scores": {
+          "BCorrect (FMM)": {
+            "text": "Section 11.4 outlines the confidentiality duties. Neither vendor is responsible for incidental losses stemming from an unavoidable outage, provided written notice arrives within five days.",
+            "metrics": {
+              "spelling_acc": 100.0,
+              "spelling_target_hits": 5,
+              "spelling_target_count": 5,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 1,
+              "grammar_target_count": 1,
+              "voice_preservation": 100.0,
+              "vpr": 100.0,
+              "voice_precision": 100.0,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 100.0,
+              "voice_marker_retention": 100.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 6,
+                "unchanged_sites": 0,
+                "accepted_corrections": 6,
+                "unapproved_edits": 0,
+                "unapproved_edit_rate": 0.0,
+                "sites": [
+                  {
+                    "source": "outlins",
+                    "observed": "outlines",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "confidenciality",
+                    "observed": "confidentiality",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "vendor are",
+                    "observed": "vendor is",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "incidenal",
+                    "observed": "incidental",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "unavodable",
+                    "observed": "unavoidable",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "notce",
+                    "observed": "notice",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 100.0
+            }
+          },
+          "TextGears API": {
+            "text": "Section 11.4 outlines the confidentiality duties. Neither vendor is responsible for incidental losses stemming from an unavoidable outage, provided written notice arrives within five days.",
+            "metrics": {
+              "spelling_acc": 100.0,
+              "spelling_target_hits": 5,
+              "spelling_target_count": 5,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 1,
+              "grammar_target_count": 1,
+              "voice_preservation": 100.0,
+              "vpr": 100.0,
+              "voice_precision": 100.0,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 100.0,
+              "voice_marker_retention": 100.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 6,
+                "unchanged_sites": 0,
+                "accepted_corrections": 6,
+                "unapproved_edits": 0,
+                "unapproved_edit_rate": 0.0,
+                "sites": [
+                  {
+                    "source": "outlins",
+                    "observed": "outlines",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "confidenciality",
+                    "observed": "confidentiality",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "vendor are",
+                    "observed": "vendor is",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "incidenal",
+                    "observed": "incidental",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "unavodable",
+                    "observed": "unavoidable",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "notce",
+                    "observed": "notice",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 100.0
+            }
+          },
+          "DeepL Write": {
+            "text": "Section 11.4 outlines the confidentiality duties. Neither vendor is responsible for incidental losses stemming from an unavoidable outage, provided written notice is received within five days.",
+            "metrics": {
+              "spelling_acc": 80.0,
+              "spelling_target_hits": 4,
+              "spelling_target_count": 5,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 1,
+              "grammar_target_count": 1,
+              "voice_preservation": 92.31,
+              "vpr": 100.0,
+              "voice_precision": 90.0,
+              "voice_recall": 94.74,
+              "voice_lexical_f1": 92.31,
+              "voice_marker_retention": 100.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 6,
+                "unchanged_sites": 0,
+                "accepted_corrections": 5,
+                "unapproved_edits": 1,
+                "unapproved_edit_rate": 16.7,
+                "sites": [
+                  {
+                    "source": "outlins",
+                    "observed": "outlines",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "confidenciality",
+                    "observed": "confidentiality",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "vendor are",
+                    "observed": "vendor is",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "incidenal",
+                    "observed": "incidental",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "unavodable",
+                    "observed": "unavoidable",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "notce",
+                    "observed": "notice is",
+                    "classification": "unapproved_edit"
+                  }
+                ]
+              },
+              "quality_composite": 89.33
+            }
+          }
+        }
+      }
+    ]
+  },
+  "jspell_same_api_control": {
+    "status": "blocked",
+    "engine": "JSpell Cloud Spell Check API",
+    "old_h_suite_score": null,
+    "new_repeat_suite_score": null,
+    "error": "Collection skipped after the JSpell API returned HTTP 403 (Cloudflare error 1010)."
+  }
+}

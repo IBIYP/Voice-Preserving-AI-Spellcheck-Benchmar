@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 470" style="background:#0d1117; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
+<rect x="1" y="1" width="1178" height="468" fill="none" stroke="#30363d" stroke-width="1"/>
+<text x="590" y="32" fill="#f0f6fc" font-size="18" font-weight="700" text-anchor="middle">PILLAR 2: GRAMMAR ACCURACY OVER TIME</text>
+<text x="590" y="54" fill="#8b949e" font-size="13" text-anchor="middle">Target grammar fix rate across v0.4 H-suite and fresh repeat batches (12 grammar targets per batch)</text>
+<line x1="110" y1="365" x2="730" y2="365" stroke="#30363d" stroke-width="1"/>
+<text x="98" y="369" fill="#8b949e" font-size="11" text-anchor="end">0%</text>
+<line x1="110" y1="296.75" x2="730" y2="296.75" stroke="#30363d" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="98" y="300.75" fill="#8b949e" font-size="11" text-anchor="end">25%</text>
+<line x1="110" y1="228.5" x2="730" y2="228.5" stroke="#30363d" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="98" y="232.5" fill="#8b949e" font-size="11" text-anchor="end">50%</text>
+<line x1="110" y1="160.25" x2="730" y2="160.25" stroke="#30363d" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="98" y="164.25" fill="#8b949e" font-size="11" text-anchor="end">75%</text>
+<line x1="110" y1="92" x2="730" y2="92" stroke="#30363d" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="98" y="96" fill="#8b949e" font-size="11" text-anchor="end">100%</text>
+<line x1="160" y1="92" x2="160" y2="365" stroke="#21262d" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="160" y="387" fill="#f0f6fc" font-size="11" font-weight="700" text-anchor="middle">repeat-v1</text>
+<text x="160" y="403" fill="#8b949e" font-size="10" text-anchor="middle">2026-11-16</text>
+<line x1="680" y1="92" x2="680" y2="365" stroke="#21262d" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="680" y="387" fill="#f0f6fc" font-size="11" font-weight="700" text-anchor="middle">repeat-v2</text>
+<text x="680" y="403" fill="#8b949e" font-size="10" text-anchor="middle">2026-11-19</text>
+<line x1="160" y1="228.5" x2="680" y2="228.5" stroke="#409DC6" stroke-width="1.8" stroke-dasharray="5 4" opacity="0.55"/>
+<circle cx="160" cy="228.5" r="4.5" fill="#0d1117" stroke="#409DC6" stroke-width="1.8" opacity="0.75"/>
+<circle cx="680" cy="228.5" r="4.5" fill="#0d1117" stroke="#409DC6" stroke-width="1.8" opacity="0.75"/>
+<text x="692" y="232.5" fill="#409DC6" font-size="11" font-weight="700" opacity="0.8">50.0%*</text>
+<line x1="160" y1="92" x2="680" y2="92" stroke="#E9DFA9" stroke-width="1.8" stroke-dasharray="5 4" opacity="0.55"/>
+<circle cx="160" cy="92" r="4.5" fill="#0d1117" stroke="#E9DFA9" stroke-width="1.8" opacity="0.75"/>
+<circle cx="680" cy="92" r="4.5" fill="#0d1117" stroke="#E9DFA9" stroke-width="1.8" opacity="0.75"/>
+<text x="692" y="96" fill="#E9DFA9" font-size="11" font-weight="700" opacity="0.8">100.0%*</text>
+<line x1="160" y1="274.091" x2="680" y2="274.091" stroke="#D47440" stroke-width="1.8" stroke-dasharray="5 4" opacity="0.55"/>
+<circle cx="160" cy="274.091" r="4.5" fill="#0d1117" stroke="#D47440" stroke-width="1.8" opacity="0.75"/>
+<circle cx="680" cy="274.091" r="4.5" fill="#0d1117" stroke="#D47440" stroke-width="1.8" opacity="0.75"/>
+<text x="692" y="278.091" fill="#D47440" font-size="11" font-weight="700" opacity="0.8">33.3%*</text>
+<line x1="160" y1="92" x2="680" y2="92" stroke="#D8976F" stroke-width="1.8" stroke-dasharray="5 4" opacity="0.55"/>
+<circle cx="160" cy="92" r="4.5" fill="#0d1117" stroke="#D8976F" stroke-width="1.8" opacity="0.75"/>
+<circle cx="680" cy="92" r="4.5" fill="#0d1117" stroke="#D8976F" stroke-width="1.8" opacity="0.75"/>
+<text x="692" y="111" fill="#D8976F" font-size="11" font-weight="700" opacity="0.8">100.0%*</text>
+<line x1="160" y1="228.5" x2="680" y2="205.841" stroke="#D86C1C" stroke-width="2.8"/>
+<circle cx="160" cy="228.5" r="5" fill="#D86C1C" stroke="#0d1117" stroke-width="1.5"/>
+<circle cx="680" cy="205.841" r="5" fill="#D86C1C" stroke="#0d1117" stroke-width="1.5"/>
+<text x="692" y="209.841" fill="#D86C1C" font-size="11" font-weight="700">58.3%</text>
+<line x1="160" y1="342.341" x2="680" y2="182.909" stroke="#F2E8DB" stroke-width="2.8"/>
+<circle cx="160" cy="342.341" r="5" fill="#F2E8DB" stroke="#0d1117" stroke-width="1.5"/>
+<circle cx="680" cy="182.909" r="5" fill="#F2E8DB" stroke="#0d1117" stroke-width="1.5"/>
+<text x="692" y="186.909" fill="#F2E8DB" font-size="11" font-weight="700">66.7%</text>
+<line x1="160" y1="137.591" x2="680" y2="160.25" stroke="#D5CDE1" stroke-width="2.8"/>
+<circle cx="160" cy="137.591" r="5" fill="#D5CDE1" stroke="#0d1117" stroke-width="1.5"/>
+<circle cx="680" cy="160.25" r="5" fill="#D5CDE1" stroke="#0d1117" stroke-width="1.5"/>
+<text x="692" y="164.25" fill="#D5CDE1" font-size="11" font-weight="700">75.0%</text>
+<rect x="810" y="88" width="345" height="282" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+<text x="826" y="110" fill="#f0f6fc" font-size="11" font-weight="700">Retested on fresh batches (solid)</text>
+<line x1="826" y1="132" x2="850" y2="132" stroke="#D86C1C" stroke-width="2.8"/>
+<circle cx="838" cy="132" r="4" fill="#D86C1C"/>
+<text x="860" y="136" fill="#f0f6fc" font-size="11">BCorrect (FMM)</text>
+<line x1="826" y1="156" x2="850" y2="156" stroke="#F2E8DB" stroke-width="2.8"/>
+<circle cx="838" cy="156" r="4" fill="#F2E8DB"/>
+<text x="860" y="160" fill="#f0f6fc" font-size="11">TextGears API</text>
+<line x1="826" y1="180" x2="850" y2="180" stroke="#D5CDE1" stroke-width="2.8"/>
+<circle cx="838" cy="180" r="4" fill="#D5CDE1"/>
+<text x="860" y="184" fill="#f0f6fc" font-size="11">DeepL Write</text>
+<text x="826" y="214" fill="#8b949e" font-size="11" font-weight="700">Carried forward from 2026-11-14*</text>
+<text x="826" y="228" fill="#8b949e" font-size="9.5">(dashed reference; not retested yet)</text>
+<line x1="826" y1="248" x2="850" y2="248" stroke="#409DC6" stroke-width="1.8" stroke-dasharray="4 3" opacity="0.7"/>
+<circle cx="838" cy="248" r="3.8" fill="#0d1117" stroke="#409DC6" stroke-width="1.5"/>
+<text x="860" y="252" fill="#c9d1d9" font-size="10.5">LanguageTool API</text>
+<line x1="826" y1="270" x2="850" y2="270" stroke="#E9DFA9" stroke-width="1.8" stroke-dasharray="4 3" opacity="0.7"/>
+<circle cx="838" cy="270" r="3.8" fill="#0d1117" stroke="#E9DFA9" stroke-width="1.5"/>
+<text x="860" y="274" fill="#c9d1d9" font-size="10.5">Sapling</text>
+<line x1="826" y1="292" x2="850" y2="292" stroke="#D47440" stroke-width="1.8" stroke-dasharray="4 3" opacity="0.7"/>
+<circle cx="838" cy="292" r="3.8" fill="#0d1117" stroke="#D47440" stroke-width="1.5"/>
+<text x="860" y="296" fill="#c9d1d9" font-size="10.5">JSpell (Web)</text>
+<line x1="826" y1="314" x2="850" y2="314" stroke="#D8976F" stroke-width="1.8" stroke-dasharray="4 3" opacity="0.7"/>
+<circle cx="838" cy="314" r="3.8" fill="#0d1117" stroke="#D8976F" stroke-width="1.5"/>
+<text x="860" y="318" fill="#c9d1d9" font-size="10.5">Grammarly</text>
+<text x="590" y="454" fill="#8b949e" font-size="10.5" text-anchor="middle">*Dashed lines carry forward the last measured v0.4 H-suite score as a reference only; solid lines track fresh repeat batches.</text>
+</svg>

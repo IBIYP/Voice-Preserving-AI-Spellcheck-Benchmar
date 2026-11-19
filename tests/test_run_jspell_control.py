@@ -27,11 +27,28 @@ class RapidApiKeyTests(unittest.TestCase):
         with patch.dict(os.environ, {API_KEY_NAME: "test-key"}, clear=True):
             self.assertEqual(load_local_api_key(), "test-key")
 
+    def test_loads_named_alias_from_process_environment(self):
+        with patch.dict(os.environ, {"JSPELL_RAPIDAPI_KEY": "test-key"}, clear=True):
+            self.assertEqual(load_local_api_key(), "test-key")
+
     def test_loads_header_named_key_from_dotenv(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
             (root / ".env").write_text(
                 f'{API_KEY_NAME}="test-key"\n',
+                encoding="utf-8",
+            )
+            with (
+                patch("run_jspell_control.ROOT", root),
+                patch.dict(os.environ, {}, clear=True),
+            ):
+                self.assertEqual(load_local_api_key(), "test-key")
+
+    def test_loads_named_alias_from_dotenv(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            (root / ".env").write_text(
+                'JSPELL_RAPIDAPI_KEY="test-key"\n',
                 encoding="utf-8",
             )
             with (

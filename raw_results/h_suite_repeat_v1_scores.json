@@ -1,0 +1,1906 @@
+{
+  "benchmark": "H-suite repeat v1.0",
+  "scoring_protocol": "v0.4 H-suite",
+  "repeat_dataset_sha256": "16f9ef216bb539c29a9240aa57fc3806b2821b908885a534777926213b5c1d94",
+  "old_h_suite_dataset_sha256": "25c6e93b7b8d188676d57512624ba8f37a9e82fe4380467a8f4a40588b8481b7",
+  "raw_outputs_sha256": "d66d11c7e1e6bb2c7dc15c4cc5b5c2d575cf584be3f4eb3e15801ef767068d84",
+  "score_note": "Separate fresh weekly repeat-set results under the v0.4 rubric; these do not replace the original public leaderboard. Different weekly passages are descriptive batches, not controlled evidence of week-to-week provider improvement.",
+  "new_repeat_suite": {
+    "status": "partial",
+    "engine_summary": {
+      "BCorrect (FMM)": {
+        "spelling_accuracy": 59.2,
+        "spelling_target_hits": 29,
+        "spelling_target_count": 49,
+        "grammar_accuracy": 50.0,
+        "grammar_target_hits": 6,
+        "grammar_target_count": 12,
+        "voice_preservation": 70.83,
+        "quality_composite": 59.2,
+        "unapproved_edits": 12,
+        "correction_site_count": 61,
+        "unapproved_edit_rate": 19.7
+      },
+      "TextGears API": {
+        "spelling_accuracy": 63.3,
+        "spelling_target_hits": 31,
+        "spelling_target_count": 49,
+        "grammar_accuracy": 8.3,
+        "grammar_target_hits": 1,
+        "grammar_target_count": 12,
+        "voice_preservation": 74.83,
+        "quality_composite": 49.0,
+        "unapproved_edits": 13,
+        "correction_site_count": 61,
+        "unapproved_edit_rate": 21.3
+      },
+      "DeepL Write": {
+        "spelling_accuracy": 87.8,
+        "spelling_target_hits": 43,
+        "spelling_target_count": 49,
+        "grammar_accuracy": 83.3,
+        "grammar_target_hits": 10,
+        "grammar_target_count": 12,
+        "voice_preservation": 74.18,
+        "quality_composite": 83.0,
+        "unapproved_edits": 6,
+        "correction_site_count": 61,
+        "unapproved_edit_rate": 9.8
+      }
+    },
+    "passages": [
+      {
+        "id": "HR-01",
+        "domain": "Live music and casual banter",
+        "scores": {
+          "BCorrect (FMM)": {
+            "text": "That rooftop sets were a blast, no joke, but my friend left the shortlist beside the sounder. We slipt in through the side gate; the whole place was buzzing, and that last chorus is still stuck in my head.",
+            "metrics": {
+              "spelling_acc": 50.0,
+              "spelling_target_hits": 2,
+              "spelling_target_count": 4,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 1,
+              "grammar_target_count": 1,
+              "voice_preservation": 89.55,
+              "vpr": 100.0,
+              "voice_precision": 88.24,
+              "voice_recall": 90.91,
+              "voice_lexical_f1": 89.55,
+              "voice_marker_retention": 100.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 1,
+                "accepted_corrections": 3,
+                "unapproved_edits": 1,
+                "unapproved_edit_rate": 20.0,
+                "sites": [
+                  {
+                    "source": "freind",
+                    "observed": "friend",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "soundbord",
+                    "observed": "sounder",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "slipt",
+                    "observed": "slipt",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "place were",
+                    "observed": "place was",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "buzzingg",
+                    "observed": "buzzing",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 75.51
+            }
+          },
+          "TextGears API": {
+            "text": "That rooftop set was a blast, no joke, but my friend left the stylist beside the soundboard. We slip in through the side gate; the whole place were buzzing, and that last chorus is still stuck in my head.",
+            "metrics": {
+              "spelling_acc": 75.0,
+              "spelling_target_hits": 3,
+              "spelling_target_count": 4,
+              "grammar_acc": 0.0,
+              "grammar_target_hits": 0,
+              "grammar_target_count": 1,
+              "voice_preservation": 95.52,
+              "vpr": 100.0,
+              "voice_precision": 94.12,
+              "voice_recall": 96.97,
+              "voice_lexical_f1": 95.52,
+              "voice_marker_retention": 100.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 1,
+                "accepted_corrections": 3,
+                "unapproved_edits": 1,
+                "unapproved_edit_rate": 20.0,
+                "sites": [
+                  {
+                    "source": "freind",
+                    "observed": "friend",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "soundbord",
+                    "observed": "soundboard",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "slipt",
+                    "observed": "slip",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "place were",
+                    "observed": "place were",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "buzzingg",
+                    "observed": "buzzing",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 56.69
+            }
+          },
+          "DeepL Write": {
+            "text": "That rooftop set was amazing, honestly, but my friend left the setlist beside the soundboard. We slipped in through the side gate and the whole place was buzzing. That last chorus is still stuck in my head!",
+            "metrics": {
+              "spelling_acc": 75.0,
+              "spelling_target_hits": 3,
+              "spelling_target_count": 4,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 1,
+              "grammar_target_count": 1,
+              "voice_preservation": 65.62,
+              "vpr": 75.0,
+              "voice_precision": 90.32,
+              "voice_recall": 84.85,
+              "voice_lexical_f1": 87.5,
+              "voice_marker_retention": 75.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 0,
+                "accepted_corrections": 4,
+                "unapproved_edits": 1,
+                "unapproved_edit_rate": 20.0,
+                "sites": [
+                  {
+                    "source": "freind",
+                    "observed": "friend",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "soundbord",
+                    "observed": "soundboard",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "slipt",
+                    "observed": "slipped",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "place were",
+                    "observed": "place",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "buzzingg",
+                    "observed": "buzzing",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 80.47
+            }
+          }
+        }
+      },
+      {
+        "id": "HR-02",
+        "domain": "Rural family story",
+        "scores": {
+          "BCorrect (FMM)": {
+            "text": "Uncle Ray warmed his hands by the stove, talking soft while the creek crept passed the fence. He reckon the olds head wouldn't last another hard rain; still, his pech pie could cheer a whole Sunday.",
+            "metrics": {
+              "spelling_acc": 0.0,
+              "spelling_target_hits": 0,
+              "spelling_target_count": 3,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 1,
+              "grammar_target_count": 1,
+              "voice_preservation": 45.45,
+              "vpr": 50.0,
+              "voice_precision": 88.24,
+              "voice_recall": 93.75,
+              "voice_lexical_f1": 90.91,
+              "voice_marker_retention": 50.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 4,
+                "unchanged_sites": 1,
+                "accepted_corrections": 1,
+                "unapproved_edits": 2,
+                "unapproved_edit_rate": 50.0,
+                "sites": [
+                  {
+                    "source": "reconed",
+                    "observed": "reckon",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "shead",
+                    "observed": "head",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "wouldnt",
+                    "observed": "wouldn't",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "pech",
+                    "observed": "pech",
+                    "classification": "unchanged"
+                  }
+                ]
+              },
+              "quality_composite": 42.61
+            }
+          },
+          "TextGears API": {
+            "text": "Uncle Ray warmed his hands by the stove, talkin soft while the creek crept past the fence. He reckoned the old shad wouldn't last another hard rain; still, his peach pie could cheer a whole Sunday.",
+            "metrics": {
+              "spelling_acc": 66.67,
+              "spelling_target_hits": 2,
+              "spelling_target_count": 3,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 1,
+              "grammar_target_count": 1,
+              "voice_preservation": 73.85,
+              "vpr": 75.0,
+              "voice_precision": 96.97,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 98.46,
+              "voice_marker_retention": 75.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 4,
+                "unchanged_sites": 0,
+                "accepted_corrections": 3,
+                "unapproved_edits": 1,
+                "unapproved_edit_rate": 25.0,
+                "sites": [
+                  {
+                    "source": "reconed",
+                    "observed": "reckoned",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "shead",
+                    "observed": "shad",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "wouldnt",
+                    "observed": "wouldn't",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "pech",
+                    "observed": "peach",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 78.88
+            }
+          },
+          "DeepL Write": {
+            "text": "Uncle Ray warmed his hands by the stove, talking softly while the creek crept past the fence. He reckoned the old shed wouldn't last another hard rain, but his peach pie could cheer up anyone on a Sunday.",
+            "metrics": {
+              "spelling_acc": 100.0,
+              "spelling_target_hits": 3,
+              "spelling_target_count": 3,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 1,
+              "grammar_target_count": 1,
+              "voice_preservation": 43.94,
+              "vpr": 50.0,
+              "voice_precision": 85.29,
+              "voice_recall": 90.62,
+              "voice_lexical_f1": 87.88,
+              "voice_marker_retention": 50.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 4,
+                "unchanged_sites": 0,
+                "accepted_corrections": 4,
+                "unapproved_edits": 0,
+                "unapproved_edit_rate": 0.0,
+                "sites": [
+                  {
+                    "source": "reconed",
+                    "observed": "reckoned",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "shead",
+                    "observed": "shed",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "wouldnt",
+                    "observed": "wouldn't",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "pech",
+                    "observed": "peach",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 85.98
+            }
+          }
+        }
+      },
+      {
+        "id": "HR-03",
+        "domain": "Tech-noir action",
+        "scores": {
+          "BCorrect (FMM)": {
+            "text": "Blue rain streaked the alley glass. Mara plug into the relai, slipped passed the firewall, and send the decoy packet before watcher could flag her signal. The trace was already closing in.",
+            "metrics": {
+              "spelling_acc": 33.33,
+              "spelling_target_hits": 1,
+              "spelling_target_count": 3,
+              "grammar_acc": 0.0,
+              "grammar_target_hits": 0,
+              "grammar_target_count": 2,
+              "voice_preservation": 94.12,
+              "vpr": 100.0,
+              "voice_precision": 92.31,
+              "voice_recall": 96.0,
+              "voice_lexical_f1": 94.12,
+              "voice_marker_retention": 100.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 3,
+                "accepted_corrections": 1,
+                "unapproved_edits": 1,
+                "unapproved_edit_rate": 20.0,
+                "sites": [
+                  {
+                    "source": "plugd",
+                    "observed": "plug",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "relai",
+                    "observed": "relai",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "and send",
+                    "observed": "and send",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "before watcher",
+                    "observed": "before watcher",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "signel",
+                    "observed": "signal",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 38.11
+            }
+          },
+          "TextGears API": {
+            "text": "Blue rain streaked the alley glass. Mara plugs into the relaid, slipped past the firewall, and send the decoy packet before watcher could flag her signal. The trace was already closing in.",
+            "metrics": {
+              "spelling_acc": 33.33,
+              "spelling_target_hits": 1,
+              "spelling_target_count": 3,
+              "grammar_acc": 0.0,
+              "grammar_target_hits": 0,
+              "grammar_target_count": 2,
+              "voice_preservation": 96.15,
+              "vpr": 100.0,
+              "voice_precision": 92.59,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 96.15,
+              "voice_marker_retention": 100.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 2,
+                "accepted_corrections": 1,
+                "unapproved_edits": 2,
+                "unapproved_edit_rate": 40.0,
+                "sites": [
+                  {
+                    "source": "plugd",
+                    "observed": "plugs",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "relai",
+                    "observed": "relaid",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "and send",
+                    "observed": "and send",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "before watcher",
+                    "observed": "before watcher",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "signel",
+                    "observed": "signal",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 38.62
+            }
+          },
+          "DeepL Write": {
+            "text": "Blue rain streaked the alley glass. Mara plugged into the relay, slipped past the firewall and sent the decoy packet before Watcher could flag her signal. The trace was already closing in.",
+            "metrics": {
+              "spelling_acc": 100.0,
+              "spelling_target_hits": 3,
+              "spelling_target_count": 3,
+              "grammar_acc": 50.0,
+              "grammar_target_hits": 1,
+              "grammar_target_count": 2,
+              "voice_preservation": 100.0,
+              "vpr": 100.0,
+              "voice_precision": 100.0,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 100.0,
+              "voice_marker_retention": 100.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 1,
+                "accepted_corrections": 4,
+                "unapproved_edits": 0,
+                "unapproved_edit_rate": 0.0,
+                "sites": [
+                  {
+                    "source": "plugd",
+                    "observed": "plugged",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "relai",
+                    "observed": "relay",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "and send",
+                    "observed": "and sent",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "before watcher",
+                    "observed": "before watcher",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "signel",
+                    "observed": "signal",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 84.38
+            }
+          }
+        }
+      },
+      {
+        "id": "HR-04",
+        "domain": "Food review",
+        "scores": {
+          "BCorrect (FMM)": {
+            "text": "The charred corn had a smoky bite, but the lime dressing was way to sharp. It nearly buried the sweet pech salsa, which somehow still tasted bright and fresh.",
+            "metrics": {
+              "spelling_acc": 75.0,
+              "spelling_target_hits": 3,
+              "spelling_target_count": 4,
+              "grammar_acc": 0.0,
+              "grammar_target_hits": 0,
+              "grammar_target_count": 1,
+              "voice_preservation": 50.0,
+              "vpr": 50.0,
+              "voice_precision": 100.0,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 100.0,
+              "voice_marker_retention": 50.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 2,
+                "accepted_corrections": 3,
+                "unapproved_edits": 0,
+                "unapproved_edit_rate": 0.0,
+                "sites": [
+                  {
+                    "source": "charrd",
+                    "observed": "charred",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "dreassing",
+                    "observed": "dressing",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "way to",
+                    "observed": "way to",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "burried",
+                    "observed": "buried",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "pech",
+                    "observed": "pech",
+                    "classification": "unchanged"
+                  }
+                ]
+              },
+              "quality_composite": 45.31
+            }
+          },
+          "TextGears API": {
+            "text": "The charred corn had a smoky bite, but the lime dressing was way to sharp. It nearly buried the sweet peach salsa, which somehow still tasted bright and fresh.",
+            "metrics": {
+              "spelling_acc": 100.0,
+              "spelling_target_hits": 4,
+              "spelling_target_count": 4,
+              "grammar_acc": 0.0,
+              "grammar_target_hits": 0,
+              "grammar_target_count": 1,
+              "voice_preservation": 75.0,
+              "vpr": 75.0,
+              "voice_precision": 100.0,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 100.0,
+              "voice_marker_retention": 75.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 1,
+                "accepted_corrections": 4,
+                "unapproved_edits": 0,
+                "unapproved_edit_rate": 0.0,
+                "sites": [
+                  {
+                    "source": "charrd",
+                    "observed": "charred",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "dreassing",
+                    "observed": "dressing",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "way to",
+                    "observed": "way to",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "burried",
+                    "observed": "buried",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "pech",
+                    "observed": "peach",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 62.5
+            }
+          },
+          "DeepL Write": {
+            "text": "The charred corn had a smoky bite, but the lime dressing was far too sharp. It almost overpowered the sweet peach salsa, which somehow still tasted bright and fresh.",
+            "metrics": {
+              "spelling_acc": 75.0,
+              "spelling_target_hits": 3,
+              "spelling_target_count": 4,
+              "grammar_acc": 0.0,
+              "grammar_target_hits": 0,
+              "grammar_target_count": 1,
+              "voice_preservation": 67.35,
+              "vpr": 75.0,
+              "voice_precision": 84.62,
+              "voice_recall": 95.65,
+              "voice_lexical_f1": 89.8,
+              "voice_marker_retention": 75.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 0,
+                "accepted_corrections": 3,
+                "unapproved_edits": 2,
+                "unapproved_edit_rate": 40.0,
+                "sites": [
+                  {
+                    "source": "charrd",
+                    "observed": "charred",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "dreassing",
+                    "observed": "dressing",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "way to",
+                    "observed": "far too",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "burried",
+                    "observed": "overpowered",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "pech",
+                    "observed": "peach",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 49.65
+            }
+          }
+        }
+      },
+      {
+        "id": "HR-05",
+        "domain": "Childhood dream",
+        "scores": {
+          "BCorrect (FMM)": {
+            "text": "Last night, I deemed our rocket ship could file through the dowds to a purple moon. We landed beside bubble lakes and met tiny martins who waving at us. The stars were close enough to touch, and it felt so real that I hellered when my dad wake me for school; I wanted to go back.",
+            "metrics": {
+              "spelling_acc": 58.33,
+              "spelling_target_hits": 7,
+              "spelling_target_count": 12,
+              "grammar_acc": 33.33,
+              "grammar_target_hits": 1,
+              "grammar_target_count": 3,
+              "voice_preservation": 69.38,
+              "vpr": 75.0,
+              "voice_precision": 86.05,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 92.5,
+              "voice_marker_retention": 75.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 15,
+                "unchanged_sites": 2,
+                "accepted_corrections": 8,
+                "unapproved_edits": 5,
+                "unapproved_edit_rate": 33.3,
+                "sites": [
+                  {
+                    "source": "nite",
+                    "observed": "night",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "dreemed",
+                    "observed": "deemed",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "roket",
+                    "observed": "rocket",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "flie",
+                    "observed": "file",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "clowds",
+                    "observed": "dowds",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "purpel",
+                    "observed": "purple",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "landid",
+                    "observed": "landed",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "bubbl",
+                    "observed": "bubble",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "martins",
+                    "observed": "martins",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "who wavin",
+                    "observed": "who waving",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "stars was",
+                    "observed": "stars were",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "reel",
+                    "observed": "real",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "hollerd",
+                    "observed": "hellered",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "dad wake me",
+                    "observed": "dad wake me",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "skool",
+                    "observed": "school",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 53.28
+            }
+          },
+          "TextGears API": {
+            "text": "Last nite, I deemed our rocket ship could fly through the clods to a purple moon. We landed beside bubble lakes and met tiny martins who waving at us. The stars was close enough to touch, and it felt so reel that I hollered when my dad wake me for skool; I wanted to go back.",
+            "metrics": {
+              "spelling_acc": 50.0,
+              "spelling_target_hits": 6,
+              "spelling_target_count": 12,
+              "grammar_acc": 0.0,
+              "grammar_target_hits": 0,
+              "grammar_target_count": 3,
+              "voice_preservation": 71.15,
+              "vpr": 75.0,
+              "voice_precision": 90.24,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 94.87,
+              "voice_marker_retention": 75.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 15,
+                "unchanged_sites": 6,
+                "accepted_corrections": 6,
+                "unapproved_edits": 3,
+                "unapproved_edit_rate": 20.0,
+                "sites": [
+                  {
+                    "source": "nite",
+                    "observed": "nite",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "dreemed",
+                    "observed": "deemed",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "roket",
+                    "observed": "rocket",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "flie",
+                    "observed": "fly",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "clowds",
+                    "observed": "clods",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "purpel",
+                    "observed": "purple",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "landid",
+                    "observed": "landed",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "bubbl",
+                    "observed": "bubble",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "martins",
+                    "observed": "martins",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "who wavin",
+                    "observed": "who waving",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "stars was",
+                    "observed": "stars was",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "reel",
+                    "observed": "reel",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "hollerd",
+                    "observed": "hollered",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "dad wake me",
+                    "observed": "dad wake me",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "skool",
+                    "observed": "skool",
+                    "classification": "unchanged"
+                  }
+                ]
+              },
+              "quality_composite": 39.66
+            }
+          },
+          "DeepL Write": {
+            "text": "Last night, I dreamed our rocket ship could fly through the clouds to a purple moon. We landed beside bubble lakes and met tiny martins who waved at us. The stars were close enough to touch, and it felt so real that I cried when my dad woke me up for school; I wanted to go back.",
+            "metrics": {
+              "spelling_acc": 83.33,
+              "spelling_target_hits": 10,
+              "spelling_target_count": 12,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 3,
+              "grammar_target_count": 3,
+              "voice_preservation": 73.03,
+              "vpr": 75.0,
+              "voice_precision": 94.87,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 97.37,
+              "voice_marker_retention": 75.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 15,
+                "unchanged_sites": 1,
+                "accepted_corrections": 13,
+                "unapproved_edits": 1,
+                "unapproved_edit_rate": 6.7,
+                "sites": [
+                  {
+                    "source": "nite",
+                    "observed": "night",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "dreemed",
+                    "observed": "dreamed",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "roket",
+                    "observed": "rocket",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "flie",
+                    "observed": "fly",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "clowds",
+                    "observed": "clouds",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "purpel",
+                    "observed": "purple",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "landid",
+                    "observed": "landed",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "bubbl",
+                    "observed": "bubble",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "martins",
+                    "observed": "martins",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "who wavin",
+                    "observed": "who waved",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "stars was",
+                    "observed": "stars were",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "reel",
+                    "observed": "real",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "hollerd",
+                    "observed": "cried",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "dad wake me",
+                    "observed": "dad woke me",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "skool",
+                    "observed": "school",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 85.96
+            }
+          }
+        }
+      },
+      {
+        "id": "HR-06",
+        "domain": "Startup update",
+        "scores": {
+          "BCorrect (FMM)": {
+            "text": "Our churn fell 14% last quarter, team, while renewels hit a record high. Competitors are scrambling to catch up, but we moved too fast to celebrate.",
+            "metrics": {
+              "spelling_acc": 66.67,
+              "spelling_target_hits": 2,
+              "spelling_target_count": 3,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 1,
+              "grammar_target_count": 1,
+              "voice_preservation": 100.0,
+              "vpr": 100.0,
+              "voice_precision": 100.0,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 100.0,
+              "voice_marker_retention": 100.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 4,
+                "unchanged_sites": 1,
+                "accepted_corrections": 3,
+                "unapproved_edits": 0,
+                "unapproved_edit_rate": 0.0,
+                "sites": [
+                  {
+                    "source": "qaurter",
+                    "observed": "quarter",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "renewels",
+                    "observed": "renewels",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "competetors",
+                    "observed": "competitors",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "to fast",
+                    "observed": "too fast",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 85.42
+            }
+          },
+          "TextGears API": {
+            "text": "Our churn fell 14% last quarter, team, while renewals hit a record high. Compete-tors are scrambling to catch up, but we moved to fast to celebrate.",
+            "metrics": {
+              "spelling_acc": 66.67,
+              "spelling_target_hits": 2,
+              "spelling_target_count": 3,
+              "grammar_acc": 0.0,
+              "grammar_target_hits": 0,
+              "grammar_target_count": 1,
+              "voice_preservation": 95.45,
+              "vpr": 100.0,
+              "voice_precision": 91.3,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 95.45,
+              "voice_marker_retention": 100.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 4,
+                "unchanged_sites": 1,
+                "accepted_corrections": 2,
+                "unapproved_edits": 1,
+                "unapproved_edit_rate": 25.0,
+                "sites": [
+                  {
+                    "source": "qaurter",
+                    "observed": "quarter",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "renewels",
+                    "observed": "renewals",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "competetors",
+                    "observed": "compete tors",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "to fast",
+                    "observed": "to fast",
+                    "classification": "unchanged"
+                  }
+                ]
+              },
+              "quality_composite": 53.03
+            }
+          },
+          "DeepL Write": {
+            "text": "Our churn fell by 14% in the last quarter, team, while renewals hit a record high. Competitors are scrambling to catch up, but we moved too fast to celebrate.",
+            "metrics": {
+              "spelling_acc": 100.0,
+              "spelling_target_hits": 3,
+              "spelling_target_count": 3,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 1,
+              "grammar_target_count": 1,
+              "voice_preservation": 93.33,
+              "vpr": 100.0,
+              "voice_precision": 87.5,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 93.33,
+              "voice_marker_retention": 100.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 4,
+                "unchanged_sites": 0,
+                "accepted_corrections": 4,
+                "unapproved_edits": 0,
+                "unapproved_edit_rate": 0.0,
+                "sites": [
+                  {
+                    "source": "qaurter",
+                    "observed": "quarter",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "renewels",
+                    "observed": "renewals",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "competetors",
+                    "observed": "competitors",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "to fast",
+                    "observed": "too fast",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 98.33
+            }
+          }
+        }
+      },
+      {
+        "id": "HR-07",
+        "domain": "Basketball game",
+        "scores": {
+          "BCorrect (FMM)": {
+            "text": "Coach sketch the play on the whiteboard during the timeout. We ran the pick and roil clean, hit the three-pointer at the buzzer, and won the championship; the bench was on its feat before the net stopped sewing.",
+            "metrics": {
+              "spelling_acc": 50.0,
+              "spelling_target_hits": 3,
+              "spelling_target_count": 6,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 1,
+              "grammar_target_count": 1,
+              "voice_preservation": 23.44,
+              "vpr": 25.0,
+              "voice_precision": 90.91,
+              "voice_recall": 96.77,
+              "voice_lexical_f1": 93.75,
+              "voice_marker_retention": 25.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 7,
+                "unchanged_sites": 1,
+                "accepted_corrections": 4,
+                "unapproved_edits": 2,
+                "unapproved_edit_rate": 28.6,
+                "sites": [
+                  {
+                    "source": "sketcht",
+                    "observed": "sketch",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "whitebord",
+                    "observed": "whiteboard",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "roil",
+                    "observed": "roil",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "buzer",
+                    "observed": "buzzer",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "champinship",
+                    "observed": "championship",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "bench were",
+                    "observed": "bench was",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "sweying",
+                    "observed": "sewing",
+                    "classification": "unapproved_edit"
+                  }
+                ]
+              },
+              "quality_composite": 58.98
+            }
+          },
+          "TextGears API": {
+            "text": "Coach sketchy the play on the whiteboard during the timeout. We ran the pick and roil clean, hit the three-pointer at the buzzer, and won the champinship; the bench were on its feet before the net stopped swaying.",
+            "metrics": {
+              "spelling_acc": 50.0,
+              "spelling_target_hits": 3,
+              "spelling_target_count": 6,
+              "grammar_acc": 0.0,
+              "grammar_target_hits": 0,
+              "grammar_target_count": 1,
+              "voice_preservation": 49.21,
+              "vpr": 50.0,
+              "voice_precision": 96.88,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 98.41,
+              "voice_marker_retention": 50.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 7,
+                "unchanged_sites": 3,
+                "accepted_corrections": 3,
+                "unapproved_edits": 1,
+                "unapproved_edit_rate": 14.3,
+                "sites": [
+                  {
+                    "source": "sketcht",
+                    "observed": "sketchy",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "whitebord",
+                    "observed": "whiteboard",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "roil",
+                    "observed": "roil",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "buzer",
+                    "observed": "buzzer",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "champinship",
+                    "observed": "champinship",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "bench were",
+                    "observed": "bench were",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "sweying",
+                    "observed": "swaying",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 34.18
+            }
+          },
+          "DeepL Write": {
+            "text": "Coach sketched the play on the whiteboard during the timeout. We ran the pick-and-roll cleanly, hit the three-pointer at the buzzer and won the championship. The bench was on its feet before the net stopped swaying.",
+            "metrics": {
+              "spelling_acc": 100.0,
+              "spelling_target_hits": 6,
+              "spelling_target_count": 6,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 1,
+              "grammar_target_count": 1,
+              "voice_preservation": 72.58,
+              "vpr": 75.0,
+              "voice_precision": 96.77,
+              "voice_recall": 96.77,
+              "voice_lexical_f1": 96.77,
+              "voice_marker_retention": 75.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 7,
+                "unchanged_sites": 0,
+                "accepted_corrections": 7,
+                "unapproved_edits": 0,
+                "unapproved_edit_rate": 0.0,
+                "sites": [
+                  {
+                    "source": "sketcht",
+                    "observed": "sketched",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "whitebord",
+                    "observed": "whiteboard",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "roil",
+                    "observed": "roll",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "buzer",
+                    "observed": "buzzer",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "champinship",
+                    "observed": "championship",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "bench were",
+                    "observed": "bench was",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "sweying",
+                    "observed": "swaying",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 93.14
+            }
+          }
+        }
+      },
+      {
+        "id": "HR-08",
+        "domain": "Literary reflection",
+        "scores": {
+          "BCorrect (FMM)": {
+            "text": "Fog curled through the orchard as the old rails humed. A quiet ache stayed with me, neither sharp nor bitter, just the slow exhale of another fall; one lantern flicered alone by the abandoned platform.",
+            "metrics": {
+              "spelling_acc": 60.0,
+              "spelling_target_hits": 3,
+              "spelling_target_count": 5,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 0,
+              "grammar_target_count": 0,
+              "voice_preservation": 73.77,
+              "vpr": 75.0,
+              "voice_precision": 96.77,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 98.36,
+              "voice_marker_retention": 75.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 1,
+                "accepted_corrections": 3,
+                "unapproved_edits": 1,
+                "unapproved_edit_rate": 20.0,
+                "sites": [
+                  {
+                    "source": "orcherd",
+                    "observed": "orchard",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "humed",
+                    "observed": "humed",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "flikered",
+                    "observed": "flicered",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "abondoned",
+                    "observed": "abandoned",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "plattform",
+                    "observed": "platform",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 75.94
+            }
+          },
+          "TextGears API": {
+            "text": "Fog curled through the orchard as the old rails hummed. A quiet ache stayed with me, neither sharp nor bitter, just the slow exhale of another fall; one lantern flickered alone by the abandoned platform.",
+            "metrics": {
+              "spelling_acc": 100.0,
+              "spelling_target_hits": 5,
+              "spelling_target_count": 5,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 0,
+              "grammar_target_count": 0,
+              "voice_preservation": 100.0,
+              "vpr": 100.0,
+              "voice_precision": 100.0,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 100.0,
+              "voice_marker_retention": 100.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 0,
+                "accepted_corrections": 5,
+                "unapproved_edits": 0,
+                "unapproved_edit_rate": 0.0,
+                "sites": [
+                  {
+                    "source": "orcherd",
+                    "observed": "orchard",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "humed",
+                    "observed": "hummed",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "flikered",
+                    "observed": "flickered",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "abondoned",
+                    "observed": "abandoned",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "plattform",
+                    "observed": "platform",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 100.0
+            }
+          },
+          "DeepL Write": {
+            "text": "Fog curled through the orchard as the old rails hummed. A quiet ache stayed with me, neither sharp nor bitter, just the slow exhale of another autumn. One lantern flickered alone by the abandoned platform.",
+            "metrics": {
+              "spelling_acc": 100.0,
+              "spelling_target_hits": 5,
+              "spelling_target_count": 5,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 0,
+              "grammar_target_count": 0,
+              "voice_preservation": 72.5,
+              "vpr": 75.0,
+              "voice_precision": 96.67,
+              "voice_recall": 96.67,
+              "voice_lexical_f1": 96.67,
+              "voice_marker_retention": 75.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 0,
+                "accepted_corrections": 5,
+                "unapproved_edits": 0,
+                "unapproved_edit_rate": 0.0,
+                "sites": [
+                  {
+                    "source": "orcherd",
+                    "observed": "orchard",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "humed",
+                    "observed": "hummed",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "flikered",
+                    "observed": "flickered",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "abondoned",
+                    "observed": "abandoned",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "plattform",
+                    "observed": "platform",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 93.12
+            }
+          }
+        }
+      },
+      {
+        "id": "HR-09",
+        "domain": "Field biology notes",
+        "scores": {
+          "BCorrect (FMM)": {
+            "text": "Logged four specimens of Dendrobates tinctorius near the creek bed. The aposematic coloration was extremely vibrant despite heavy canopy shade; two sample was taken after the rain stopped.",
+            "metrics": {
+              "spelling_acc": 100.0,
+              "spelling_target_hits": 4,
+              "spelling_target_count": 4,
+              "grammar_acc": 0.0,
+              "grammar_target_hits": 0,
+              "grammar_target_count": 1,
+              "voice_preservation": 95.45,
+              "vpr": 100.0,
+              "voice_precision": 95.45,
+              "voice_recall": 95.45,
+              "voice_lexical_f1": 95.45,
+              "voice_marker_retention": 100.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 1,
+                "accepted_corrections": 4,
+                "unapproved_edits": 0,
+                "unapproved_edit_rate": 0.0,
+                "sites": [
+                  {
+                    "source": "specimins",
+                    "observed": "specimens",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "tinctourius",
+                    "observed": "tinctorius",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "vibrent",
+                    "observed": "vibrant",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "canopie",
+                    "observed": "canopy",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "two sample",
+                    "observed": "two sample",
+                    "classification": "unchanged"
+                  }
+                ]
+              },
+              "quality_composite": 67.61
+            }
+          },
+          "TextGears API": {
+            "text": "Logged four specimens of Dendrites tinctures near the creek bed. The aposematic coloration was extremely vibrant despite heavy canopied shade; two sample were taken after the rain stopped.",
+            "metrics": {
+              "spelling_acc": 50.0,
+              "spelling_target_hits": 2,
+              "spelling_target_count": 4,
+              "grammar_acc": 0.0,
+              "grammar_target_hits": 0,
+              "grammar_target_count": 1,
+              "voice_preservation": 45.65,
+              "vpr": 50.0,
+              "voice_precision": 87.5,
+              "voice_recall": 95.45,
+              "voice_lexical_f1": 91.3,
+              "voice_marker_retention": 50.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 1,
+                "accepted_corrections": 2,
+                "unapproved_edits": 2,
+                "unapproved_edit_rate": 40.0,
+                "sites": [
+                  {
+                    "source": "specimins",
+                    "observed": "specimens",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "tinctourius",
+                    "observed": "tinctures",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "vibrent",
+                    "observed": "vibrant",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "canopie",
+                    "observed": "canopied",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "two sample",
+                    "observed": "two sample",
+                    "classification": "unchanged"
+                  }
+                ]
+              },
+              "quality_composite": 33.29
+            }
+          },
+          "DeepL Write": {
+            "text": "I logged four specimens of Dendrobates tinctorius near the creek bed. Despite the heavy canopy shade, the aposematic colouration was extremely vibrant; two samples were taken after the rain stopped.",
+            "metrics": {
+              "spelling_acc": 50.0,
+              "spelling_target_hits": 2,
+              "spelling_target_count": 4,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 1,
+              "grammar_target_count": 1,
+              "voice_preservation": 58.7,
+              "vpr": 75.0,
+              "voice_precision": 75.0,
+              "voice_recall": 81.82,
+              "voice_lexical_f1": 78.26,
+              "voice_marker_retention": 75.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 0,
+                "accepted_corrections": 3,
+                "unapproved_edits": 2,
+                "unapproved_edit_rate": 40.0,
+                "sites": [
+                  {
+                    "source": "specimins",
+                    "observed": "specimens",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "tinctourius",
+                    "observed": "tinctorius",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "vibrent",
+                    "observed": "",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "canopie",
+                    "observed": "",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "two sample",
+                    "observed": "two samples",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 67.8
+            }
+          }
+        }
+      },
+      {
+        "id": "HR-10",
+        "domain": "Contract clause",
+        "scores": {
+          "BCorrect (FMM)": {
+            "text": "Section 8.3 governs the indemnity obligations. Neither party is libel for consequential damages arising from a unintensional breach, including a failure to give timely notice.",
+            "metrics": {
+              "spelling_acc": 80.0,
+              "spelling_target_hits": 4,
+              "spelling_target_count": 5,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 1,
+              "grammar_target_count": 1,
+              "voice_preservation": 67.11,
+              "vpr": 75.0,
+              "voice_precision": 89.47,
+              "voice_recall": 89.47,
+              "voice_lexical_f1": 89.47,
+              "voice_marker_retention": 75.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 6,
+                "unchanged_sites": 1,
+                "accepted_corrections": 5,
+                "unapproved_edits": 0,
+                "unapproved_edit_rate": 0.0,
+                "sites": [
+                  {
+                    "source": "goverens",
+                    "observed": "governs",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "oblegations",
+                    "observed": "obligations",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "party are",
+                    "observed": "party is",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "consequenshal",
+                    "observed": "consequential",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "unintensional",
+                    "observed": "unintensional",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "notise",
+                    "observed": "notice",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 83.03
+            }
+          },
+          "TextGears API": {
+            "text": "Section 8.3 governs the indemnity ob-legations. Neither party are liable for consequential damages arising from an unintentional breach, including a failure to give timely noise.",
+            "metrics": {
+              "spelling_acc": 60.0,
+              "spelling_target_hits": 3,
+              "spelling_target_count": 5,
+              "grammar_acc": 0.0,
+              "grammar_target_hits": 0,
+              "grammar_target_count": 1,
+              "voice_preservation": 46.34,
+              "vpr": 50.0,
+              "voice_precision": 86.36,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 92.68,
+              "voice_marker_retention": 50.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 6,
+                "unchanged_sites": 1,
+                "accepted_corrections": 3,
+                "unapproved_edits": 2,
+                "unapproved_edit_rate": 33.3,
+                "sites": [
+                  {
+                    "source": "goverens",
+                    "observed": "governs",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "oblegations",
+                    "observed": "ob legations",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "party are",
+                    "observed": "party are",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "consequenshal",
+                    "observed": "consequential",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "unintensional",
+                    "observed": "unintentional",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "notise",
+                    "observed": "noise",
+                    "classification": "unapproved_edit"
+                  }
+                ]
+              },
+              "quality_composite": 37.84
+            }
+          },
+          "DeepL Write": {
+            "text": "Section 8.3 governs the indemnity obligations. Neither party is liable for consequential damages arising from an unintentional breach, including a failure to provide timely notice.",
+            "metrics": {
+              "spelling_acc": 100.0,
+              "spelling_target_hits": 5,
+              "spelling_target_count": 5,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 1,
+              "grammar_target_count": 1,
+              "voice_preservation": 94.74,
+              "vpr": 100.0,
+              "voice_precision": 94.74,
+              "voice_recall": 94.74,
+              "voice_lexical_f1": 94.74,
+              "voice_marker_retention": 100.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 6,
+                "unchanged_sites": 0,
+                "accepted_corrections": 6,
+                "unapproved_edits": 0,
+                "unapproved_edit_rate": 0.0,
+                "sites": [
+                  {
+                    "source": "goverens",
+                    "observed": "governs",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "oblegations",
+                    "observed": "obligations",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "party are",
+                    "observed": "party is",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "consequenshal",
+                    "observed": "consequential",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "unintensional",
+                    "observed": "unintentional",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "notise",
+                    "observed": "notice",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 98.69
+            }
+          }
+        }
+      }
+    ]
+  },
+  "jspell_same_api_control": {
+    "status": "blocked",
+    "engine": "JSpell Cloud Spell Check API",
+    "old_h_suite_score": null,
+    "new_repeat_suite_score": null,
+    "error": "Collection skipped after the JSpell API returned HTTP 403 (Cloudflare error 1010)."
+  }
+}

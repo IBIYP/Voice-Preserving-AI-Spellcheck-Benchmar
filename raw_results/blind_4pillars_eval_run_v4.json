@@ -4,7 +4,7 @@
     "version": "4.0",
     "voice_scoring_revision": "lexical-marker-f1-v2",
     "target_scoring_revision": "aligned-correction-sites-v1",
-    "eval_date": "November 18, 2026",
+    "eval_date": "November 19, 2026",
     "locale_scope": "Single-locale baseline; locale settings vary or are unreported. Paired en-US/en-GB results have not been collected.",
     "run_id": "h-suite-v4-7240c92fa5306510",
     "dataset_sha256": "4f6fc0462f0cc5b5d4822d23cece441ba211ab4a5e19fd949b276a3a522ef4e5",

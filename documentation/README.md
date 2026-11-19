@@ -17,6 +17,7 @@ frozen, and there are no results under it yet.
 ## Comparisons and provenance
 
 - [Fixed-anchor and weekly-challenge comparison policy](progress-tracking.md)
+- [JSpell Cloud API RapidAPI setup and troubleshooting](../Docs/providers/JSPELL_RAPIDAPI_SETUP.md)
 - [Data sources and reuse review](research-and-tooling-provenance.md)
 - [Collection, publication, and privacy policy](submission-policy.md)
 - [Raw-results schema and provenance requirements](../raw_results/README.md)

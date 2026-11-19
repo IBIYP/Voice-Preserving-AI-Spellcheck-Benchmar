@@ -1,0 +1,291 @@
+{
+  "metadata": {
+    "suite_id": "h-suite-repeat-v2",
+    "suite_version": "2.0",
+    "status": "frozen",
+    "locale": "en-US",
+    "passage_count": 10,
+    "spelling_target_count": 49,
+    "grammar_target_count": 12,
+    "scoring_protocol": "v0.4 H-suite: 43.75% spelling, 31.25% grammar, 25% voice",
+    "collection_note": "Second fresh H-suite repeat batch with brand-new passages and errors matching the original 49-spelling / 12-grammar difficulty profile. Retain raw provider outputs and provenance separately from the original H-suite and repeat v1."
+  },
+  "passages": [
+    {
+      "id": "HR-01",
+      "domain": "Live music and casual banter",
+      "input": "Bruh that basement gig was pure chaos in the best way, no lie, but my roomate dropped his wristbnd near the merch tabel. We squeezed past the bouncr and caught the encore, which was way to loud to forget.",
+      "spelling_targets": {
+        "roomate": "roommate",
+        "wristbnd": "wristband",
+        "tabel": "table",
+        "bouncr": "bouncer"
+      },
+      "grammar_targets": {
+        "way to": "way too"
+      },
+      "voice_tokens": [
+        "Bruh",
+        "no lie",
+        "pure chaos in the best way",
+        "merch table"
+      ],
+      "dialect_equivalents": {},
+      "forbidden_rewrites": [
+        "the underground concert was exhilarating",
+        "navigated past the security guard",
+        "excessively loud to be forgotten"
+      ]
+    },
+    {
+      "id": "HR-02",
+      "domain": "Rural family story",
+      "input": "Aunt Mae leaned on the porch rail, hummin low while the gravel road steamed after the thundr. She figgered the tin roof couldnt hold off another hailstorm, yet her blackberry cobler fixed every bad mood.",
+      "spelling_targets": {
+        "thundr": "thunder",
+        "figgered": "figured",
+        "cobler": "cobbler"
+      },
+      "grammar_targets": {
+        "couldnt": "couldn't"
+      },
+      "voice_tokens": [
+        "hummin low",
+        "gravel road",
+        "tin roof",
+        "fixed every bad mood"
+      ],
+      "dialect_equivalents": {
+        "hummin": ["hummin", "humming"]
+      },
+      "forbidden_rewrites": [
+        "Aunt Mae rested against the veranda railing",
+        "estimated that the metal roofing",
+        "her fruit dessert improved everyone's spirits"
+      ]
+    },
+    {
+      "id": "HR-03",
+      "domain": "Tech-noir action",
+      "input": "Sodium light pooled on the slick pavement. Kai splicd into the uplink, dodged the sentinal daemon, and wipe the audit log before proxy could lock his adres. Static crackled down the line.",
+      "spelling_targets": {
+        "splicd": "spliced",
+        "sentinal": "sentinel",
+        "adres": "address"
+      },
+      "grammar_targets": {
+        "and wipe": "and wiped",
+        "before proxy": "before the proxy"
+      },
+      "voice_tokens": [
+        "Sodium light",
+        "uplink",
+        "audit log",
+        "Static crackled"
+      ],
+      "dialect_equivalents": {},
+      "forbidden_rewrites": [
+        "streetlights illuminated the wet road",
+        "established a network connection",
+        "evaded the monitoring software"
+      ]
+    },
+    {
+      "id": "HR-04",
+      "domain": "Food review",
+      "input": "The wood-fired flatbread had an amazng blisterd crust, but the garlic aioli was way to salty. It almost drownd out the sweet fig glaze and tosted walnuts underneath.",
+      "spelling_targets": {
+        "amazng": "amazing",
+        "blisterd": "blistered",
+        "drownd": "drowned",
+        "tosted": "toasted"
+      },
+      "grammar_targets": {
+        "way to": "way too"
+      },
+      "voice_tokens": [
+        "wood-fired flatbread",
+        "blistered crust",
+        "sweet fig glaze",
+        "underneath"
+      ],
+      "dialect_equivalents": {},
+      "forbidden_rewrites": [
+        "the baked bread featured an impressive texture",
+        "the condiment was excessively seasoned",
+        "overwhelmed the subtle sweetness"
+      ]
+    },
+    {
+      "id": "HR-05",
+      "domain": "Childhood dream",
+      "input": "Yesturday nite I dreemd our submarene could dive thru the oshun to a silver castell. We swimmed past glowin jellies and met friendly dolpins who chased our light. The water was warm enuf to float forever, and I yelled when my sister shaked me awake for brekfast; I wasnt reddy to leave.",
+      "spelling_targets": {
+        "Yesturday": "Yesterday",
+        "nite": "night",
+        "dreemd": "dreamed",
+        "submarene": "submarine",
+        "thru": "through",
+        "oshun": "ocean",
+        "castell": "castle",
+        "glowin": "glowing",
+        "dolpins": "dolphins",
+        "enuf": "enough",
+        "brekfast": "breakfast",
+        "reddy": "ready"
+      },
+      "grammar_targets": {
+        "swimmed": "swam",
+        "shaked": "shook",
+        "wasnt": "wasn't"
+      },
+      "voice_tokens": [
+        "silver castle",
+        "friendly dolphins",
+        "float forever",
+        "ready to leave"
+      ],
+      "dialect_equivalents": {
+        "dreamed": ["dreamed", "dreamt"]
+      },
+      "forbidden_rewrites": [
+        "I experienced a vivid underwater fantasy",
+        "marine mammals accompanied our vessel",
+        "my sibling roused me for the morning meal"
+      ]
+    },
+    {
+      "id": "HR-06",
+      "domain": "Startup update",
+      "input": "Our burn rate dropped 22% QoQ, folks, while net retenshun hit a new peak. Rivals are hustling to copy our roadmp and pricng, but we ship to quick for them.",
+      "spelling_targets": {
+        "retenshun": "retention",
+        "roadmp": "roadmap",
+        "pricng": "pricing"
+      },
+      "grammar_targets": {
+        "to quick": "too quick"
+      },
+      "voice_tokens": [
+        "22% QoQ",
+        "folks",
+        "hustling to copy",
+        "new peak"
+      ],
+      "dialect_equivalents": {
+        "too quick": ["too quick", "too quickly"]
+      },
+      "forbidden_rewrites": [
+        "monthly expenditure declined significantly",
+        "competing enterprises are replicating our strategy",
+        "our release cadence exceeds theirs"
+      ]
+    },
+    {
+      "id": "HR-07",
+      "domain": "Basketball game",
+      "input": "Coach tapped the clipbord and called our last set play. We ran the backdor cut crisp, sank the layup off the backbord, and sealed the tournment; the crowd were roaringg before the ref blew the whisle.",
+      "spelling_targets": {
+        "clipbord": "clipboard",
+        "backdor": "backdoor",
+        "backbord": "backboard",
+        "tournment": "tournament",
+        "roaringg": "roaring",
+        "whisle": "whistle"
+      },
+      "grammar_targets": {
+        "crowd were": "crowd was"
+      },
+      "voice_tokens": [
+        "last set play",
+        "backdoor cut crisp",
+        "off the backboard",
+        "before the ref blew the whistle"
+      ],
+      "dialect_equivalents": {},
+      "forbidden_rewrites": [
+        "the head coach indicated the final strategy",
+        "executed a clean offensive maneuver",
+        "the spectators cheered enthusiastically"
+      ]
+    },
+    {
+      "id": "HR-08",
+      "domain": "Literary reflection",
+      "input": "Mist drifted across the harbr as the ferry bell clanged. A dull lonliness lingered in my chest, neither angry nor loud, just the quiet drift of another Novembr; one porch lamp glowd steady beside the weathered peir.",
+      "spelling_targets": {
+        "harbr": "harbor",
+        "lonliness": "loneliness",
+        "Novembr": "November",
+        "glowd": "glowed",
+        "peir": "pier"
+      },
+      "grammar_targets": {},
+      "voice_tokens": [
+        "dull loneliness",
+        "quiet drift",
+        "neither angry nor loud",
+        "weathered pier"
+      ],
+      "dialect_equivalents": {},
+      "forbidden_rewrites": [
+        "a sense of isolation persisted",
+        "the conclusion of autumn",
+        "a residential light illuminated the dock"
+      ]
+    },
+    {
+      "id": "HR-09",
+      "domain": "Field biology notes",
+      "input": "Recorded five juvunile Ambystoma tigrinum along the marsh edge. Their mottled pigmentashun looked surprisngly vivid under the thick sedge canopie; three swab was collected before dusk settled.",
+      "spelling_targets": {
+        "juvunile": "juvenile",
+        "pigmentashun": "pigmentation",
+        "surprisngly": "surprisingly",
+        "canopie": "canopy"
+      },
+      "grammar_targets": {
+        "three swab was": "three swabs were"
+      },
+      "voice_tokens": [
+        "Ambystoma tigrinum",
+        "marsh edge",
+        "thick sedge canopy",
+        "before dusk settled"
+      ],
+      "dialect_equivalents": {},
+      "forbidden_rewrites": [
+        "five tiger salamanders were documented",
+        "the skin patterns appeared bright",
+        "samples were obtained prior to nightfall"
+      ]
+    },
+    {
+      "id": "HR-10",
+      "domain": "Contract clause",
+      "input": "Section 11.4 outlins the confidenciality duties. Neither vendor are responsible for incidenal losses stemming from an unavodable outage, provided written notce arrives within five days.",
+      "spelling_targets": {
+        "outlins": "outlines",
+        "confidenciality": "confidentiality",
+        "incidenal": "incidental",
+        "unavodable": "unavoidable",
+        "notce": "notice"
+      },
+      "grammar_targets": {
+        "vendor are": "vendor is"
+      },
+      "voice_tokens": [
+        "Section 11.4",
+        "Neither vendor is responsible",
+        "incidental losses",
+        "within five days"
+      ],
+      "dialect_equivalents": {},
+      "forbidden_rewrites": [
+        "this provision establishes secrecy requirements",
+        "neither contracting party assumes liability",
+        "unforeseen service interruption"
+      ]
+    }
+  ]
+}

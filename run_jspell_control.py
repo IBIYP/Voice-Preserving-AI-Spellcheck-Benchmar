@@ -20,6 +20,7 @@ ROOT = Path(__file__).resolve().parent
 API_URL = "https://jspell-checker.p.rapidapi.com/check"
 API_HOST = "jspell-checker.p.rapidapi.com"
 API_KEY_NAME = "x-rapidapi-key"
+API_KEY_ALIASES = ("JSPELL_RAPIDAPI_KEY", API_KEY_NAME)
 OUTPUT_PATH = ROOT / "raw_results" / "jspell_control_outputs.json"
 REQUEST_INTERVAL_SECONDS = 0.25
 
@@ -35,12 +36,14 @@ API_CONFIG = {
 
 def load_local_api_key():
     """Load the RapidAPI app key from the process environment or ignored .env."""
-    key = os.environ.get(API_KEY_NAME, "").strip()
-    if key:
-        return key
+    for name in API_KEY_ALIASES:
+        key = os.environ.get(name, "").strip()
+        if key:
+            return key
 
     env_path = ROOT / ".env"
     if env_path.exists():
+        dotenv = {}
         for line in env_path.read_text(encoding="utf-8").splitlines():
             candidate = line.strip()
             if not candidate or candidate.startswith("#"):
@@ -48,7 +51,11 @@ def load_local_api_key():
             if candidate.startswith("export "):
                 candidate = candidate[len("export "):].strip()
             name, separator, value = candidate.partition("=")
-            if separator and name.strip().casefold() == API_KEY_NAME:
+            if separator:
+                dotenv[name.strip().casefold()] = value.strip()
+        for name in API_KEY_ALIASES:
+            value = dotenv.get(name.casefold(), "")
+            if value:
                 value = value.strip()
                 if len(value) >= 2 and value[0] == value[-1] and value[0] in {"'", '"'}:
                     value = value[1:-1]
@@ -56,8 +63,9 @@ def load_local_api_key():
                     return value
 
     raise RuntimeError(
-        "RapidAPI key is not configured. Set x-rapidapi-key in the process "
-        "environment or in the ignored local .env file. Do not paste the key into chat."
+        "RapidAPI key is not configured. Set JSPELL_RAPIDAPI_KEY or "
+        "x-rapidapi-key in the process environment or ignored local .env file. "
+        "Do not paste the key into chat."
     )
 
 

@@ -1,13 +1,15 @@
 # Voice-Preserving Spellcheck Benchmark
 
-We test how well spelling and grammar tools fix real mistakes without ruining
-the writer's voice, tone, or meaning. Anyone can run these tests locally and
-verify the results for themselves.
+This is an independent, volunteer-run benchmark — not a corporate product or
+official certification. We put it together to see how well spelling and grammar
+tools fix real mistakes without flattening the writer's voice, slang, or tone.
+Anyone can run the scripts locally, poke at the numbers, and check our work.
 
 ## Start here
 
 - [How we score](#how-we-score)
-- [Benchmark results](#results)
+- [Results over time & snapshot](#results)
+- [Want to help? (Volunteer guide)](CONTRIBUTING.md)
 - [Our intent](#our-intent)
 - [Next version (v0.5 draft)](#next-version-v05-draft)
 - [Documentation index](documentation/README.md)
@@ -25,9 +27,39 @@ The results below use the v0.4 scoring:
 
 ## Results
 
-![Overall quality score comparison](assets/hybrid_score_comparison.svg)
+Writing tools change all the time, and scores can swing noticeably from one set
+of passages to the next. Because of that, we lead with **results over time**
+rather than treating any single run as a permanent ranking.
 
-### H-suite: 10 passages, 7 engines
+![Quality composite over time](assets/hybrid_score_comparison.svg)
+
+*Fresh repeat runs over time (`repeat-v1` → `repeat-v2`, solid) vs. the v0.4 H-suite baseline below (dashed, carried forward from `2026-11-14` for tools not re-run every round).*
+
+<details>
+<summary>See per-pillar trends over time (Spelling, Grammar, Voice, Unapproved Edits)</summary>
+
+![Pillar 1: Spelling accuracy over time](assets/h_suite_history_spelling.svg)
+
+![Pillar 2: Grammar accuracy over time](assets/h_suite_history_grammar.svg)
+
+![Pillar 3: Voice preservation over time](assets/h_suite_history_voice.svg)
+
+![Unapproved edit rate over time (lower is better)](assets/correction_site_diagnostic.svg)
+
+</details>
+
+### Fresh repeat runs log (`raw_results/h_suite_weekly_history.json`)
+
+| Batch | Date | BCorrect (FMM) | TextGears API | DeepL Write (web) | JSpell |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| `h-suite-repeat-v1` | 2026-11-16 | 59.2% | 49.0% | 83.0% | Blocked (API 403) |
+| `h-suite-repeat-v2` | 2026-11-19 | 75.0% | 71.6% | 77.5% | Pending web run / API 403 |
+
+*Notes: Each batch uses 10 brand-new passages (49 spelling + 12 grammar targets), so cross-batch moves are descriptive snapshots, not a controlled week-to-week test. TextGears used its `/spelling` endpoint on `v1` and switched to `/correct` (spelling + grammar) starting on `v2`; DeepL Write's `v2` web run defaulted to UK English (`harbour`, `crowd were`).*
+
+### v0.4 H-suite baseline (point-in-time snapshot only)
+
+> **Snapshot notice:** The table and bar chart below are a **single point-in-time snapshot** of the fixed 10-passage v0.4 H-suite (not a permanent ranking — tools update frequently, and the 95% confidence whiskers show how much small sample sizes like `n=12` grammar targets can vary).
 
 | Engine | Spelling | Grammar | Voice | Unapproved edits | Quality composite | Latency |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -39,7 +71,7 @@ The results below use the v0.4 scoring:
 | **LanguageTool** | 75.5% | 50.0% | 84.1% | 16 / 61 (26.2%) | **69.7%** | ~652.8 ms |
 | **JSpell** | 71.4% | 33.3% | 84.9% | 18 / 61 (29.5%) | **62.9%** | n/a |
 
-![Pillars breakdown](assets/pillars_breakdown.svg)
+![Pillars breakdown snapshot with 95% confidence intervals](assets/pillars_breakdown.svg)
 
 ### Run the benchmark
 
@@ -58,7 +90,7 @@ python generate_charts.py
 Run the unit test suite with Python 3:
 
 ```bash
-# Run all 59 unit tests:
+# Run all unit tests:
 python -m unittest discover -s tests -v
 
 # Run the focused v0.5 protocol validation tests:
@@ -76,10 +108,11 @@ release.
 
 ## Our intent
 
-This benchmark is not intended to represent or serve any one company or
-organisation. We hope that, over time, every provider we test will help review
-and shape it. All providers, researchers, and writers are invited to share
-input and feedback through the repository.
+This is a small, volunteer-built community project — it doesn't belong to or
+serve any one company. We're just trying to measure how writing tools behave on
+real, messy human prose. Writers, researchers, and tool makers are all welcome
+to open issues, suggest better test passages, or call out where our scoring can
+be fairer.
 
 ## Next version (v0.5 draft)
 

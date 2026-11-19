@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "series": "Weekly fresh H-suite challenge",
+  "comparison_policy": "Compare providers within the same frozen batch. Across batches, differing passages make score changes descriptive rather than controlled evidence of provider improvement. Use the fixed anchor for same-input longitudinal comparisons.",
+  "entries": [
+    {
+      "week_start_date": "2026-11-16",
+      "suite_id": "h-suite-repeat-v1",
+      "suite_version": "1.0",
+      "dataset_sha256": "16f9ef216bb539c29a9240aa57fc3806b2821b908885a534777926213b5c1d94",
+      "scoring_protocol": "v0.4 H-suite: 43.75% spelling, 31.25% grammar, 25% voice",
+      "status": "partial; JSpell Cloud API control blocked with HTTP 403 / Cloudflare 1010",
+      "results_recorded_at_utc": "2026-11-19T03:57:24.160000+00:00",
+      "provider_scores": {
+        "BCorrect (FMM)": {
+          "spelling_accuracy": 59.2,
+          "spelling_target_hits": 29,
+          "spelling_target_count": 49,
+          "grammar_accuracy": 50.0,
+          "grammar_target_hits": 6,
+          "grammar_target_count": 12,
+          "voice_preservation": 70.83,
+          "quality_composite": 59.2,
+          "unapproved_edits": 12,
+          "correction_site_count": 61,
+          "unapproved_edit_rate": 19.7
+        },
+        "TextGears API": {
+          "spelling_accuracy": 63.3,
+          "spelling_target_hits": 31,
+          "spelling_target_count": 49,
+          "grammar_accuracy": 8.3,
+          "grammar_target_hits": 1,
+          "grammar_target_count": 12,
+          "voice_preservation": 74.83,
+          "quality_composite": 49.0,
+          "unapproved_edits": 13,
+          "correction_site_count": 61,
+          "unapproved_edit_rate": 21.3
+        },
+        "DeepL Write": {
+          "spelling_accuracy": 87.8,
+          "spelling_target_hits": 43,
+          "spelling_target_count": 49,
+          "grammar_accuracy": 83.3,
+          "grammar_target_hits": 10,
+          "grammar_target_count": 12,
+          "voice_preservation": 74.18,
+          "quality_composite": 83.0,
+          "unapproved_edits": 6,
+          "correction_site_count": 61,
+          "unapproved_edit_rate": 9.8
+        }
+      },
+      "jspell_same_api_control": {
+        "status": "blocked",
+        "engine": "JSpell Cloud Spell Check API",
+        "old_h_suite_score": null,
+        "new_repeat_suite_score": null,
+        "error": "Collection skipped after the JSpell API returned HTTP 403 (Cloudflare error 1010)."
+      },
+      "scorecard": "raw_results/h_suite_repeat_v1_scores.json"
+    },
+    {
+      "week_start_date": "2026-11-19",
+      "suite_id": "h-suite-repeat-v2",
+      "suite_version": "2.0",
+      "dataset_sha256": "6b0758faed0d2ec3d9cb9da9dc68dd41adbbb965f07e1f6d68242aefa07c1aba",
+      "scoring_protocol": "v0.4 H-suite: 43.75% spelling, 31.25% grammar, 25% voice",
+      "status": "partial; Collection skipped after the JSpell API returned HTTP 403 (Cloudflare error 1010).",
+      "results_recorded_at_utc": "2026-11-19T23:48:18.457405+00:00",
+      "provider_scores": {
+        "BCorrect (FMM)": {
+          "spelling_accuracy": 85.7,
+          "spelling_target_hits": 42,
+          "spelling_target_count": 49,
+          "grammar_accuracy": 58.3,
+          "grammar_target_hits": 7,
+          "grammar_target_count": 12,
+          "voice_preservation": 76.99,
+          "quality_composite": 75.0,
+          "unapproved_edits": 5,
+          "correction_site_count": 61,
+          "unapproved_edit_rate": 8.2
+        },
+        "TextGears API": {
+          "spelling_accuracy": 73.5,
+          "spelling_target_hits": 36,
+          "spelling_target_count": 49,
+          "grammar_accuracy": 66.7,
+          "grammar_target_hits": 8,
+          "grammar_target_count": 12,
+          "voice_preservation": 74.53,
+          "quality_composite": 71.6,
+          "unapproved_edits": 15,
+          "correction_site_count": 61,
+          "unapproved_edit_rate": 24.6
+        },
+        "DeepL Write": {
+          "spelling_accuracy": 87.8,
+          "spelling_target_hits": 43,
+          "spelling_target_count": 49,
+          "grammar_accuracy": 75.0,
+          "grammar_target_hits": 9,
+          "grammar_target_count": 12,
+          "voice_preservation": 62.6,
+          "quality_composite": 77.5,
+          "unapproved_edits": 8,
+          "correction_site_count": 61,
+          "unapproved_edit_rate": 13.1
+        }
+      },
+      "jspell_same_api_control": {
+        "status": "blocked",
+        "engine": "JSpell Cloud Spell Check API",
+        "old_h_suite_score": null,
+        "new_repeat_suite_score": null,
+        "error": "Collection skipped after the JSpell API returned HTTP 403 (Cloudflare error 1010)."
+      },
+      "scorecard": "raw_results/h_suite_repeat_v2_scores.json"
+    }
+  ]
+}

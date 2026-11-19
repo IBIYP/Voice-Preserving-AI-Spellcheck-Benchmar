@@ -1,12 +1,67 @@
 # Quick and Dirty Guide for Running the Benchmark
 
-This is a quick, informal way to try the v0.4 benchmark in two phases. It is
-not the official collection method, and the v0.5 protocol is still a draft.
+This is a quick, informal way to try the v0.4 benchmark and its fresh repeat
+set. It is not the official collection method, and the v0.5 protocol is still
+a draft.
 
-**Important:** `benchmark_4pillars_hybrid.py` scores saved outputs; it does not
-fetch results from services. The RapidAPI key is used only by the separate
-JSpell API collector. TextGears and BCorrect do not have repository
-collectors, and their new results will not enter the scorecard automatically.
+**Important:** `benchmark_4pillars_hybrid.py` scores saved v0.4 outputs; it
+does not fetch results from services. For a fresh API run, use the separate
+H-suite repeat workflow below. It preserves the original scorecard and saves
+new results separately.
+
+## Run a fresh H-suite repeat
+
+The repeat set in
+[`h_suite_repeat_v1.json`](../../benchmark_data/h_suite_repeat_v1.json) has ten
+new passages, with the same 49 spelling and 12 grammar targets as the original
+H-suite. The collector sends each repeat passage to BCorrect, TextGears, and
+JSpell Cloud API. It also runs JSpell Cloud API on the original H-suite as a
+same-route control; this is separate from the original JSpell free web-checker
+result.
+
+Configure these names in the process environment or the ignored `.env` file:
+
+```text
+BCORRECT_API_KEY=...
+TEXTGEARS_API_KEY=...
+JSPELL_RAPIDAPI_KEY=...
+```
+
+`x-rapidapi-key` can be used in place of `JSPELL_RAPIDAPI_KEY`. Keep real keys
+local; do not paste them into chat or commit them. From the repository root,
+run:
+
+```bash
+python run_h_suite_repeat.py
+```
+
+The run makes ten requests each to BCorrect and TextGears, plus twenty JSpell
+requests for the old-suite control and new repeat set. It stores raw responses
+in `raw_results/h_suite_repeat_v1_runs.json` and scores in
+`raw_results/h_suite_repeat_v1_scores.json`. If interrupted, continue without
+repeating completed requests:
+
+```bash
+python run_h_suite_repeat.py --resume
+```
+
+If JSpell Cloud API denies access, do not try to bypass the block. You can
+finish the BCorrect and TextGears comparison without JSpell and clearly mark
+the same-route control as blocked:
+
+```bash
+python run_h_suite_repeat.py --resume --skip-jspell
+```
+
+After JSpell access is restored, retry the control requests with
+`python run_h_suite_repeat.py --resume --retry-jspell`.
+
+For JSpell's request body, key handling, and HTTP 403 troubleshooting, see the
+[JSpell RapidAPI setup notes](../../Docs/providers/JSPELL_RAPIDAPI_SETUP.md).
+
+The repeat scorecard uses the existing v0.4 scoring weights, but it is a
+separate result and does not replace the original public leaderboard. API
+availability, plan limits, and terms can change; check them before running.
 
 ## Phase 1: Set up RapidAPI and run the baseline
 
@@ -36,15 +91,15 @@ collectors, and their new results will not enter the scorecard automatically.
    This makes ten API requests and saves to
    `raw_results/jspell_control_outputs.json`. It does **not** feed into the
    scorecard automatically.
-5. Run the existing scorecard:
+5. Run the original scorecard:
 
    ```bash
    python benchmark_4pillars_hybrid.py
    ```
 
    This checks the included cached results; it makes no API calls and does not
-   score the new RapidAPI results. The scorecard's JSpell entry is the free
-   **web checker**, not the RapidAPI Cloud API.
+   read `jspell_control_outputs.json`. The scorecard's JSpell entry is the
+   free **web checker**, not the RapidAPI Cloud API.
 
 ## Phase 2: Collect web-checker results and rerun
 
