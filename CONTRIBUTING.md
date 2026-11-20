@@ -23,7 +23,7 @@ fixed the typos without ruining how the writer sounds.
 - **No private or sensitive text:** Only submit text that is okay to publish.
 - **No API keys or secrets:** Keep keys in your local `.env` (never commit them).
 - **Keep it honest:** Don't cherry-pick passages to help or hurt any tool, and
-  don't guess missing numbers (like latency) — just mark them `null` or `n/a`.
+  don't guess missing numbers (like latency); just mark them `null` or `n/a`.
 - **Keep it friendly:** We're testing tools in good faith, not dunking on anyone.
 
 ## Quick local check
@@ -34,5 +34,5 @@ If you edit code or test data, run the unit tests before opening a PR:
 python -m unittest discover -s tests
 ```
 
-Not sure where to start? Just open an issue and say hi — we're happy to point
+Not sure where to start? Just open an issue and say hi, and we're happy to point
 you to something small.

@@ -14,13 +14,18 @@ WEEKLY_HISTORY_PATH = ROOT / "raw_results" / "h_suite_weekly_history.json"
 ASSETS = ROOT / "assets"
 
 CURRENT_ENGINE_COLORS = {
-    "BCorrect (FMM)": "#D86C1C",
-    "LanguageTool API": "#409DC6",
-    "TextGears API": "#F2E8DB",
-    "DeepL Write": "#D5CDE1",
+    "BCorrect (FMM)": "#F08060",
+    "LanguageTool API": "#58C4DC",
+    "TextGears API": "#3FB950",
+    "DeepL Write": "#3B74E8",
     "Sapling Grammar Checker": "#E9DFA9",
     "JSpell Free Web Checker": "#D47440",
     "Grammarly Free Grammar Checker": "#D8976F",
+}
+
+EXTRA_ENGINE_COLORS = {
+    "LanguageTool (Web)": "#58C4DC",
+    "JSpell Cloud Spell Check API": "#D47440",
 }
 
 
@@ -204,6 +209,7 @@ def build_quality_chart(scores):
                 scores,
                 entries,
                 full_legend_names=True,
+                tolerance_note="Typical tolerance: ~+/-5% (n=61 sites)",
             )
             return
 
@@ -433,9 +439,9 @@ def build_pillars_profile_chart(scores):
 
     engine_styles = {
         "BCorrect (FMM)": {"stroke": "#ffffff", "width": 3, "dash": "", "marker": "square_solid"},
-        "DeepL Write": {"stroke": "#D5CDE1", "width": 2, "dash": ' stroke-dasharray="2 3"', "marker": "square_open"},
-        "TextGears API": {"stroke": "#F2E8DB", "width": 2, "dash": ' stroke-dasharray="6 3"', "marker": "square_solid"},
-        "LanguageTool API": {"stroke": "#409DC6", "width": 2, "dash": ' stroke-dasharray="6 3 2 3"', "marker": "square_open"},
+        "DeepL Write": {"stroke": "#3B74E8", "width": 2, "dash": ' stroke-dasharray="2 3"', "marker": "square_open"},
+        "TextGears API": {"stroke": "#3FB950", "width": 2, "dash": ' stroke-dasharray="6 3"', "marker": "square_solid"},
+        "LanguageTool API": {"stroke": "#58C4DC", "width": 2, "dash": ' stroke-dasharray="6 3 2 3"', "marker": "square_open"},
         "Sapling Grammar Checker": {"stroke": "#E9DFA9", "width": 2, "dash": ' stroke-dasharray="4 2"', "marker": "square_solid"},
         "JSpell Free Web Checker": {"stroke": "#D47440", "width": 2, "dash": ' stroke-dasharray="2 4"', "marker": "square_open"},
         "Grammarly Free Grammar Checker": {"stroke": "#D8976F", "width": 2, "dash": ' stroke-dasharray="5 3"', "marker": "square_solid"},
@@ -531,6 +537,7 @@ def build_diagnostic_chart(scores):
                 scores,
                 entries,
                 full_legend_names=True,
+                tolerance_note="Typical tolerance: ~+/-5% (n=61 sites)",
             )
             return
 
@@ -1022,6 +1029,7 @@ def _build_single_history_line_chart(
     entries,
     baseline_date="2026-11-14",
     full_legend_names=False,
+    tolerance_note="Typical tolerance: ~+/-5%",
 ):
     """Build one time-based line chart for a single pillar or composite score.
 
@@ -1079,10 +1087,16 @@ def _build_single_history_line_chart(
         )
 
     all_engines = list(CURRENT_ENGINE_COLORS.keys())
-    for entry in entries:
-        for eng in entry.get("provider_scores", {}):
-            if eng not in all_engines:
-                all_engines.append(eng)
+    engine_aliases = {"LanguageTool (Web)": "LanguageTool API"}
+    merged_time_points = []
+    for tp in time_points:
+        merged_scores = {}
+        for eng, sc in tp["scores"].items():
+            canonical = engine_aliases.get(eng, eng)
+            merged_scores[canonical] = sc
+            if canonical not in all_engines:
+                all_engines.append(canonical)
+        merged_time_points.append({**tp, "scores": merged_scores})
 
     series_data = {}
     retested_engines = []
@@ -1092,12 +1106,12 @@ def _build_single_history_line_chart(
     for engine in all_engines:
         has_repeat = any(
             _extract_metric(tp["scores"].get(engine), metric_key) is not None
-            for tp in time_points
+            for tp in merged_time_points
         )
         pts = []
         if has_repeat:
-            last_val = None
-            for x, tp in zip(x_positions, time_points):
+            last_val = _extract_metric(baseline_summary.get(engine), metric_key)
+            for x, tp in zip(x_positions, merged_time_points):
                 val = _extract_metric(tp["scores"].get(engine), metric_key)
                 if val is not None:
                     last_val = val
@@ -1125,7 +1139,9 @@ def _build_single_history_line_chart(
     for engine in carried_engines + retested_engines:
         info = series_data[engine]
         pts = info["pts"]
-        color = CURRENT_ENGINE_COLORS.get(engine, "#8b949e")
+        color = CURRENT_ENGINE_COLORS.get(
+            engine, EXTRA_ENGINE_COLORS.get(engine, "#8b949e")
+        )
         for (x1, y1, _v1, _m1), (x2, y2, _v2, m2) in zip(pts, pts[1:]):
             if m2 and info["has_repeat"]:
                 svg.append(
@@ -1170,13 +1186,20 @@ def _build_single_history_line_chart(
     )
     ly += 22
     for engine in retested_engines:
-        color = CURRENT_ENGINE_COLORS.get(engine, "#8b949e")
+        color = CURRENT_ENGINE_COLORS.get(
+            engine, EXTRA_ENGINE_COLORS.get(engine, "#8b949e")
+        )
+        label = (
+            "LanguageTool API / Web"
+            if engine == "LanguageTool API"
+            else engine
+        )
         svg.append(
             f'<line x1="826" y1="{ly}" x2="850" y2="{ly}" stroke="{color}" stroke-width="2.8"/>'
         )
         svg.append(f'<circle cx="838" cy="{ly}" r="4" fill="{color}"/>')
         svg.append(
-            f'<text x="860" y="{ly + 4}" fill="#f0f6fc" font-size="11">{html.escape(engine)}</text>'
+            f'<text x="860" y="{ly + 4}" fill="#f0f6fc" font-size="11">{html.escape(label)}</text>'
         )
         ly += 24
 
@@ -1214,9 +1237,14 @@ def _build_single_history_line_chart(
         ly += 22
 
     svg.append(
-        f'<text x="{width / 2:g}" y="{height - 16}" fill="#8b949e" font-size="10.5" '
-        'text-anchor="middle">*Dashed lines carry forward the last measured v0.4 H-suite score '
+        f'<text x="36" y="{height - 16}" fill="#8b949e" font-size="10.5" '
+        'text-anchor="start">*Dashed lines carry forward the last measured v0.4 H-suite score '
         'as a reference only; solid lines track fresh repeat batches.</text>'
+    )
+    tolerance_svg = html.escape(tolerance_note).replace("+/-", "&#177;")
+    svg.append(
+        f'<text x="{width - 24}" y="{height - 16}" fill="#c9d1d9" font-size="10.5" '
+        f'font-weight="600" text-anchor="end">{tolerance_svg}</text>'
     )
     _write_svg(filename, svg)
 
@@ -1238,27 +1266,31 @@ def build_weekly_history_chart(baseline_summary, history_path=WEEKLY_HISTORY_PAT
             "QUALITY COMPOSITE OVER TIME (ALL COMPETITORS)",
             "v0.4 H-suite baseline + fresh 10-passage repeat runs (43.75% spelling, 31.25% grammar, 25% voice)",
             "quality_composite",
+            "Typical tolerance: ~+/-5% (n=61 sites)",
         ),
         (
             "h_suite_history_spelling.svg",
             "PILLAR 1: SPELLING ACCURACY OVER TIME",
             "Target spelling fix rate across v0.4 H-suite and fresh repeat batches (49 spelling targets per batch)",
             "spelling_accuracy",
+            "Typical tolerance: ~+/-6% (n=49 targets)",
         ),
         (
             "h_suite_history_grammar.svg",
             "PILLAR 2: GRAMMAR ACCURACY OVER TIME",
             "Target grammar fix rate across v0.4 H-suite and fresh repeat batches (12 grammar targets per batch)",
             "grammar_accuracy",
+            "Typical tolerance: ~+/-12% (small sample, n=12)",
         ),
         (
             "h_suite_history_voice.svg",
             "PILLAR 3: VOICE PRESERVATION OVER TIME",
             "Writer voice retention across v0.4 H-suite and fresh repeat batches (slang, tone, anti-over-editing)",
             "voice_preservation",
+            "Typical tolerance: ~+/-6% (n=10 passages)",
         ),
     )
-    for filename, title, subtitle, metric_key in charts:
+    for filename, title, subtitle, metric_key, tolerance_note in charts:
         _build_single_history_line_chart(
             filename,
             title,
@@ -1266,6 +1298,7 @@ def build_weekly_history_chart(baseline_summary, history_path=WEEKLY_HISTORY_PAT
             metric_key,
             baseline_summary,
             entries,
+            tolerance_note=tolerance_note,
         )
 
 

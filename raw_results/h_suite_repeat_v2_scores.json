@@ -28,11 +28,20 @@
       "product_version": "not reported",
       "latency_ms": null,
       "result_provided_at_utc": "2026-11-19T21:15:41.967295+00:00"
+    },
+    "LanguageTool (Web)": {
+      "collection_mode": "web_demo",
+      "source_url": "https://languagetool.org/",
+      "locale": "en-US",
+      "product_version": "not reported",
+      "latency_ms": null,
+      "suggestion_policy": "Accept each first displayed suggestion once in the web checker.",
+      "result_provided_at_utc": "2026-11-19T23:54:27.815850+00:00"
     }
   },
   "repeat_dataset_sha256": "6b0758faed0d2ec3d9cb9da9dc68dd41adbbb965f07e1f6d68242aefa07c1aba",
   "old_h_suite_dataset_sha256": "25c6e93b7b8d188676d57512624ba8f37a9e82fe4380467a8f4a40588b8481b7",
-  "raw_outputs_sha256": "761717eff2cb3d26426065abe20ef391d979365c900ff2fa4c7e7d28bbb87381",
+  "raw_outputs_sha256": "da13abdce7604720fbe1bd2a5407067e11a1341b78a87d42677c44878d60c0a9",
   "score_note": "Separate fresh repeat-set results under the v0.4 rubric; these do not replace the original public leaderboard. Different batches use fresh passages and are descriptive observations over time.",
   "new_repeat_suite": {
     "status": "partial",
@@ -62,6 +71,19 @@
         "unapproved_edits": 15,
         "correction_site_count": 61,
         "unapproved_edit_rate": 24.6
+      },
+      "LanguageTool (Web)": {
+        "spelling_accuracy": 57.1,
+        "spelling_target_hits": 28,
+        "spelling_target_count": 49,
+        "grammar_accuracy": 58.3,
+        "grammar_target_hits": 7,
+        "grammar_target_count": 12,
+        "voice_preservation": 72.06,
+        "quality_composite": 61.2,
+        "unapproved_edits": 19,
+        "correction_site_count": 61,
+        "unapproved_edit_rate": 31.1
       },
       "DeepL Write": {
         "spelling_accuracy": 87.8,
@@ -173,6 +195,60 @@
                   {
                     "source": "tabel",
                     "observed": "babel",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "bouncr",
+                    "observed": "bounce",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "way to",
+                    "observed": "way too",
+                    "classification": "accepted_correction"
+                  }
+                ]
+              },
+              "quality_composite": 64.89
+            }
+          },
+          "LanguageTool (Web)": {
+            "text": "Brush that basement gig was pure chaos in the best way, no lie, but my roommate dropped his wristband near the merch label. We squeezed past the bounce and caught the encore, which was way too loud to forget.",
+            "metrics": {
+              "spelling_acc": 50.0,
+              "spelling_target_hits": 2,
+              "spelling_target_count": 4,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 1,
+              "grammar_target_count": 1,
+              "voice_preservation": 47.06,
+              "vpr": 50.0,
+              "voice_precision": 91.43,
+              "voice_recall": 96.97,
+              "voice_lexical_f1": 94.12,
+              "voice_marker_retention": 50.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 0,
+                "accepted_corrections": 3,
+                "unapproved_edits": 2,
+                "unapproved_edit_rate": 40.0,
+                "sites": [
+                  {
+                    "source": "roomate",
+                    "observed": "roommate",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "wristbnd",
+                    "observed": "wristband",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "tabel",
+                    "observed": "label",
                     "classification": "unapproved_edit"
                   },
                   {
@@ -348,6 +424,55 @@
               "quality_composite": 47.33
             }
           },
+          "LanguageTool (Web)": {
+            "text": "Aunt Mae leaned on the porch rail, humming low while the gravel road steamed after the thunder. She fingered the tin roof couldn't hold off another hailstorm, yet her blackberry cooler fixed every bad mood.",
+            "metrics": {
+              "spelling_acc": 33.33,
+              "spelling_target_hits": 1,
+              "spelling_target_count": 3,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 1,
+              "grammar_target_count": 1,
+              "voice_preservation": 72.66,
+              "vpr": 75.0,
+              "voice_precision": 93.94,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 96.88,
+              "voice_marker_retention": 75.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 4,
+                "unchanged_sites": 0,
+                "accepted_corrections": 2,
+                "unapproved_edits": 2,
+                "unapproved_edit_rate": 50.0,
+                "sites": [
+                  {
+                    "source": "thundr",
+                    "observed": "thunder",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "figgered",
+                    "observed": "fingered",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "couldnt",
+                    "observed": "couldn't",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "cobler",
+                    "observed": "cooler",
+                    "classification": "unapproved_edit"
+                  }
+                ]
+              },
+              "quality_composite": 64.0
+            }
+          },
           "DeepL Write": {
             "text": "Aunt Mae leaned on the porch rail, humming softly while the gravel road steamed after the thunder. She figured the tin roof couldn't hold off another hailstorm, yet her blackberry cobbler could fix any bad mood.",
             "metrics": {
@@ -509,6 +634,60 @@
                 ]
               },
               "quality_composite": 68.32
+            }
+          },
+          "LanguageTool (Web)": {
+            "text": "Sodium light pooled on the slick pavement. Kai splices into the uplink, dodged the sentinel daemon, and wipe the audit log before proxy could lock his acres. Static crackled down the line.",
+            "metrics": {
+              "spelling_acc": 33.33,
+              "spelling_target_hits": 1,
+              "spelling_target_count": 3,
+              "grammar_acc": 0.0,
+              "grammar_target_hits": 0,
+              "grammar_target_count": 2,
+              "voice_preservation": 96.15,
+              "vpr": 100.0,
+              "voice_precision": 92.59,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 96.15,
+              "voice_marker_retention": 100.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 2,
+                "accepted_corrections": 1,
+                "unapproved_edits": 2,
+                "unapproved_edit_rate": 40.0,
+                "sites": [
+                  {
+                    "source": "splicd",
+                    "observed": "splices",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "sentinal",
+                    "observed": "sentinel",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "and wipe",
+                    "observed": "and wipe",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "before proxy",
+                    "observed": "before proxy",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "adres",
+                    "observed": "acres",
+                    "classification": "unapproved_edit"
+                  }
+                ]
+              },
+              "quality_composite": 38.62
             }
           },
           "DeepL Write": {
@@ -677,6 +856,60 @@
                 ]
               },
               "quality_composite": 100.0
+            }
+          },
+          "LanguageTool (Web)": {
+            "text": "The wood-fired flatbread had an amazing blister crust, but the garlic aioli was way too salty. It almost drowned out the sweet fig glaze and hosted walnuts underneath.",
+            "metrics": {
+              "spelling_acc": 50.0,
+              "spelling_target_hits": 2,
+              "spelling_target_count": 4,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 1,
+              "grammar_target_count": 1,
+              "voice_preservation": 71.88,
+              "vpr": 75.0,
+              "voice_precision": 92.0,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 95.83,
+              "voice_marker_retention": 75.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 0,
+                "accepted_corrections": 3,
+                "unapproved_edits": 2,
+                "unapproved_edit_rate": 40.0,
+                "sites": [
+                  {
+                    "source": "amazng",
+                    "observed": "amazing",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "blisterd",
+                    "observed": "blister",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "way to",
+                    "observed": "way too",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "drownd",
+                    "observed": "drowned",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "tosted",
+                    "observed": "hosted",
+                    "classification": "unapproved_edit"
+                  }
+                ]
+              },
+              "quality_composite": 71.09
             }
           },
           "DeepL Write": {
@@ -947,6 +1180,110 @@
               "quality_composite": 67.35
             }
           },
+          "LanguageTool (Web)": {
+            "text": "Last night I breed our submarine could dive thru to shun to a silver Casteel. We swam past glowing jellies and met friendly dolphins who chased our light. The water was warm enough to float forever, and I yelled when my sister shook me awake for breakfast; I wasn't Reddy to leave.",
+            "metrics": {
+              "spelling_acc": 50.0,
+              "spelling_target_hits": 6,
+              "spelling_target_count": 12,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 3,
+              "grammar_target_count": 3,
+              "voice_preservation": 46.15,
+              "vpr": 50.0,
+              "voice_precision": 87.8,
+              "voice_recall": 97.3,
+              "voice_lexical_f1": 92.31,
+              "voice_marker_retention": 50.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 15,
+                "unchanged_sites": 2,
+                "accepted_corrections": 9,
+                "unapproved_edits": 4,
+                "unapproved_edit_rate": 26.7,
+                "sites": [
+                  {
+                    "source": "yesturday",
+                    "observed": "last",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "nite",
+                    "observed": "night",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "dreemd",
+                    "observed": "breed",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "submarene",
+                    "observed": "submarine",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "thru",
+                    "observed": "thru",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "oshun",
+                    "observed": "shun",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "castell",
+                    "observed": "casteel",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "swimmed",
+                    "observed": "swam",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "glowin",
+                    "observed": "glowing",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "dolpins",
+                    "observed": "dolphins",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "enuf",
+                    "observed": "enough",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "shaked",
+                    "observed": "shook",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "brekfast",
+                    "observed": "breakfast",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "wasnt",
+                    "observed": "wasn't",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "reddy",
+                    "observed": "reddy",
+                    "classification": "unchanged"
+                  }
+                ]
+              },
+              "quality_composite": 64.66
+            }
+          },
           "DeepL Write": {
             "text": "Last night I dreamed our submarine could dive through the ocean to a silver castle. We swam past glowing jellies and met friendly dolphins who chased our light. The water was warm enough to float in forever. I yelled when my sister shook me awake for breakfast; I wasn't ready to leave.",
             "metrics": {
@@ -1155,6 +1492,55 @@
               "quality_composite": 78.07
             }
           },
+          "LanguageTool (Web)": {
+            "text": "Our burn rate dropped 22% QoQ, folks, while net retention hit a new peak. Rivals are hustling to copy our roadmap and pricing, but we ship to quick for them.",
+            "metrics": {
+              "spelling_acc": 100.0,
+              "spelling_target_hits": 3,
+              "spelling_target_count": 3,
+              "grammar_acc": 0.0,
+              "grammar_target_hits": 0,
+              "grammar_target_count": 1,
+              "voice_preservation": 100.0,
+              "vpr": 100.0,
+              "voice_precision": 100.0,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 100.0,
+              "voice_marker_retention": 100.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 4,
+                "unchanged_sites": 1,
+                "accepted_corrections": 3,
+                "unapproved_edits": 0,
+                "unapproved_edit_rate": 0.0,
+                "sites": [
+                  {
+                    "source": "retenshun",
+                    "observed": "retention",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "roadmp",
+                    "observed": "roadmap",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "pricng",
+                    "observed": "pricing",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "to quick",
+                    "observed": "to quick",
+                    "classification": "unchanged"
+                  }
+                ]
+              },
+              "quality_composite": 68.75
+            }
+          },
           "DeepL Write": {
             "text": "Our burn rate dropped by 22% quarter-on-quarter, folks, while net retention hit a new peak. Rivals are trying to copy our roadmap and pricing, but we're too quick for them.",
             "metrics": {
@@ -1338,6 +1724,70 @@
               "quality_composite": 54.56
             }
           },
+          "LanguageTool (Web)": {
+            "text": "Coach tapped the clipboard and called our last set play. We ran the backdoor cut crisp, sank the layup off the backboard, and sealed the tournament; the crowd were roaring before the ref blew the whole.",
+            "metrics": {
+              "spelling_acc": 83.33,
+              "spelling_target_hits": 5,
+              "spelling_target_count": 6,
+              "grammar_acc": 0.0,
+              "grammar_target_hits": 0,
+              "grammar_target_count": 1,
+              "voice_preservation": 73.68,
+              "vpr": 75.0,
+              "voice_precision": 96.55,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 98.25,
+              "voice_marker_retention": 75.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 7,
+                "unchanged_sites": 1,
+                "accepted_corrections": 5,
+                "unapproved_edits": 1,
+                "unapproved_edit_rate": 14.3,
+                "sites": [
+                  {
+                    "source": "clipbord",
+                    "observed": "clipboard",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "backdor",
+                    "observed": "backdoor",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "backbord",
+                    "observed": "backboard",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "tournment",
+                    "observed": "tournament",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "crowd were",
+                    "observed": "crowd were",
+                    "classification": "unchanged"
+                  },
+                  {
+                    "source": "roaringg",
+                    "observed": "roaring",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "whisle",
+                    "observed": "whole",
+                    "classification": "unapproved_edit"
+                  }
+                ]
+              },
+              "quality_composite": 54.88
+            }
+          },
           "DeepL Write": {
             "text": "Coach tapped the clipboard and called our final play. We ran the backdoor cut crisply, sank the layup off the backboard and sealed the tournament victory; the crowd were roaring before the referee blew the whistle.",
             "metrics": {
@@ -1516,6 +1966,60 @@
               "quality_composite": 84.71
             }
           },
+          "LanguageTool (Web)": {
+            "text": "Mist drifted across the Harar as the ferry bell clanged. A dull loneliness lingered in my chest, neither angry nor loud, just the quiet drift of another November; one porch lamp glow steady beside the weathered pair.",
+            "metrics": {
+              "spelling_acc": 40.0,
+              "spelling_target_hits": 2,
+              "spelling_target_count": 5,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 0,
+              "grammar_target_count": 0,
+              "voice_preservation": 71.64,
+              "vpr": 75.0,
+              "voice_precision": 91.43,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 95.52,
+              "voice_marker_retention": 75.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 0,
+                "accepted_corrections": 2,
+                "unapproved_edits": 3,
+                "unapproved_edit_rate": 60.0,
+                "sites": [
+                  {
+                    "source": "harbr",
+                    "observed": "harar",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "lonliness",
+                    "observed": "loneliness",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "novembr",
+                    "observed": "november",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "glowd",
+                    "observed": "glow",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "peir",
+                    "observed": "pair",
+                    "classification": "unapproved_edit"
+                  }
+                ]
+              },
+              "quality_composite": 66.66
+            }
+          },
           "DeepL Write": {
             "text": "Mist drifted across the harbour as the ferry bell clanged. A dull loneliness lingered in my chest, neither angry nor loud, just the quiet passing of another November; one porch lamp glowed steadily beside the weathered pier.",
             "metrics": {
@@ -1682,6 +2186,60 @@
                 ]
               },
               "quality_composite": 64.44
+            }
+          },
+          "LanguageTool (Web)": {
+            "text": "Recorded five juvenile Ambystoma titanium along the marsh edge. Their mottled pigmentation looked surprisingly vivid under the thick sedge canopies; three swab was collected before dusk settled.",
+            "metrics": {
+              "spelling_acc": 75.0,
+              "spelling_target_hits": 3,
+              "spelling_target_count": 4,
+              "grammar_acc": 0.0,
+              "grammar_target_hits": 0,
+              "grammar_target_count": 1,
+              "voice_preservation": 46.34,
+              "vpr": 50.0,
+              "voice_precision": 90.48,
+              "voice_recall": 95.0,
+              "voice_lexical_f1": 92.68,
+              "voice_marker_retention": 50.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 5,
+                "unchanged_sites": 1,
+                "accepted_corrections": 3,
+                "unapproved_edits": 1,
+                "unapproved_edit_rate": 20.0,
+                "sites": [
+                  {
+                    "source": "juvunile",
+                    "observed": "juvenile",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "pigmentashun",
+                    "observed": "pigmentation",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "surprisngly",
+                    "observed": "surprisingly",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "canopie",
+                    "observed": "canopies",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "three swab was",
+                    "observed": "three swab was",
+                    "classification": "unchanged"
+                  }
+                ]
+              },
+              "quality_composite": 44.4
             }
           },
           "DeepL Write": {
@@ -1860,6 +2418,65 @@
                 ]
               },
               "quality_composite": 100.0
+            }
+          },
+          "LanguageTool (Web)": {
+            "text": "Section 11.4 outline the confidentiality duties. Neither vendor is responsible for incidental losses stemming from an unavoidable outage, provided written note arrives within five days.",
+            "metrics": {
+              "spelling_acc": 60.0,
+              "spelling_target_hits": 3,
+              "spelling_target_count": 5,
+              "grammar_acc": 100.0,
+              "grammar_target_hits": 1,
+              "grammar_target_count": 1,
+              "voice_preservation": 95.0,
+              "vpr": 100.0,
+              "voice_precision": 90.48,
+              "voice_recall": 100.0,
+              "voice_lexical_f1": 95.0,
+              "voice_marker_retention": 100.0,
+              "voice_over_edit_count": 0,
+              "oer": 0.0,
+              "correction_site_diagnostic": {
+                "applicable_sites": 6,
+                "unchanged_sites": 0,
+                "accepted_corrections": 4,
+                "unapproved_edits": 2,
+                "unapproved_edit_rate": 33.3,
+                "sites": [
+                  {
+                    "source": "outlins",
+                    "observed": "outline",
+                    "classification": "unapproved_edit"
+                  },
+                  {
+                    "source": "confidenciality",
+                    "observed": "confidentiality",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "vendor are",
+                    "observed": "vendor is",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "incidenal",
+                    "observed": "incidental",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "unavodable",
+                    "observed": "unavoidable",
+                    "classification": "accepted_correction"
+                  },
+                  {
+                    "source": "notce",
+                    "observed": "note",
+                    "classification": "unapproved_edit"
+                  }
+                ]
+              },
+              "quality_composite": 81.25
             }
           },
           "DeepL Write": {

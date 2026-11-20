@@ -35,6 +35,7 @@ TEXTGEARS_HOST = "textgears-textgears-v1.p.rapidapi.com"
 TEXTGEARS_URL = f"https://{TEXTGEARS_HOST}/correct"
 JSPELL_ENGINE = "JSpell Cloud Spell Check API"
 JSPELL_WEB_ENGINE = "JSpell Free Web Checker"
+LANGUAGETOOL_WEB_ENGINE = "LanguageTool (Web)"
 DEEPL_ENGINE = "DeepL Write"
 ENGINE_NAMES = ("BCorrect (FMM)", "TextGears API", JSPELL_ENGINE)
 REQUEST_INTERVAL_SECONDS = 0.25
@@ -499,7 +500,12 @@ def _new_engine_outputs(results, passages):
 
 def _available_repeat_engines(outputs):
     engines = ["BCorrect (FMM)", "TextGears API"]
-    for optional_engine in (JSPELL_ENGINE, JSPELL_WEB_ENGINE, DEEPL_ENGINE):
+    for optional_engine in (
+        JSPELL_ENGINE,
+        JSPELL_WEB_ENGINE,
+        LANGUAGETOOL_WEB_ENGINE,
+        DEEPL_ENGINE,
+    ):
         if all(optional_engine in passage_outputs for passage_outputs in outputs.values()):
             engines.append(optional_engine)
     return tuple(engines)

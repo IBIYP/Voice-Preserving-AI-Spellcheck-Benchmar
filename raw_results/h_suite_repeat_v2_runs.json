@@ -38,11 +38,20 @@
         "product_version": "not reported",
         "latency_ms": null,
         "result_provided_at_utc": "2026-11-19T21:15:41.967295+00:00"
+      },
+      "LanguageTool (Web)": {
+        "collection_mode": "web_demo",
+        "source_url": "https://languagetool.org/",
+        "locale": "en-US",
+        "product_version": "not reported",
+        "latency_ms": null,
+        "suggestion_policy": "Accept each first displayed suggestion once in the web checker.",
+        "result_provided_at_utc": "2026-11-19T23:54:27.815850+00:00"
       }
     },
     "collection_completed_at_utc": "2026-11-19T15:39:34.711682+00:00",
-    "raw_outputs_sha256": "761717eff2cb3d26426065abe20ef391d979365c900ff2fa4c7e7d28bbb87381",
-    "results_updated_at_utc": "2026-11-19T23:48:18.391609+00:00"
+    "raw_outputs_sha256": "da13abdce7604720fbe1bd2a5407067e11a1341b78a87d42677c44878d60c0a9",
+    "results_updated_at_utc": "2026-11-19T23:54:27.959900+00:00"
   },
   "old_h_suite_jspell_control": {
     "outputs": {}
@@ -2276,6 +2285,11 @@
           "text": "Bro, that basement gig was pure chaos, but in the best way. No lie. But my roommate dropped his wristband near the merchandise table. We squeezed past the bouncer and caught the encore, which was too loud to forget.",
           "latency_ms": null,
           "result_provided_at_utc": "2026-11-19T21:15:41.967295+00:00"
+        },
+        "LanguageTool (Web)": {
+          "text": "Brush that basement gig was pure chaos in the best way, no lie, but my roommate dropped his wristband near the merch label. We squeezed past the bounce and caught the encore, which was way too loud to forget.",
+          "latency_ms": null,
+          "result_provided_at_utc": "2026-11-19T23:54:27.815850+00:00"
         }
       }
     },
@@ -4234,6 +4248,11 @@
           "text": "Aunt Mae leaned on the porch rail, humming softly while the gravel road steamed after the thunder. She figured the tin roof couldn't hold off another hailstorm, yet her blackberry cobbler could fix any bad mood.",
           "latency_ms": null,
           "result_provided_at_utc": "2026-11-19T21:15:41.967295+00:00"
+        },
+        "LanguageTool (Web)": {
+          "text": "Aunt Mae leaned on the porch rail, humming low while the gravel road steamed after the thunder. She fingered the tin roof couldn't hold off another hailstorm, yet her blackberry cooler fixed every bad mood.",
+          "latency_ms": null,
+          "result_provided_at_utc": "2026-11-19T23:54:27.815850+00:00"
         }
       }
     },
@@ -5741,6 +5760,11 @@
           "text": "Sodium light pooled on the slick pavement. Kai hacked into the uplink, dodged the sentinel daemon and wiped the audit log before the proxy could lock his address. Static crackled down the line.",
           "latency_ms": null,
           "result_provided_at_utc": "2026-11-19T21:15:41.967295+00:00"
+        },
+        "LanguageTool (Web)": {
+          "text": "Sodium light pooled on the slick pavement. Kai splices into the uplink, dodged the sentinel daemon, and wipe the audit log before proxy could lock his acres. Static crackled down the line.",
+          "latency_ms": null,
+          "result_provided_at_utc": "2026-11-19T23:54:27.815850+00:00"
         }
       }
     },
@@ -7310,6 +7334,11 @@
           "text": "The wood-fired flatbread had an amazing blistered crust, but the garlic aioli was far too salty. It almost drowned out the sweet fig glaze and toasted walnuts underneath.",
           "latency_ms": null,
           "result_provided_at_utc": "2026-11-19T21:15:41.967295+00:00"
+        },
+        "LanguageTool (Web)": {
+          "text": "The wood-fired flatbread had an amazing blister crust, but the garlic aioli was way too salty. It almost drowned out the sweet fig glaze and hosted walnuts underneath.",
+          "latency_ms": null,
+          "result_provided_at_utc": "2026-11-19T23:54:27.815850+00:00"
         }
       }
     },
@@ -10674,6 +10703,11 @@
           "text": "Last night I dreamed our submarine could dive through the ocean to a silver castle. We swam past glowing jellies and met friendly dolphins who chased our light. The water was warm enough to float in forever. I yelled when my sister shook me awake for breakfast; I wasn't ready to leave.",
           "latency_ms": null,
           "result_provided_at_utc": "2026-11-19T21:15:41.967295+00:00"
+        },
+        "LanguageTool (Web)": {
+          "text": "Last night I breed our submarine could dive thru to shun to a silver Casteel. We swam past glowing jellies and met friendly dolphins who chased our light. The water was warm enough to float forever, and I yelled when my sister shook me awake for breakfast; I wasn't Reddy to leave.",
+          "latency_ms": null,
+          "result_provided_at_utc": "2026-11-19T23:54:27.815850+00:00"
         }
       }
     },
@@ -11948,6 +11982,11 @@
           "text": "Our burn rate dropped by 22% quarter-on-quarter, folks, while net retention hit a new peak. Rivals are trying to copy our roadmap and pricing, but we're too quick for them.",
           "latency_ms": null,
           "result_provided_at_utc": "2026-11-19T21:15:41.967295+00:00"
+        },
+        "LanguageTool (Web)": {
+          "text": "Our burn rate dropped 22% QoQ, folks, while net retention hit a new peak. Rivals are hustling to copy our roadmap and pricing, but we ship to quick for them.",
+          "latency_ms": null,
+          "result_provided_at_utc": "2026-11-19T23:54:27.815850+00:00"
         }
       }
     },
@@ -13868,6 +13907,11 @@
           "text": "Coach tapped the clipboard and called our final play. We ran the backdoor cut crisply, sank the layup off the backboard and sealed the tournament victory; the crowd were roaring before the referee blew the whistle.",
           "latency_ms": null,
           "result_provided_at_utc": "2026-11-19T21:15:41.967295+00:00"
+        },
+        "LanguageTool (Web)": {
+          "text": "Coach tapped the clipboard and called our last set play. We ran the backdoor cut crisp, sank the layup off the backboard, and sealed the tournament; the crowd were roaring before the ref blew the whole.",
+          "latency_ms": null,
+          "result_provided_at_utc": "2026-11-19T23:54:27.815850+00:00"
         }
       }
     },
@@ -15978,6 +16022,11 @@
           "text": "Mist drifted across the harbour as the ferry bell clanged. A dull loneliness lingered in my chest, neither angry nor loud, just the quiet passing of another November; one porch lamp glowed steadily beside the weathered pier.",
           "latency_ms": null,
           "result_provided_at_utc": "2026-11-19T21:15:41.967295+00:00"
+        },
+        "LanguageTool (Web)": {
+          "text": "Mist drifted across the Harar as the ferry bell clanged. A dull loneliness lingered in my chest, neither angry nor loud, just the quiet drift of another November; one porch lamp glow steady beside the weathered pair.",
+          "latency_ms": null,
+          "result_provided_at_utc": "2026-11-19T23:54:27.815850+00:00"
         }
       }
     },
@@ -17678,6 +17727,11 @@
           "text": "We recorded five juvenile Ambystoma tigrinum along the marsh edge. Their mottled pigmentation looked surprisingly vivid under the thick sedge canopy; three swabs were collected before dusk fell.",
           "latency_ms": null,
           "result_provided_at_utc": "2026-11-19T21:15:41.967295+00:00"
+        },
+        "LanguageTool (Web)": {
+          "text": "Recorded five juvenile Ambystoma titanium along the marsh edge. Their mottled pigmentation looked surprisingly vivid under the thick sedge canopies; three swab was collected before dusk settled.",
+          "latency_ms": null,
+          "result_provided_at_utc": "2026-11-19T23:54:27.815850+00:00"
         }
       }
     },
@@ -19333,6 +19387,11 @@
           "text": "Section 11.4 outlines the confidentiality duties. Neither vendor is responsible for incidental losses stemming from an unavoidable outage, provided written notice is received within five days.",
           "latency_ms": null,
           "result_provided_at_utc": "2026-11-19T21:15:41.967295+00:00"
+        },
+        "LanguageTool (Web)": {
+          "text": "Section 11.4 outline the confidentiality duties. Neither vendor is responsible for incidental losses stemming from an unavoidable outage, provided written note arrives within five days.",
+          "latency_ms": null,
+          "result_provided_at_utc": "2026-11-19T23:54:27.815850+00:00"
         }
       }
     }

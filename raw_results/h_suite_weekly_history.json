@@ -68,7 +68,7 @@
       "dataset_sha256": "6b0758faed0d2ec3d9cb9da9dc68dd41adbbb965f07e1f6d68242aefa07c1aba",
       "scoring_protocol": "v0.4 H-suite: 43.75% spelling, 31.25% grammar, 25% voice",
       "status": "partial; Collection skipped after the JSpell API returned HTTP 403 (Cloudflare error 1010).",
-      "results_recorded_at_utc": "2026-11-19T23:48:18.457405+00:00",
+      "results_recorded_at_utc": "2026-11-19T23:54:28.018074+00:00",
       "provider_scores": {
         "BCorrect (FMM)": {
           "spelling_accuracy": 85.7,
@@ -95,6 +95,19 @@
           "unapproved_edits": 15,
           "correction_site_count": 61,
           "unapproved_edit_rate": 24.6
+        },
+        "LanguageTool (Web)": {
+          "spelling_accuracy": 57.1,
+          "spelling_target_hits": 28,
+          "spelling_target_count": 49,
+          "grammar_accuracy": 58.3,
+          "grammar_target_hits": 7,
+          "grammar_target_count": 12,
+          "voice_preservation": 72.06,
+          "quality_composite": 61.2,
+          "unapproved_edits": 19,
+          "correction_site_count": 61,
+          "unapproved_edit_rate": 31.1
         },
         "DeepL Write": {
           "spelling_accuracy": 87.8,

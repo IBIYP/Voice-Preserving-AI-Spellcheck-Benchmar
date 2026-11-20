@@ -15,16 +15,16 @@
 <text x="1042.5" y="319" fill="#8b949e" font-size="12" text-anchor="middle">75%</text>
 <line x1="1280" y1="112" x2="1280" y2="306" stroke="#30363d" stroke-width="1"/>
 <text x="1280" y="319" fill="#8b949e" font-size="12" text-anchor="middle">100%</text>
-<text x="315" y="130" fill="#D86C1C" font-size="14" text-anchor="end">BCorrect (FMM)</text>
+<text x="315" y="130" fill="#F08060" font-size="14" text-anchor="end">BCorrect (FMM)</text>
 <rect x="330" y="116" width="767.60" height="18" fill="#A97070" stroke="#f0f6fc" stroke-dasharray="5 3" stroke-width="1"/>
 <text x="1104.60" y="130" fill="#f0f6fc" font-size="13" font-weight="700">80.8%</text>
-<text x="315" y="158" fill="#409DC6" font-size="14" text-anchor="end">LanguageTool API</text>
+<text x="315" y="158" fill="#58C4DC" font-size="14" text-anchor="end">LanguageTool API</text>
 <rect x="330" y="144" width="746.70" height="18" fill="#A97070" stroke="#f0f6fc" stroke-dasharray="5 3" stroke-width="1"/>
 <text x="1083.70" y="158" fill="#f0f6fc" font-size="13" font-weight="700">78.6%</text>
-<text x="315" y="186" fill="#F2E8DB" font-size="14" text-anchor="end">TextGears API</text>
+<text x="315" y="186" fill="#3FB950" font-size="14" text-anchor="end">TextGears API</text>
 <rect x="330" y="172" width="750.50" height="18" fill="#A97070" stroke="#f0f6fc" stroke-dasharray="5 3" stroke-width="1"/>
 <text x="1087.50" y="186" fill="#f0f6fc" font-size="13" font-weight="700">79.0%</text>
-<text x="315" y="214" fill="#D5CDE1" font-size="14" text-anchor="end">DeepL Write</text>
+<text x="315" y="214" fill="#3B74E8" font-size="14" text-anchor="end">DeepL Write</text>
 <rect x="330" y="200" width="799.90" height="18" fill="#A97070" stroke="#f0f6fc" stroke-dasharray="5 3" stroke-width="1"/>
 <text x="1136.90" y="214" fill="#f0f6fc" font-size="13" font-weight="700">84.2%</text>
 <text x="315" y="242" fill="#E9DFA9" font-size="14" text-anchor="end">Sapling Grammar Checker</text>
@@ -48,16 +48,16 @@
 <text x="1042.5" y="557" fill="#8b949e" font-size="12" text-anchor="middle">75%</text>
 <line x1="1280" y1="350" x2="1280" y2="544" stroke="#30363d" stroke-width="1"/>
 <text x="1280" y="557" fill="#8b949e" font-size="12" text-anchor="middle">100%</text>
-<text x="315" y="368" fill="#D86C1C" font-size="14" text-anchor="end">BCorrect (FMM)</text>
+<text x="315" y="368" fill="#F08060" font-size="14" text-anchor="end">BCorrect (FMM)</text>
 <rect x="330" y="354" width="892.05" height="18" fill="#6E9A80" stroke="#f0f6fc" stroke-width="1"/>
 <text x="1229.05" y="368" fill="#f0f6fc" font-size="13" font-weight="700">93.9%</text>
-<text x="315" y="396" fill="#409DC6" font-size="14" text-anchor="end">LanguageTool API</text>
+<text x="315" y="396" fill="#58C4DC" font-size="14" text-anchor="end">LanguageTool API</text>
 <rect x="330" y="382" width="662.15" height="18" fill="#6E9A80" stroke="#f0f6fc" stroke-width="1"/>
 <text x="999.15" y="396" fill="#f0f6fc" font-size="13" font-weight="700">69.7%</text>
-<text x="315" y="424" fill="#F2E8DB" font-size="14" text-anchor="end">TextGears API</text>
+<text x="315" y="424" fill="#3FB950" font-size="14" text-anchor="end">TextGears API</text>
 <rect x="330" y="410" width="709.65" height="18" fill="#6E9A80" stroke="#f0f6fc" stroke-width="1"/>
 <text x="1046.65" y="424" fill="#f0f6fc" font-size="13" font-weight="700">74.7%</text>
-<text x="315" y="452" fill="#D5CDE1" font-size="14" text-anchor="end">DeepL Write</text>
+<text x="315" y="452" fill="#3B74E8" font-size="14" text-anchor="end">DeepL Write</text>
 <rect x="330" y="438" width="722.00" height="18" fill="#6E9A80" stroke="#f0f6fc" stroke-width="1"/>
 <text x="1059.00" y="452" fill="#f0f6fc" font-size="13" font-weight="700">76.0%</text>
 <text x="315" y="480" fill="#E9DFA9" font-size="14" text-anchor="end">Sapling Grammar Checker</text>
